@@ -7,7 +7,7 @@ import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-// Component for lazy loading images
+// Component for image loading
 const LazyImage = ({ src, alt, className, isHoverable = false }: { 
   src: string; 
   alt: string; 
@@ -15,56 +15,29 @@ const LazyImage = ({ src, alt, className, isHoverable = false }: {
   isHoverable?: boolean;
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
   
-  // Use Intersection Observer to determine when image is in viewport
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '200px' } // Start loading image when it's 200px from entering the viewport
-    );
-
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
+  // Simplified image loading approach
   const handleLoad = () => {
     setIsLoaded(true);
   };
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    console.error(`Failed to load image: ${src}`);
     // Try with cache-busting
     e.currentTarget.src = src + `?v=${Date.now()}`;
   };
 
   return (
-    <div className={`${className} ${!isLoaded && isInView ? 'bg-gray-200 dark:bg-gray-700 animate-pulse' : ''}`}>
-      {isInView && (
-        <img
-          ref={imgRef}
-          src={src}
-          alt={alt}
-          className={`w-full h-full object-cover transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${isHoverable ? 'group-hover:scale-105' : ''}`}
-          onLoad={handleLoad}
-          onError={handleError}
-          loading="lazy"
-        />
-      )}
-      {!isInView && (
-        <div className="w-full h-full bg-gray-200 dark:bg-gray-700"></div>
-      )}
+    <div className={`${className} ${!isLoaded ? 'bg-gray-200 dark:bg-gray-700 animate-pulse' : ''}`}>
+      <img
+        ref={imgRef}
+        src={src}
+        alt={alt}
+        className={`w-full h-full object-cover transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${isHoverable ? 'group-hover:scale-105' : ''}`}
+        onLoad={handleLoad}
+        onError={handleError}
+      />
     </div>
   );
 };

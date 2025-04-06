@@ -174,25 +174,39 @@ export default function ProjectDetail() {
               <p>{solution}</p>
             </div>
             
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <a 
-                href={project.demoLink} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="bg-primary text-white py-3 px-6 rounded-md flex items-center justify-center hover:bg-primary/90 transition-colors"
-              >
-                <Globe className="mr-2 h-5 w-5" />
-                Visit Live Website
-              </a>
-              <a 
-                href={project.codeLink} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="border border-gray-300 dark:border-gray-700 py-3 px-6 rounded-md flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-              >
-                <Code className="mr-2 h-5 w-5" />
-                View Source Code
-              </a>
+            <div className="mt-12 grid grid-cols-1 gap-6">
+              {project.title.includes("Amy Cousineau") ? (
+                <a 
+                  href={project.demoLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="bg-primary text-white py-3 px-6 rounded-md flex items-center justify-center hover:bg-primary/90 transition-colors max-w-xs mx-auto"
+                >
+                  <Globe className="mr-2 h-5 w-5" />
+                  Visit Live Website
+                </a>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                  <a 
+                    href={project.demoLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="bg-primary text-white py-3 px-6 rounded-md flex items-center justify-center hover:bg-primary/90 transition-colors"
+                  >
+                    <Globe className="mr-2 h-5 w-5" />
+                    Visit Live Website
+                  </a>
+                  <a 
+                    href={project.codeLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="border border-gray-300 dark:border-gray-700 py-3 px-6 rounded-md flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  >
+                    <Code className="mr-2 h-5 w-5" />
+                    View Source Code
+                  </a>
+                </div>
+              )}
             </div>
             
             <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">

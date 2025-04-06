@@ -19,7 +19,11 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
     >
       <div className="relative overflow-hidden h-52">
         <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-          <span className="text-gray-400 dark:text-gray-500 text-sm font-medium">Project Image</span>
+          <img 
+            src="/attached_assets/image_1743954412277.png" 
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
           <div className="p-4 text-white">

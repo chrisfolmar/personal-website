@@ -92,7 +92,7 @@ export const projects: Project[] = [
   {
     title: "Jennifer Mello, LICSW - Certified Trauma Therapy",
     description: "When I started my practice, at the root of everything I did, I held my clients in mind. Not only is this space a way for me to introduce myself to you, its also FOR you. I hope you find a sense of peace, belonging, and guidance if that is what you seek.",
-    image: "/assets/images/projects/project1.svg",
+    image: "@assets/image_1743954412277.png",
     tags: ["WordPress", "Healthcare", "Professional Services", "Trauma Therapy"],
     demoLink: "https://jmellolicsw.com/",
     codeLink: "https://github.com/chrisfolmar",

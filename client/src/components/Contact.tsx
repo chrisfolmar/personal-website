@@ -12,19 +12,31 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, CheckCircle2, AlertOctagon } from "lucide-react";
 import { SiGithub, SiLinkedin, SiX, SiDribbble } from "react-icons/si";
 import { ContactFormData } from "@/types";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  subject: z.string().min(5, { message: "Subject must be at least 5 characters" }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters" }),
+  name: z.string()
+    .min(2, { message: "Name must be at least 2 characters long" })
+    .max(50, { message: "Name cannot exceed 50 characters" })
+    .regex(/^[a-zA-Z\s'-]+$/, { message: "Name can only contain letters, spaces, hyphens, and apostrophes" }),
+  email: z.string()
+    .email({ message: "Please enter a valid email address" })
+    .min(5, { message: "Email address is too short" })
+    .max(100, { message: "Email address cannot exceed 100 characters" }),
+  subject: z.string()
+    .min(5, { message: "Subject must be at least 5 characters long" })
+    .max(100, { message: "Subject cannot exceed 100 characters" }),
+  message: z.string()
+    .min(20, { message: "Message must be at least 20 characters long" })
+    .max(1000, { message: "Message cannot exceed 1000 characters" }),
 });
 
 export default function Contact() {
   const { toast } = useToast();
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   
   const form = useForm<ContactFormData>({
     resolver: zodResolver(formSchema),
@@ -39,19 +51,52 @@ export default function Contact() {
   const mutation = useMutation({
     mutationFn: (data: ContactFormData) => 
       apiRequest("POST", "/api/contact", data),
+    onMutate: () => {
+      setFormStatus('submitting');
+    },
     onSuccess: () => {
+      setFormStatus('success');
       toast({
         title: "Message sent!",
         description: "Thank you for your message. I will get back to you soon.",
       });
       form.reset();
+      
+      // Reset form status after a delay
+      setTimeout(() => {
+        setFormStatus('idle');
+      }, 3000);
     },
-    onError: (error) => {
+    onError: (error: any) => {
+      setFormStatus('error');
+      
+      // More specific error handling based on error type
+      let errorTitle = "Error sending message";
+      let errorDescription = "There was an error sending your message. Please try again.";
+      
+      if (error.status === 429) {
+        errorTitle = "Too many requests";
+        errorDescription = "Please wait a moment before trying again.";
+      } else if (error.status === 400) {
+        errorTitle = "Invalid form data";
+        errorDescription = "Please check your input and try again.";
+      } else if (error.status === 500) {
+        errorTitle = "Server error";
+        errorDescription = "Our server is experiencing issues. Please try again later.";
+      } else if (error.message) {
+        errorDescription = error.message;
+      }
+      
       toast({
-        title: "Error sending message",
-        description: error.message || "There was an error sending your message. Please try again.",
+        title: errorTitle,
+        description: errorDescription,
         variant: "destructive",
       });
+      
+      // Reset form status after a delay
+      setTimeout(() => {
+        setFormStatus('idle');
+      }, 3000);
     },
   });
   
@@ -86,9 +131,13 @@ export default function Contact() {
                       <FormItem>
                         <FormLabel>Name</FormLabel>
                         <FormControl>
-                          <Input {...field} />
+                          <Input 
+                            {...field} 
+                            aria-required="true"
+                            aria-invalid={form.formState.errors.name ? "true" : "false"}
+                          />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage aria-live="polite" />
                       </FormItem>
                     )}
                   />
@@ -100,9 +149,15 @@ export default function Contact() {
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input type="email" {...field} />
+                          <Input 
+                            type="email" 
+                            {...field} 
+                            aria-required="true"
+                            aria-invalid={form.formState.errors.email ? "true" : "false"}
+                            placeholder="your.email@example.com"
+                          />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage aria-live="polite" />
                       </FormItem>
                     )}
                   />
@@ -114,9 +169,14 @@ export default function Contact() {
                       <FormItem>
                         <FormLabel>Subject</FormLabel>
                         <FormControl>
-                          <Input {...field} />
+                          <Input 
+                            {...field} 
+                            aria-required="true"
+                            aria-invalid={form.formState.errors.subject ? "true" : "false"}
+                            placeholder="What is this regarding?"
+                          />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage aria-live="polite" />
                       </FormItem>
                     )}
                   />
@@ -128,19 +188,52 @@ export default function Contact() {
                       <FormItem>
                         <FormLabel>Message</FormLabel>
                         <FormControl>
-                          <Textarea rows={5} {...field} />
+                          <Textarea 
+                            rows={5} 
+                            {...field} 
+                            aria-required="true" 
+                            aria-invalid={form.formState.errors.message ? "true" : "false"}
+                            placeholder="Tell me about your project or inquiry..."
+                          />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage aria-live="polite" />
                       </FormItem>
                     )}
                   />
                   
+                  {formStatus === 'success' && (
+                    <Alert className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 mb-4">
+                      <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400" />
+                      <AlertDescription className="text-green-800 dark:text-green-300">
+                        Your message has been sent successfully! I'll get back to you soon.
+                      </AlertDescription>
+                    </Alert>
+                  )}
+                  
+                  {formStatus === 'error' && (
+                    <Alert className="bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 mb-4">
+                      <AlertOctagon className="h-4 w-4 text-red-600 dark:text-red-400" />
+                      <AlertDescription className="text-red-800 dark:text-red-300">
+                        There was an error sending your message. Please try again later.
+                      </AlertDescription>
+                    </Alert>
+                  )}
+                  
                   <Button 
                     type="submit" 
                     className="w-full" 
-                    disabled={mutation.isPending}
+                    disabled={mutation.isPending || formStatus === 'success'}
+                    aria-label="Submit contact form"
                   >
-                    {mutation.isPending ? "Sending..." : "Send Message"}
+                    {mutation.isPending ? (
+                      <span className="flex items-center justify-center">
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending...
+                      </span>
+                    ) : formStatus === 'success' ? "Message Sent" : "Send Message"}
                   </Button>
                 </form>
               </Form>

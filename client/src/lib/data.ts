@@ -92,7 +92,7 @@ export const projects: Project[] = [
   {
     title: "Jennifer Mello, LICSW - Certified Trauma Therapy",
     description: "When I started my practice, at the root of everything I did, I held my clients in mind. Not only is this space a way for me to introduce myself to you, its also FOR you. I hope you find a sense of peace, belonging, and guidance if that is what you seek.",
-    image: "/assets/profile/engagement.jpg",
+    image: "/assets/images/projects/project1.svg",
     tags: ["WordPress", "Healthcare", "Professional Services", "Trauma Therapy"],
     demoLink: "https://jmellolicsw.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -101,7 +101,7 @@ export const projects: Project[] = [
   {
     title: "Locos Cocos Tacos - Restaurant Website",
     description: "Kittery, Maine's Loco Cocos Tacos features online ordering for customer pickup, gift cards, special events, and service industry discounts. The site highlights Happy Hour specials Monday through Friday from 3-6 PM with discounts on drafts and house margaritas.",
-    image: "/assets/profile/KP_20240608_0224_3649.jpg",
+    image: "/assets/images/projects/project2.svg",
     tags: ["WordPress", "Food & Beverage", "E-commerce", "Online Ordering"],
     demoLink: "https://locococostacos.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -110,7 +110,7 @@ export const projects: Project[] = [
   {
     title: "Slip 14 - Marina & Waterfront Dining",
     description: "A waterfront dining website showcasing the restaurant's unique location at the marina, featuring fresh seafood menu offerings, special events, and a full-feature reservation system for an enhanced customer booking experience.",
-    image: "/assets/blog/reception.jpg",
+    image: "/assets/images/projects/project3.svg",
     tags: ["WordPress", "Hospitality", "Booking System", "Visual Design"],
     demoLink: "https://www.slip14.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -119,7 +119,7 @@ export const projects: Project[] = [
   {
     title: "Amy Cousineau, LICSW - Multi-State Therapy",
     description: "A therapy resource for clients in Rhode Island and Massachusetts focusing on treatment of anxiety, depression, PTSD, and LGBTQIA+ support. The site covers specialized services for ADD/ADHD, depression, relationship challenges, and self-doubt concerns.",
-    image: "/assets/blog/first_dance.jpg",
+    image: "/assets/images/projects/project4.svg",
     tags: ["WordPress", "Healthcare", "Professional Services", "Mental Health"],
     demoLink: "https://acousineaulicsw.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -139,21 +139,21 @@ export const testimonials = [
     name: "Jennifer Mello",
     position: "Licensed Clinical Social Worker",
     content: "Chris created exactly the website I envisioned for my therapy practice. The calming design perfectly represents my approach to trauma therapy, and my clients frequently comment on how easy the site is to navigate. Chris made the whole process simple and straightforward.",
-    avatar: "/assets/profile/engagement.jpg"
+    avatar: "/assets/images/testimonial1.jpg"
   },
   {
     id: 2,
     name: "Amy Cousineau",
     position: "LICSW Therapist",
     content: "Working with Chris was a fantastic experience. He understood my vision for a professional yet approachable therapy website and delivered beyond my expectations. The site is easy for me to maintain and has significantly increased my client inquiries.",
-    avatar: "/assets/blog/wedding_day.jpg"
+    avatar: "/assets/images/testimonial2.jpg"
   },
   {
     id: 3,
     name: "Michael Rodriguez",
     position: "Restaurant Owner, Locos Cocos Tacos",
     content: "Our restaurant website needed to be vibrant, functional and easy to update with specials and events. Chris delivered a perfect solution that our customers love using for online orders. The site captures our restaurant's energy and has boosted our online presence.",
-    avatar: "/assets/blog/reception.jpg"
+    avatar: "/assets/images/testimonial3.jpg"
   },
 ];
 

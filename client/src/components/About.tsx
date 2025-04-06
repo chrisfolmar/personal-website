@@ -85,8 +85,8 @@ export default function About() {
               ))}
               
               <div className="flex justify-center mt-8">
-                <a href="#" className="inline-flex items-center text-primary hover:text-primary-dark transition-colors font-medium">
-                  <span>View Full Resume</span>
+                <a href="https://www.linkedin.com/in/clfolmar" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:text-primary-dark transition-colors font-medium">
+                  <span>View LinkedIn</span>
                   <ArrowRight className="h-5 w-5 ml-1" />
                 </a>
               </div>

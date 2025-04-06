@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLocation, useParams } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Code, ExternalLink, Globe } from "lucide-react";
@@ -6,6 +6,40 @@ import { projects } from "@/lib/data";
 import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+
+// LazyImage component for consistent image loading behavior
+const LazyImage = ({ src, alt, className }: { 
+  src: string; 
+  alt: string; 
+  className: string;
+}) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+  
+  const handleLoad = () => {
+    setIsLoaded(true);
+  };
+
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    console.error(`Failed to load image: ${src}`);
+    // Try with cache-busting
+    e.currentTarget.src = src + `?v=${Date.now()}`;
+  };
+
+  return (
+    <div className={`${className} ${!isLoaded ? 'bg-gray-200 dark:bg-gray-700 animate-pulse' : ''} flex items-center justify-center`}>
+      <img
+        ref={imgRef}
+        src={src}
+        alt={alt}
+        className={`max-w-full max-h-full object-contain transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        onLoad={handleLoad}
+        onError={handleError}
+        style={{ maxHeight: '400px', maxWidth: '80%' }}
+      />
+    </div>
+  );
+};
 
 export default function ProjectDetail() {
   const [location, setLocation] = useLocation();
@@ -134,15 +168,11 @@ export default function ProjectDetail() {
           </div>
           
           <div className="max-w-4xl mx-auto">
-            <div className="mb-10 rounded-xl overflow-hidden">
-              <img 
+            <div className="mb-10 rounded-xl overflow-hidden" style={{ minHeight: '280px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <LazyImage 
                 src={project.image} 
                 alt={project.title} 
-                className="w-full h-auto object-cover"
-                onError={(e) => {
-                  console.error(`Failed to load project image: ${project.image}`);
-                  e.currentTarget.src = project.image + `?v=${Date.now()}`;
-                }}
+                className="w-auto h-auto" 
               />
             </div>
             

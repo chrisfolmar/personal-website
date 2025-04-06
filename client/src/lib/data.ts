@@ -563,28 +563,33 @@ export const blogPosts = [
 
 export const socials: Social[] = [
   {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/clfolmar",
+    icon: "linkedin",
+  },
+  {
     name: "GitHub",
     url: "https://github.com/chrisfolmar",
     icon: "github",
   },
   {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/in/clfolmar/",
-    icon: "linkedin",
+    name: "Instagram",
+    url: "https://www.instagram.com/fomy",
+    icon: "instagram",
   },
   {
-    name: "Twitter",
+    name: "X",
     url: "https://x.com/fomy",
     icon: "twitter",
   },
   {
-    name: "Instagram",
-    url: "https://www.instagram.com/fomy/?hl=en",
-    icon: "instagram",
+    name: "Medium",
+    url: "https://medium.com/@c.folmar",
+    icon: "fileText",
   },
   {
-    name: "Medium",
-    url: "https://medium.com/@c.folmar/following",
-    icon: "fileText",
+    name: "Penny's Instagram",
+    url: "https://www.instagram.com/pennyifyouplease",
+    icon: "instagram",
   },
 ];

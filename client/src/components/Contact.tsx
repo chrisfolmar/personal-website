@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, CheckCircle2, AlertOctagon, ShieldAlert } from "lucide-react";
-import { SiGithub, SiLinkedin, SiX, SiDribbble } from "react-icons/si";
+import { SiGithub, SiLinkedin, SiX, SiInstagram, SiMedium } from "react-icons/si";
 import { ContactFormData, ExtendedContactFormData } from "@/types";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
@@ -406,8 +406,11 @@ export default function Contact() {
                     case 'twitter':
                       SocialIcon = SiX;
                       break;
-                    case 'dribbble':
-                      SocialIcon = SiDribbble;
+                    case 'instagram':
+                      SocialIcon = SiInstagram;
+                      break;
+                    case 'fileText':
+                      SocialIcon = SiMedium;
                       break;
                     default:
                       SocialIcon = SiGithub;

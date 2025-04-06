@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect } from "react";
 import { useLocation, useParams } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Code, ExternalLink, Globe } from "lucide-react";
@@ -6,40 +6,7 @@ import { projects } from "@/lib/data";
 import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
-// LazyImage component for consistent image loading behavior
-const LazyImage = ({ src, alt, className }: { 
-  src: string; 
-  alt: string; 
-  className: string;
-}) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
-  
-  const handleLoad = () => {
-    setIsLoaded(true);
-  };
-
-  const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    console.error(`Failed to load image: ${src}`);
-    // Try with cache-busting
-    e.currentTarget.src = src + `?v=${Date.now()}`;
-  };
-
-  return (
-    <div className={`${className} ${!isLoaded ? 'bg-gray-200 dark:bg-gray-700 animate-pulse' : ''} flex items-center justify-center`}>
-      <img
-        ref={imgRef}
-        src={src}
-        alt={alt}
-        className={`max-w-full max-h-full object-contain transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-        onLoad={handleLoad}
-        onError={handleError}
-        style={{ maxHeight: '400px', maxWidth: '80%' }}
-      />
-    </div>
-  );
-};
+import LazyImage from "@/components/LazyImage";
 
 export default function ProjectDetail() {
   const [location, setLocation] = useLocation();
@@ -168,13 +135,18 @@ export default function ProjectDetail() {
           </div>
           
           <div className="max-w-4xl mx-auto">
-            <div className="mb-10 rounded-xl overflow-hidden" style={{ minHeight: '280px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <LazyImage 
-                src={project.image} 
-                alt={project.title} 
-                className="w-auto h-auto" 
-              />
-            </div>
+            <LazyImage 
+              src={project.image} 
+              alt={project.title}
+              containerClassName="mb-10 rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-800/20"
+              containerStyle={{
+                minHeight: '280px',
+                maxHeight: '450px',
+                width: '100%'
+              }}
+              objectFit="contain"
+              aspectRatio="16/9"
+            />
             
             <div className="prose prose-lg dark:prose-invert max-w-none">
               <h2>About the Client</h2>
@@ -263,15 +235,14 @@ export default function ProjectDetail() {
                           setLocation(`/project/${urlTitle}`);
                         }}
                       >
-                        <div className="mb-3 overflow-hidden rounded-lg">
-                          <img 
+                        <div className="mb-3 overflow-hidden rounded-lg" style={{ height: '200px' }}>
+                          <LazyImage 
                             src={relatedProject.image} 
                             alt={relatedProject.title} 
-                            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                            onError={(e) => {
-                              console.error(`Failed to load related project image: ${relatedProject.image}`);
-                              e.currentTarget.src = relatedProject.image + `?v=${Date.now()}`;
-                            }}
+                            className="transition-transform duration-300 group-hover:scale-105"
+                            containerClassName="w-full h-full"
+                            objectFit="cover"
+                            aspectRatio="16/9"
                           />
                         </div>
                         <h4 className="font-bold group-hover:text-primary transition-colors">

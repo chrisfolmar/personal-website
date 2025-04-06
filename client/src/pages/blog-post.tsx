@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import { useLocation, useParams } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react";
@@ -6,42 +6,7 @@ import { blogPosts } from "@/lib/data";
 import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
-// Component for image loading
-const LazyImage = ({ src, alt, className, isHoverable = false }: { 
-  src: string; 
-  alt: string; 
-  className: string; 
-  isHoverable?: boolean;
-}) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
-  
-  // Simplified image loading approach
-  const handleLoad = () => {
-    setIsLoaded(true);
-  };
-
-  const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    console.error(`Failed to load image: ${src}`);
-    // Try with cache-busting
-    e.currentTarget.src = src + `?v=${Date.now()}`;
-  };
-
-  return (
-    <div className={`${className} ${!isLoaded ? 'bg-gray-200 dark:bg-gray-700 animate-pulse' : ''} flex items-center justify-center`}>
-      <img
-        ref={imgRef}
-        src={src}
-        alt={alt}
-        className={`max-w-full max-h-full object-contain transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${isHoverable ? 'group-hover:scale-105' : ''}`}
-        onLoad={handleLoad}
-        onError={handleError}
-        style={{ maxHeight: '400px', maxWidth: '80%' }}
-      />
-    </div>
-  );
-};
+import LazyImage from "@/components/LazyImage";
 
 // Related post component 
 const RelatedPost = ({ post, onClick }: { post: typeof blogPosts[0]; onClick: () => void }) => {
@@ -50,12 +15,14 @@ const RelatedPost = ({ post, onClick }: { post: typeof blogPosts[0]; onClick: ()
       className="group cursor-pointer"
       onClick={onClick}
     >
-      <div className="mb-3 overflow-hidden rounded-lg">
+      <div className="mb-3 overflow-hidden rounded-lg" style={{ height: '200px' }}>
         <LazyImage 
           src={post.coverImage} 
           alt={post.title} 
-          className="w-full h-48" 
-          isHoverable={true}
+          className="transition-transform duration-300 group-hover:scale-105"
+          containerClassName="w-full h-full"
+          objectFit="cover"
+          aspectRatio="16/9"
         />
       </div>
       <h4 className="font-bold group-hover:text-primary transition-colors">
@@ -132,13 +99,18 @@ export default function BlogPost() {
           className="max-w-4xl mx-auto"
         >
           {/* Featured Image at the top */}
-          <div className="mb-8 rounded-xl overflow-hidden" style={{ minHeight: '280px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <LazyImage 
-              src={post.coverImage} 
-              alt={post.title} 
-              className="w-auto h-auto" 
-            />
-          </div>
+          <LazyImage 
+            src={post.coverImage} 
+            alt={post.title}
+            containerClassName="mb-8 rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-800/20"
+            containerStyle={{
+              minHeight: '280px',
+              maxHeight: '450px',
+              width: '100%'
+            }}
+            objectFit="contain"
+            aspectRatio="16/9"
+          />
           
           <div className="mb-8">
             <Badge variant="secondary" className="bg-primary text-white hover:bg-primary/90 mb-4">

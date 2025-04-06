@@ -270,7 +270,7 @@ export const projects: Project[] = [
 
 export const contact: Contact = {
   email: "contact@chrisfolmar.com",
-  phone: "(603) 988-7967",
+  phone: "",
   location: "Durham, NH",
 };
 

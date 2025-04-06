@@ -12,7 +12,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin, CheckCircle2, AlertOctagon, ShieldAlert } from "lucide-react";
+import { Mail, MapPin, CheckCircle2, AlertOctagon, ShieldAlert } from "lucide-react";
 import { SiGithub, SiLinkedin, SiX, SiInstagram, SiMedium } from "react-icons/si";
 import { ContactFormData, ExtendedContactFormData } from "@/types";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -363,18 +363,6 @@ export default function Contact() {
                   <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Email</h4>
                   <a href={`mailto:${contact.email}`} className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
                     {contact.email}
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-start">
-                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center">
-                  <Phone className="h-5 w-5 text-primary" />
-                </div>
-                <div className="ml-4">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Phone</h4>
-                  <a href={`tel:${contact.phone.replace(/\s/g, '')}`} className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                    {contact.phone}
                   </a>
                 </div>
               </div>

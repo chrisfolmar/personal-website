@@ -13,7 +13,7 @@ export default function Skills() {
           description="As an Engineering Manager, I leverage both technical expertise and leadership capabilities to deliver successful projects and build high-performing teams."
         />
         
-        <div className="grid md:grid-cols-2 gap-12 section-transition">
+        <div className="grid md:grid-cols-2 gap-8 section-transition">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -30,27 +30,29 @@ export default function Skills() {
               Leadership & Technical Skills
             </h3>
             
-            {skills.map((skill, index) => (
-              <motion.div 
-                key={index} 
-                className="mb-8"
-                initial={{ opacity: 0, width: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <div className="flex justify-between items-center mb-2">
-                  <span className="font-medium text-gray-800 dark:text-gray-200 flex-1 mr-4">{skill.name}</span>
-                  <span className="text-gray-600 dark:text-gray-400 min-w-[50px] text-right font-semibold">{skill.percentage}%</span>
-                </div>
-                <ProgressBar percentage={skill.percentage} />
-                {skill.description && (
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 italic">
-                    {skill.description}
-                  </p>
-                )}
-              </motion.div>
-            ))}
+            <div className="space-y-6">
+              {skills.map((skill, index) => (
+                <motion.div 
+                  key={index} 
+                  className="mb-2"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="flex justify-between items-center mb-2">
+                    <h4 className="font-medium text-gray-800 dark:text-gray-200 text-base">{skill.name}</h4>
+                    <span className="text-gray-600 dark:text-gray-400 min-w-[50px] text-right font-semibold">{skill.percentage}%</span>
+                  </div>
+                  <ProgressBar percentage={skill.percentage} />
+                  {skill.description && (
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 leading-relaxed break-words">
+                      {skill.description}
+                    </p>
+                  )}
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
           
           <motion.div

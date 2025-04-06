@@ -20,7 +20,7 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
       <div className="relative overflow-hidden h-52">
         <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
           <img 
-            src="/attached_assets/image_1743954412277.png" 
+            src="/assets/images/project-card.png" 
             alt={project.title}
             className="w-full h-full object-cover"
           />

@@ -64,7 +64,7 @@ export default function BlogPost() {
           <div className="max-w-4xl mx-auto">
             <div className="mb-10 rounded-xl overflow-hidden">
               <img 
-                src="/attached_assets/image_1743954368907.png" 
+                src="/assets/images/blog-post.png" 
                 alt={post.title} 
                 className="w-full h-auto object-cover"
               />
@@ -104,7 +104,7 @@ export default function BlogPost() {
                     >
                       <div className="mb-3 overflow-hidden rounded-lg">
                         <img 
-                          src="/attached_assets/image_1743954368907.png" 
+                          src="/assets/images/blog-post.png" 
                           alt={relatedPost.title} 
                           className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                         />

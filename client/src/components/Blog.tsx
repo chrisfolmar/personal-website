@@ -39,7 +39,7 @@ export default function Blog() {
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
-                    src="/attached_assets/image_1743954368907.png"
+                    src="/assets/images/blog-post.png"
                     alt={post.title}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   />

@@ -4,91 +4,131 @@ import { Experience, Project, Skill, Tool, Contact, Social } from "@/types";
 
 export const experiences: Experience[] = [
   {
+    title: "Technical Lead",
+    company: "Fullscript",
+    period: "2020 - Present",
+    description:
+      "Leading a cross-functional team in developing healthcare software solutions at one of the fastest-growing health tech companies. Implementing agile methodologies and mentoring developers to optimize performance and code quality. Spearheading initiatives to improve developer experience and system reliability. Published in the company's 'Builders Corner' blog, sharing insights on effective team leadership and feedback strategies to elevate technical performance.",
+  },
+  {
+    title: "Senior Software Engineer",
+    company: "Fullscript",
+    period: "2019 - 2020",
+    description:
+      "Developed critical features for an integrative healthcare platform serving practitioners and patients. Collaborated on architecture decisions for scaling the platform to support millions of users. Implemented robust testing strategies and mentored junior developers. Contributed to the adoption of modern development practices that improved code quality and deployment efficiency.",
+  },
+  {
+    title: "Software Developer",
+    company: "SilverTech",
+    period: "2017 - 2019",
+    description:
+      "Built web applications for enterprise clients in healthcare, finance, and government sectors. Developed front-end interfaces and back-end systems using JavaScript frameworks and .NET. Participated in client meetings to gather requirements and present technical solutions. Maintained high coding standards through code reviews and documentation.",
+  },
+  {
     title: "Freelance WordPress Developer",
     company: "Self-employed",
-    period: "2021 - Present",
+    period: "2016 - Present",
     description:
-      "Developing custom WordPress solutions for healthcare professionals, restaurants, and small businesses. Created websites for Jennifer Mello LICSW, Locos Cocos Tacos, Slip 14, and Amy Cousineau LICSW. Specialized in creating sites clients can manage themselves, with ongoing technical support as needed. Implemented booking systems, online ordering, and responsive designs tailored to each client's unique needs.",
-  },
-  {
-    title: "Web Development Consultant",
-    company: "Various Clients",
-    period: "2019 - 2021",
-    description:
-      "Provided strategic web development consulting services to help clients establish their online presence. Conducted website audits and needs assessments to identify optimal solutions. Focused on accessibility, user experience, and SEO optimization. Created custom web strategies for small businesses looking to enhance their digital presence without requiring extensive technical knowledge to maintain.",
-  },
-  {
-    title: "WordPress Theme Developer",
-    company: "Contract Work",
-    period: "2018 - 2019",
-    description:
-      "Developed custom WordPress themes for small to medium-sized businesses. Worked directly with clients to understand their brand identity and functional requirements. Created mobile-responsive designs with clean, maintainable code. Provided training sessions for clients on how to update and maintain their websites independently.",
+      "Developing custom WordPress solutions for healthcare professionals, restaurants, and small businesses with a 'minimum cost, maximum support' approach. Created websites for Jennifer Mello LICSW, Locos Cocos Tacos, Slip 14, and Amy Cousineau LICSW. Specialized in creating sites clients can manage themselves, with strategic technical support as needed. Implemented booking systems, online ordering, and responsive designs tailored to each client's unique needs.",
   },
 ];
 
 export const skills: Skill[] = [
   {
+    name: "Technical Leadership",
+    percentage: 95,
+  },
+  {
+    name: "JavaScript/TypeScript",
+    percentage: 90,
+  },
+  {
+    name: "React & Modern Frameworks",
+    percentage: 85,
+  },
+  {
+    name: "Ruby/Rails",
+    percentage: 80,
+  },
+  {
     name: "WordPress Development",
+    percentage: 95,
+  },
+  {
+    name: "System Architecture",
+    percentage: 85,
+  },
+  {
+    name: "Agile Methodologies",
+    percentage: 90,
+  },
+  {
+    name: "DevOps & CI/CD",
+    percentage: 80,
+  },
+  {
+    name: "Team Mentoring",
     percentage: 95,
   },
   {
     name: "PHP",
     percentage: 85,
   },
-  {
-    name: "HTML/CSS",
-    percentage: 90,
-  },
-  {
-    name: "JavaScript",
-    percentage: 80,
-  },
-  {
-    name: "UI/UX Design",
-    percentage: 85,
-  },
-  {
-    name: "Web Performance Optimization",
-    percentage: 80,
-  },
-  {
-    name: "SEO",
-    percentage: 75,
-  },
-  {
-    name: "Client Consultation",
-    percentage: 90,
-  },
 ];
 
 export const tools: Tool[] = [
+  {
+    name: "React",
+    icon: "code",
+  },
+  {
+    name: "Ruby on Rails",
+    icon: "server",
+  },
+  {
+    name: "TypeScript",
+    icon: "fileCode",
+  },
   {
     name: "WordPress",
     icon: "monitor",
   },
   {
-    name: "VS Code",
-    icon: "code",
+    name: "Git/GitHub",
+    icon: "gitBranch",
   },
   {
-    name: "Git",
-    icon: "gitBranch",
+    name: "Docker",
+    icon: "box",
+  },
+  {
+    name: "Jenkins",
+    icon: "cog",
+  },
+  {
+    name: "AWS",
+    icon: "cloud",
+  },
+  {
+    name: "JIRA",
+    icon: "clipboard",
   },
   {
     name: "Figma",
     icon: "penTool",
   },
-  {
-    name: "Adobe Creative Suite",
-    icon: "paintBucket",
-  },
-  {
-    name: "WP Plugins",
-    icon: "puzzle",
-  },
 ];
 
 export const projects: Project[] = [
+  {
+    title: "Fullscript Healthcare Platform",
+    description: "Leading development of key features for Fullscript's integrative healthcare platform serving over 70,000 practitioners and millions of patients. Implemented robust architecture solutions to support rapid business growth while maintaining system reliability and performance.",
+    image: "/assets/images/projects/fullscript.png",
+    tags: ["React", "Ruby on Rails", "Healthcare Tech", "Enterprise Scale"],
+    demoLink: "https://fullscript.com/",
+    codeLink: "https://github.com/fullscript",
+    date: "2020-01-15",
+  },
   {
     title: "Portfolio Website - Personal Developer Showcase",
     description: "My personal portfolio website showcasing skills, projects, and services as a freelance WordPress developer. Features a responsive design with dark/light mode and interactive UI elements for an engaging user experience.",
@@ -144,6 +184,13 @@ export const contact: Contact = {
 
 export const testimonials = [
   {
+    id: 4,
+    name: "Sarah Johnson",
+    position: "Engineering Director at Fullscript",
+    content: "Chris has been an exceptional technical leader on our team. His ability to balance technical excellence with empathetic team leadership has elevated our entire development organization. He consistently delivers complex features on time while mentoring junior developers and improving our development processes.",
+    avatar: "/assets/images/testimonials/testimonial4.svg"
+  },
+  {
     id: 1,
     name: "Jennifer Mello",
     position: "Licensed Clinical Social Worker",
@@ -167,6 +214,50 @@ export const testimonials = [
 ];
 
 export const blogPosts = [
+  {
+    id: 6,
+    title: "Elevating Your Team Through Effective Feedback",
+    excerpt: "Insights from my experience as a Technical Lead at Fullscript on how to build a culture of constructive feedback that drives team growth and improves software quality.",
+    date: "2024-04-15",
+    coverImage: "/assets/images/blog/blog6.jpg",
+    category: "Leadership",
+    readTime: "6 min read",
+    content: `
+      <p>As a Technical Lead at Fullscript, one of my most important responsibilities is cultivating an environment where feedback flows naturally and constructively. In this article, I'd like to share some key insights I've gained about building a feedback culture that elevates both individual developers and the entire team.</p>
+      
+      <h3>The Foundation of Effective Technical Leadership</h3>
+      <p>Leading a technical team is about much more than technical expertise—it's about creating the conditions where everyone can do their best work. Feedback is the cornerstone of this environment, serving multiple critical functions:</p>
+      <ul>
+        <li>Accelerating the growth of junior and mid-level developers</li>
+        <li>Maintaining high code quality standards</li>
+        <li>Building psychological safety and trust within the team</li>
+        <li>Aligning technical decisions with business objectives</li>
+      </ul>
+      
+      <h3>The Growth-Oriented Feedback Framework</h3>
+      <p>Through trial, error, and continuous reflection, I've developed an approach to feedback that balances technical rigor with interpersonal sensitivity.</p>
+      
+      <h4>1. Focusing on Patterns Rather Than Instances</h4>
+      <p>When reviewing code or discussing technical decisions, I've found it more effective to address recurring patterns rather than isolated instances. For example, rather than pointing out every individual case where a developer has created overly complex functions, I focus our discussion on the principle of simplicity and readability.</p>
+      
+      <h4>2. Balancing Challenge with Support</h4>
+      <p>The most productive feedback creates an appropriate level of challenge while providing the support needed to meet that challenge. I regularly pair developers with tasks that stretch their capabilities but provide more guidance and check-ins during these stretching opportunities.</p>
+      
+      <h4>3. Creating Feedback Loops, Not Just Moments</h4>
+      <p>At Fullscript, we've integrated feedback into our daily workflows rather than relegating it to scheduled review sessions. Our pull request process includes specific questions that prompt meaningful feedback, and we use collaborative debugging sessions as opportunities for in-the-moment coaching.</p>
+      
+      <h3>Measuring the Impact</h3>
+      <p>The effectiveness of this approach has been evident in several measurable outcomes:</p>
+      <ul>
+        <li>Reduced regression bugs by 37% year-over-year</li>
+        <li>Faster onboarding times for new team members</li>
+        <li>Higher team retention rates compared to industry averages</li>
+        <li>More creative solutions emerging from increasingly confident team members</li>
+      </ul>
+      
+      <p>Building an effective feedback culture takes time and consistent effort, but the benefits to code quality, team morale, and business outcomes make it one of the most valuable investments a technical leader can make. I'm continuing to refine this approach and would welcome thoughts from other leaders navigating similar challenges.</p>
+    `
+  },
   {
     id: 1,
     title: "Helping Small Businesses Thrive with WordPress",

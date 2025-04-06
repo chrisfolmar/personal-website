@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import { useLocation } from 'wouter';
 import { blogPosts } from '@/lib/data';
 import type { BlogPost } from '@/types';
 import SectionHeading from '@/components/ui/section-heading';
@@ -9,6 +10,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { formatDate } from '@/lib/utils';
 
 export default function Blog() {
+  const [, setLocation] = useLocation();
   return (
     <section id="blog" className="py-20">
       <div className="container mx-auto px-4">
@@ -26,7 +28,10 @@ export default function Blog() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
+              <Card 
+                className="h-full overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col cursor-pointer"
+                onClick={() => setLocation(`/blog/${post.id}`)}
+              >
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={post.coverImage}

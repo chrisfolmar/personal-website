@@ -14,6 +14,7 @@ import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import NotFound from "@/pages/not-found";
+import BlogPost from "@/pages/blog-post";
 
 function HomePage() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Header />
           <Switch>
             <Route path="/" component={HomePage} />
+            <Route path="/blog/:id" component={BlogPost} />
             <Route component={NotFound} />
           </Switch>
           <Footer />

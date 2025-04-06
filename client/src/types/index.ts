@@ -59,4 +59,5 @@ export interface BlogPost {
   coverImage: string;
   category: string;
   readTime: string;
+  content?: string; // Optional HTML content for full blog post
 }

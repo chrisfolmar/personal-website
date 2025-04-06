@@ -23,13 +23,16 @@ export default function About() {
           >
             <h3 className="text-2xl font-bold mb-6">Who I Am</h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              I'm a WordPress developer based in Durham, NH, specializing in creating professional, custom websites for small businesses and individuals. With years of experience in web development, I focus on building sites that not only look great but are also easy for clients to manage themselves.
+              I'm a WordPress developer based in Durham, NH, specializing in creating professional, custom websites for small businesses and healthcare professionals. With over five years of experience, I've developed a unique approach that prioritizes client autonomy while providing exceptional value with my "minimum cost, maximum support" model.
             </p>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              I believe in a "minimum cost, maximum support" model, ensuring that my clients receive exceptional value and ongoing assistance. Recently married in June 2024, I'm an Arsenal fan and proud dog dad to two wonderful pups.
+              My portfolio includes therapy practice websites, restaurant sites with online ordering systems, and various small business platforms. I take pride in building websites that not only look professional but function intuitively for both site owners and their visitors. My clients appreciate how easy their sites are to maintain while still having my support when needed.
+            </p>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">
+              Recently married in June 2024, I'm settling into our new home in New Hampshire's beautiful seacoast region. I'm passionate about creating digital experiences that reflect the unique personality of each business I work with, just as I've done for Jennifer Mello LICSW, Locos Cocos Tacos, and Amy Cousineau LICSW.
             </p>
             <p className="text-gray-600 dark:text-gray-400">
-              When I'm not designing websites, you'll find me cheering for Arsenal, spending time with my dogs, exploring New Hampshire's beautiful outdoors, or staying updated on the latest WordPress developments and web design trends.
+              When I'm not coding, you'll find me cheering for Arsenal FC, hiking with my two dogs in the White Mountains, exploring New England's coastal towns, or keeping up with the latest WordPress developments. I believe in maintaining a healthy work-life balance, which helps me bring fresh creativity to each project.
             </p>
           </motion.div>
           

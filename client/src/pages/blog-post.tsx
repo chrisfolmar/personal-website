@@ -29,14 +29,15 @@ const LazyImage = ({ src, alt, className, isHoverable = false }: {
   };
 
   return (
-    <div className={`${className} ${!isLoaded ? 'bg-gray-200 dark:bg-gray-700 animate-pulse' : ''}`}>
+    <div className={`${className} ${!isLoaded ? 'bg-gray-200 dark:bg-gray-700 animate-pulse' : ''} flex items-center justify-center`}>
       <img
         ref={imgRef}
         src={src}
         alt={alt}
-        className={`w-full h-full object-contain transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${isHoverable ? 'group-hover:scale-105' : ''}`}
+        className={`max-w-full max-h-full object-contain transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${isHoverable ? 'group-hover:scale-105' : ''}`}
         onLoad={handleLoad}
         onError={handleError}
+        style={{ maxHeight: '600px' }}
       />
     </div>
   );
@@ -122,11 +123,11 @@ export default function BlogPost() {
           className="max-w-4xl mx-auto"
         >
           {/* Featured Image at the top */}
-          <div className="mb-8 rounded-xl overflow-hidden">
+          <div className="mb-8 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800" style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <LazyImage 
               src={post.coverImage} 
               alt={post.title} 
-              className="w-full h-auto max-h-[500px]" 
+              className="w-full h-auto py-4" 
             />
           </div>
           

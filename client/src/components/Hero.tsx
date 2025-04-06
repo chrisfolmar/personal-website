@@ -72,17 +72,18 @@ export default function Hero() {
           >
             <div className="relative w-72 h-72 rounded-full bg-gradient-to-r from-primary to-accent p-1 shadow-lg">
               <div className="absolute inset-1 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
-                {/* Profile image */}
-                <img 
-                  key={currentImageIndex}
-                  src={profileImages[currentImageIndex]} 
-                  alt="Chris Folmar" 
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    console.error("Failed to load profile image", e);
-                    e.currentTarget.src = profileImages[0]; // Fallback to first image
-                  }}
-                />
+                {/* Profile image with no transition effect - just a direct swap */}
+                <div className="w-full h-full" style={{ position: 'relative' }}>
+                  <img 
+                    src={profileImages[currentImageIndex]} 
+                    alt="Chris Folmar" 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      console.error("Failed to load profile image", e);
+                      e.currentTarget.src = profileImages[0]; // Fallback to first image
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </motion.div>

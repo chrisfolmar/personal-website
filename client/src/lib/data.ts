@@ -35,32 +35,37 @@ export const experiences: Experience[] = [
 
 export const skills: Skill[] = [
   {
+    name: "AI & Automation Implementation",
+    percentage: 86,
+    description: "Spearheaded AI initiatives including ML-based document processing, ChatGPT integration for customer support, and predictive inventory algorithms. Created automation workflows saving 40% in operational time across departments.",
+  },
+  {
     name: "Team Leadership & Mentorship",
     percentage: 95,
-    description: "Led 3 globally distributed engineering teams (15+ engineers), increasing delivery capacity by 300% without headcount expansion. Successfully mentored 7 engineers to Senior/Staff roles and created the Project Lead framework adopted company-wide.",
+    description: "Managed 3 cross-functional teams (6-12 ICs), increasing project delivery by 300%. Mentored engineers into senior roles, creating a scalable Project Lead framework. Focused on building high-performing teams by fostering a culture of growth and collaboration.",
   },
   {
     name: "Strategic & Operational Leadership",
     percentage: 92,
-    description: "Led Fullscript's AI-first automation initiative and Go-to-Ruby migration, reducing stack complexity by 66%. Established 3-year technical roadmap and reduced reporting overhead by 90% through automated systems.",
+    description: "Leading Fullscript's AI-first automation initiative, saving over 40% in operational time across five departments. Spearheading Fullscript's Go-to-Ruby migration, reducing stack complexity by 66%. Overseeing delivery of a dedicated PIM tool for our Product Catalog, collaborating across 5 departments in the organization to ensure successful delivery.",
   },
   {
     name: "Project & Program Management",
     percentage: 94,
-    description: "Implemented hybrid Agile methodologies across 8 teams, created PM processes for cross-team estimation, and built KPI tracking systems reducing cycle time by 25%. Achieved 98% on-time delivery rate for major initiatives.",
+    description: "Implemented Agile methodologies (Scrum, Kanban) for high-priority projects. Created Asana Project Management processes, increasing visibility and ensuring alignment across teams. Designed lifecycle dashboards and KPI tracking systems, reducing monthly reporting prep by 90%.",
   },
   {
     name: "Cross-functional Collaboration",
     percentage: 95,
-    description: "Partnered with Product, Design, and Business stakeholders to define and prioritize technical initiatives. Led technical presentations to executive leadership resulting in approval for key infrastructure investments.",
+    description: "Ensured stakeholder alignment across multiple teams, including Finance, Customer Success, Product Engineering, and Labs. Regularly communicated with executive leadership to drive strategic initiatives, ensuring successful execution.",
   },
   {
-    name: "Ruby/Rails Development",
+    name: "Backend Development",
     percentage: 88,
-    description: "Expert-level Ruby and Rails development skills spanning 8+ years, including architecting healthcare platform supporting 70,000+ practitioners and millions of patients with strict HIPAA compliance requirements.",
+    description: "Expert-level Object Oriented Programming development skills spanning 8+ years, including architecting healthcare platform supporting 70,000+ practitioners and millions of patients with strict HIPAA compliance requirements.",
   },
   {
-    name: "JavaScript/TypeScript & React",
+    name: "Frontend Development",
     percentage: 90,
     description: "Led frontend modernization initiatives from legacy jQuery to React/TypeScript architecture. Implemented design systems, accessibility standards, and performance optimizations reducing page load time by 42%.",
   },
@@ -68,11 +73,6 @@ export const skills: Skill[] = [
     name: "System Architecture & Integration",
     percentage: 92,
     description: "Led NetSuite/WMS integration reducing transaction load by 43%, designed scalable AWS infrastructure supporting 15x growth in 3 years, and implemented blue/green deployment strategies saving 22% in cloud costs.",
-  },
-  {
-    name: "AI & Automation Implementation",
-    percentage: 86,
-    description: "Spearheaded AI initiatives including ML-based document processing, ChatGPT integration for customer support, and predictive inventory algorithms. Created automation workflows saving 40% in operational time across departments.",
   },
 ];
 

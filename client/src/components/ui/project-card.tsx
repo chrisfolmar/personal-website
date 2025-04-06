@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, Code, Calendar } from "lucide-react";
 import { Project } from "@/types";
 import { cn, formatDate } from "@/lib/utils";
-import { projectImages } from "@/assets/projects";
 
 interface ProjectCardProps {
   project: Project;
@@ -11,16 +10,6 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
   console.log("Project image path:", project.image);
-  
-  // Get the appropriate image based on project key
-  const getProjectImage = (imageKey: string) => {
-    const key = imageKey.includes('portfolio') ? 'portfolio' :
-               imageKey.includes('jennifer') ? 'jennifer' :
-               imageKey.includes('locos') ? 'locos' :
-               imageKey.includes('slip14') ? 'slip14' : 
-               imageKey.includes('amy') ? 'amy' : 'portfolio';
-    return projectImages[key as keyof typeof projectImages];
-  };
   
   return (
     <motion.div 
@@ -33,7 +22,7 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
       <div className="relative overflow-hidden h-52">
         <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
           <img 
-            src={getProjectImage(project.image)}
+            src={`${project.image}?v=${Date.now()}`} 
             alt={project.title}
             className="w-full h-full object-cover"
             onError={(e) => {

@@ -1,0 +1,49 @@
+Widgets
+View Global Trends
+HubSpot WordPress Plugin
+HubSpot WordPress Plugin Usage Statistics · Download List of All Websites using HubSpot WordPress Plugin
+Customer interaction tracking for WordPress by HubSpot.
+WordPress Plugins
+Wordpress Plugins
+Wordpress Plugins Usage Statistics · Download List of All Websites using Wordpress Plugins
+Plugins are tools to extend the functionality of WordPress. The website uses various plugins from WordPress to provide additional functionality. Some of them may be listed here.
+Gravatar Profiles
+Gravatar Profiles Usage Statistics · Download List of All Websites using Gravatar Profiles
+Creates Gravatar Profiles on the site.
+DoorDash
+DoorDash Usage Statistics · Download List of All Websites using DoorDash
+Food delivery service.
+Jetpack
+Jetpack Usage Statistics · Download List of All Websites using Jetpack
+Provides a WordPress site with features previously only available to WordPress.com users.
+WordPress Plugins
+BatCache
+BatCache Usage Statistics · Download List of All Websites using BatCache
+A memcached HTML page cache for WordPress. Nananan BatCache!
+WordPress Plugins
+CrUX Dataset
+CrUX Dataset Usage Statistics · Download List of All Websites using CrUX Dataset
+CrUX is a data collection system that gathers information about how real users interact with websites. This website is included in the user experiences data gathered from Google Chrome and thus considered sufficiently popular on the Internet.
+CrUX Top 10m
+CrUX Top 10m Usage Statistics · Download List of All Websites using CrUX Top 10m
+Relative measure of site popularity within the CrUX dataset, measured by the total number of navigations on the origin. This site is in the top 10 million.
+
+
+Content Delivery Network
+View Global Trends
+Jetpack Site Accelerator
+Jetpack Site Accelerator Usage Statistics · Download List of All Websites using Jetpack Site Accelerator
+Contains content that may be hosted on the WordPress Grid Hosting CDN.
+
+
+
+
+Content Management System
+View Global Trends
+WordPress
+WordPress Usage Statistics · Download List of All Websites using WordPress
+WordPress is a state-of-the-art semantic personal publishing platform with a focus on aesthetics, web standards, and usability.
+Open Source · Blog
+
+
+

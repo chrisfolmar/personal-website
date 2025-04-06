@@ -67,7 +67,7 @@ export default function ProjectDetail() {
   }
   else if (project.title.includes("Locos Cocos")) {
     clientInfo = "Loco Cocos Tacos is a popular Mexican restaurant in Kittery, Maine known for its authentic cuisine, vibrant atmosphere, and commitment to using fresh, local ingredients whenever possible. The restaurant offers dine-in, takeout, and catering services.";
-    techStack = "WordPress, WooCommerce, Restaurant Menu Plugin, Online Ordering System, Jetpack, Booking Calendar";
+    techStack = "WordPress, HubSpot WordPress Plugin, Jetpack, BatCache, DoorDash integration, Jetpack Site Accelerator, Gravatar Profiles, CrUX Dataset optimization";
     challenge = "Loco Cocos Tacos needed a website that would showcase their colorful, energetic brand while providing practical functionality for online ordering, event announcements, and special promotions. The site needed to handle peak traffic during busy restaurant hours without slowing down.";
     solution = "I created a vibrant, visually appealing website that captures the restaurant's lively atmosphere. The site features an efficient online ordering system optimized for both desktop and mobile users, an interactive menu with high-quality food photography, and special sections highlighting Happy Hour specials and events. Performance optimization ensures the site remains fast and responsive even during high-traffic periods.";
   }
@@ -175,7 +175,7 @@ export default function ProjectDetail() {
             </div>
             
             <div className="mt-12 grid grid-cols-1 gap-6">
-              {project.title.includes("Amy Cousineau") || project.title.includes("Jennifer Mello") || project.title.includes("Slip 14") ? (
+              {project.title.includes("Amy Cousineau") || project.title.includes("Jennifer Mello") || project.title.includes("Slip 14") || project.title.includes("Locos Cocos") ? (
                 <a 
                   href={project.demoLink} 
                   target="_blank" 

@@ -390,7 +390,7 @@ export const blogPosts = [
     title: "Finding the Perfect Balance: Life as a Web Developer and New Husband",
     excerpt: "Reflections on the journey of balancing a growing freelance web development business with personal milestones and the lessons learned along the way.",
     date: "2024-05-10",
-    coverImage: "/images/blog/perfect-balance.png",
+    coverImage: "/assets/images/blog/perfect-balance.png",
     category: "Personal",
     readTime: "4 min read",
     content: `
@@ -522,7 +522,7 @@ export const blogPosts = [
     title: "Why WordPress Will Continue to Dominate Small Business Websites in 2025",
     excerpt: "Looking ahead to 2025, WordPress will maintain its dominance by continuing to offer unmatched flexibility, control, and growth potential for small businesses despite new competitors.",
     date: "2024-10-15",
-    coverImage: "/images/blog/wordpress-dominate-2025.png",
+    coverImage: "/assets/images/blog/wordpress-dominate-2025.png",
     category: "WordPress",
     readTime: "6 min read",
     content: `

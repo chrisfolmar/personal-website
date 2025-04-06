@@ -1,6 +1,49 @@
+# Dependencies
 node_modules
-dist
+/.pnp
+.pnp.js
+
+# Build outputs
+/dist
+/build
+/public/build
+
+# Testing
+/coverage
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*
+
+# Development/IDE files
 .DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+.vercel
+.next
+.turbo
+.cache
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Misc
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Generated database files
+*.sqlite
+*.sqlite3
+*.db

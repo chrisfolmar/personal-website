@@ -144,37 +144,38 @@ export default function BlogPost() {
           Back to Home
         </Button>
         
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="mb-8">
-            <Badge variant="secondary" className="bg-primary text-white hover:bg-primary/90 mb-4">
+        {/* Hero banner image */}
+        <div className="w-full h-[400px] mb-12 relative overflow-hidden rounded-xl">
+          <LazyImage 
+            src={post.coverImage} 
+            alt={post.title} 
+            className="w-full h-full" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-8">
+            <Badge variant="secondary" className="bg-primary text-white hover:bg-primary/90 mb-4 self-start">
               {post.category}
             </Badge>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{post.title}</h1>
-            <div className="flex items-center text-gray-600 dark:text-gray-400 mb-6">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">{post.title}</h1>
+            <div className="flex items-center text-gray-200 mb-2">
               <Calendar className="h-4 w-4 mr-1" />
               <span className="mr-4">{formatDate(post.date)}</span>
               <Clock className="h-4 w-4 mr-1" />
               <span>{post.readTime}</span>
               <div className="ml-auto">
-                <Button variant="ghost" size="sm" className="rounded-full p-2">
+                <Button variant="ghost" size="sm" className="rounded-full p-2 text-white hover:bg-white/20">
                   <Share2 className="h-4 w-4" />
                 </Button>
               </div>
             </div>
           </div>
-          
+        </div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="max-w-4xl mx-auto">
-            <div className="mb-10 rounded-xl overflow-hidden">
-              <LazyImage 
-                src={post.coverImage} 
-                alt={post.title} 
-                className="w-full h-auto" 
-              />
-            </div>
             
             <div 
               className="prose prose-lg dark:prose-invert max-w-none"

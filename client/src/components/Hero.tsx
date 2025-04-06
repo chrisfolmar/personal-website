@@ -53,8 +53,8 @@ export default function Hero() {
               <div className="absolute inset-1 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
                 {/* Profile image */}
                 <img 
-                  src="/assets/images/profile.jpg" 
-                  alt="Chris Folmar" 
+                  src="/assets/profile/KP_20240608_0225_3651.jpg" 
+                  alt="Chris Folmar professional headshot" 
                   className="w-full h-full object-cover"
                 />
               </div>

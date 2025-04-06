@@ -31,9 +31,9 @@ export default function Skills() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="flex justify-between mb-2">
-                  <span className="font-medium text-gray-800 dark:text-gray-200">{skill.name}</span>
-                  <span className="text-gray-600 dark:text-gray-400">{skill.percentage}%</span>
+                <div className="flex justify-between items-center mb-2">
+                  <span className="font-medium text-gray-800 dark:text-gray-200 flex-1 mr-4">{skill.name}</span>
+                  <span className="text-gray-600 dark:text-gray-400 min-w-[50px] text-right">{skill.percentage}%</span>
                 </div>
                 <ProgressBar percentage={skill.percentage} />
               </motion.div>

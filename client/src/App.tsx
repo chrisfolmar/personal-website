@@ -15,6 +15,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import NotFound from "@/pages/not-found";
 import BlogPost from "@/pages/blog-post";
+import ProjectDetail from "@/pages/project-detail";
 
 function HomePage() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Switch>
             <Route path="/" component={HomePage} />
             <Route path="/blog/:id" component={BlogPost} />
+            <Route path="/project/:id" component={ProjectDetail} />
             <Route component={NotFound} />
           </Switch>
           <Footer />

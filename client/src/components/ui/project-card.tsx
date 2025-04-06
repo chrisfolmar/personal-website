@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Code, Calendar } from "lucide-react";
+import { useLocation } from "wouter";
 import { Project } from "@/types";
 import { cn, formatDate } from "@/lib/utils";
 
@@ -9,15 +10,29 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
+  const [, setLocation] = useLocation();
   console.log("Project image path:", project.image);
+  
+  // Function to create URL-friendly project slugs
+  const getProjectSlug = (title: string) => {
+    return title
+      .toLowerCase()
+      .replace(/[^\w\s]/g, '')
+      .replace(/\s+/g, '-');
+  };
   
   return (
     <motion.div 
-      className="project-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl section-transition"
+      className="project-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl section-transition cursor-pointer"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
+      onClick={() => {
+        const slug = getProjectSlug(project.title);
+        console.log(`Navigating to project detail: ${slug}`);
+        setLocation(`/project/${slug}`);
+      }}
     >
       <div className="relative overflow-hidden h-52">
         <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
@@ -50,7 +65,15 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
         </div>
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+        <h3 className="text-xl font-bold mb-2 cursor-pointer hover:text-primary transition-colors" 
+          onClick={() => {
+            const slug = getProjectSlug(project.title);
+            console.log(`Navigating to project detail: ${slug}`);
+            setLocation(`/project/${slug}`);
+          }}
+        >
+          {project.title}
+        </h3>
         <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
           <Calendar className="h-4 w-4 mr-1" />
           <span>{formatDate(project.date)}</span>
@@ -59,11 +82,29 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
           {project.description}
         </p>
         <div className="flex justify-between items-center">
-          <a href={project.demoLink} className="text-primary hover:text-primary-dark transition-colors font-medium flex items-center">
+          <button 
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent double navigation
+              const slug = getProjectSlug(project.title);
+              console.log(`Navigating to project detail: ${slug}`);
+              setLocation(`/project/${slug}`);
+            }}
+            className="text-primary hover:text-primary-dark transition-colors font-medium flex items-center cursor-pointer bg-transparent border-none p-0"
+          >
             <span>View Details</span>
             <ArrowRight className="h-4 w-4 ml-1" />
-          </a>
-          <a href={project.codeLink} className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors" aria-label="View source code">
+          </button>
+          <a 
+            href={project.codeLink} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors" 
+            aria-label="View source code"
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent triggering the card's onClick
+              console.log("Opening source code link");
+            }}
+          >
             <Code className="h-5 w-5" />
           </a>
         </div>

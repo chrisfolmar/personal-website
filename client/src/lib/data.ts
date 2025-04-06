@@ -233,7 +233,7 @@ export const projects: Project[] = [
   {
     title: "Locos Cocos Tacos - Restaurant Website",
     description: "A vibrant website for Kittery, Maine's popular Mexican restaurant featuring a colorful design that reflects the restaurant's energy. Includes online ordering, gift card purchases, special event announcements, and service industry discounts.",
-    image: "/assets/images/projects/locos.png",
+    image: "/assets/images/projects/locos-new.png",
     tags: ["WordPress", "Food & Beverage", "E-commerce", "Online Ordering"],
     demoLink: "https://locococostacos.com/",
     codeLink: "https://github.com/chrisfolmar",

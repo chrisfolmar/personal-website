@@ -36,42 +36,50 @@ export const experiences: Experience[] = [
 export const skills: Skill[] = [
   {
     name: "AI & Automation Implementation",
-    percentage: 86,
+    percentage: 8/11*100, // 8 years out of 11 total
+    years: 8,
     description: "Spearheaded AI initiatives including ML-based document processing, ChatGPT integration for customer support, and predictive inventory algorithms. Created automation workflows saving 40% in operational time across departments.",
   },
   {
     name: "Team Leadership & Mentorship",
-    percentage: 95,
+    percentage: 7/11*100, // 7 years out of 11 total
+    years: 7,
     description: "Managed 3 cross-functional teams (6-12 ICs), increasing project delivery by 300%. Mentored engineers into senior roles, creating a scalable Project Lead framework. Focused on building high-performing teams by fostering a culture of growth and collaboration.",
   },
   {
     name: "Strategic & Operational Leadership",
-    percentage: 92,
+    percentage: 4/11*100, // 4 years out of 11 total
+    years: 4,
     description: "Leading Fullscript's AI-first automation initiative, saving over 40% in operational time across five departments. Spearheading Fullscript's Go-to-Ruby migration, reducing stack complexity by 66%. Overseeing delivery of a dedicated PIM tool for our Product Catalog, collaborating across 5 departments in the organization to ensure successful delivery.",
   },
   {
     name: "Project & Program Management",
-    percentage: 94,
+    percentage: 6/11*100, // 6 years out of 11 total
+    years: 6,
     description: "Implemented Agile methodologies (Scrum, Kanban) for high-priority projects. Created Asana Project Management processes, increasing visibility and ensuring alignment across teams. Designed lifecycle dashboards and KPI tracking systems, reducing monthly reporting prep by 90%.",
   },
   {
     name: "Cross-functional Collaboration",
-    percentage: 95,
+    percentage: 11/11*100, // 11 years out of 11 total
+    years: 11,
     description: "Ensured stakeholder alignment across multiple teams, including Finance, Customer Success, Product Engineering, and Labs. Regularly communicated with executive leadership to drive strategic initiatives, ensuring successful execution.",
   },
   {
     name: "Backend Development",
-    percentage: 88,
+    percentage: 11/11*100, // 11 years out of 11 total
+    years: 11,
     description: "Expert-level Object Oriented Programming development skills spanning 8+ years, including architecting healthcare platform supporting 70,000+ practitioners and millions of patients with strict HIPAA compliance requirements.",
   },
   {
     name: "Frontend Development",
-    percentage: 90,
+    percentage: 11/11*100, // 11 years out of 11 total
+    years: 11,
     description: "Led frontend modernization initiatives from legacy jQuery to React/TypeScript architecture. Implemented design systems, accessibility standards, and performance optimizations reducing page load time by 42%.",
   },
   {
     name: "System Architecture & Integration",
-    percentage: 92,
+    percentage: 11/11*100, // 11 years out of 11 total
+    years: 11,
     description: "Led NetSuite/WMS integration reducing transaction load by 43%, designed scalable AWS infrastructure supporting 15x growth in 3 years, and implemented blue/green deployment strategies saving 22% in cloud costs.",
   },
 ];

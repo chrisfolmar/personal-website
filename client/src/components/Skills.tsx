@@ -21,13 +21,16 @@ export default function Skills() {
             viewport={{ once: true }}
             className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm"
           >
-            <h3 className="text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100 flex items-center">
-              <span className="bg-primary/10 p-2 rounded-full mr-3 text-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m12 14 4-4" /><path d="M3.34 19a10 10 0 1 1 17.32 0" />
-                </svg>
-              </span>
-              Leadership & Technical Skills
+            <h3 className="text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100">
+              <div className="flex items-center flex-wrap">
+                <span className="bg-primary/10 p-2 rounded-full mr-3 text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m12 14 4-4" /><path d="M3.34 19a10 10 0 1 1 17.32 0" />
+                  </svg>
+                </span>
+                <span className="mr-2">Leadership & Technical Skills</span>
+                <span className="text-sm italic font-normal text-gray-500 dark:text-gray-400">(Years of Experience)</span>
+              </div>
             </h3>
             
             <div className="space-y-6">
@@ -42,7 +45,7 @@ export default function Skills() {
                 >
                   <div className="flex justify-between items-center mb-2">
                     <h4 className="font-medium text-gray-800 dark:text-gray-200 text-base">{skill.name}</h4>
-                    <span className="text-gray-600 dark:text-gray-400 min-w-[50px] text-right font-semibold">{skill.percentage}%</span>
+                    <span className="text-gray-600 dark:text-gray-400 min-w-[50px] text-right font-semibold">{skill.years} years</span>
                   </div>
                   <ProgressBar percentage={skill.percentage} />
                   {skill.description && (
@@ -62,14 +65,16 @@ export default function Skills() {
             viewport={{ once: true }}
             className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm"
           >
-            <h3 className="text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100 flex items-center">
-              <span className="bg-primary/10 p-2 rounded-full mr-3 text-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 8h14" /><path d="M5 12h14" /><path d="M5 16h14" />
-                  <path d="M3 21h18" /><path d="M3 3h18" />
-                </svg>
-              </span>
-              Technologies & Tools
+            <h3 className="text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100">
+              <div className="flex items-center flex-wrap">
+                <span className="bg-primary/10 p-2 rounded-full mr-3 text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 8h14" /><path d="M5 12h14" /><path d="M5 16h14" />
+                    <path d="M3 21h18" /><path d="M3 3h18" />
+                  </svg>
+                </span>
+                <span>Technologies & Tools</span>
+              </div>
             </h3>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">

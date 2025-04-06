@@ -18,57 +18,29 @@ const sortedBlogPosts = [...blogPosts].sort((a, b) =>
 // Component for lazy loading images
 const LazyImage = ({ src, alt, className, index = 0 }: { src: string; alt: string; className: string; index?: number }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
   
-  // Use Intersection Observer to determine when image is in viewport
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '200px' } // Start loading image when it's 200px from entering the viewport
-    );
-
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
   const handleLoad = () => {
     setIsLoaded(true);
   };
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    console.error(`Failed to load blog image: ${src}`);
-    // Keep trying the original source
-    e.currentTarget.src = src;
+    // Try to reload with cache bust
+    e.currentTarget.src = src + `?v=${Date.now()}`;
   };
 
+  // Simplified approach - use native lazy loading + placeholder
   return (
-    <div className={`${className} ${!isLoaded && isInView ? 'bg-gray-200 dark:bg-gray-700 animate-pulse' : ''}`}>
-      {isInView && (
-        <img
-          ref={imgRef}
-          src={src}
-          alt={alt}
-          className={`w-full h-full object-cover transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${index === 0 ? '' : 'hover:scale-110'}`}
-          onLoad={handleLoad}
-          onError={handleError}
-          loading="lazy"
-        />
-      )}
-      {!isInView && (
-        <div className="w-full h-full bg-gray-200 dark:bg-gray-700"></div>
-      )}
+    <div className={`${className} ${!isLoaded ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
+      <img
+        ref={imgRef}
+        src={src}
+        alt={alt}
+        className={`w-full h-full object-cover transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${index === 0 ? '' : 'hover:scale-110'}`}
+        onLoad={handleLoad}
+        onError={handleError}
+        loading="lazy"
+      />
     </div>
   );
 };
@@ -131,8 +103,7 @@ export default function Blog() {
   const [, setLocation] = useLocation();
   
   // Handle blog post click - memoized to prevent recreation on each render
-  const handlePostClick = useCallback((postId: number, title: string) => {
-    console.log(`Navigating to blog post: ${postId} - ${title}`);
+  const handlePostClick = useCallback((postId: number) => {
     setLocation(`/blog/${postId}`);
   }, [setLocation]);
 
@@ -150,7 +121,7 @@ export default function Blog() {
               key={post.id}
               post={post}
               index={index}
-              onClick={() => handlePostClick(post.id, post.title)}
+              onClick={() => handlePostClick(post.id)}
             />
           ))}
         </div>
@@ -165,7 +136,6 @@ export default function Blog() {
               const blogSection = document.getElementById('blog');
               if (blogSection) {
                 blogSection.scrollIntoView({ behavior: 'smooth' });
-                console.log("Scrolled to blog section");
               }
             }}
           >

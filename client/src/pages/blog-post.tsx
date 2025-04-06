@@ -45,7 +45,6 @@ const LazyImage = ({ src, alt, className, isHoverable = false }: {
   };
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    console.error(`Failed to load blog image: ${src}`);
     // Try with cache-busting
     e.currentTarget.src = src + `?v=${Date.now()}`;
   };
@@ -101,29 +100,25 @@ export default function BlogPost() {
   
   // Handle navigation to related post (memoized)
   const handleRelatedPostClick = useCallback((relatedPostId: number) => {
-    console.log(`Navigating to related blog post: ${relatedPostId}`);
     window.scrollTo(0, 0);
     setLocation(`/blog/${relatedPostId}`);
   }, [setLocation]);
   
   useEffect(() => {
     if (!postId) {
-      console.warn("No post ID provided in URL, redirecting to not-found");
+      // No post ID provided, redirect to not-found
       setLocation("/not-found");
       return;
     }
     
     if (!post) {
-      console.warn(`Post with ID ${postId} not found, redirecting to not-found`);
+      // Post not found, redirect to not-found
       setLocation("/not-found");
       return;
     }
     
     // Scroll to top when component mounts or updates
     window.scrollTo(0, 0);
-    
-    // Log successful post finding
-    console.log(`Successfully loaded blog post: "${post.title}"`);
   }, [postId, post, setLocation]);
   
   if (!post) {
@@ -141,7 +136,6 @@ export default function BlogPost() {
         <Button 
           variant="ghost" 
           onClick={() => {
-            console.log("Navigating back to home page");
             setLocation("/"); 
           }}
           className="mb-6 flex items-center"

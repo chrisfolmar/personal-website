@@ -11,7 +11,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
   const [, setLocation] = useLocation();
-  console.log("Project image path:", project.image);
+  // Image path is handled by the component
   
   // Function to create URL-friendly project slugs
   const getProjectSlug = (title: string) => {
@@ -30,7 +30,6 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
       viewport={{ once: true }}
       onClick={() => {
         const slug = getProjectSlug(project.title);
-        console.log(`Navigating to project detail: ${slug}`);
         setLocation(`/project/${slug}`);
       }}
     >
@@ -41,8 +40,8 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
             alt={project.title}
             className="w-full h-full object-cover"
             onError={(e) => {
-              console.error("Failed to load project image:", project.image);
-              console.error("Project details:", JSON.stringify(project));
+              // Try reloading with cache bust if image fails to load
+              e.currentTarget.src = `${project.image}?v=${Date.now() + 1000}`;
             }}
           />
         </div>
@@ -68,7 +67,6 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
         <h3 className="text-xl font-bold mb-2 cursor-pointer hover:text-primary transition-colors" 
           onClick={() => {
             const slug = getProjectSlug(project.title);
-            console.log(`Navigating to project detail: ${slug}`);
             setLocation(`/project/${slug}`);
           }}
         >
@@ -86,7 +84,6 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
             onClick={(e) => {
               e.stopPropagation(); // Prevent double navigation
               const slug = getProjectSlug(project.title);
-              console.log(`Navigating to project detail: ${slug}`);
               setLocation(`/project/${slug}`);
             }}
             className="text-primary hover:text-primary-dark transition-colors font-medium flex items-center cursor-pointer bg-transparent border-none p-0"
@@ -102,7 +99,6 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
             aria-label="View source code"
             onClick={(e) => {
               e.stopPropagation(); // Prevent triggering the card's onClick
-              console.log("Opening source code link");
             }}
           >
             <Code className="h-5 w-5" />

@@ -122,7 +122,7 @@ export default function BlogPost() {
           className="mb-6 flex items-center"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Blogs
+          Back to Articles
         </Button>
         
         <motion.div

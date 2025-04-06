@@ -23,16 +23,16 @@ export default function About() {
           >
             <h3 className="text-2xl font-bold mb-6">Who I Am</h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              I'm a WordPress developer based in Durham, NH, specializing in creating professional, custom websites for small businesses and healthcare professionals. With over five years of experience, I've developed a unique approach that prioritizes client autonomy while providing exceptional value with my "minimum cost, maximum support" model.
+              Hi, I'm Chris Folmar. I'm a Software Engineering Manager with a passion for technology, leadership, and building teams that thrive. Over the years, I've had the privilege of working with amazing teams to drive technical innovations and deliver high-quality, scalable software solutions. My current role at Fullscript allows me to lead high-performing teams, work on challenging projects, and empower others to grow in their careers.
             </p>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              My portfolio includes therapy practice websites, restaurant sites with online ordering systems, and various small business platforms. I take pride in building websites that not only look professional but function intuitively for both site owners and their visitors. My clients appreciate how easy their sites are to maintain while still having my support when needed.
+              I believe in continuous improvement, whether it's refining systems, optimizing processes, or expanding my own skill set. I'm a firm believer in leading by example, creating environments where people feel supported, challenged, and empowered to make an impact. Whether leading the design of a new system or coaching a team through a technical challenge, I'm always focused on building solutions that matter.
             </p>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Recently married in June 2024, I'm settling into our new home in New Hampshire's beautiful seacoast region. I'm passionate about creating digital experiences that reflect the unique personality of each business I work with, just as I've done for Jennifer Mello LICSW, Locos Cocos Tacos, and Amy Cousineau LICSW.
+              Beyond my professional life, I'm an avid Arsenal fan, and I love spending time outdoors. Whether I'm hiking with my two amazing dogs, Penny and Belle, or enjoying a quiet weekend with my wife, Lauren, I find balance in nature and in the company of those I care about. Family and friends are everything to me, and I'm committed to nurturing the connections that make life richer.
             </p>
             <p className="text-gray-600 dark:text-gray-400">
-              When I'm not coding, you'll find me cheering for Arsenal FC, hiking with my two dogs in the White Mountains, exploring New England's coastal towns, or keeping up with the latest WordPress developments. I believe in maintaining a healthy work-life balance, which helps me bring fresh creativity to each project.
+              As I continue to grow in my career, I aim to stay grounded, adaptable, and driven by a genuine passion for building high-performing teams and solving real-world problems through technology. If you'd like to connect or learn more about how I can help solve your organization's challenges, let's talk!
             </p>
           </motion.div>
           

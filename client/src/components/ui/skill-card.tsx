@@ -20,7 +20,8 @@ import {
   LucideIcon,
   Settings,
   Globe,
-  Terminal
+  Terminal,
+  Brain
 } from "lucide-react";
 
 interface SkillCardProps {
@@ -50,7 +51,8 @@ const iconComponents: Record<string, LucideIcon> = {
   barChart: BarChart,
   settings: Settings,
   globe: Globe,
-  terminal: Terminal
+  terminal: Terminal,
+  brain: Brain
 };
 
 export default function SkillCard({ name, icon, delay = 0 }: SkillCardProps) {

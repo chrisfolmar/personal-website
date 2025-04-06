@@ -33,7 +33,7 @@ export default function Skills() {
             {skills.map((skill, index) => (
               <motion.div 
                 key={index} 
-                className="mb-6"
+                className="mb-8"
                 initial={{ opacity: 0, width: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -44,6 +44,11 @@ export default function Skills() {
                   <span className="text-gray-600 dark:text-gray-400 min-w-[50px] text-right font-semibold">{skill.percentage}%</span>
                 </div>
                 <ProgressBar percentage={skill.percentage} />
+                {skill.description && (
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 italic">
+                    {skill.description}
+                  </p>
+                )}
               </motion.div>
             ))}
           </motion.div>
@@ -65,13 +70,13 @@ export default function Skills() {
               Technologies & Tools
             </h3>
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {tools.map((tool, index) => (
                 <SkillCard
                   key={index}
                   name={tool.name}
                   icon={tool.icon}
-                  delay={index * 0.1}
+                  delay={index * 0.05}
                 />
               ))}
             </div>

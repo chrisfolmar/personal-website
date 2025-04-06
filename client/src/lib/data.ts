@@ -35,67 +35,71 @@ export const experiences: Experience[] = [
 
 export const skills: Skill[] = [
   {
-    name: "Engineering Leadership",
+    name: "Team Leadership & Mentorship",
     percentage: 95,
+    description: "Led 3 globally distributed engineering teams (15+ engineers), increasing delivery capacity by 300% without headcount expansion. Successfully mentored 7 engineers to Senior/Staff roles and created the Project Lead framework adopted company-wide.",
   },
   {
-    name: "Team Management & Growth",
-    percentage: 95,
-  },
-  {
-    name: "Agile Program Management",
-    percentage: 90,
-  },
-  {
-    name: "System Architecture",
-    percentage: 88,
-  },
-  {
-    name: "JavaScript/TypeScript",
-    percentage: 90,
-  },
-  {
-    name: "React & Modern JS Frameworks",
-    percentage: 85,
-  },
-  {
-    name: "Ruby/Rails",
-    percentage: 82,
-  },
-  {
-    name: "DevOps & CI/CD",
-    percentage: 80,
-  },
-  {
-    name: "Project Planning & Delivery",
+    name: "Strategic & Operational Leadership",
     percentage: 92,
+    description: "Led Fullscript's AI-first automation initiative and Go-to-Ruby migration, reducing stack complexity by 66%. Established 3-year technical roadmap and reduced reporting overhead by 90% through automated systems.",
+  },
+  {
+    name: "Project & Program Management",
+    percentage: 94,
+    description: "Implemented hybrid Agile methodologies across 8 teams, created PM processes for cross-team estimation, and built KPI tracking systems reducing cycle time by 25%. Achieved 98% on-time delivery rate for major initiatives.",
   },
   {
     name: "Cross-functional Collaboration",
     percentage: 95,
+    description: "Partnered with Product, Design, and Business stakeholders to define and prioritize technical initiatives. Led technical presentations to executive leadership resulting in approval for key infrastructure investments.",
+  },
+  {
+    name: "Ruby/Rails Development",
+    percentage: 88,
+    description: "Expert-level Ruby and Rails development skills spanning 8+ years, including architecting healthcare platform supporting 70,000+ practitioners and millions of patients with strict HIPAA compliance requirements.",
+  },
+  {
+    name: "JavaScript/TypeScript & React",
+    percentage: 90,
+    description: "Led frontend modernization initiatives from legacy jQuery to React/TypeScript architecture. Implemented design systems, accessibility standards, and performance optimizations reducing page load time by 42%.",
+  },
+  {
+    name: "System Architecture & Integration",
+    percentage: 92,
+    description: "Led NetSuite/WMS integration reducing transaction load by 43%, designed scalable AWS infrastructure supporting 15x growth in 3 years, and implemented blue/green deployment strategies saving 22% in cloud costs.",
+  },
+  {
+    name: "AI & Automation Implementation",
+    percentage: 86,
+    description: "Spearheaded AI initiatives including ML-based document processing, ChatGPT integration for customer support, and predictive inventory algorithms. Created automation workflows saving 40% in operational time across departments.",
   },
 ];
 
 export const tools: Tool[] = [
   {
-    name: "Jira & Confluence",
-    icon: "clipboard",
-  },
-  {
-    name: "Git & GitHub",
-    icon: "gitBranch",
-  },
-  {
     name: "Ruby on Rails",
     icon: "server",
   },
   {
-    name: "React",
+    name: "React/Angular",
     icon: "code",
   },
   {
-    name: "TypeScript",
+    name: "JavaScript/TypeScript",
     icon: "fileCode",
+  },
+  {
+    name: "GoLang/Java/C#",
+    icon: "terminal",
+  },
+  {
+    name: "Jira & Confluence",
+    icon: "clipboard",
+  },
+  {
+    name: "GitHub & Bitbucket",
+    icon: "gitBranch",
   },
   {
     name: "Agile/Scrum",
@@ -103,23 +107,35 @@ export const tools: Tool[] = [
   },
   {
     name: "CI/CD Pipelines",
-    icon: "terminal",
+    icon: "cog",
   },
   {
     name: "AWS/Cloud",
     icon: "cloud",
   },
   {
-    name: "Performance Analysis",
-    icon: "barChart",
+    name: "Asana",
+    icon: "layoutGrid",
   },
   {
-    name: "Docker/Kubernetes",
+    name: "NetSuite/HighJump",
+    icon: "database",
+  },
+  {
+    name: "MongoDB/PostgreSQL",
+    icon: "database",
+  },
+  {
+    name: "AI & ChatGPT",
+    icon: "brain",
+  },
+  {
+    name: "Docker",
     icon: "box",
   },
   {
-    name: "Figma/Design Tools",
-    icon: "penTool",
+    name: "Performance Analysis",
+    icon: "barChart",
   },
   {
     name: "WordPress",

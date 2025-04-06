@@ -21,7 +21,29 @@ import {
   Settings,
   Globe,
   Terminal,
-  Brain
+  Brain,
+  Sparkles,
+  Bot,
+  Workflow,
+  Zap,
+  CheckCircle,
+  Github,
+  Gitlab,
+  FolderGit,
+  FlaskConical,
+  Coins,
+  CircleDashed,
+  Gem,
+  Blocks,
+  Share2,
+  AlertCircle,
+  PuzzleIcon,
+  CircleIcon,
+  Hash,
+  Clock,
+  BookOpen,
+  File,
+  Coffee
 } from "lucide-react";
 
 interface SkillCardProps {
@@ -52,7 +74,29 @@ const iconComponents: Record<string, LucideIcon> = {
   settings: Settings,
   globe: Globe,
   terminal: Terminal,
-  brain: Brain
+  brain: Brain,
+  sparkles: Sparkles,
+  bot: Bot,
+  workflow: Workflow,
+  zap: Zap,
+  checkCircle: CheckCircle,
+  github: Github,
+  gitlab: Gitlab,
+  folderGit: FolderGit,
+  flaskConical: FlaskConical,
+  coins: Coins,
+  circleDashed: CircleDashed,
+  gem: Gem,
+  blocks: Blocks,
+  share2: Share2,
+  alertCircle: AlertCircle,
+  puzzle: PuzzleIcon,
+  circle: CircleIcon,
+  hash: Hash,
+  clock: Clock,
+  bookOpen: BookOpen,
+  file: File,
+  coffee: Coffee
 };
 
 export default function SkillCard({ name, icon, delay = 0 }: SkillCardProps) {

@@ -86,68 +86,128 @@ export const skills: Skill[] = [
 
 export const tools: Tool[] = [
   {
-    name: "Ruby on Rails",
-    icon: "server",
+    name: "ChatGPT",
+    icon: "brain",
   },
   {
-    name: "React/Angular",
-    icon: "code",
+    name: "Gemini",
+    icon: "sparkles",
   },
   {
-    name: "JavaScript/TypeScript",
-    icon: "fileCode",
+    name: "n8n",
+    icon: "workflow",
   },
   {
-    name: "GoLang/Java/C#",
-    icon: "terminal",
-  },
-  {
-    name: "Jira & Confluence",
-    icon: "clipboard",
-  },
-  {
-    name: "GitHub & Bitbucket",
-    icon: "gitBranch",
-  },
-  {
-    name: "Agile/Scrum",
-    icon: "users",
-  },
-  {
-    name: "CI/CD Pipelines",
-    icon: "cog",
-  },
-  {
-    name: "AWS/Cloud",
-    icon: "cloud",
+    name: "Zapier",
+    icon: "zap",
   },
   {
     name: "Asana",
     icon: "layoutGrid",
   },
   {
-    name: "NetSuite/HighJump",
+    name: "GitHub",
+    icon: "github",
+  },
+  {
+    name: "GitLab",
+    icon: "gitlab",
+  },
+  {
+    name: "BitBucket",
+    icon: "folderGit",
+  },
+  {
+    name: "SDLC",
+    icon: "circleDashed",
+  },
+  {
+    name: "NetSuite",
+    icon: "coins",
+  },
+  {
+    name: "SQL",
     icon: "database",
   },
   {
-    name: "MongoDB/PostgreSQL",
-    icon: "database",
+    name: "CI/CD",
+    icon: "cog",
   },
   {
-    name: "AI & ChatGPT",
-    icon: "brain",
+    name: "Ruby (Rails)",
+    icon: "gem",
   },
   {
-    name: "Docker",
+    name: "React",
+    icon: "blocks",
+  },
+  {
+    name: "SuiteScript",
+    icon: "fileCode",
+  },
+  {
+    name: "Go",
+    icon: "share2",
+  },
+  {
+    name: "JavaScript",
+    icon: "fileCode",
+  },
+  {
+    name: "TypeScript",
+    icon: "code",
+  },
+  {
+    name: "C#",
+    icon: "hash",
+  },
+  {
+    name: ".NET",
+    icon: "clipboard",
+  },
+  {
+    name: "Java",
+    icon: "coffee",
+  },
+  {
+    name: "HTML5",
+    icon: "code",
+  },
+  {
+    name: "CSS3",
+    icon: "penTool",
+  },
+  {
+    name: "Bootstrap",
     icon: "box",
   },
   {
-    name: "Performance Analysis",
-    icon: "barChart",
+    name: "Angular",
+    icon: "circle",
   },
   {
-    name: "WordPress",
-    icon: "globe",
+    name: "AngularJS",
+    icon: "circle",
+  },
+  {
+    name: "Spring",
+    icon: "cloud",
+  },
+  {
+    name: "jQuery",
+    icon: "file",
+  },
+  {
+    name: "MongoDB",
+    icon: "database",
+  },
+  {
+    name: "Jira & Confluence",
+    icon: "clipboard",
+  },
+  {
+    name: "Agile/Scrum",
+    icon: "users",
   },
 ];
 

@@ -73,7 +73,7 @@ export default function ProjectDetail() {
   }
   else if (project.title.includes("Slip 14")) {
     clientInfo = "Slip 14 is a waterfront dining destination located at a marina in southern Maine. The restaurant specializes in fresh seafood and offers stunning water views from its deck seating area. It's a popular spot for both locals and tourists during the summer season.";
-    techStack = "WordPress, Astra Theme, Custom Reservation Plugin, Elementor Pro, Instagram Feed, OpenTable Integration";
+    techStack = "WordPress, Google Font API, Easy Fancybox, Endurance Page Cache, Enjoy Social Feed (Instagram integration), Font Awesome, MailChimp for WordPress, Jetpack Site Accelerator";
     challenge = "Slip 14 needed a website that would highlight its unique waterfront location and showcase its fresh seafood menu. The site required an integrated reservation system, seasonal menu updates, and features to promote special events such as live music nights and seasonal offerings.";
     solution = "I designed an elegant, coastal-themed website that emphasizes the restaurant's waterfront setting through high-quality photography and subtle nautical design elements. The site features a seamless reservation system integration, dynamic menus that can be easily updated by staff, and dedicated sections for events and specials. A full-width gallery showcases the venue's beautiful views and culinary offerings.";
   }
@@ -175,7 +175,7 @@ export default function ProjectDetail() {
             </div>
             
             <div className="mt-12 grid grid-cols-1 gap-6">
-              {project.title.includes("Amy Cousineau") || project.title.includes("Jennifer Mello") ? (
+              {project.title.includes("Amy Cousineau") || project.title.includes("Jennifer Mello") || project.title.includes("Slip 14") ? (
                 <a 
                   href={project.demoLink} 
                   target="_blank" 

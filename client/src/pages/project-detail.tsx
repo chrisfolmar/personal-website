@@ -55,7 +55,7 @@ export default function ProjectDetail() {
   
   if (project.title.includes("Jennifer Mello")) {
     clientInfo = "Jennifer Mello is a Licensed Independent Clinical Social Worker who specializes in trauma therapy. Her practice in Massachusetts focuses on providing a safe, supportive environment for clients dealing with trauma, anxiety, and depression.";
-    techStack = "WordPress, Elementor, Custom CSS, JetEngine, Contact Form 7, WP Rocket";
+    techStack = "WordPress, WPBakery Page Builder, Contact Form 7, Slider Revolution, Google Font API, Font Awesome, Jetpack Site Accelerator, Doxy.me telemedicine integration";
     challenge = "Jennifer needed a website that would reflect the calming, professional nature of her practice while making it easy for potential clients to learn about her services and get in touch. The site needed to handle sensitive information securely and present resources for trauma therapy in an accessible way.";
     solution = "I created a serene, minimalist design with soft blues and calming imagery that immediately puts visitors at ease. The site features a clear overview of Jennifer's trauma therapy specializations, secure contact forms, and detailed service descriptions. Special attention was paid to creating a navigation structure that would be intuitive for users who might be experiencing distress.";
   } 
@@ -175,7 +175,7 @@ export default function ProjectDetail() {
             </div>
             
             <div className="mt-12 grid grid-cols-1 gap-6">
-              {project.title.includes("Amy Cousineau") ? (
+              {project.title.includes("Amy Cousineau") || project.title.includes("Jennifer Mello") ? (
                 <a 
                   href={project.demoLink} 
                   target="_blank" 

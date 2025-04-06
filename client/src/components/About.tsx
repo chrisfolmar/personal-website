@@ -25,20 +25,19 @@ export default function About() {
             <p className="text-gray-600 dark:text-gray-400 mb-6">
               Hi, I'm Chris Folmar. I'm a Software Engineering Manager with a passion for technology, leadership, and building teams that thrive. Over the years, I've had the privilege of working with amazing teams to drive technical innovations and deliver high-quality, scalable software solutions. My current role at Fullscript allows me to lead high-performing teams, work on challenging projects, and empower others to grow in their careers.
             </p>
-            
-            <h4 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Professional Summary</h4>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Strategic Engineering Leader with over 10 years of experience building high-impact engineering teams and driving operational efficiencies across enterprise-scale systems. Known for leading automation-driven transformations, re-architecting core platforms, and scaling engineering throughput 300%+ without additional headcount. Currently managing 3 cross-functional teams at Fullscript, delivering critical systems across ERP, WMS, and internal tooling for a $1B+ eCommerce platform. Adept at AI-driven problem-solving, fostering talent development, and aligning technical initiatives with business growth. Ready for Director-level leadership roles with a focus on autonomy, operational clarity, and value creation.
-            </p>
-            
             <p className="text-gray-600 dark:text-gray-400 mb-6">
               I believe in continuous improvement, whether it's refining systems, optimizing processes, or expanding my own skill set. I'm a firm believer in leading by example, creating environments where people feel supported, challenged, and empowered to make an impact. Whether leading the design of a new system or coaching a team through a technical challenge, I'm always focused on building solutions that matter.
             </p>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
               Beyond my professional life, I'm an avid Arsenal fan, and I love spending time outdoors. Whether I'm hiking with my two amazing dogs, Penny and Belle, or enjoying a quiet weekend with my wife, Lauren, I find balance in nature and in the company of those I care about. Family and friends are everything to me, and I'm committed to nurturing the connections that make life richer.
             </p>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-600 dark:text-gray-400 mb-8">
               As I continue to grow in my career, I aim to stay grounded, adaptable, and driven by a genuine passion for building high-performing teams and solving real-world problems through technology. If you'd like to connect or learn more about how I can help solve your organization's challenges, let's talk!
+            </p>
+            
+            <h4 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Professional Summary</h4>
+            <p className="text-gray-600 dark:text-gray-400">
+              Strategic Engineering Leader with over 10 years of experience building high-impact engineering teams and driving operational efficiencies across enterprise-scale systems. Known for leading automation-driven transformations, re-architecting core platforms, and scaling engineering throughput 300%+ without additional headcount. Currently managing 3 cross-functional teams at Fullscript, delivering critical systems across ERP, WMS, and internal tooling for a $1B+ eCommerce platform. Adept at AI-driven problem-solving, fostering talent development, and aligning technical initiatives with business growth.
             </p>
           </motion.div>
           

@@ -1,8 +1,34 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { useState, useEffect } from "react";
 import ParticleBackground from "./ParticleBackground";
 
 export default function Hero() {
+  const profileImages = [
+    "/assets/images/profile.jpg",
+    "/assets/images/profile/profile1.jpg",
+    "/assets/images/profile/profile2.jpg",
+    "/assets/images/profile/profile3.jpg", 
+    "/assets/images/profile/profile4.jpg",
+    "/assets/images/profile/profile5.jpg"
+  ];
+  
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  
+  // Rotate through profile images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % profileImages.length);
+        setIsTransitioning(false);
+      }, 500); // Match the transition duration
+    }, 5000); // Change image every 5 seconds
+    
+    return () => clearInterval(interval);
+  }, [profileImages.length]);
+
   return (
     <section 
       id="home" 
@@ -51,14 +77,20 @@ export default function Hero() {
           >
             <div className="relative w-72 h-72 rounded-full bg-gradient-to-r from-primary to-accent p-1 shadow-lg">
               <div className="absolute inset-1 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
-                {/* Profile image */}
-                <img 
-                  src="/assets/profile/KP_20240608_0224_3649.jpg" 
+                {/* Profile image with transition effect */}
+                <motion.img 
+                  key={currentImageIndex}
+                  src={profileImages[currentImageIndex]} 
                   alt="Chris Folmar" 
                   className="w-full h-full object-cover"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  style={{ opacity: isTransitioning ? 0 : 1 }}
                   onError={(e) => {
                     console.error("Failed to load profile image", e);
-                    e.currentTarget.src = "/assets/profile/KP_20240608_0224_3649.jpg";
+                    e.currentTarget.src = profileImages[0]; // Fallback to first image
                   }}
                 />
               </div>

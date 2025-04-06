@@ -425,7 +425,7 @@ export const blogPosts = [
     title: "The 'Minimum Cost, Maximum Support' Approach to Web Development",
     excerpt: "Exploring my philosophy of creating websites that clients can maintain themselves while providing support only when needed, making web presence more affordable for small businesses.",
     date: "2023-11-18",
-    coverImage: "/assets/images/blog/blog2.jpg",
+    coverImage: "/images/blog/minimum-cost-approach.png",
     category: "Business Strategy",
     readTime: "7 min read",
     content: `

@@ -471,7 +471,7 @@ export const blogPosts = [
     title: "Designing Websites for Healthcare Professionals",
     excerpt: "Special considerations when creating websites for therapists, healthcare providers, and wellness professionals that balance professionalism with accessibility and comfort.",
     date: "2024-02-03",
-    coverImage: "/assets/images/blog/blog3.jpg",
+    coverImage: "/images/blog/healthcare-websites.png",
     category: "Web Design",
     readTime: "8 min read",
     content: `

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -12,45 +12,79 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin, CheckCircle2, AlertOctagon } from "lucide-react";
+import { Mail, Phone, MapPin, CheckCircle2, AlertOctagon, ShieldAlert } from "lucide-react";
 import { SiGithub, SiLinkedin, SiX, SiDribbble } from "react-icons/si";
-import { ContactFormData } from "@/types";
+import { ContactFormData, ExtendedContactFormData } from "@/types";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const formSchema = z.object({
   name: z.string()
     .min(2, { message: "Name must be at least 2 characters long" })
     .max(50, { message: "Name cannot exceed 50 characters" })
-    .regex(/^[a-zA-Z\s'-]+$/, { message: "Name can only contain letters, spaces, hyphens, and apostrophes" }),
+    .regex(/^[a-zA-Z\s'-]+$/, { message: "Name can only contain letters, spaces, hyphens, and apostrophes" })
+    .refine(val => !/admin|administrator|root|support|help|info|webmaster/i.test(val), {
+      message: "This name contains restricted terms"
+    }),
   email: z.string()
     .email({ message: "Please enter a valid email address" })
     .min(5, { message: "Email address is too short" })
-    .max(100, { message: "Email address cannot exceed 100 characters" }),
+    .max(100, { message: "Email address cannot exceed 100 characters" })
+    .refine(val => !/(example|test|fake|temp)\.com$/i.test(val), {
+      message: "Please use a valid email address"
+    }),
   subject: z.string()
     .min(5, { message: "Subject must be at least 5 characters long" })
-    .max(100, { message: "Subject cannot exceed 100 characters" }),
+    .max(100, { message: "Subject cannot exceed 100 characters" })
+    .refine(val => !/https?:\/\//i.test(val), {
+      message: "URLs are not allowed in the subject"
+    }),
   message: z.string()
     .min(20, { message: "Message must be at least 20 characters long" })
-    .max(1000, { message: "Message cannot exceed 1000 characters" }),
+    .max(1000, { message: "Message cannot exceed 1000 characters" })
+    .refine(val => {
+      // Count URLs in the message - limit to max 2 links
+      const urlCount = (val.match(/https?:\/\//g) || []).length;
+      return urlCount <= 2;
+    }, {
+      message: "Too many links in your message"
+    }),
+  // Honeypot field - should remain empty
+  website: z.string().max(0, { message: "Bot detected" }).optional(),
+  // Time tracking for bot detection
+  formTime: z.number().optional(),
 });
 
 export default function Contact() {
   const { toast } = useToast();
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const formStartTimeRef = useRef<number>(Date.now());
+  const [botDetected, setBotDetected] = useState(false);
   
-  const form = useForm<ContactFormData>({
+  // Set the form start time when component mounts
+  useEffect(() => {
+    formStartTimeRef.current = Date.now();
+  }, []);
+  
+  const form = useForm<ExtendedContactFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
       subject: "",
       message: "",
+      website: "", // Honeypot field
     },
   });
   
   const mutation = useMutation({
-    mutationFn: (data: ContactFormData) => 
-      apiRequest("POST", "/api/contact", data),
+    mutationFn: (data: ExtendedContactFormData) => 
+      apiRequest("POST", "/api/contact", {
+        name: data.name,
+        email: data.email,
+        subject: data.subject,
+        message: data.message,
+        // Don't send honeypot field to server
+      }),
     onMutate: () => {
       setFormStatus('submitting');
     },
@@ -61,6 +95,7 @@ export default function Contact() {
         description: "Thank you for your message. I will get back to you soon.",
       });
       form.reset();
+      formStartTimeRef.current = Date.now(); // Reset time tracking
       
       // Reset form status after a delay
       setTimeout(() => {
@@ -100,8 +135,48 @@ export default function Contact() {
     },
   });
   
-  const onSubmit = (data: ContactFormData) => {
-    mutation.mutate(data);
+  const onSubmit = (data: ExtendedContactFormData) => {
+    // Time-based bot detection (filled out too quickly)
+    const timeToFill = Date.now() - formStartTimeRef.current;
+    
+    // If form filled in less than 3 seconds, likely a bot
+    if (timeToFill < 3000) {
+      setBotDetected(true);
+      toast({
+        title: "Submission blocked",
+        description: "Your submission was flagged by our security system. Please try again more slowly.",
+        variant: "destructive",
+      });
+      
+      setTimeout(() => {
+        setBotDetected(false);
+      }, 5000);
+      
+      return;
+    }
+    
+    // Check if honeypot field is filled (should be empty)
+    if (data.website && data.website.length > 0) {
+      // Silently reject the submission without alerting the bot
+      console.log("Honeypot triggered, submission silently rejected");
+      
+      // Fake success response to fool bots
+      setFormStatus('success');
+      setTimeout(() => {
+        setFormStatus('idle');
+        form.reset();
+      }, 3000);
+      
+      return;
+    }
+    
+    // Add the form completion time to the data
+    const formData = {
+      ...data,
+      formTime: timeToFill,
+    };
+    
+    mutation.mutate(formData);
   };
   
   return (
@@ -201,6 +276,27 @@ export default function Contact() {
                     )}
                   />
                   
+                  {/* Honeypot field - hidden from regular users but visible to bots */}
+                  <FormField
+                    control={form.control}
+                    name="website"
+                    render={({ field }) => (
+                      <div className="opacity-0 absolute top-0 left-0 h-0 w-0 -z-10 overflow-hidden">
+                        <FormItem>
+                          <FormLabel>Website</FormLabel>
+                          <FormControl>
+                            <Input 
+                              {...field} 
+                              autoComplete="off"
+                              tabIndex={-1}
+                              aria-hidden="true"
+                            />
+                          </FormControl>
+                        </FormItem>
+                      </div>
+                    )}
+                  />
+                  
                   {formStatus === 'success' && (
                     <Alert className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 mb-4">
                       <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400" />
@@ -215,6 +311,15 @@ export default function Contact() {
                       <AlertOctagon className="h-4 w-4 text-red-600 dark:text-red-400" />
                       <AlertDescription className="text-red-800 dark:text-red-300">
                         There was an error sending your message. Please try again later.
+                      </AlertDescription>
+                    </Alert>
+                  )}
+                  
+                  {botDetected && (
+                    <Alert className="bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800 mb-4">
+                      <ShieldAlert className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                      <AlertDescription className="text-amber-800 dark:text-amber-300">
+                        Your submission was flagged by our security system. Please try again.
                       </AlertDescription>
                     </Alert>
                   )}

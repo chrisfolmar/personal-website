@@ -44,6 +44,11 @@ export interface ContactFormData {
   message: string;
 }
 
+export interface ExtendedContactFormData extends ContactFormData {
+  website?: string; // Honeypot field for bot detection
+  formTime?: number; // Time tracking for bot detection
+}
+
 export interface Testimonial {
   id: number;
   name: string;

@@ -6,7 +6,21 @@ import {
   LayoutGrid, 
   LineChart, 
   Package,
-  LucideIcon
+  Server,
+  FileCode,
+  Monitor,
+  Box,
+  Cog,
+  Cloud,
+  Clipboard,
+  PenTool,
+  Users,
+  Briefcase,
+  BarChart,
+  LucideIcon,
+  Settings,
+  Globe,
+  Terminal
 } from "lucide-react";
 
 interface SkillCardProps {
@@ -23,6 +37,20 @@ const iconComponents: Record<string, LucideIcon> = {
   layoutGrid: LayoutGrid,
   lineChart: LineChart,
   package: Package,
+  server: Server,
+  fileCode: FileCode,
+  monitor: Monitor,
+  box: Box,
+  cog: Cog,
+  cloud: Cloud,
+  clipboard: Clipboard,
+  penTool: PenTool,
+  users: Users,
+  briefcase: Briefcase,
+  barChart: BarChart,
+  settings: Settings,
+  globe: Globe,
+  terminal: Terminal
 };
 
 export default function SkillCard({ name, icon, delay = 0 }: SkillCardProps) {
@@ -31,16 +59,17 @@ export default function SkillCard({ name, icon, delay = 0 }: SkillCardProps) {
   
   return (
     <motion.div 
-      className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-md transition-shadow section-transition"
+      className="bg-white dark:bg-gray-700 rounded-lg p-5 text-center hover:shadow-md transition-all duration-300 section-transition border border-gray-100 dark:border-gray-600 hover:border-primary/30 dark:hover:border-primary/30 group"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
+      whileHover={{ y: -5 }}
     >
-      <div className="text-primary mb-3">
-        <IconComponent className="h-10 w-10 mx-auto" />
+      <div className="text-primary mb-3 bg-primary/5 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto group-hover:bg-primary/10 transition-colors duration-300">
+        <IconComponent className="h-8 w-8 mx-auto" />
       </div>
-      <h4 className="font-medium text-gray-800 dark:text-gray-200">{name}</h4>
+      <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm sm:text-base">{name}</h4>
     </motion.div>
   );
 }

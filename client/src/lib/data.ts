@@ -35,87 +35,95 @@ export const experiences: Experience[] = [
 
 export const skills: Skill[] = [
   {
-    name: "Technical Leadership",
+    name: "Engineering Leadership",
     percentage: 95,
+  },
+  {
+    name: "Team Management & Growth",
+    percentage: 95,
+  },
+  {
+    name: "Agile Program Management",
+    percentage: 90,
+  },
+  {
+    name: "System Architecture",
+    percentage: 88,
   },
   {
     name: "JavaScript/TypeScript",
     percentage: 90,
   },
   {
-    name: "React & Modern Frameworks",
+    name: "React & Modern JS Frameworks",
     percentage: 85,
   },
   {
     name: "Ruby/Rails",
-    percentage: 80,
-  },
-  {
-    name: "WordPress Development",
-    percentage: 95,
-  },
-  {
-    name: "System Architecture",
-    percentage: 85,
-  },
-  {
-    name: "Agile Methodologies",
-    percentage: 90,
+    percentage: 82,
   },
   {
     name: "DevOps & CI/CD",
     percentage: 80,
   },
   {
-    name: "Team Mentoring",
-    percentage: 95,
+    name: "Project Planning & Delivery",
+    percentage: 92,
   },
   {
-    name: "PHP",
-    percentage: 85,
+    name: "Cross-functional Collaboration",
+    percentage: 95,
   },
 ];
 
 export const tools: Tool[] = [
   {
-    name: "React",
-    icon: "code",
+    name: "Jira & Confluence",
+    icon: "clipboard",
+  },
+  {
+    name: "Git & GitHub",
+    icon: "gitBranch",
   },
   {
     name: "Ruby on Rails",
     icon: "server",
   },
   {
+    name: "React",
+    icon: "code",
+  },
+  {
     name: "TypeScript",
     icon: "fileCode",
   },
   {
-    name: "WordPress",
-    icon: "monitor",
+    name: "Agile/Scrum",
+    icon: "users",
   },
   {
-    name: "Git/GitHub",
-    icon: "gitBranch",
+    name: "CI/CD Pipelines",
+    icon: "terminal",
   },
   {
-    name: "Docker",
-    icon: "box",
-  },
-  {
-    name: "Jenkins",
-    icon: "cog",
-  },
-  {
-    name: "AWS",
+    name: "AWS/Cloud",
     icon: "cloud",
   },
   {
-    name: "JIRA",
-    icon: "clipboard",
+    name: "Performance Analysis",
+    icon: "barChart",
   },
   {
-    name: "Figma",
+    name: "Docker/Kubernetes",
+    icon: "box",
+  },
+  {
+    name: "Figma/Design Tools",
     icon: "penTool",
+  },
+  {
+    name: "WordPress",
+    icon: "globe",
   },
 ];
 

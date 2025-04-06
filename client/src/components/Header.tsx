@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { useTheme } from "@/hooks/use-theme";
 import ThemeToggle from "./ThemeToggle";
 import { Menu } from "lucide-react";
@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
+  const isHomePage = location === "/";
   
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -15,15 +17,65 @@ export default function Header() {
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
+  
+  // Function to create navigation links that work correctly on all pages
+  const getNavLink = (section: string, label: string) => {
+    // If we're on the homepage, use hash links
+    if (isHomePage) {
+      return (
+        <a 
+          href={`#${section}`} 
+          className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+        >
+          {label}
+        </a>
+      );
+    }
+    
+    // If we're on another page, link back to homepage with hash
+    return (
+      <Link 
+        href={`/#${section}`} 
+        className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+      >
+        {label}
+      </Link>
+    );
+  };
+  
+  // Function for mobile navigation links
+  const getMobileNavLink = (section: string, label: string) => {
+    if (isHomePage) {
+      return (
+        <a 
+          href={`#${section}`} 
+          onClick={closeMobileMenu} 
+          className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
+        >
+          {label}
+        </a>
+      );
+    }
+    
+    return (
+      <Link 
+        href={`/#${section}`} 
+        onClick={closeMobileMenu} 
+        className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
+      >
+        {label}
+      </Link>
+    );
+  };
 
   return (
     <header className="fixed top-0 w-full bg-white bg-opacity-90 dark:bg-gray-900 dark:bg-opacity-90 z-50 backdrop-blur-sm shadow-sm transition-all duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           {/* Logo/Name */}
-          <a href="#home" className="text-xl font-bold tracking-tight text-primary hover:text-primary-dark transition-colors">
+          <Link href="/" className="text-xl font-bold tracking-tight text-primary hover:text-primary-dark transition-colors">
             <span className="text-gray-900 dark:text-white">Chris</span>Folmar<span className="text-primary dark:text-primary">.</span>
-          </a>
+          </Link>
           
           {/* Mobile Menu Button */}
           <button
@@ -37,13 +89,13 @@ export default function Header() {
           
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <a href="#home" className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Home</a>
-            <a href="#about" className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">About</a>
-            <a href="#skills" className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Skills</a>
-            <a href="#projects" className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
-            <a href="#testimonials" className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Testimonials</a>
-            <a href="#blog" className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Blog</a>
-            <a href="#contact" className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
+            {getNavLink("home", "Home")}
+            {getNavLink("about", "About")}
+            {getNavLink("skills", "Skills")}
+            {getNavLink("projects", "Projects")}
+            {getNavLink("testimonials", "Testimonials")}
+            {getNavLink("blog", "Blog")}
+            {getNavLink("contact", "Contact")}
             <ThemeToggle />
           </nav>
         </div>
@@ -58,13 +110,13 @@ export default function Header() {
         )}
       >
         <div className="container mx-auto px-4 flex flex-col space-y-4">
-          <a href="#home" onClick={closeMobileMenu} className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Home</a>
-          <a href="#about" onClick={closeMobileMenu} className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">About</a>
-          <a href="#skills" onClick={closeMobileMenu} className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Skills</a>
-          <a href="#projects" onClick={closeMobileMenu} className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Projects</a>
-          <a href="#testimonials" onClick={closeMobileMenu} className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Testimonials</a>
-          <a href="#blog" onClick={closeMobileMenu} className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Blog</a>
-          <a href="#contact" onClick={closeMobileMenu} className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Contact</a>
+          {getMobileNavLink("home", "Home")}
+          {getMobileNavLink("about", "About")}
+          {getMobileNavLink("skills", "Skills")}
+          {getMobileNavLink("projects", "Projects")}
+          {getMobileNavLink("testimonials", "Testimonials")}
+          {getMobileNavLink("blog", "Blog")}
+          {getMobileNavLink("contact", "Contact")}
           <div className="px-4 py-2 flex items-center justify-between">
             <span className="text-gray-700 dark:text-gray-300">Dark Mode</span>
             <ThemeToggle isMobile />

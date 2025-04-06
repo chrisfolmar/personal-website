@@ -41,6 +41,8 @@ export default function Header() {
             <a href="#about" className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">About</a>
             <a href="#skills" className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Skills</a>
             <a href="#projects" className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Projects</a>
+            <a href="#testimonials" className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Testimonials</a>
+            <a href="#blog" className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Blog</a>
             <a href="#contact" className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Contact</a>
             <ThemeToggle />
           </nav>
@@ -60,6 +62,8 @@ export default function Header() {
           <a href="#about" onClick={closeMobileMenu} className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">About</a>
           <a href="#skills" onClick={closeMobileMenu} className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Skills</a>
           <a href="#projects" onClick={closeMobileMenu} className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Projects</a>
+          <a href="#testimonials" onClick={closeMobileMenu} className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Testimonials</a>
+          <a href="#blog" onClick={closeMobileMenu} className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Blog</a>
           <a href="#contact" onClick={closeMobileMenu} className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">Contact</a>
           <div className="px-4 py-2 flex items-center justify-between">
             <span className="text-gray-700 dark:text-gray-300">Dark Mode</span>

@@ -102,6 +102,60 @@ export const contact: Contact = {
   location: "San Francisco, California",
 };
 
+export const testimonials = [
+  {
+    id: 1,
+    name: "Sarah Johnson",
+    position: "Product Manager at TechCorp",
+    content: "Working with this developer was an absolute pleasure. Their technical expertise and attention to detail resulted in a product that exceeded our expectations. I was particularly impressed with their ability to translate complex requirements into elegant solutions.",
+    avatar: "https://randomuser.me/api/portraits/women/32.jpg"
+  },
+  {
+    id: 2,
+    name: "Michael Chen",
+    position: "CTO at StartupInnovate",
+    content: "One of the most talented developers I've worked with. They not only delivered high-quality code but also provided valuable insights that improved our overall product architecture. Their communication skills made the entire process smooth and effective.",
+    avatar: "https://randomuser.me/api/portraits/men/46.jpg"
+  },
+  {
+    id: 3,
+    name: "Emily Rodriguez",
+    position: "Frontend Lead at DesignHub",
+    content: "I was blown away by the creativity and technical prowess demonstrated throughout our project. The developer showed exceptional problem-solving skills and consistently delivered work that was both visually stunning and functionally robust.",
+    avatar: "https://randomuser.me/api/portraits/women/65.jpg"
+  },
+];
+
+export const blogPosts = [
+  {
+    id: 1,
+    title: "The Future of Web Development: Trends to Watch in 2024",
+    excerpt: "Explore the cutting-edge technologies and methodologies that are shaping the future of web development, from AI integration to serverless architectures.",
+    date: "2024-03-20",
+    coverImage: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "Web Development",
+    readTime: "5 min read"
+  },
+  {
+    id: 2,
+    title: "Mastering TypeScript: Tips and Tricks for Clean Code",
+    excerpt: "Discover advanced TypeScript patterns and techniques that will help you write more maintainable, scalable, and error-free code.",
+    date: "2024-02-15",
+    coverImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "TypeScript",
+    readTime: "7 min read"
+  },
+  {
+    id: 3,
+    title: "Optimizing React Performance: A Deep Dive",
+    excerpt: "Learn how to identify and resolve performance bottlenecks in your React applications through code splitting, memoization, and state management techniques.",
+    date: "2024-01-10",
+    coverImage: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "React",
+    readTime: "8 min read"
+  },
+];
+
 export const socials: Social[] = [
   {
     name: "GitHub",

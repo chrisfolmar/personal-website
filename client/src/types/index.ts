@@ -42,3 +42,21 @@ export interface ContactFormData {
   subject: string;
   message: string;
 }
+
+export interface Testimonial {
+  id: number;
+  name: string;
+  position: string;
+  content: string;
+  avatar: string;
+}
+
+export interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  date: string;
+  coverImage: string;
+  category: string;
+  readTime: string;
+}

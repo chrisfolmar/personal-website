@@ -45,8 +45,11 @@ export default function Projects() {
           </div>
           <SectionHeading
             title="Featured Projects"
-            description="From enterprise healthcare platforms to small business websites, here's a selection of my most impactful work."
+            description="Over the years, I've had the privilege of working with several amazing clients to create custom WordPress websites that meet their unique needs."
           />
+          <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Below are a few selected projects that demonstrate my approach to web development, focusing on high-quality design, user experience, and long-term usability.
+          </p>
         </motion.div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 section-transition">

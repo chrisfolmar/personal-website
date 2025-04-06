@@ -22,7 +22,7 @@ export default function Hero() {
               Technologist | Building High-Performing Teams | Problem Solver
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
-              Hello there, I'm <span className="text-primary">Chris Folmar</span>
+              Hi, I'm <span className="text-primary">Chris Folmar</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
               Leveraging technology and leadership to deliver impactful solutions and grow teams with purpose.

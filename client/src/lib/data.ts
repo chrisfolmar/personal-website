@@ -101,7 +101,7 @@ export const projects: Project[] = [
   {
     title: "Locos Cocos Tacos - Restaurant Website",
     description: "Kittery, Maine's Loco Cocos Tacos features online ordering for customer pickup, gift cards, special events, and service industry discounts. The site highlights Happy Hour specials Monday through Friday from 3-6 PM with discounts on drafts and house margaritas.",
-    image: "/assets/images/projects/project2.svg",
+    image: "@assets/image_1743954612983.png",
     tags: ["WordPress", "Food & Beverage", "E-commerce", "Online Ordering"],
     demoLink: "https://locococostacos.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -110,7 +110,7 @@ export const projects: Project[] = [
   {
     title: "Slip 14 - Marina & Waterfront Dining",
     description: "A waterfront dining website showcasing the restaurant's unique location at the marina, featuring fresh seafood menu offerings, special events, and a full-feature reservation system for an enhanced customer booking experience.",
-    image: "/assets/images/projects/project3.svg",
+    image: "@assets/image_1743954620290.png",
     tags: ["WordPress", "Hospitality", "Booking System", "Visual Design"],
     demoLink: "https://www.slip14.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -119,7 +119,7 @@ export const projects: Project[] = [
   {
     title: "Amy Cousineau, LICSW - Multi-State Therapy",
     description: "A therapy resource for clients in Rhode Island and Massachusetts focusing on treatment of anxiety, depression, PTSD, and LGBTQIA+ support. The site covers specialized services for ADD/ADHD, depression, relationship challenges, and self-doubt concerns.",
-    image: "/assets/images/projects/project4.svg",
+    image: "@assets/image_1743954631115.png",
     tags: ["WordPress", "Healthcare", "Professional Services", "Mental Health"],
     demoLink: "https://acousineaulicsw.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -139,21 +139,21 @@ export const testimonials = [
     name: "Jennifer Mello",
     position: "Licensed Clinical Social Worker",
     content: "Chris created exactly the website I envisioned for my therapy practice. The calming design perfectly represents my approach to trauma therapy, and my clients frequently comment on how easy the site is to navigate. Chris made the whole process simple and straightforward.",
-    avatar: "/assets/images/testimonial1.jpg"
+    avatar: "@assets/image_1743954368907.png"
   },
   {
     id: 2,
     name: "Amy Cousineau",
     position: "LICSW Therapist",
     content: "Working with Chris was a fantastic experience. He understood my vision for a professional yet approachable therapy website and delivered beyond my expectations. The site is easy for me to maintain and has significantly increased my client inquiries.",
-    avatar: "/assets/images/testimonial2.jpg"
+    avatar: "@assets/image_1743954631115.png"
   },
   {
     id: 3,
     name: "Michael Rodriguez",
     position: "Restaurant Owner, Locos Cocos Tacos",
     content: "Our restaurant website needed to be vibrant, functional and easy to update with specials and events. Chris delivered a perfect solution that our customers love using for online orders. The site captures our restaurant's energy and has boosted our online presence.",
-    avatar: "/assets/images/testimonial3.jpg"
+    avatar: "@assets/image_1743954612983.png"
   },
 ];
 
@@ -163,7 +163,7 @@ export const blogPosts = [
     title: "Helping Small Businesses Thrive with WordPress",
     excerpt: "How custom WordPress solutions can provide small businesses with professional websites that they can maintain themselves, reducing long-term costs while maintaining quality.",
     date: "2023-07-15",
-    coverImage: "/assets/images/blog/blog1.jpg",
+    coverImage: "@assets/KP_20240608_0224_3649.jpg",
     category: "WordPress",
     readTime: "5 min read",
     content: `
@@ -198,7 +198,7 @@ export const blogPosts = [
     title: "Finding the Perfect Balance: Life as a Web Developer and New Husband",
     excerpt: "Reflections on the journey of balancing a growing freelance web development business with personal milestones and the lessons learned along the way.",
     date: "2024-05-10",
-    coverImage: "/assets/images/blog/blog5.jpg",
+    coverImage: "@assets/KP_20240608_0225_3651.jpg",
     category: "Personal",
     readTime: "4 min read",
     content: `
@@ -233,7 +233,7 @@ export const blogPosts = [
     title: "The 'Minimum Cost, Maximum Support' Approach to Web Development",
     excerpt: "Exploring my philosophy of creating websites that clients can maintain themselves while providing support only when needed, making web presence more affordable for small businesses.",
     date: "2023-11-18",
-    coverImage: "/assets/images/blog/blog2.jpg",
+    coverImage: "@assets/KP_20240608_0229_3672 (1).jpg",
     category: "Business Strategy",
     readTime: "7 min read",
     content: `
@@ -279,7 +279,7 @@ export const blogPosts = [
     title: "Designing Websites for Healthcare Professionals",
     excerpt: "Special considerations when creating websites for therapists, healthcare providers, and wellness professionals that balance professionalism with accessibility and comfort.",
     date: "2024-02-03",
-    coverImage: "/assets/images/blog/blog3.jpg",
+    coverImage: "@assets/LC_240330_0156_85N_5014-2.jpg",
     category: "Web Design",
     readTime: "8 min read",
     content: `
@@ -330,7 +330,7 @@ export const blogPosts = [
     title: "Why WordPress Will Continue to Dominate Small Business Websites in 2025",
     excerpt: "Looking ahead to 2025, WordPress will maintain its dominance by continuing to offer unmatched flexibility, control, and growth potential for small businesses despite new competitors.",
     date: "2024-10-15",
-    coverImage: "/assets/images/blog/blog4.jpg",
+    coverImage: "@assets/KP_20240608_0729_5107 (4).jpg",
     category: "WordPress",
     readTime: "6 min read",
     content: `

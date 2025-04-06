@@ -22,6 +22,7 @@ export interface Project {
   tags: string[];
   demoLink: string;
   codeLink: string;
+  date: string; // Added date field for sorting
 }
 
 export interface Contact {

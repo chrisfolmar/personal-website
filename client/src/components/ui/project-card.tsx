@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Code } from "lucide-react";
+import { ArrowRight, Code, Calendar } from "lucide-react";
 import { Project } from "@/types";
-import { cn } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 
 interface ProjectCardProps {
   project: Project;
@@ -41,6 +41,10 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
       </div>
       <div className="p-6">
         <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+          <Calendar className="h-4 w-4 mr-1" />
+          <span>{formatDate(project.date)}</span>
+        </div>
         <p className="text-gray-600 dark:text-gray-400 mb-4">
           {project.description}
         </p>

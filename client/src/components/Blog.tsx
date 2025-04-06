@@ -9,6 +9,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { formatDate } from '@/lib/utils';
 
+// Sort blog posts by date (most recent first)
+const sortedBlogPosts = [...blogPosts].sort((a, b) => 
+  new Date(b.date).getTime() - new Date(a.date).getTime()
+);
+
 export default function Blog() {
   const [, setLocation] = useLocation();
   return (
@@ -20,7 +25,7 @@ export default function Blog() {
         />
         
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post: BlogPost, index: number) => (
+          {sortedBlogPosts.map((post: BlogPost, index: number) => (
             <motion.div
               key={post.id}
               initial={{ opacity: 0, y: 20 }}

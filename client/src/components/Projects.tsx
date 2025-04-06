@@ -4,6 +4,11 @@ import SectionHeading from "@/components/ui/section-heading";
 import ProjectCard from "@/components/ui/project-card";
 import { ArrowRight } from "lucide-react";
 
+// Sort projects by date (most recent first)
+const sortedProjects = [...projects].sort((a, b) => 
+  new Date(b.date).getTime() - new Date(a.date).getTime()
+);
+
 export default function Projects() {
   return (
     <section id="projects" className="py-24 bg-gradient">
@@ -14,7 +19,7 @@ export default function Projects() {
         />
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 section-transition">
-          {projects.map((project, index) => (
+          {sortedProjects.map((project, index) => (
             <ProjectCard 
               key={index}
               project={project}

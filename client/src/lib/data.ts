@@ -96,6 +96,7 @@ export const projects: Project[] = [
     tags: ["WordPress", "Healthcare", "Professional Services", "Trauma Therapy"],
     demoLink: "https://jmellolicsw.com/",
     codeLink: "https://github.com/chrisfolmar",
+    date: "2023-08-15",
   },
   {
     title: "Locos Cocos Tacos - Restaurant Website",
@@ -104,6 +105,7 @@ export const projects: Project[] = [
     tags: ["WordPress", "Food & Beverage", "E-commerce", "Online Ordering"],
     demoLink: "https://locococostacos.com/",
     codeLink: "https://github.com/chrisfolmar",
+    date: "2023-11-10",
   },
   {
     title: "Slip 14 - Marina & Waterfront Dining",
@@ -112,6 +114,7 @@ export const projects: Project[] = [
     tags: ["WordPress", "Hospitality", "Booking System", "Visual Design"],
     demoLink: "https://www.slip14.com/",
     codeLink: "https://github.com/chrisfolmar",
+    date: "2024-01-20",
   },
   {
     title: "Amy Cousineau, LICSW - Multi-State Therapy",
@@ -120,6 +123,7 @@ export const projects: Project[] = [
     tags: ["WordPress", "Healthcare", "Professional Services", "Mental Health"],
     demoLink: "https://acousineaulicsw.com/",
     codeLink: "https://github.com/chrisfolmar",
+    date: "2024-04-05",
   },
 ];
 

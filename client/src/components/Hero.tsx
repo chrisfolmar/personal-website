@@ -19,13 +19,13 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
           >
             <span className="inline-block text-primary dark:text-primary mb-2 px-3 py-1 text-sm font-medium bg-blue-100 dark:bg-blue-900 dark:bg-opacity-30 rounded-full">
-              Web Developer & WordPress Expert
+              Technologist | Building High-Performing Teams | Problem Solver
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
-              Hi, I'm <span className="text-primary">Chris Folmar</span>
+              Hello there, I'm <span className="text-primary">Chris Folmar</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
-              I create professional websites that clients can easily maintain themselves.
+              Leveraging technology and leadership to deliver impactful solutions and grow teams with purpose.
             </p>
             <div className="flex flex-wrap gap-4">
               <a 

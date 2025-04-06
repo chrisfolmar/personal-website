@@ -215,7 +215,7 @@ export const projects: Project[] = [
   {
     title: "Jennifer Mello, LICSW - Trauma Therapy",
     description: "A calming, professional website for a licensed trauma therapist in Massachusetts. Designed with a soothing color palette to create a sense of safety for potential clients seeking trauma-informed therapy services.",
-    image: "/assets/images/projects/jennifer.png",
+    image: "/assets/images/projects/jennifer-new.png",
     tags: ["WordPress", "Healthcare", "Professional Services", "Trauma Therapy"],
     demoLink: "https://jmellolicsw.com/",
     codeLink: "https://github.com/chrisfolmar",

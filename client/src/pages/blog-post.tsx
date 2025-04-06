@@ -149,7 +149,15 @@ export default function BlogPost() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="mb-8">
+          <div className="max-w-4xl mx-auto mb-8">
+            <div className="mb-6 rounded-xl overflow-hidden">
+              <LazyImage 
+                src={post.coverImage} 
+                alt={post.title} 
+                className="w-full h-auto" 
+              />
+            </div>
+            
             <Badge variant="secondary" className="bg-primary text-white hover:bg-primary/90 mb-4">
               {post.category}
             </Badge>
@@ -168,13 +176,6 @@ export default function BlogPost() {
           </div>
           
           <div className="max-w-4xl mx-auto">
-            <div className="mb-10 rounded-xl overflow-hidden">
-              <LazyImage 
-                src={post.coverImage} 
-                alt={post.title} 
-                className="w-full h-auto" 
-              />
-            </div>
             
             <div 
               className="prose prose-lg dark:prose-invert max-w-none"

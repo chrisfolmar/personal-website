@@ -69,16 +69,21 @@ export default function Projects() {
           transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <button 
-            onClick={handleViewAllClick}
-            className="inline-flex items-center px-8 py-4 bg-primary hover:bg-primary-dark text-white font-medium rounded-lg transition-colors shadow-md hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transform hover:-translate-y-1 active:translate-y-0 duration-200"
-          >
-            <span className="text-base">View Details</span>
-            <ArrowRight className="h-5 w-5 ml-2" />
-          </button>
-          <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            Click on any project card to explore detailed information, implementation notes, and client solutions.
-          </p>
+          <div className="max-w-2xl mx-auto space-y-6">
+            <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed">
+              These projects reflect my ability to create meaningful, high-quality web experiences that not only look great but are easy to manage for my clients. Whether you're looking for a simple, functional site or something more dynamic, I focus on delivering tailored solutions that meet each client's needs.
+            </p>
+            <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed">
+              If you're interested in working together or would like to discuss a project, please feel free to reach out!
+            </p>
+            <a 
+              href="#contact" 
+              className="inline-flex items-center px-6 py-3 mt-4 bg-primary hover:bg-primary-dark text-white font-medium rounded-lg transition-colors shadow-md hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transform hover:-translate-y-1 active:translate-y-0 duration-200"
+            >
+              <span className="text-base">Get in Touch</span>
+              <ArrowRight className="h-5 w-5 ml-2" />
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>

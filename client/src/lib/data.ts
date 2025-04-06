@@ -251,7 +251,7 @@ export const projects: Project[] = [
   {
     title: "Portfolio Website - Personal Showcase",
     description: "My professional portfolio website built with modern web technologies. Features a responsive design with dark/light mode toggle, interactive skill visualizations, and comprehensive project case studies with detailed implementation notes.",
-    image: "/assets/images/projects/portfolio.png",
+    image: "/assets/images/projects/portfolio-new.png",
     tags: ["React", "TypeScript", "TailwindCSS", "Responsive Design"],
     demoLink: "https://chrisfolmar.com/",
     codeLink: "https://github.com/chrisfolmar",

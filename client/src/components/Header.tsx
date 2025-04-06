@@ -22,7 +22,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo/Name */}
           <a href="#home" className="text-xl font-bold tracking-tight text-primary hover:text-primary-dark transition-colors">
-            <span className="text-gray-900 dark:text-white">Your</span>Name<span className="text-primary dark:text-primary">.</span>
+            <span className="text-gray-900 dark:text-white">Chris</span>Folmar<span className="text-primary dark:text-primary">.</span>
           </a>
           
           {/* Mobile Menu Button */}

@@ -23,13 +23,13 @@ export default function About() {
           >
             <h3 className="text-2xl font-bold mb-6">Who I Am</h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              I'm a passionate software engineer with expertise in modern web technologies, focused on building elegant solutions to complex problems. With a strong foundation in computer science and a keen eye for detail, I strive to create software that not only functions flawlessly but also delivers exceptional user experiences.
+              I'm a WordPress developer based in Durham, NH, specializing in creating professional, custom websites for small businesses and individuals. With years of experience in web development, I focus on building sites that not only look great but are also easy for clients to manage themselves.
             </p>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              My journey began with a fascination for how software can transform lives and businesses. Since then, I've dedicated myself to continuously learning and mastering new technologies, staying at the forefront of industry innovations.
+              I believe in a "minimum cost, maximum support" model, ensuring that my clients receive exceptional value and ongoing assistance. Recently married in June 2024, I'm an Arsenal fan and proud dog dad to two wonderful pups.
             </p>
             <p className="text-gray-600 dark:text-gray-400">
-              When I'm not coding, you'll find me exploring the latest tech trends, contributing to open-source projects, or engaging with the developer community through meetups and conferences.
+              When I'm not designing websites, you'll find me cheering for Arsenal, spending time with my dogs, exploring New Hampshire's beautiful outdoors, or staying updated on the latest WordPress developments and web design trends.
             </p>
           </motion.div>
           
@@ -40,6 +40,13 @@ export default function About() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
+            <div className="mb-8 overflow-hidden rounded-xl shadow-md">
+              <img 
+                src="/assets/images/about.jpg" 
+                alt="Chris Folmar with his wife" 
+                className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500"
+              />
+            </div>
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 section-transition">
               <h3 className="text-2xl font-bold mb-6">Professional Experience</h3>
               

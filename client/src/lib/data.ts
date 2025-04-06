@@ -4,154 +4,174 @@ import { Experience, Project, Skill, Tool, Contact, Social } from "@/types";
 
 export const experiences: Experience[] = [
   {
-    title: "Senior Software Engineer",
-    company: "Tech Company, Inc.",
-    period: "Jan 2020 - Present",
+    title: "Freelance WordPress Developer",
+    company: "Self-employed",
+    period: "2021 - Present",
     description:
-      "Led the development of critical web applications using React, Node.js, and AWS services. Implemented CI/CD pipelines and optimized application performance.",
+      "Developing custom WordPress solutions for small businesses and professionals. Focused on creating maintainable websites that clients can easily manage themselves with minimal support needed.",
   },
   {
-    title: "Software Developer",
-    company: "Digital Solutions Ltd.",
-    period: "Jun 2017 - Dec 2019",
+    title: "Web Development Consultant",
+    company: "Various Clients",
+    period: "2019 - 2021",
     description:
-      "Developed and maintained multiple web applications. Collaborated with cross-functional teams to deliver high-quality software solutions on schedule.",
+      "Provided web development consulting services to help clients establish their online presence with accessible, user-friendly websites that meet their specific business needs.",
   },
 ];
 
 export const skills: Skill[] = [
   {
-    name: "JavaScript/TypeScript",
+    name: "WordPress Development",
     percentage: 95,
   },
   {
-    name: "React",
-    percentage: 90,
-  },
-  {
-    name: "Node.js",
+    name: "PHP",
     percentage: 85,
   },
   {
-    name: "HTML5/CSS3",
+    name: "HTML/CSS",
     percentage: 90,
   },
   {
-    name: "SQL/NoSQL",
+    name: "JavaScript",
     percentage: 80,
+  },
+  {
+    name: "UI/UX Design",
+    percentage: 85,
+  },
+  {
+    name: "Web Performance Optimization",
+    percentage: 80,
+  },
+  {
+    name: "SEO",
+    percentage: 75,
+  },
+  {
+    name: "Client Consultation",
+    percentage: 90,
   },
 ];
 
 export const tools: Tool[] = [
   {
-    name: "Next.js",
+    name: "WordPress",
+    icon: "monitor",
+  },
+  {
+    name: "VS Code",
     icon: "code",
   },
   {
-    name: "Tailwind CSS",
-    icon: "layoutGrid",
-  },
-  {
-    name: "Redux",
-    icon: "lineChart",
-  },
-  {
-    name: "AWS",
-    icon: "package",
-  },
-  {
-    name: "Git/GitHub",
+    name: "Git",
     icon: "gitBranch",
   },
   {
-    name: "Docker",
-    icon: "database",
+    name: "Figma",
+    icon: "penTool",
+  },
+  {
+    name: "Adobe Creative Suite",
+    icon: "paintBucket",
+  },
+  {
+    name: "WP Plugins",
+    icon: "puzzle",
   },
 ];
 
 export const projects: Project[] = [
   {
-    title: "E-commerce Web App",
-    description: "A fully responsive e-commerce platform with product management, cart functionality, and payment integration.",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
-    tags: ["React", "Node.js"],
-    demoLink: "#",
-    codeLink: "#",
+    title: "Jennifer Mello, LICSW - Therapy Website",
+    description: "A professional therapy practice website for Jennifer Mello, LICSW focused on creating a peaceful online presence for potential clients seeking trauma therapy services in Plymouth, MA.",
+    image: "/assets/images/projects/project1.svg",
+    tags: ["WordPress", "Healthcare", "Professional Services", "Responsive Design"],
+    demoLink: "https://jmellolicsw.com/",
+    codeLink: "https://github.com/chrisfolmar",
   },
   {
-    title: "Task Management App",
-    description: "A productivity application with task organization, deadlines, and team collaboration features.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
-    tags: ["React", "Firebase"],
-    demoLink: "#",
-    codeLink: "#",
+    title: "Locos Cocos Tacos - Restaurant Website",
+    description: "A vibrant, engaging website for Locos Cocos Tacos in Kittery, Maine featuring online ordering, special promotions, and an interactive menu to enhance customer experience.",
+    image: "/assets/images/projects/project2.svg",
+    tags: ["WordPress", "Food & Beverage", "E-commerce", "Mobile-First"],
+    demoLink: "https://locococostacos.com/",
+    codeLink: "https://github.com/chrisfolmar",
   },
   {
-    title: "Financial Dashboard",
-    description: "An interactive dashboard for visualizing financial data with charts, reports, and forecasting.",
-    image: "https://images.unsplash.com/photo-1517292987719-0369a794ec0f",
-    tags: ["TypeScript", "Next.js"],
-    demoLink: "#",
-    codeLink: "#",
+    title: "Slip 14 - Marina & Restaurant Website",
+    description: "A waterfront dining website showcasing the restaurant's unique location, menu offerings, and reservation system for an enhanced customer booking experience.",
+    image: "/assets/images/projects/project3.svg",
+    tags: ["WordPress", "Hospitality", "Booking System", "Visual Design"],
+    demoLink: "https://www.slip14.com/",
+    codeLink: "https://github.com/chrisfolmar",
+  },
+  {
+    title: "Amy Cousineau, LICSW - Therapy Practice",
+    description: "A professional therapy website for a licensed social worker serving Rhode Island and Massachusetts, designed to provide information about mental health services and treatment specializations.",
+    image: "/assets/images/projects/project4.svg",
+    tags: ["WordPress", "Healthcare", "Professional Services", "Accessibility"],
+    demoLink: "https://acousineaulicsw.com/",
+    codeLink: "https://github.com/chrisfolmar",
   },
 ];
 
 export const contact: Contact = {
-  email: "your.email@example.com",
-  phone: "+1 (234) 567-890",
-  location: "San Francisco, California",
+  email: "contact@chrisfolmar.com",
+  phone: "(603) 988-7967",
+  location: "Durham, NH",
 };
 
 export const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    position: "Product Manager at TechCorp",
-    content: "Working with this developer was an absolute pleasure. Their technical expertise and attention to detail resulted in a product that exceeded our expectations. I was particularly impressed with their ability to translate complex requirements into elegant solutions.",
-    avatar: "https://randomuser.me/api/portraits/women/32.jpg"
+    name: "Jennifer Mello",
+    position: "Licensed Clinical Social Worker",
+    content: "Chris created exactly the website I envisioned for my therapy practice. The calming design perfectly represents my approach to trauma therapy, and my clients frequently comment on how easy the site is to navigate. Chris made the whole process simple and straightforward.",
+    avatar: "/assets/images/testimonial1.jpg"
   },
   {
     id: 2,
-    name: "Michael Chen",
-    position: "CTO at StartupInnovate",
-    content: "One of the most talented developers I've worked with. They not only delivered high-quality code but also provided valuable insights that improved our overall product architecture. Their communication skills made the entire process smooth and effective.",
-    avatar: "https://randomuser.me/api/portraits/men/46.jpg"
+    name: "Amy Cousineau",
+    position: "LICSW Therapist",
+    content: "Working with Chris was a fantastic experience. He understood my vision for a professional yet approachable therapy website and delivered beyond my expectations. The site is easy for me to maintain and has significantly increased my client inquiries.",
+    avatar: "/assets/images/testimonial2.jpg"
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
-    position: "Frontend Lead at DesignHub",
-    content: "I was blown away by the creativity and technical prowess demonstrated throughout our project. The developer showed exceptional problem-solving skills and consistently delivered work that was both visually stunning and functionally robust.",
-    avatar: "https://randomuser.me/api/portraits/women/65.jpg"
+    name: "Michael Rodriguez",
+    position: "Restaurant Owner, Locos Cocos Tacos",
+    content: "Our restaurant website needed to be vibrant, functional and easy to update with specials and events. Chris delivered a perfect solution that our customers love using for online orders. The site captures our restaurant's energy and has boosted our online presence.",
+    avatar: "/assets/images/testimonial3.jpg"
   },
 ];
 
 export const blogPosts = [
   {
     id: 1,
-    title: "The Future of Web Development: Trends to Watch in 2024",
-    excerpt: "Explore the cutting-edge technologies and methodologies that are shaping the future of web development, from AI integration to serverless architectures.",
+    title: "Helping Small Businesses Thrive with WordPress",
+    excerpt: "How custom WordPress solutions can provide small businesses with professional websites that they can maintain themselves, reducing long-term costs while maintaining quality.",
     date: "2024-03-20",
-    coverImage: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "Web Development",
+    coverImage: "/assets/images/blog/blog1.svg",
+    category: "WordPress",
     readTime: "5 min read"
   },
   {
     id: 2,
-    title: "Mastering TypeScript: Tips and Tricks for Clean Code",
-    excerpt: "Discover advanced TypeScript patterns and techniques that will help you write more maintainable, scalable, and error-free code.",
+    title: "The 'Minimum Cost, Maximum Support' Approach to Web Development",
+    excerpt: "Exploring my philosophy of creating websites that clients can maintain themselves while providing support only when needed, making web presence more affordable for small businesses.",
     date: "2024-02-15",
-    coverImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "TypeScript",
+    coverImage: "/assets/images/blog/blog2.svg",
+    category: "Business Strategy",
     readTime: "7 min read"
   },
   {
     id: 3,
-    title: "Optimizing React Performance: A Deep Dive",
-    excerpt: "Learn how to identify and resolve performance bottlenecks in your React applications through code splitting, memoization, and state management techniques.",
+    title: "Designing Websites for Healthcare Professionals",
+    excerpt: "Special considerations when creating websites for therapists, healthcare providers, and wellness professionals that balance professionalism with accessibility and comfort.",
     date: "2024-01-10",
-    coverImage: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "React",
+    coverImage: "/assets/images/blog/blog3.svg",
+    category: "Web Design",
     readTime: "8 min read"
   },
 ];
@@ -159,22 +179,27 @@ export const blogPosts = [
 export const socials: Social[] = [
   {
     name: "GitHub",
-    url: "https://github.com",
+    url: "https://github.com/chrisfolmar",
     icon: "github",
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com",
+    url: "https://www.linkedin.com/in/clfolmar/",
     icon: "linkedin",
   },
   {
     name: "Twitter",
-    url: "https://twitter.com",
+    url: "https://x.com/fomy",
     icon: "twitter",
   },
   {
-    name: "Dribbble",
-    url: "https://dribbble.com",
-    icon: "dribbble",
+    name: "Instagram",
+    url: "https://www.instagram.com/fomy/?hl=en",
+    icon: "instagram",
+  },
+  {
+    name: "Medium",
+    url: "https://medium.com/@c.folmar/following",
+    icon: "fileText",
   },
 ];

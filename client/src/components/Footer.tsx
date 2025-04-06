@@ -9,10 +9,10 @@ export default function Footer() {
         <div className="md:flex md:justify-between md:items-center">
           <div className="mb-8 md:mb-0">
             <a href="#home" className="text-2xl font-bold tracking-tight">
-              <span className="text-white">Your</span>Name<span className="text-primary">.</span>
+              <span className="text-white">Chris</span>Folmar<span className="text-primary">.</span>
             </a>
             <p className="mt-3 text-gray-400 max-w-md">
-              Building exceptional digital experiences with modern technologies. Focused on creating software that not only works flawlessly but also delivers outstanding user experiences.
+              Creating professional websites that clients can easily maintain themselves. Committed to a "minimum cost, maximum support" model for small businesses and individuals.
             </p>
           </div>
           
@@ -30,7 +30,7 @@ export default function Footer() {
         
         <div className="mt-12 border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            &copy; {currentYear} YourName. All rights reserved.
+            &copy; {currentYear} Chris Folmar. All rights reserved.
           </p>
           <p className="text-gray-400 text-sm mt-4 sm:mt-0">
             Designed and built with passion

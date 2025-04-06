@@ -1,0 +1,20 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#e8f4f8"/>
+  <rect x="60" y="80" width="680" height="130" rx="10" fill="#ffffff" stroke="#4b6bfb" stroke-width="2"/>
+  <text x="400" y="150" font-family="Arial" font-size="36" font-weight="bold" text-anchor="middle" fill="#4b6bfb">Jennifer Mello, LICSW</text>
+  <text x="400" y="190" font-family="Arial" font-size="20" text-anchor="middle" fill="#333333">Therapy Services in Plymouth, MA</text>
+  
+  <rect x="60" y="240" width="320" height="280" rx="10" fill="#ffffff" stroke="#4b6bfb" stroke-width="2"/>
+  <text x="220" y="280" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#4b6bfb">Services</text>
+  <text x="220" y="330" font-family="Arial" font-size="18" text-anchor="middle" fill="#333333">Trauma Therapy</text>
+  <text x="220" y="370" font-family="Arial" font-size="18" text-anchor="middle" fill="#333333">EMDR</text>
+  <text x="220" y="410" font-family="Arial" font-size="18" text-anchor="middle" fill="#333333">Anxiety &amp; Depression</text>
+  <text x="220" y="450" font-family="Arial" font-size="18" text-anchor="middle" fill="#333333">Individual Therapy</text>
+  
+  <rect x="420" y="240" width="320" height="280" rx="10" fill="#ffffff" stroke="#4b6bfb" stroke-width="2"/>
+  <text x="580" y="280" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#4b6bfb">Contact</text>
+  <text x="580" y="330" font-family="Arial" font-size="18" text-anchor="middle" fill="#333333">Phone: (508) 555-1234</text>
+  <text x="580" y="370" font-family="Arial" font-size="18" text-anchor="middle" fill="#333333">Email: info@jmellolicsw.com</text>
+  <text x="580" y="410" font-family="Arial" font-size="18" text-anchor="middle" fill="#333333">59 Long Pond Rd</text>
+  <text x="580" y="450" font-family="Arial" font-size="18" text-anchor="middle" fill="#333333">Plymouth, MA 02360</text>
+</svg>

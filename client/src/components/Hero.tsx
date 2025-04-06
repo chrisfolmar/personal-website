@@ -19,13 +19,13 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
           >
             <span className="inline-block text-primary dark:text-primary mb-2 px-3 py-1 text-sm font-medium bg-blue-100 dark:bg-blue-900 dark:bg-opacity-30 rounded-full">
-              Software Engineer
+              Web Developer & WordPress Expert
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
-              Hi, I'm <span className="text-primary">Your Name</span>
+              Hi, I'm <span className="text-primary">Chris Folmar</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
-              I build exceptional digital experiences with modern technologies.
+              I create professional websites that clients can easily maintain themselves.
             </p>
             <div className="flex flex-wrap gap-4">
               <a 
@@ -51,10 +51,12 @@ export default function Hero() {
           >
             <div className="relative w-72 h-72 rounded-full bg-gradient-to-r from-primary to-accent p-1 shadow-lg">
               <div className="absolute inset-1 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
-                {/* Profile image placeholder */}
-                <div className="w-full h-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
-                  <span className="text-gray-400 dark:text-gray-600 text-xl font-medium">Your Profile Image</span>
-                </div>
+                {/* Profile image */}
+                <img 
+                  src="/assets/images/profile.jpg" 
+                  alt="Chris Folmar" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </motion.div>
@@ -63,17 +65,17 @@ export default function Hero() {
         <motion.div 
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          whileHover={{ y: 3 }}
-          animate={{
-            y: [0, 5, 0],
+          animate={{ 
+            opacity: 1,
+            y: [0, 5, 0]
           }}
           transition={{
             duration: 1.5,
+            delay: 0.5,
             repeat: Infinity,
             repeatType: "loop",
           }}
+          whileHover={{ y: 3 }}
         >
           <a 
             href="#about" 

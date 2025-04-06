@@ -92,7 +92,7 @@ export const projects: Project[] = [
   {
     title: "Portfolio Website - Personal Developer Showcase",
     description: "My personal portfolio website showcasing skills, projects, and services as a freelance WordPress developer. Features a responsive design with dark/light mode and interactive UI elements for an engaging user experience.",
-    image: "/assets/images/projects/project1.png",
+    image: "/assets/images/projects/portfolio.png",
     tags: ["React", "TypeScript", "TailwindCSS", "Responsive Design"],
     demoLink: "https://chrisfolmar.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -101,7 +101,7 @@ export const projects: Project[] = [
   {
     title: "Jennifer Mello, LICSW - Certified Trauma Therapy",
     description: "When I started my practice, at the root of everything I did, I held my clients in mind. Not only is this space a way for me to introduce myself to you, its also FOR you. I hope you find a sense of peace, belonging, and guidance if that is what you seek.",
-    image: "/assets/images/projects/project2.png",
+    image: "/assets/images/projects/jennifer.png",
     tags: ["WordPress", "Healthcare", "Professional Services", "Trauma Therapy"],
     demoLink: "https://jmellolicsw.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -110,7 +110,7 @@ export const projects: Project[] = [
   {
     title: "Locos Cocos Tacos - Restaurant Website",
     description: "Kittery, Maine's Loco Cocos Tacos features online ordering for customer pickup, gift cards, special events, and service industry discounts. The site highlights Happy Hour specials Monday through Friday from 3-6 PM with discounts on drafts and house margaritas.",
-    image: "/assets/images/projects/project3.png",
+    image: "/assets/images/projects/locos.png",
     tags: ["WordPress", "Food & Beverage", "E-commerce", "Online Ordering"],
     demoLink: "https://locococostacos.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -119,7 +119,7 @@ export const projects: Project[] = [
   {
     title: "Slip 14 - Marina & Waterfront Dining",
     description: "A waterfront dining website showcasing the restaurant's unique location at the marina, featuring fresh seafood menu offerings, special events, and a full-feature reservation system for an enhanced customer booking experience.",
-    image: "/assets/images/projects/project4.png",
+    image: "/assets/images/projects/slip14.png",
     tags: ["WordPress", "Hospitality", "Booking System", "Visual Design"],
     demoLink: "https://www.slip14.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -128,7 +128,7 @@ export const projects: Project[] = [
   {
     title: "Amy Cousineau, LICSW - Multi-State Therapy",
     description: "A therapy resource for clients in Rhode Island and Massachusetts focusing on treatment of anxiety, depression, PTSD, and LGBTQIA+ support. The site covers specialized services for ADD/ADHD, depression, relationship challenges, and self-doubt concerns.",
-    image: "/assets/images/projects/project5.png",
+    image: "/assets/images/projects/amy.png",
     tags: ["WordPress", "Healthcare", "Professional Services", "Mental Health"],
     demoLink: "https://acousineaulicsw.com/",
     codeLink: "https://github.com/chrisfolmar",

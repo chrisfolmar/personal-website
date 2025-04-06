@@ -9,6 +9,8 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
+  console.log("Project image path:", project.image);
+  
   return (
     <motion.div 
       className="project-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl section-transition"
@@ -20,9 +22,13 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
       <div className="relative overflow-hidden h-52">
         <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
           <img 
-            src={project.image} 
+            src={`${project.image}?v=${Date.now()}`} 
             alt={project.title}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              console.error("Failed to load project image:", project.image);
+              console.error("Project details:", JSON.stringify(project));
+            }}
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">

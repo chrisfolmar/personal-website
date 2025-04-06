@@ -34,7 +34,7 @@ const LazyImage = ({ src, alt, className, isHoverable = false }: {
         ref={imgRef}
         src={src}
         alt={alt}
-        className={`w-full h-full object-cover transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${isHoverable ? 'group-hover:scale-105' : ''}`}
+        className={`w-full h-full object-contain transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${isHoverable ? 'group-hover:scale-105' : ''}`}
         onLoad={handleLoad}
         onError={handleError}
       />
@@ -126,7 +126,7 @@ export default function BlogPost() {
             <LazyImage 
               src={post.coverImage} 
               alt={post.title} 
-              className="w-full h-[400px]" 
+              className="w-full h-auto max-h-[500px]" 
             />
           </div>
           

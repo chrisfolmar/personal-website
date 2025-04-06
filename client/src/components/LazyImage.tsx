@@ -61,7 +61,7 @@ export default function LazyImage({
 
   return (
     <div 
-      className={`${containerClassName} ${!isLoaded || error ? 'bg-gray-200 dark:bg-gray-700 animate-pulse' : ''} flex items-center justify-center w-full`} 
+      className={`${containerClassName} ${!isLoaded || error ? 'animate-pulse' : ''} flex items-center justify-center w-full`} 
       style={containerStyles}
     >
       <img

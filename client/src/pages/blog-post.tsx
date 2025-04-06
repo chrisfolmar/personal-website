@@ -102,7 +102,7 @@ export default function BlogPost() {
           <LazyImage 
             src={post.coverImage} 
             alt={post.title}
-            containerClassName="mb-8 rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-800/20"
+            containerClassName="mb-8 rounded-xl overflow-hidden"
             containerStyle={{
               minHeight: '280px',
               maxHeight: '450px',

@@ -138,7 +138,7 @@ export default function ProjectDetail() {
             <LazyImage 
               src={project.image} 
               alt={project.title}
-              containerClassName="mb-10 rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-800/20"
+              containerClassName="mb-10 rounded-xl overflow-hidden"
               containerStyle={{
                 minHeight: '280px',
                 maxHeight: '450px',

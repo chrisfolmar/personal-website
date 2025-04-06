@@ -115,7 +115,13 @@ export default function Blog() {
           description="Insights and thoughts on web development, design, and technology"
         />
         
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="max-w-3xl mx-auto text-center mt-6">
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-md">
+            I believe in the power of sharing knowledge and learning from others. In this blog, I write about my experiences in software engineering, leadership, team building, AI-driven automation, and anything else that I find thought-provoking or insightful. Whether you're here to learn from my technical posts or gain perspective on my leadership journey, I hope you find something valuable that sparks new ideas.
+          </p>
+        </div>
+        
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {sortedBlogPosts.map((post: BlogPost, index: number) => (
             <BlogCard 
               key={post.id}

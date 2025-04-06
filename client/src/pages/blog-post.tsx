@@ -123,11 +123,11 @@ export default function BlogPost() {
           className="max-w-4xl mx-auto"
         >
           {/* Featured Image at the top */}
-          <div className="mb-8 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800" style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="mb-8 rounded-xl overflow-hidden" style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <LazyImage 
               src={post.coverImage} 
               alt={post.title} 
-              className="w-full h-auto py-4" 
+              className="w-full h-auto" 
             />
           </div>
           

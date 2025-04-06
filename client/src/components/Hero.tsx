@@ -14,16 +14,11 @@ export default function Hero() {
   ];
   
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   
   // Rotate through profile images
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % profileImages.length);
-        setIsTransitioning(false);
-      }, 500); // Match the transition duration
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % profileImages.length);
     }, 5000); // Change image every 5 seconds
     
     return () => clearInterval(interval);
@@ -77,17 +72,12 @@ export default function Hero() {
           >
             <div className="relative w-72 h-72 rounded-full bg-gradient-to-r from-primary to-accent p-1 shadow-lg">
               <div className="absolute inset-1 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
-                {/* Profile image with transition effect */}
-                <motion.img 
+                {/* Profile image */}
+                <img 
                   key={currentImageIndex}
                   src={profileImages[currentImageIndex]} 
                   alt="Chris Folmar" 
                   className="w-full h-full object-cover"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  style={{ opacity: isTransitioning ? 0 : 1 }}
                   onError={(e) => {
                     console.error("Failed to load profile image", e);
                     e.currentTarget.src = profileImages[0]; // Fallback to first image

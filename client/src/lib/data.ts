@@ -242,7 +242,7 @@ export const projects: Project[] = [
   {
     title: "Slip 14 - Marina & Waterfront Dining",
     description: "An elegant website for a waterfront restaurant located at a southern Maine marina. The design emphasizes the stunning water views with a nautical theme, integrated reservation system, and dynamic seasonal menu updates.",
-    image: "/assets/images/projects/slip14.png",
+    image: "/assets/images/projects/slip14-new.png",
     tags: ["WordPress", "Hospitality", "Booking System", "Visual Design"],
     demoLink: "https://www.slip14.com/",
     codeLink: "https://github.com/chrisfolmar",

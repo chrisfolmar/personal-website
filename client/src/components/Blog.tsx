@@ -9,6 +9,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { formatDate } from '@/lib/utils';
 
+// Import image directly
+import blogImage from "@assets/image_1743954368907.png";
+
 // Sort blog posts by date (most recent first)
 const sortedBlogPosts = [...blogPosts].sort((a, b) => 
   new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -39,7 +42,7 @@ export default function Blog() {
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
-                    src="/assets/images/blog-post.png"
+                    src={blogImage}
                     alt={post.title}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   />

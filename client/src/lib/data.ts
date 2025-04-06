@@ -163,7 +163,7 @@ export const blogPosts = [
     title: "Helping Small Businesses Thrive with WordPress",
     excerpt: "How custom WordPress solutions can provide small businesses with professional websites that they can maintain themselves, reducing long-term costs while maintaining quality.",
     date: "2023-07-15",
-    coverImage: "/assets/profile/engagement.jpg",
+    coverImage: "/assets/images/blog/blog1.jpg",
     category: "WordPress",
     readTime: "5 min read",
     content: `
@@ -198,7 +198,7 @@ export const blogPosts = [
     title: "Finding the Perfect Balance: Life as a Web Developer and New Husband",
     excerpt: "Reflections on the journey of balancing a growing freelance web development business with personal milestones and the lessons learned along the way.",
     date: "2024-05-10",
-    coverImage: "/assets/blog/wedding_day.jpg",
+    coverImage: "/assets/images/blog/blog5.jpg",
     category: "Personal",
     readTime: "4 min read",
     content: `
@@ -233,7 +233,7 @@ export const blogPosts = [
     title: "The 'Minimum Cost, Maximum Support' Approach to Web Development",
     excerpt: "Exploring my philosophy of creating websites that clients can maintain themselves while providing support only when needed, making web presence more affordable for small businesses.",
     date: "2023-11-18",
-    coverImage: "/assets/profile/KP_20240608_0224_3649.jpg",
+    coverImage: "/assets/images/blog/blog2.jpg",
     category: "Business Strategy",
     readTime: "7 min read",
     content: `
@@ -279,7 +279,7 @@ export const blogPosts = [
     title: "Designing Websites for Healthcare Professionals",
     excerpt: "Special considerations when creating websites for therapists, healthcare providers, and wellness professionals that balance professionalism with accessibility and comfort.",
     date: "2024-02-03",
-    coverImage: "/assets/blog/reception.jpg",
+    coverImage: "/assets/images/blog/blog3.jpg",
     category: "Web Design",
     readTime: "8 min read",
     content: `
@@ -330,7 +330,7 @@ export const blogPosts = [
     title: "Why WordPress Will Continue to Dominate Small Business Websites in 2025",
     excerpt: "Looking ahead to 2025, WordPress will maintain its dominance by continuing to offer unmatched flexibility, control, and growth potential for small businesses despite new competitors.",
     date: "2024-10-15",
-    coverImage: "/assets/blog/first_dance.jpg",
+    coverImage: "/assets/images/blog/blog4.jpg",
     category: "WordPress",
     readTime: "6 min read",
     content: `

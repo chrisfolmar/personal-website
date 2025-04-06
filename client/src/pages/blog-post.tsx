@@ -37,7 +37,7 @@ const LazyImage = ({ src, alt, className, isHoverable = false }: {
         className={`max-w-full max-h-full object-contain transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${isHoverable ? 'group-hover:scale-105' : ''}`}
         onLoad={handleLoad}
         onError={handleError}
-        style={{ maxHeight: '600px' }}
+        style={{ maxHeight: '400px', maxWidth: '80%' }}
       />
     </div>
   );
@@ -123,11 +123,11 @@ export default function BlogPost() {
           className="max-w-4xl mx-auto"
         >
           {/* Featured Image at the top */}
-          <div className="mb-8 rounded-xl overflow-hidden" style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="mb-8 rounded-xl overflow-hidden" style={{ minHeight: '280px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <LazyImage 
               src={post.coverImage} 
               alt={post.title} 
-              className="w-full h-auto" 
+              className="w-auto h-auto" 
             />
           </div>
           

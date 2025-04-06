@@ -69,7 +69,7 @@ const LazyImage = ({ src, alt, className, isHoverable = false }: {
   );
 };
 
-// Related post component (memoized)
+// Related post component 
 const RelatedPost = ({ post, onClick }: { post: typeof blogPosts[0]; onClick: () => void }) => {
   return (
     <div 
@@ -98,7 +98,7 @@ export default function BlogPost() {
   
   const post = blogPosts.find(post => post.id === postId);
   
-  // Handle navigation to related post (memoized)
+  // Handle navigation to related post
   const handleRelatedPostClick = useCallback((relatedPostId: number) => {
     window.scrollTo(0, 0);
     setLocation(`/blog/${relatedPostId}`);
@@ -125,7 +125,7 @@ export default function BlogPost() {
     return null;
   }
   
-  // Filter related posts outside of render function for better performance
+  // Filter related posts
   const relatedPosts = blogPosts
     .filter(p => p.id !== post.id)
     .slice(0, 2);
@@ -135,9 +135,7 @@ export default function BlogPost() {
       <div className="container mx-auto px-4">
         <Button 
           variant="ghost" 
-          onClick={() => {
-            setLocation("/"); 
-          }}
+          onClick={() => setLocation("/")}
           className="mb-6 flex items-center"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
@@ -148,16 +146,18 @@ export default function BlogPost() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="max-w-4xl mx-auto"
         >
-          <div className="max-w-4xl mx-auto mb-8">
-            <div className="mb-6 rounded-xl overflow-hidden">
-              <LazyImage 
-                src={post.coverImage} 
-                alt={post.title} 
-                className="w-full h-auto" 
-              />
-            </div>
-            
+          {/* Featured Image at the top */}
+          <div className="mb-8 rounded-xl overflow-hidden">
+            <LazyImage 
+              src={post.coverImage} 
+              alt={post.title} 
+              className="w-full h-[400px]" 
+            />
+          </div>
+          
+          <div className="mb-8">
             <Badge variant="secondary" className="bg-primary text-white hover:bg-primary/90 mb-4">
               {post.category}
             </Badge>
@@ -175,39 +175,36 @@ export default function BlogPost() {
             </div>
           </div>
           
-          <div className="max-w-4xl mx-auto">
-            
-            <div 
-              className="prose prose-lg dark:prose-invert max-w-none"
-              dangerouslySetInnerHTML={{ __html: post.content || "" }}
-            />
-            
-            <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
-              <h3 className="text-xl font-bold mb-6">Share this article</h3>
-              <div className="flex space-x-4">
-                <Button variant="outline" size="sm" className="rounded-full">
-                  Twitter
-                </Button>
-                <Button variant="outline" size="sm" className="rounded-full">
-                  Facebook
-                </Button>
-                <Button variant="outline" size="sm" className="rounded-full">
-                  LinkedIn
-                </Button>
-              </div>
+          <div 
+            className="prose prose-lg dark:prose-invert max-w-none"
+            dangerouslySetInnerHTML={{ __html: post.content || "" }}
+          />
+          
+          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+            <h3 className="text-xl font-bold mb-6">Share this article</h3>
+            <div className="flex space-x-4">
+              <Button variant="outline" size="sm" className="rounded-full">
+                Twitter
+              </Button>
+              <Button variant="outline" size="sm" className="rounded-full">
+                Facebook
+              </Button>
+              <Button variant="outline" size="sm" className="rounded-full">
+                LinkedIn
+              </Button>
             </div>
-            
-            <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
-              <h3 className="text-xl font-bold mb-6">More from the blog</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {relatedPosts.map(relatedPost => (
-                  <RelatedPost 
-                    key={relatedPost.id}
-                    post={relatedPost}
-                    onClick={() => handleRelatedPostClick(relatedPost.id)}
-                  />
-                ))}
-              </div>
+          </div>
+          
+          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+            <h3 className="text-xl font-bold mb-6">More from the blog</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {relatedPosts.map(relatedPost => (
+                <RelatedPost 
+                  key={relatedPost.id}
+                  post={relatedPost}
+                  onClick={() => handleRelatedPostClick(relatedPost.id)}
+                />
+              ))}
             </div>
           </div>
         </motion.div>

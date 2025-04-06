@@ -18,11 +18,11 @@ export const experiences: Experience[] = [
       "As Technical Lead, I drove critical architectural projects including ERP/WMS integration and cross-subsidiary fulfillment, reducing NetSuite transaction load by 43%. I redesigned our invoicing system to leverage native NetSuite capabilities, cutting maintenance overhead by 95%. Beyond delivery, I focused on scaling leadership—mentoring three engineers to Senior roles and launching a Project Lead framework to support mid-level growth. I also created and facilitated the 'Only Tech Leads' forum, strengthening cross-org alignment and engineering leadership culture.",
   },
   {
-    title: "Software Developer",
-    company: "SilverTech",
-    period: "2017 - 2019",
+    title: "Lead Engineer → Technical Program Manager",
+    company: "Emerson Ecologics",
+    period: "Feb 2020 - Mar 2022",
     description:
-      "Built web applications for enterprise clients in healthcare, finance, and government sectors. Developed front-end interfaces and back-end systems using JavaScript frameworks and .NET. Participated in client meetings to gather requirements and present technical solutions. Maintained high coding standards through code reviews and documentation.",
+      "At Emerson Ecologics, I transitioned from individual contributor to technical and program leadership, driving full-stack modernization of the eCommerce platform. I defined and rolled out a standardized SDLC that improved delivery consistency and streamlined software releases across teams. My work implementing CI/CD pipelines and partnering with Product and Ops led to measurable improvements in platform stability and a reduction in support ticket volume. This period marked a foundational shift in my career toward technical ownership and cross-functional collaboration.",
   },
   {
     title: "Freelance WordPress Developer",

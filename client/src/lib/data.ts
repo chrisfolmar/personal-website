@@ -311,7 +311,7 @@ export const blogPosts = [
     title: "Elevating Your Team Through Effective Feedback",
     excerpt: "Insights from my experience as a Technical Lead at Fullscript on how to build a culture of constructive feedback that drives team growth and improves software quality.",
     date: "2024-04-15",
-    coverImage: "/assets/images/blog/blog6.jpg",
+    coverImage: "/images/blog/effective-feedback.png",
     category: "Leadership",
     readTime: "6 min read",
     content: `

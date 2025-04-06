@@ -4,11 +4,11 @@ import { Experience, Project, Skill, Tool, Contact, Social } from "@/types";
 
 export const experiences: Experience[] = [
   {
-    title: "Technical Lead",
+    title: "Engineering Manager",
     company: "Fullscript",
-    period: "2020 - Present",
+    period: "March 2025 - Present",
     description:
-      "Leading a cross-functional team in developing healthcare software solutions at one of the fastest-growing health tech companies. Implementing agile methodologies and mentoring developers to optimize performance and code quality. Spearheading initiatives to improve developer experience and system reliability. Published in the company's 'Builders Corner' blog, sharing insights on effective team leadership and feedback strategies to elevate technical performance.",
+      "I lead three globally distributed engineering teams responsible for high-resilience systems supporting Finance, Fulfillment, Customer Support, and Catalog operations. My focus is on scaling engineering capacity, aligning execution with business priorities, and driving organization-wide efficiency through AI-powered automation. Since stepping into this role, I've led a 300% increase in delivery output without expanding headcount and introduced lifecycle dashboards that reduced reporting overhead by 90%. I also oversee strategic architectural alignment efforts, including our Go-to-Ruby migration and broader system standardization across Fullscript's tech ecosystem.",
   },
   {
     title: "Senior Software Engineer",

@@ -61,7 +61,7 @@ export default function ProjectDetail() {
   } 
   else if (project.title.includes("Amy Cousineau")) {
     clientInfo = "Amy Cousineau is a Licensed Independent Clinical Social Worker servicing both Rhode Island and Massachusetts. Her practice specializes in treating anxiety, depression, PTSD, and providing supportive services for the LGBTQIA+ community.";
-    techStack = "WordPress, Avada Theme, ACF Pro, Gravity Forms, Yoast SEO, Wordfence Security";
+    techStack = "WordPress, WPBakery Page Builder, Font Awesome, Slider Revolution, Contact Form 7, Jetpack Site Accelerator, Google Maps integration, Wordfence Security, Yoast SEO";
     challenge = "Amy required a professional website that would appeal to a diverse client base across two states. She needed to clearly communicate her specialty areas while presenting a warm, approachable persona that would help potential clients feel comfortable reaching out.";
     solution = "I designed a modern, inclusive website with warm color tones and thoughtful typography that reflects Amy's approachable personality. The site features intuitive navigation to specialty areas, state-specific information for her multi-state practice, and secure contact forms for initial consultations. The responsive design ensures a seamless experience for all visitors, regardless of their device.";
   }

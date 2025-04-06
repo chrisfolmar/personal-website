@@ -9,8 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { formatDate } from '@/lib/utils';
 
-// Import image directly
-import blogImage from "@assets/image_1743954368907.png";
+// No need to import a static image
 
 // Sort blog posts by date (most recent first)
 const sortedBlogPosts = [...blogPosts].sort((a, b) => 
@@ -42,9 +41,14 @@ export default function Blog() {
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
-                    src={blogImage}
+                    src={post.coverImage}
                     alt={post.title}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    onError={(e) => {
+                      console.error(`Failed to load blog image: ${post.coverImage}`, e);
+                      // Keep trying the original source
+                      e.currentTarget.src = post.coverImage;
+                    }}
                   />
                   <div className="absolute top-4 left-4">
                     <Badge variant="secondary" className="bg-primary text-white hover:bg-primary/90">

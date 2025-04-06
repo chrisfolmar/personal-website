@@ -56,6 +56,10 @@ export default function Hero() {
                   src="/assets/images/profile.jpg" 
                   alt="Chris Folmar" 
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    console.error("Failed to load profile image", e);
+                    e.currentTarget.src = "/assets/images/profile.jpg";
+                  }}
                 />
               </div>
             </div>

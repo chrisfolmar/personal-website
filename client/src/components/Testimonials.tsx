@@ -51,7 +51,13 @@ export default function Testimonials() {
                       <CardContent className="p-6">
                         <div className="flex items-center mb-4">
                           <Avatar className="h-12 w-12 border-2 border-primary">
-                            <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                            <AvatarImage 
+                              src={testimonial.avatar} 
+                              alt={testimonial.name} 
+                              onError={(e) => {
+                                console.error(`Failed to load testimonial avatar: ${testimonial.avatar}`, e);
+                              }}
+                            />
                             <AvatarFallback>{getInitials(testimonial.name)}</AvatarFallback>
                           </Avatar>
                           <div className="ml-4">

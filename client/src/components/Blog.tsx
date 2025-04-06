@@ -112,7 +112,7 @@ export default function Blog() {
       <div className="container mx-auto px-4">
         <SectionHeading 
           title="Latest Articles" 
-          description="Insights and thoughts on web development, design, and technology"
+          description="Insights and thoughts on web development, leadership, and technology"
         />
         
         <div className="max-w-3xl mx-auto text-center mt-6">

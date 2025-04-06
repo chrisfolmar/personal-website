@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation, useParams } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react";
@@ -7,16 +7,106 @@ import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
+// Component for lazy loading images
+const LazyImage = ({ src, alt, className, isHoverable = false }: { 
+  src: string; 
+  alt: string; 
+  className: string; 
+  isHoverable?: boolean;
+}) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+  
+  // Use Intersection Observer to determine when image is in viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' } // Start loading image when it's 200px from entering the viewport
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const handleLoad = () => {
+    setIsLoaded(true);
+  };
+
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    console.error(`Failed to load blog image: ${src}`);
+    // Try with cache-busting
+    e.currentTarget.src = src + `?v=${Date.now()}`;
+  };
+
+  return (
+    <div className={`${className} ${!isLoaded && isInView ? 'bg-gray-200 dark:bg-gray-700 animate-pulse' : ''}`}>
+      {isInView && (
+        <img
+          ref={imgRef}
+          src={src}
+          alt={alt}
+          className={`w-full h-full object-cover transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${isHoverable ? 'group-hover:scale-105' : ''}`}
+          onLoad={handleLoad}
+          onError={handleError}
+          loading="lazy"
+        />
+      )}
+      {!isInView && (
+        <div className="w-full h-full bg-gray-200 dark:bg-gray-700"></div>
+      )}
+    </div>
+  );
+};
+
+// Related post component (memoized)
+const RelatedPost = ({ post, onClick }: { post: typeof blogPosts[0]; onClick: () => void }) => {
+  return (
+    <div 
+      className="group cursor-pointer"
+      onClick={onClick}
+    >
+      <div className="mb-3 overflow-hidden rounded-lg">
+        <LazyImage 
+          src={post.coverImage} 
+          alt={post.title} 
+          className="w-full h-48" 
+          isHoverable={true}
+        />
+      </div>
+      <h4 className="font-bold group-hover:text-primary transition-colors">
+        {post.title}
+      </h4>
+    </div>
+  );
+};
+
 export default function BlogPost() {
-  const [location, setLocation] = useLocation();
+  const [, setLocation] = useLocation();
   const params = useParams();
   const postId = params?.id ? parseInt(params.id) : null;
   
   const post = blogPosts.find(post => post.id === postId);
   
+  // Handle navigation to related post (memoized)
+  const handleRelatedPostClick = useCallback((relatedPostId: number) => {
+    console.log(`Navigating to related blog post: ${relatedPostId}`);
+    window.scrollTo(0, 0);
+    setLocation(`/blog/${relatedPostId}`);
+  }, [setLocation]);
+  
   useEffect(() => {
-    console.log(`BlogPost component mounted/updated with postId: ${postId}`);
-    
     if (!postId) {
       console.warn("No post ID provided in URL, redirecting to not-found");
       setLocation("/not-found");
@@ -39,6 +129,11 @@ export default function BlogPost() {
   if (!post) {
     return null;
   }
+  
+  // Filter related posts outside of render function for better performance
+  const relatedPosts = blogPosts
+    .filter(p => p.id !== post.id)
+    .slice(0, 2);
   
   return (
     <div className="py-20">
@@ -80,15 +175,10 @@ export default function BlogPost() {
           
           <div className="max-w-4xl mx-auto">
             <div className="mb-10 rounded-xl overflow-hidden">
-              <img 
+              <LazyImage 
                 src={post.coverImage} 
                 alt={post.title} 
-                className="w-full h-auto object-cover"
-                onError={(e) => {
-                  console.error(`Failed to load blog post cover image: ${post.coverImage}`);
-                  // Fallback to a default image or try to reload
-                  e.currentTarget.src = post.coverImage + `?v=${Date.now()}`;
-                }}
+                className="w-full h-auto" 
               />
             </div>
             
@@ -115,37 +205,13 @@ export default function BlogPost() {
             <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
               <h3 className="text-xl font-bold mb-6">More from the blog</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {blogPosts
-                  .filter(p => p.id !== post.id)
-                  .slice(0, 2)
-                  .map(relatedPost => (
-                    <div 
-                      key={relatedPost.id} 
-                      className="group cursor-pointer"
-                      onClick={() => {
-                        console.log(`Navigating to related blog post: ${relatedPost.id}`);
-                        // Force reload the page with the new post ID
-                        window.scrollTo(0, 0);
-                        setLocation(`/blog/${relatedPost.id}`);
-                      }}
-                    >
-                      <div className="mb-3 overflow-hidden rounded-lg">
-                        <img 
-                          src={relatedPost.coverImage} 
-                          alt={relatedPost.title} 
-                          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                          onError={(e) => {
-                            console.error(`Failed to load related post image: ${relatedPost.coverImage}`);
-                            // Try to reload with cache bust
-                            e.currentTarget.src = relatedPost.coverImage + `?v=${Date.now()}`;
-                          }}
-                        />
-                      </div>
-                      <h4 className="font-bold group-hover:text-primary transition-colors">
-                        {relatedPost.title}
-                      </h4>
-                    </div>
-                  ))}
+                {relatedPosts.map(relatedPost => (
+                  <RelatedPost 
+                    key={relatedPost.id}
+                    post={relatedPost}
+                    onClick={() => handleRelatedPostClick(relatedPost.id)}
+                  />
+                ))}
               </div>
             </div>
           </div>

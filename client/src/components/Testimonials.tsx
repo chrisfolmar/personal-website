@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect, memo, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
 import { testimonials } from '@/lib/data';
@@ -13,14 +14,107 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 
-export default function Testimonials() {
-  const getInitials = (name: string) => {
-    return name
-      .split(' ')
-      .map(word => word[0])
-      .join('')
-      .toUpperCase();
+// Lazy loading avatar component
+const LazyAvatar = memo(({ testimonial, getInitials }: { 
+  testimonial: Testimonial; 
+  getInitials: (name: string) => string;
+}) => {
+  const [isInView, setIsInView] = useState(false);
+  const avatarRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+
+    if (avatarRef.current) {
+      observer.observe(avatarRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const handleImageError = () => {
+    console.error(`Failed to load testimonial avatar: ${testimonial.avatar}`);
   };
+
+  return (
+    <Avatar className="h-12 w-12 border-2 border-primary" ref={avatarRef}>
+      {isInView ? (
+        <AvatarImage 
+          src={testimonial.avatar} 
+          alt={testimonial.name} 
+          onError={handleImageError}
+          loading="lazy"
+        />
+      ) : null}
+      <AvatarFallback>{getInitials(testimonial.name)}</AvatarFallback>
+    </Avatar>
+  );
+});
+
+// Testimonial card component
+const TestimonialCard = memo(({ testimonial, index }: { 
+  testimonial: Testimonial; 
+  index: number;
+}) => {
+  // Memoize the getInitials function to avoid recalculation
+  const getInitials = useMemo(() => {
+    return (name: string) => {
+      return name
+        .split(' ')
+        .map(word => word[0])
+        .join('')
+        .toUpperCase();
+    };
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.05 }} // Reduced delay
+      viewport={{ once: true, margin: '-50px' }}
+    >
+      <Card className="h-full bg-white dark:bg-gray-800 border-none shadow-md hover:shadow-lg transition-shadow duration-300">
+        <CardContent className="p-6">
+          <div className="flex items-center mb-4">
+            <LazyAvatar testimonial={testimonial} getInitials={getInitials} />
+            <div className="ml-4">
+              <h4 className="text-lg font-semibold">{testimonial.name}</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.position}</p>
+            </div>
+          </div>
+          <div className="relative">
+            <Quote className="absolute -top-2 -left-2 h-8 w-8 text-primary opacity-20" />
+            <p className="text-gray-700 dark:text-gray-300 pt-2 pl-4">
+              "{testimonial.content}"
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+});
+
+export default function Testimonials() {
+  // Use useMemo to prevent unnecessary re-renders of the carousel items
+  const testimonialItems = useMemo(() => {
+    return testimonials.map((testimonial: Testimonial, index: number) => (
+      <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/2 pl-4">
+        <TestimonialCard testimonial={testimonial} index={index} />
+      </CarouselItem>
+    ));
+  }, []);
 
   return (
     <section id="testimonials" className="py-20 bg-gray-50 dark:bg-gray-900/50">
@@ -39,43 +133,7 @@ export default function Testimonials() {
             className="w-full max-w-5xl mx-auto"
           >
             <CarouselContent>
-              {testimonials.map((testimonial: Testimonial, index: number) => (
-                <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/2 pl-4">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <Card className="h-full bg-white dark:bg-gray-800 border-none shadow-md hover:shadow-lg transition-shadow duration-300">
-                      <CardContent className="p-6">
-                        <div className="flex items-center mb-4">
-                          <Avatar className="h-12 w-12 border-2 border-primary">
-                            <AvatarImage 
-                              src={testimonial.avatar} 
-                              alt={testimonial.name} 
-                              onError={(e) => {
-                                console.error(`Failed to load testimonial avatar: ${testimonial.avatar}`, e);
-                              }}
-                            />
-                            <AvatarFallback>{getInitials(testimonial.name)}</AvatarFallback>
-                          </Avatar>
-                          <div className="ml-4">
-                            <h4 className="text-lg font-semibold">{testimonial.name}</h4>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.position}</p>
-                          </div>
-                        </div>
-                        <div className="relative">
-                          <Quote className="absolute -top-2 -left-2 h-8 w-8 text-primary opacity-20" />
-                          <p className="text-gray-700 dark:text-gray-300 pt-2 pl-4">
-                            "{testimonial.content}"
-                          </p>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                </CarouselItem>
-              ))}
+              {testimonialItems}
             </CarouselContent>
             <div className="flex justify-center gap-2 mt-8">
               <CarouselPrevious className="relative static" />

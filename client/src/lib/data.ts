@@ -11,11 +11,11 @@ export const experiences: Experience[] = [
       "I lead three globally distributed engineering teams responsible for high-resilience systems supporting Finance, Fulfillment, Customer Support, and Catalog operations. My focus is on scaling engineering capacity, aligning execution with business priorities, and driving organization-wide efficiency through AI-powered automation. Since stepping into this role, I've led a 300% increase in delivery output without expanding headcount and introduced lifecycle dashboards that reduced reporting overhead by 90%. I also oversee strategic architectural alignment efforts, including our Go-to-Ruby migration and broader system standardization across Fullscript's tech ecosystem.",
   },
   {
-    title: "Senior Software Engineer",
+    title: "Technical Lead",
     company: "Fullscript",
-    period: "2019 - 2020",
+    period: "March 2022 - March 2025",
     description:
-      "Developed critical features for an integrative healthcare platform serving practitioners and patients. Collaborated on architecture decisions for scaling the platform to support millions of users. Implemented robust testing strategies and mentored junior developers. Contributed to the adoption of modern development practices that improved code quality and deployment efficiency.",
+      "As Technical Lead, I drove critical architectural projects including ERP/WMS integration and cross-subsidiary fulfillment, reducing NetSuite transaction load by 43%. I redesigned our invoicing system to leverage native NetSuite capabilities, cutting maintenance overhead by 95%. Beyond delivery, I focused on scaling leadership—mentoring three engineers to Senior roles and launching a Project Lead framework to support mid-level growth. I also created and facilitated the 'Only Tech Leads' forum, strengthening cross-org alignment and engineering leadership culture.",
   },
   {
     title: "Software Developer",

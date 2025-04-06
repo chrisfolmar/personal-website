@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Code, Calendar } from "lucide-react";
+import { ArrowRight, Code, Calendar, ExternalLink } from "lucide-react";
 import { useLocation } from "wouter";
 import { Project } from "@/types";
 import { cn, formatDate } from "@/lib/utils";
@@ -11,7 +11,6 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
   const [, setLocation] = useLocation();
-  // Image path is handled by the component
   
   // Function to create URL-friendly project slugs
   const getProjectSlug = (title: string) => {
@@ -21,88 +20,116 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
       .replace(/\s+/g, '-');
   };
   
+  const handleViewDetails = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation(); // Prevent double navigation
+    const slug = getProjectSlug(project.title);
+    setLocation(`/project/${slug}`);
+  };
+  
+  const truncateDescription = (description: string, maxLength = 120) => {
+    if (description.length <= maxLength) return description;
+    return `${description.slice(0, maxLength)}...`;
+  };
+  
   return (
     <motion.div 
-      className="project-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl section-transition cursor-pointer"
+      className="project-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl border border-gray-100 dark:border-gray-700 cursor-pointer transform transition-all duration-300 hover:-translate-y-2"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
-      onClick={() => {
-        const slug = getProjectSlug(project.title);
-        setLocation(`/project/${slug}`);
-      }}
+      onClick={handleViewDetails}
     >
-      <div className="relative overflow-hidden h-52">
+      <div className="relative overflow-hidden h-56">
         <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
           <img 
             src={`${project.image}?v=${Date.now()}`} 
             alt={project.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
             onError={(e) => {
               // Try reloading with cache bust if image fails to load
               e.currentTarget.src = `${project.image}?v=${Date.now() + 1000}`;
             }}
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-          <div className="p-4 text-white">
-            {project.tags.map((tag, index) => (
+        
+        {/* Tag overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent flex items-end">
+          <div className="p-4 text-white flex flex-wrap gap-2">
+            {project.tags.slice(0, 3).map((tag, index) => (
               <span 
                 key={index} 
                 className={cn(
-                  "text-xs font-semibold px-2 py-1 rounded-full",
+                  "text-xs font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm",
                   index === 0 
-                    ? "bg-primary text-white" 
-                    : "bg-gray-800 text-white ml-2"
+                    ? "bg-primary/90 text-white" 
+                    : "bg-gray-800/80 text-white"
                 )}
               >
                 {tag}
               </span>
             ))}
+            {project.tags.length > 3 && (
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-700/80 text-white backdrop-blur-sm">
+                +{project.tags.length - 3}
+              </span>
+            )}
           </div>
         </div>
       </div>
+      
       <div className="p-6">
-        <h3 className="text-xl font-bold mb-2 cursor-pointer hover:text-primary transition-colors" 
-          onClick={() => {
-            const slug = getProjectSlug(project.title);
-            setLocation(`/project/${slug}`);
-          }}
+        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+          <Calendar className="h-4 w-4 mr-1.5" />
+          <span>{formatDate(project.date)}</span>
+        </div>
+        
+        <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2 leading-tight" 
+          onClick={handleViewDetails}
         >
           {project.title}
         </h3>
-        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
-          <Calendar className="h-4 w-4 mr-1" />
-          <span>{formatDate(project.date)}</span>
-        </div>
-        <p className="text-gray-600 dark:text-gray-400 mb-4">
-          {project.description}
+        
+        <p className="text-gray-600 dark:text-gray-400 text-sm mb-5 line-clamp-3">
+          {truncateDescription(project.description)}
         </p>
-        <div className="flex justify-between items-center">
+        
+        <div className="flex justify-between items-center pt-3 border-t border-gray-100 dark:border-gray-700">
           <button 
-            onClick={(e) => {
-              e.stopPropagation(); // Prevent double navigation
-              const slug = getProjectSlug(project.title);
-              setLocation(`/project/${slug}`);
-            }}
-            className="text-primary hover:text-primary-dark transition-colors font-medium flex items-center cursor-pointer bg-transparent border-none p-0"
+            onClick={handleViewDetails}
+            className="text-primary hover:text-primary-dark transition-colors font-medium flex items-center cursor-pointer bg-transparent border-none p-0 text-sm"
           >
-            <span>View Details</span>
-            <ArrowRight className="h-4 w-4 ml-1" />
+            <span>Case Study</span>
+            <ArrowRight className="h-4 w-4 ml-1.5" />
           </button>
-          <a 
-            href={project.codeLink} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors" 
-            aria-label="View source code"
-            onClick={(e) => {
-              e.stopPropagation(); // Prevent triggering the card's onClick
-            }}
-          >
-            <Code className="h-5 w-5" />
-          </a>
+          
+          <div className="flex space-x-2">
+            <a 
+              href={project.demoLink} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" 
+              aria-label="Visit live site"
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering the card's onClick
+              }}
+            >
+              <ExternalLink className="h-4 w-4" />
+            </a>
+            
+            <a 
+              href={project.codeLink} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" 
+              aria-label="View source code"
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering the card's onClick
+              }}
+            >
+              <Code className="h-4 w-4" />
+            </a>
+          </div>
         </div>
       </div>
     </motion.div>

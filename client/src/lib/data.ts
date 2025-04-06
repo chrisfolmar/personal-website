@@ -355,7 +355,7 @@ export const blogPosts = [
     title: "Helping Small Businesses Thrive with WordPress",
     excerpt: "How custom WordPress solutions can provide small businesses with professional websites that they can maintain themselves, reducing long-term costs while maintaining quality.",
     date: "2023-07-15",
-    coverImage: "/assets/images/blog/blog1.jpg",
+    coverImage: "/images/blog/wordpress-small-business.png",
     category: "WordPress",
     readTime: "5 min read",
     content: `

@@ -53,12 +53,12 @@ export default function Hero() {
               <div className="absolute inset-1 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
                 {/* Profile image */}
                 <img 
-                  src="/assets/images/profile.jpg" 
+                  src="/assets/profile/KP_20240608_0224_3649.jpg" 
                   alt="Chris Folmar" 
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     console.error("Failed to load profile image", e);
-                    e.currentTarget.src = "/assets/images/profile.jpg";
+                    e.currentTarget.src = "/assets/profile/KP_20240608_0224_3649.jpg";
                   }}
                 />
               </div>

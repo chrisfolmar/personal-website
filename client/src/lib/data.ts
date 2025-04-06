@@ -90,6 +90,15 @@ export const tools: Tool[] = [
 
 export const projects: Project[] = [
   {
+    title: "Portfolio Website - Personal Developer Showcase",
+    description: "My personal portfolio website showcasing skills, projects, and services as a freelance WordPress developer. Features a responsive design with dark/light mode and interactive UI elements for an engaging user experience.",
+    image: "/assets/images/projects/project1.png",
+    tags: ["React", "TypeScript", "TailwindCSS", "Responsive Design"],
+    demoLink: "https://chrisfolmar.com/",
+    codeLink: "https://github.com/chrisfolmar",
+    date: "2024-03-01",
+  },
+  {
     title: "Jennifer Mello, LICSW - Certified Trauma Therapy",
     description: "When I started my practice, at the root of everything I did, I held my clients in mind. Not only is this space a way for me to introduce myself to you, its also FOR you. I hope you find a sense of peace, belonging, and guidance if that is what you seek.",
     image: "/assets/images/projects/project2.png",
@@ -139,21 +148,21 @@ export const testimonials = [
     name: "Jennifer Mello",
     position: "Licensed Clinical Social Worker",
     content: "Chris created exactly the website I envisioned for my therapy practice. The calming design perfectly represents my approach to trauma therapy, and my clients frequently comment on how easy the site is to navigate. Chris made the whole process simple and straightforward.",
-    avatar: "/assets/images/testimonials/testimonial1.jpg"
+    avatar: "/assets/images/testimonials/testimonial1.svg"
   },
   {
     id: 2,
     name: "Amy Cousineau",
     position: "LICSW Therapist",
     content: "Working with Chris was a fantastic experience. He understood my vision for a professional yet approachable therapy website and delivered beyond my expectations. The site is easy for me to maintain and has significantly increased my client inquiries.",
-    avatar: "/assets/images/testimonials/testimonial2.jpg"
+    avatar: "/assets/images/testimonials/testimonial2.svg"
   },
   {
     id: 3,
     name: "Michael Rodriguez",
     position: "Restaurant Owner, Locos Cocos Tacos",
     content: "Our restaurant website needed to be vibrant, functional and easy to update with specials and events. Chris delivered a perfect solution that our customers love using for online orders. The site captures our restaurant's energy and has boosted our online presence.",
-    avatar: "/assets/images/testimonials/testimonial3.jpg"
+    avatar: "/assets/images/testimonials/testimonial3.svg"
   },
 ];
 

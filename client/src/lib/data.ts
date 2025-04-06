@@ -224,7 +224,7 @@ export const projects: Project[] = [
   {
     title: "Amy Cousineau, LICSW - Multi-State Therapy",
     description: "A comprehensive therapy resource serving clients in Rhode Island and Massachusetts. Features specialized service pages for anxiety, depression, PTSD, and LGBTQIA+ support with easy navigation and secure contact forms.",
-    image: "/assets/images/projects/amy.png",
+    image: "/assets/images/projects/amy-new.png",
     tags: ["WordPress", "Healthcare", "Professional Services", "Mental Health"],
     demoLink: "https://acousineaulicsw.com/",
     codeLink: "https://github.com/chrisfolmar",

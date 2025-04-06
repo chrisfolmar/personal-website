@@ -522,7 +522,7 @@ export const blogPosts = [
     title: "Why WordPress Will Continue to Dominate Small Business Websites in 2025",
     excerpt: "Looking ahead to 2025, WordPress will maintain its dominance by continuing to offer unmatched flexibility, control, and growth potential for small businesses despite new competitors.",
     date: "2024-10-15",
-    coverImage: "/assets/images/blog/blog4.jpg",
+    coverImage: "/images/blog/wordpress-dominate-2025.png",
     category: "WordPress",
     readTime: "6 min read",
     content: `

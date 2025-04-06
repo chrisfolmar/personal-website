@@ -99,7 +99,7 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
             onClick={handleViewDetails}
             className="text-primary hover:text-primary-dark transition-colors font-medium flex items-center cursor-pointer bg-transparent border-none p-0 text-sm"
           >
-            <span>Case Study</span>
+            <span>Details</span>
             <ArrowRight className="h-4 w-4 ml-1.5" />
           </button>
           

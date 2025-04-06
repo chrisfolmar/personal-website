@@ -73,11 +73,11 @@ export default function Projects() {
             onClick={handleViewAllClick}
             className="inline-flex items-center px-8 py-4 bg-primary hover:bg-primary-dark text-white font-medium rounded-lg transition-colors shadow-md hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transform hover:-translate-y-1 active:translate-y-0 duration-200"
           >
-            <span className="text-base">View Project Details</span>
+            <span className="text-base">View Details</span>
             <ArrowRight className="h-5 w-5 ml-2" />
           </button>
           <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            Click on any project card to explore detailed case studies, technical implementations, and design decisions.
+            Click on any project card to explore detailed information, implementation notes, and client solutions.
           </p>
         </motion.div>
       </div>

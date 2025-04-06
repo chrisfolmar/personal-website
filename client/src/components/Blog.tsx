@@ -37,7 +37,10 @@ export default function Blog() {
             >
               <Card 
                 className="h-full overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col cursor-pointer"
-                onClick={() => setLocation(`/blog/${post.id}`)}
+                onClick={() => {
+                  console.log(`Navigating to blog post: ${post.id} - ${post.title}`);
+                  setLocation(`/blog/${post.id}`);
+                }}
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -84,7 +87,19 @@ export default function Blog() {
         </div>
         
         <div className="mt-12 text-center">
-          <Button variant="outline" size="lg" className="mt-8">
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="mt-8"
+            onClick={() => {
+              // Scroll to the blog section
+              const blogSection = document.getElementById('blog');
+              if (blogSection) {
+                blogSection.scrollIntoView({ behavior: 'smooth' });
+                console.log("Scrolled to blog section");
+              }
+            }}
+          >
             View All Articles
           </Button>
         </div>

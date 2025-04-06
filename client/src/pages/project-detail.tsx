@@ -90,8 +90,15 @@ export default function ProjectDetail() {
         <Button 
           variant="ghost" 
           onClick={() => {
-            console.log("Navigating back to home page");
-            setLocation("/"); 
+            console.log("Navigating back to projects section");
+            setLocation("/");
+            // Scroll to projects section after a short delay
+            setTimeout(() => {
+              const projectsSection = document.getElementById("projects");
+              if (projectsSection) {
+                projectsSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }, 100);
           }}
           className="mb-6 flex items-center"
         >

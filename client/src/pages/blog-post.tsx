@@ -109,11 +109,20 @@ export default function BlogPost() {
       <div className="container mx-auto px-4">
         <Button 
           variant="ghost" 
-          onClick={() => setLocation("/")}
+          onClick={() => {
+            setLocation("/");
+            // Scroll to blog section after a short delay
+            setTimeout(() => {
+              const blogSection = document.getElementById("blog");
+              if (blogSection) {
+                blogSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }, 100);
+          }}
           className="mb-6 flex items-center"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Home
+          Back to Blogs
         </Button>
         
         <motion.div

@@ -41,16 +41,16 @@ export const skills: Skill[] = [
     description: "Leading Fullscript's AI-first automation initiative, saving over 40% in operational time across five departments. Spearheading Fullscript's Go-to-Ruby migration, reducing stack complexity by 66%. Overseeing delivery of a dedicated PIM tool for our Product Catalog, collaborating across 5 departments in the organization to ensure successful delivery.",
   },
   {
-    name: "Team Leadership & Mentorship",
-    percentage: 7/11*100, // 7 years out of 11 total
-    years: 7,
-    description: "Managed 3 cross-functional teams (6-12 ICs), increasing project delivery by 300%. Mentored engineers into senior roles, creating a scalable Project Lead framework. Focused on building high-performing teams by fostering a culture of growth and collaboration.",
-  },
-  {
     name: "Project & Program Management",
     percentage: 6/11*100, // 6 years out of 11 total
     years: 6,
     description: "Implemented Agile methodologies (Scrum, Kanban) for high-priority projects. Created Asana Project Management processes, increasing visibility and ensuring alignment across teams. Designed lifecycle dashboards and KPI tracking systems, reducing monthly reporting prep by 90%.",
+  },
+  {
+    name: "Team Leadership & Mentorship",
+    percentage: 7/11*100, // 7 years out of 11 total
+    years: 7,
+    description: "Managed 3 cross-functional teams (6-12 ICs), increasing project delivery by 300%. Mentored engineers into senior roles, creating a scalable Project Lead framework. Focused on building high-performing teams by fostering a culture of growth and collaboration.",
   },
   {
     name: "AI & Automation Implementation",

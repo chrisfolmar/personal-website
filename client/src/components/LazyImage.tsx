@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface LazyImageProps {
   src: string;
@@ -10,6 +10,9 @@ interface LazyImageProps {
   objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
   aspectRatio?: string;
   isHoverable?: boolean;
+  loading?: 'lazy' | 'eager';
+  width?: number;
+  height?: number;
 }
 
 /**
@@ -25,11 +28,44 @@ export default function LazyImage({
   containerStyle = {},
   objectFit = "contain",
   aspectRatio,
-  isHoverable = false
+  isHoverable = false,
+  loading = "lazy",
+  width,
+  height
 }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Use Intersection Observer for improved lazy loading
+  useEffect(() => {
+    if (!containerRef.current || loading === 'eager') {
+      setShouldLoad(true);
+      return;
+    }
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: '200px', // Start loading when within 200px of viewport
+        threshold: 0.01
+      }
+    );
+    
+    observer.observe(containerRef.current);
+    
+    return () => {
+      observer.disconnect();
+    };
+  }, [loading]);
   
   const handleLoad = () => {
     setIsLoaded(true);
@@ -38,9 +74,11 @@ export default function LazyImage({
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     console.error(`Failed to load image: ${src}`);
-    // Try with cache-busting
     setError(true);
-    e.currentTarget.src = src + `?v=${Date.now()}`;
+    // Try without cache-busting first to avoid excessive reloads
+    if (!e.currentTarget.src.includes('?v=')) {
+      e.currentTarget.src = src + `?v=${Date.now()}`;
+    }
   };
 
   const containerStyles: React.CSSProperties = {
@@ -61,18 +99,25 @@ export default function LazyImage({
 
   return (
     <div 
-      className={`${containerClassName} ${!isLoaded || error ? 'animate-pulse' : ''} flex items-center justify-center w-full`} 
+      ref={containerRef}
+      className={`${containerClassName} ${!isLoaded || error ? 'animate-pulse bg-gray-200 dark:bg-gray-700' : ''} flex items-center justify-center w-full`} 
       style={containerStyles}
     >
-      <img
-        ref={imgRef}
-        src={src}
-        alt={alt}
-        className={`${className} transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${isHoverable ? 'group-hover:scale-105' : ''}`}
-        onLoad={handleLoad}
-        onError={handleError}
-        style={imageStyles}
-      />
+      {shouldLoad && (
+        <img
+          ref={imgRef}
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          loading={loading}
+          decoding="async"
+          className={`${className} transition-all duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${isHoverable ? 'group-hover:scale-105' : ''}`}
+          onLoad={handleLoad}
+          onError={handleError}
+          style={imageStyles}
+        />
+      )}
     </div>
   );
 }

@@ -277,9 +277,9 @@ export const contact: Contact = {
 export const testimonials = [
   {
     id: 4,
-    name: "Sarah Johnson",
+    name: "Jeff Archibald",
     position: "Engineering Director at Fullscript",
-    content: "Chris has been an exceptional technical leader on our team. His ability to balance technical excellence with empathetic team leadership has elevated our entire development organization. He consistently delivers complex features on time while mentoring junior developers and improving our development processes.",
+    content: "Chris fosters a strong team culture, encouraging collaboration and recognizing achievements. He pushes the team to grow, take on responsibilities, and develop professionally. He excels at multitasking and facilitating conversations across multiple areas. His leadership has made meetings more engaging and productive. (meetings are more fun!)",
     avatar: "/assets/images/testimonials/testimonial4.svg"
   },
   {

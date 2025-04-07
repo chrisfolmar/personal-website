@@ -4,25 +4,55 @@ import { useState, useEffect } from "react";
 import ParticleBackground from "./ParticleBackground";
 
 export default function Hero() {
+  // Using optimized images that are much smaller in file size
   const profileImages = [
-    "/assets/images/profile.jpg",
-    "/assets/images/profile/profile1.jpg",
-    "/assets/images/profile/profile2.jpg",
-    "/assets/images/profile/profile3.jpg", 
-    "/assets/images/profile/profile4.jpg",
-    "/assets/images/profile/profile5.jpg"
+    "/assets/images/optimized/profile.jpg",
+    "/assets/images/optimized/profile/profile1.jpg",
+    "/assets/images/optimized/profile/profile2.jpg",
+    "/assets/images/optimized/profile/profile3.jpg", 
+    "/assets/images/optimized/profile/profile4.jpg",
+    "/assets/images/optimized/profile/profile5.jpg"
   ];
   
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imagesPreloaded, setImagesPreloaded] = useState(false);
   
-  // Rotate through profile images
+  // Preload images to prevent jank during rotation
   useEffect(() => {
+    const preloadImages = async () => {
+      const promises = profileImages.map(
+        (src) => 
+          new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = src;
+            img.onload = resolve;
+            img.onerror = reject;
+          })
+      );
+      
+      try {
+        await Promise.all(promises);
+        setImagesPreloaded(true);
+      } catch (error) {
+        console.error("Failed to preload images", error);
+        // Still mark as preloaded to prevent hanging
+        setImagesPreloaded(true);
+      }
+    };
+    
+    preloadImages();
+  }, []);
+  
+  // Rotate through profile images, but only after preloading
+  useEffect(() => {
+    if (!imagesPreloaded) return;
+    
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % profileImages.length);
     }, 5000); // Change image every 5 seconds
     
     return () => clearInterval(interval);
-  }, [profileImages.length]);
+  }, [profileImages.length, imagesPreloaded]);
 
   return (
     <section 
@@ -72,15 +102,22 @@ export default function Hero() {
           >
             <div className="relative w-72 h-72 rounded-full bg-gradient-to-r from-primary to-accent p-1 shadow-lg">
               <div className="absolute inset-1 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
-                {/* Profile image with no transition effect - just a direct swap */}
-                <div className="w-full h-full" style={{ position: 'relative' }}>
+                {/* Optimized profile image with fade transition */}
+                <div className="w-full h-full relative">
                   <img 
                     src={profileImages[currentImageIndex]} 
                     alt="Chris Folmar" 
                     className="w-full h-full object-cover"
+                    width="400"
+                    height="400"
+                    loading="eager" 
+                    decoding="async"
                     onError={(e) => {
                       console.error("Failed to load profile image", e);
                       e.currentTarget.src = profileImages[0]; // Fallback to first image
+                    }}
+                    style={{
+                      transition: 'opacity 0.5s ease-in-out',
                     }}
                   />
                 </div>

@@ -213,6 +213,15 @@ export const tools: Tool[] = [
 
 export const projects: Project[] = [
   {
+    title: "Portfolio Website - Personal Showcase",
+    description: "My professional portfolio website built with modern web technologies. Features a responsive design with dark/light mode toggle, interactive skill visualizations, and comprehensive project case studies with detailed implementation notes.",
+    image: "/assets/images/projects/portfolio-new.png",
+    tags: ["React", "TypeScript", "TailwindCSS", "Responsive Design"],
+    demoLink: "https://chrisfolmar.com/",
+    codeLink: "https://github.com/chrisfolmar",
+    date: "2025-04-06",
+  },
+  {
     title: "Jennifer Mello, LICSW - Trauma Therapy",
     description: "A calming, professional website for a licensed trauma therapist in Massachusetts. Designed with a soothing color palette to create a sense of safety for potential clients seeking trauma-informed therapy services.",
     image: "/assets/images/projects/jennifer-new.png",
@@ -247,15 +256,6 @@ export const projects: Project[] = [
     demoLink: "https://www.slip14.com/",
     codeLink: "https://github.com/chrisfolmar",
     date: "2024-01-20",
-  },
-  {
-    title: "Portfolio Website - Personal Showcase",
-    description: "My professional portfolio website built with modern web technologies. Features a responsive design with dark/light mode toggle, interactive skill visualizations, and comprehensive project case studies with detailed implementation notes.",
-    image: "/assets/images/projects/portfolio-new.png",
-    tags: ["React", "TypeScript", "TailwindCSS", "Responsive Design"],
-    demoLink: "https://chrisfolmar.com/",
-    codeLink: "https://github.com/chrisfolmar",
-    date: "2024-03-01",
   },
   {
     title: "Fullscript Healthcare Platform",

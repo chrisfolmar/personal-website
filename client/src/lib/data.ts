@@ -275,13 +275,14 @@ export const contact: Contact = {
 };
 
 export const testimonials = [
-  {
+  // Temporarily hidden
+  /* {
     id: 4,
     name: "Jeff Archibald",
     position: "Engineering Director at Fullscript",
     content: "Chris fosters a strong team culture, encouraging collaboration and recognizing achievements. He pushes the team to grow, take on responsibilities, and develop professionally. He excels at multitasking and facilitating conversations across multiple areas. His leadership has made meetings more engaging and productive. (meetings are more fun!)",
     avatar: "/assets/images/testimonials/testimonial4.svg"
-  },
+  }, */
   {
     id: 1,
     name: "Jennifer Mello",

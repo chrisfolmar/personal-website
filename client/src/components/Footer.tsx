@@ -32,9 +32,11 @@ export default function Footer() {
           <p className="text-gray-400 text-sm">
             &copy; {currentYear} Chris Folmar. All rights reserved.
           </p>
-          <p className="text-gray-400 text-sm mt-4 sm:mt-0">
-            Designed and built with passion
-          </p>
+          <div className="text-gray-400 text-sm mt-4 sm:mt-0 flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+            <p>Designed and built with passion</p>
+            <span className="hidden sm:inline">•</span>
+            <Link to="/sitemap" className="hover:text-primary transition-colors">Sitemap</Link>
+          </div>
         </div>
       </div>
     </footer>

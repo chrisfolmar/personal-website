@@ -28,7 +28,16 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="md:flex md:justify-between md:items-center">
           <div className="mb-8 md:mb-0">
-            <Link to="/" className="text-2xl font-bold tracking-tight inline-block">
+            <Link 
+              to="/"  
+              className="text-2xl font-bold tracking-tight inline-block"
+              onClick={(e) => {
+                if (isHomePage) {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+            >
               <span className="text-white">Chris</span>Folmar<span className="text-primary">.</span>
             </Link>
             <p className="mt-3 text-gray-400 max-w-md">

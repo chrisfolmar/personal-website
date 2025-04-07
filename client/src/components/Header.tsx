@@ -20,6 +20,34 @@ export default function Header() {
   
   // Function to create navigation links that work correctly on all pages
   const getNavLink = (section: string, label: string) => {
+    // Special case for Home to scroll to top
+    if (section === "home") {
+      if (isHomePage) {
+        return (
+          <a 
+            href="#" 
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+          >
+            {label}
+          </a>
+        );
+      } else {
+        return (
+          <Link 
+            href="/" 
+            className="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+          >
+            {label}
+          </Link>
+        );
+      }
+    }
+
+    // Other navigation links
     // If we're on the homepage, use hash links
     if (isHomePage) {
       return (
@@ -45,6 +73,36 @@ export default function Header() {
   
   // Function for mobile navigation links
   const getMobileNavLink = (section: string, label: string) => {
+    // Special case for Home to scroll to top
+    if (section === "home") {
+      if (isHomePage) {
+        return (
+          <a 
+            href="#" 
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              closeMobileMenu();
+            }}
+            className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
+          >
+            {label}
+          </a>
+        );
+      } else {
+        return (
+          <Link 
+            href="/" 
+            onClick={closeMobileMenu}
+            className="nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
+          >
+            {label}
+          </Link>
+        );
+      }
+    }
+
+    // Other navigation links
     if (isHomePage) {
       return (
         <a 
@@ -73,7 +131,16 @@ export default function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           {/* Logo/Name */}
-          <Link href="/" className="text-xl font-bold tracking-tight text-primary hover:text-primary-dark transition-colors">
+          <Link 
+            href="/" 
+            className="text-xl font-bold tracking-tight text-primary hover:text-primary-dark transition-colors"
+            onClick={(e) => {
+              if (isHomePage) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+          >
             <span className="text-gray-900 dark:text-white">Chris</span>Folmar<span className="text-primary dark:text-primary">.</span>
           </Link>
           

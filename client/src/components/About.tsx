@@ -23,9 +23,13 @@ export default function About() {
         >
           <div className="overflow-hidden rounded-xl shadow-md">
             <img 
-              src="/assets/images/about.jpg" 
+              src="/assets/images/optimized/about.jpg" 
               alt="Chris Folmar with his wife" 
               className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500"
+              width="800"
+              height="600"
+              loading="eager"
+              decoding="async"
             />
           </div>
         </motion.div>

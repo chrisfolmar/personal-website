@@ -215,7 +215,7 @@ export const projects: Project[] = [
   {
     title: "Portfolio Website - Personal Showcase",
     description: "My professional portfolio website built with modern web technologies. Features a responsive design with dark/light mode toggle, interactive skill visualizations, and comprehensive project case studies with detailed implementation notes.",
-    image: "/assets/images/projects/portfolio-new.png",
+    image: "/assets/images/optimized/projects/portfolio-new.png",
     tags: ["React", "TypeScript", "TailwindCSS", "Responsive Design"],
     demoLink: "https://chrisfolmar.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -224,7 +224,7 @@ export const projects: Project[] = [
   {
     title: "Jennifer Mello, LICSW - Trauma Therapy",
     description: "A calming, professional website for a licensed trauma therapist in Massachusetts. Designed with a soothing color palette to create a sense of safety for potential clients seeking trauma-informed therapy services.",
-    image: "/assets/images/projects/jennifer-new.png",
+    image: "/assets/images/optimized/projects/jennifer-new.png",
     tags: ["WordPress", "Healthcare", "Professional Services", "Trauma Therapy"],
     demoLink: "https://jmellolicsw.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -233,7 +233,7 @@ export const projects: Project[] = [
   {
     title: "Amy Cousineau, LICSW - Multi-State Therapy",
     description: "A comprehensive therapy resource serving clients in Rhode Island and Massachusetts. Features specialized service pages for anxiety, depression, PTSD, and LGBTQIA+ support with easy navigation and secure contact forms.",
-    image: "/assets/images/projects/amy-new.png",
+    image: "/assets/images/optimized/projects/amy-new.png",
     tags: ["WordPress", "Healthcare", "Professional Services", "Mental Health"],
     demoLink: "https://acousineaulicsw.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -242,7 +242,7 @@ export const projects: Project[] = [
   {
     title: "Locos Cocos Tacos - Restaurant Website",
     description: "A vibrant website for Kittery, Maine's popular Mexican restaurant featuring a colorful design that reflects the restaurant's energy. Includes online ordering, gift card purchases, special event announcements, and service industry discounts.",
-    image: "/assets/images/projects/locos-new.png",
+    image: "/assets/images/optimized/projects/locos-new.png",
     tags: ["WordPress", "Food & Beverage", "E-commerce", "Online Ordering"],
     demoLink: "https://locococostacos.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -251,7 +251,7 @@ export const projects: Project[] = [
   {
     title: "Slip 14 - Marina & Waterfront Dining",
     description: "An elegant website for a historic waterfront restaurant on Nantucket's Boat Basin. The site showcases their 17 seasons of dockside dining, beautiful harbor views, and focus on local seafood and fresh seasonal fare.",
-    image: "/assets/images/projects/slip14-new.png",
+    image: "/assets/images/optimized/projects/slip14-new.png",
     tags: ["WordPress", "Hospitality", "Booking System", "Visual Design"],
     demoLink: "https://www.slip14.com/",
     codeLink: "https://github.com/chrisfolmar",
@@ -260,7 +260,7 @@ export const projects: Project[] = [
   {
     title: "Fullscript Healthcare Platform",
     description: "As Engineering Manager at Fullscript, I lead development teams for this integrative healthcare platform serving 70,000+ practitioners and millions of patients. Implemented scalable architecture solutions while maintaining system reliability.",
-    image: "/assets/images/projects/fullscript.png",
+    image: "/assets/images/optimized/projects/fullscript.png",
     tags: ["React", "Ruby on Rails", "Healthcare Tech", "Enterprise Scale"],
     demoLink: "https://fullscript.com/",
     codeLink: "https://github.com/fullscript",

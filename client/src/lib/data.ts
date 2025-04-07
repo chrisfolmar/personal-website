@@ -35,10 +35,10 @@ export const experiences: Experience[] = [
 
 export const skills: Skill[] = [
   {
-    name: "AI & Automation Implementation",
-    percentage: 8/11*100, // 8 years out of 11 total
-    years: 8,
-    description: "Spearheaded AI initiatives including ML-based document processing, ChatGPT integration for customer support, and analytical product data algorithms. Owned delivery of automation workflows saving over 1600 hours annually in operational time across departments.",
+    name: "Strategic & Operational Leadership",
+    percentage: 4/11*100, // 4 years out of 11 total
+    years: 4,
+    description: "Leading Fullscript's AI-first automation initiative, saving over 40% in operational time across five departments. Spearheading Fullscript's Go-to-Ruby migration, reducing stack complexity by 66%. Overseeing delivery of a dedicated PIM tool for our Product Catalog, collaborating across 5 departments in the organization to ensure successful delivery.",
   },
   {
     name: "Team Leadership & Mentorship",
@@ -47,16 +47,16 @@ export const skills: Skill[] = [
     description: "Managed 3 cross-functional teams (6-12 ICs), increasing project delivery by 300%. Mentored engineers into senior roles, creating a scalable Project Lead framework. Focused on building high-performing teams by fostering a culture of growth and collaboration.",
   },
   {
-    name: "Strategic & Operational Leadership",
-    percentage: 4/11*100, // 4 years out of 11 total
-    years: 4,
-    description: "Leading Fullscript's AI-first automation initiative, saving over 40% in operational time across five departments. Spearheading Fullscript's Go-to-Ruby migration, reducing stack complexity by 66%. Overseeing delivery of a dedicated PIM tool for our Product Catalog, collaborating across 5 departments in the organization to ensure successful delivery.",
-  },
-  {
     name: "Project & Program Management",
     percentage: 6/11*100, // 6 years out of 11 total
     years: 6,
     description: "Implemented Agile methodologies (Scrum, Kanban) for high-priority projects. Created Asana Project Management processes, increasing visibility and ensuring alignment across teams. Designed lifecycle dashboards and KPI tracking systems, reducing monthly reporting prep by 90%.",
+  },
+  {
+    name: "AI & Automation Implementation",
+    percentage: 8/11*100, // 8 years out of 11 total
+    years: 8,
+    description: "Spearheaded AI initiatives including ML-based document processing, ChatGPT integration for customer support, and analytical product data algorithms. Owned delivery of automation workflows saving over 1600 hours annually in operational time across departments.",
   },
   {
     name: "Cross-functional Collaboration",

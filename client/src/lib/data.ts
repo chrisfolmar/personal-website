@@ -80,7 +80,7 @@ export const skills: Skill[] = [
     name: "System Architecture & Integration",
     percentage: 11/11*100, // 11 years out of 11 total
     years: 11,
-    description: "Led NetSuite/WMS integration reducing transaction load by 43%, designed scalable AWS infrastructure supporting 15x growth in 3 years, and implemented blue/green deployment strategies saving 22% in cloud costs.",
+    description: "Led NetSuite/WMS integration reducing transaction load by 43%, designed scalable AWS infrastructure supporting 15x growth in 3 years, and integrated carrier APIs to enable competitive rate-shopping strategies saving over $3m in 2 years.",
   },
 ];
 

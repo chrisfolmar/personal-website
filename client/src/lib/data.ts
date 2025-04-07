@@ -74,7 +74,7 @@ export const skills: Skill[] = [
     name: "Frontend Development",
     percentage: 11/11*100, // 11 years out of 11 total
     years: 11,
-    description: "Led frontend modernization initiatives from legacy jQuery to React/TypeScript architecture. Implemented design systems, accessibility standards, and performance optimizations reducing page load time by 42%.",
+    description: "Led frontend modernization initiatives from legacy AngularJS to Angular architecture in SiteCore. Implemented design systems, accessibility standards, and performance optimizations.",
   },
   {
     name: "System Architecture & Integration",

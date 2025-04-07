@@ -250,7 +250,7 @@ export const projects: Project[] = [
   },
   {
     title: "Slip 14 - Marina & Waterfront Dining",
-    description: "An elegant website for a waterfront restaurant located at a southern Maine marina. The design emphasizes the stunning water views with a nautical theme, integrated reservation system, and dynamic seasonal menu updates.",
+    description: "An elegant website for a historic waterfront restaurant on Nantucket's Boat Basin. The site showcases their 17 seasons of dockside dining, beautiful harbor views, and focus on local seafood and fresh seasonal fare.",
     image: "/assets/images/projects/slip14-new.png",
     tags: ["WordPress", "Hospitality", "Booking System", "Visual Design"],
     demoLink: "https://www.slip14.com/",

@@ -298,7 +298,7 @@ export const testimonials = [
   },
   {
     id: 3,
-    name: "Michael Rodriguez",
+    name: "Jami Scardina",
     position: "Restaurant Owner, Locos Cocos Tacos",
     content: "Our restaurant website needed to be vibrant, functional and easy to update with specials and events. Chris delivered a perfect solution that our customers love using for online orders. The site captures our restaurant's energy and has boosted our online presence.",
     avatar: "/assets/images/testimonials/testimonial3.svg"

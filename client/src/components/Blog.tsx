@@ -117,7 +117,7 @@ export default function Blog() {
         
         <div className="max-w-3xl mx-auto text-center mt-6">
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-md">
-            I believe in the power of sharing knowledge and learning from others. In this blog, I write about my experiences in software engineering, leadership, team building, AI-driven automation, and anything else that I find thought-provoking or insightful. Whether you're here to learn from my technical posts or gain perspective on my leadership journey, I hope you find something valuable that sparks new ideas.
+            I believe in the power of sharing knowledge and learning from others. In this blog, I write about my experiences in software engineering, leadership, team building, AI-driven optimization, and anything else that I find thought-provoking or insightful. Whether you're here to learn from my technical posts or gain perspective on my leadership journey, I hope you find something valuable that sparks new ideas.
           </p>
         </div>
         

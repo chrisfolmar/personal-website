@@ -1,4 +1,16 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /assets/raw/
+Disallow: /_logs/
 
+# Allow Google to index everything
+User-agent: Googlebot
+Allow: /
+
+# Alternate domain
+Host: https://chrisfolmar.com
+
+# Sitemap location
 Sitemap: https://chrisfolmar.com/sitemap.xml
+Sitemap: https://cfolmar.com/sitemap.xml

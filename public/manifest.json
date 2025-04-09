@@ -1,0 +1,22 @@
+{
+  "name": "Chris Folmar - Software Engineering Manager",
+  "short_name": "Chris Folmar",
+  "description": "Personal portfolio website of Chris Folmar, Software Engineering Manager and AI-first tech leader.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4F46E5",
+  "icons": [
+    {
+      "src": "/cf-favicon-small.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

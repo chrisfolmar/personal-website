@@ -1,51 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://chrisfolmar.com/</loc>
-    <lastmod>2025-04-07</lastmod>
+    <lastmod>2025-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" href="https://cfolmar.com/" hreflang="en" />
   </url>
   <url>
     <loc>https://chrisfolmar.com/sitemap</loc>
-    <lastmod>2025-04-07</lastmod>
+    <lastmod>2025-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" href="https://cfolmar.com/sitemap" hreflang="en" />
   </url>
   <url>
     <loc>https://chrisfolmar.com/blog/1</loc>
-    <lastmod>2025-04-07</lastmod>
+    <lastmod>2025-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" href="https://cfolmar.com/blog/1" hreflang="en" />
   </url>
   <url>
     <loc>https://chrisfolmar.com/blog/2</loc>
-    <lastmod>2025-04-07</lastmod>
+    <lastmod>2025-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" href="https://cfolmar.com/blog/2" hreflang="en" />
   </url>
   <url>
     <loc>https://chrisfolmar.com/blog/3</loc>
-    <lastmod>2025-04-07</lastmod>
+    <lastmod>2025-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" href="https://cfolmar.com/blog/3" hreflang="en" />
   </url>
   <url>
     <loc>https://chrisfolmar.com/project/1</loc>
-    <lastmod>2025-04-07</lastmod>
+    <lastmod>2025-04-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" href="https://cfolmar.com/project/1" hreflang="en" />
   </url>
   <url>
     <loc>https://chrisfolmar.com/project/2</loc>
-    <lastmod>2025-04-07</lastmod>
+    <lastmod>2025-04-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" href="https://cfolmar.com/project/2" hreflang="en" />
   </url>
   <url>
     <loc>https://chrisfolmar.com/project/3</loc>
-    <lastmod>2025-04-07</lastmod>
+    <lastmod>2025-04-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" href="https://cfolmar.com/project/3" hreflang="en" />
   </url>
 </urlset>

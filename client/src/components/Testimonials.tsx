@@ -67,20 +67,7 @@ const TestimonialCard = memo(({ testimonial, index }: {
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ 
-        duration: 0.3, 
-        ease: "easeOut",
-        delay: index * 0.03  // Even shorter delay
-      }}
-      viewport={{ 
-        once: true, 
-        margin: '0px',
-        amount: 0.1 // Trigger animation when just 10% is visible
-      }}
-    >
+    <div>
       <Card className="h-full bg-white dark:bg-gray-800 border-none shadow-md hover:shadow-lg transition-shadow duration-300">
         <CardContent className="p-6">
           <div className="flex items-center mb-4">

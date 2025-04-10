@@ -3,13 +3,15 @@ import { ArrowRight, Code, Calendar, ExternalLink } from "lucide-react";
 import { useLocation } from "wouter";
 import { Project } from "@/types";
 import { cn, formatDate } from "@/lib/utils";
+import { memo, useMemo } from "react";
 
 interface ProjectCardProps {
   project: Project;
   delay?: number;
 }
 
-export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
+// Using useMemo internally and memo on the component to prevent re-rendering
+function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
   const [, setLocation] = useLocation();
   
   // Function to create URL-friendly project slugs
@@ -50,12 +52,13 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
       <div className="relative overflow-hidden h-56">
         <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
           <img 
-            src={`${project.image}?v=${Date.now()}`} 
+            src={project.image} 
             alt={project.title}
             className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+            loading="lazy"
             onError={(e) => {
               // Try reloading with cache bust if image fails to load
-              e.currentTarget.src = `${project.image}?v=${Date.now() + 1000}`;
+              e.currentTarget.src = `${project.image}?v=${new Date().getTime()}`;
             }}
           />
         </div>
@@ -142,3 +145,6 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
     </motion.div>
   );
 }
+
+// Export as memoized component to prevent re-renders
+export default memo(ProjectCard);

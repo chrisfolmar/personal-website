@@ -1,17 +1,11 @@
 import { motion } from "framer-motion";
+import { memo, useMemo } from "react";
 import { projects } from "@/lib/data";
+import type { Project } from "@/types";
 import SectionHeading from "@/components/ui/section-heading";
 import ProjectCard from "@/components/ui/project-card";
 import { ArrowRight, Star } from "lucide-react";
 import { useLocation } from "wouter";
-
-// Sort projects by date (most recent first)
-const sortedProjects = [...projects].sort((a, b) => 
-  new Date(b.date).getTime() - new Date(a.date).getTime()
-);
-
-// Featured projects are the first 5 (most recent)
-const featuredProjects = sortedProjects.slice(0, 5);
 
 // Function to create URL-friendly project slugs
 const getProjectSlug = (title: string) => {
@@ -21,7 +15,37 @@ const getProjectSlug = (title: string) => {
     .replace(/\s+/g, '-');
 };
 
-export default function Projects() {
+interface ProjectGridProps {
+  projects: Project[];
+}
+
+// Memoized ProjectGrid component to prevent re-renders
+const ProjectGrid = memo(({ projects }: ProjectGridProps) => {
+  return (
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 section-transition">
+      {projects.map((project, index) => (
+        <ProjectCard 
+          key={index}
+          project={project}
+          delay={index * 0.05} // Reduced delay multiplier
+        />
+      ))}
+    </div>
+  );
+});
+
+// Main Projects component
+function Projects() {
+  // Using useMemo to prevent unnecessary recalculations
+  const featuredProjects = useMemo(() => {
+    // Sort projects by date (most recent first)
+    const sortedProjects = [...projects].sort((a, b) => 
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    
+    // Featured projects are the first 5 (most recent)
+    return sortedProjects.slice(0, 5);
+  }, []);
   const [, setLocation] = useLocation();
   
   const handleViewAllClick = () => {
@@ -36,8 +60,14 @@ export default function Projects() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          transition={{ 
+            duration: 0.3, 
+            ease: "easeOut" 
+          }}
+          viewport={{ 
+            once: true,
+            amount: 0.2 
+          }}
           className="mb-12 max-w-3xl mx-auto text-center"
         >
           <div className="inline-block mb-4 bg-primary/10 p-2 rounded-full">
@@ -52,22 +82,21 @@ export default function Projects() {
           </p>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 section-transition">
-          {featuredProjects.map((project, index) => (
-            <ProjectCard 
-              key={index}
-              project={project}
-              delay={index * 0.1}
-            />
-          ))}
-        </div>
+        <ProjectGrid projects={featuredProjects} />
         
         <motion.div 
           className="text-center mt-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          viewport={{ once: true }}
+          transition={{ 
+            duration: 0.3, 
+            ease: "easeOut",
+            delay: 0.1 
+          }}
+          viewport={{ 
+            once: true,
+            amount: 0.2
+          }}
         >
           <div className="max-w-2xl mx-auto space-y-6">
             <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed">
@@ -89,3 +118,6 @@ export default function Projects() {
     </section>
   );
 }
+
+// Export as memoized component to prevent re-renders
+export default memo(Projects);

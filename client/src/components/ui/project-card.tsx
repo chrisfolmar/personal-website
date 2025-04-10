@@ -36,8 +36,15 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
       className="project-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl border border-gray-100 dark:border-gray-700 cursor-pointer transform transition-all duration-300 hover:-translate-y-2"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay }}
-      viewport={{ once: true }}
+      transition={{ 
+        duration: 0.3, 
+        ease: "easeOut",
+        delay: delay * 0.1  // Reduced delay multiplier
+      }}
+      viewport={{ 
+        once: true,
+        amount: 0.2  // Only trigger when 20% is visible
+      }}
       onClick={handleViewDetails}
     >
       <div className="relative overflow-hidden h-56">

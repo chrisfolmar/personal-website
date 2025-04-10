@@ -100,7 +100,7 @@ export default function LazyImage({
   return (
     <div 
       ref={containerRef}
-      className={`${containerClassName} ${!isLoaded || error ? 'animate-pulse bg-gray-200 dark:bg-gray-700' : ''} flex items-center justify-center w-full`} 
+      className={`${containerClassName} ${!isLoaded || error ? 'bg-gray-200 dark:bg-gray-700' : ''} flex items-center justify-center w-full overflow-hidden`} 
       style={containerStyles}
     >
       {shouldLoad && (
@@ -112,7 +112,7 @@ export default function LazyImage({
           height={height}
           loading={loading}
           decoding="async"
-          className={`${className} transition-all duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${isHoverable ? 'group-hover:scale-105' : ''}`}
+          className={`${className} transition-opacity duration-300 ease-in-out ${isLoaded ? 'opacity-100' : 'opacity-0'} ${isHoverable ? 'group-hover:scale-105 transition-transform duration-300' : ''}`}
           onLoad={handleLoad}
           onError={handleError}
           style={imageStyles}

@@ -9,41 +9,12 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { formatDate } from '@/lib/utils';
+import LazyImage from "./LazyImage";
 
 // Sort blog posts by date (most recent first)
 const sortedBlogPosts = [...blogPosts].sort((a, b) => 
   new Date(b.date).getTime() - new Date(a.date).getTime()
 );
-
-// Component for lazy loading images
-const LazyImage = ({ src, alt, className, index = 0 }: { src: string; alt: string; className: string; index?: number }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
-  
-  const handleLoad = () => {
-    setIsLoaded(true);
-  };
-
-  const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    // Try to reload with cache bust
-    e.currentTarget.src = src + `?v=${Date.now()}`;
-  };
-
-  // Simplified approach - use native lazy loading + placeholder
-  return (
-    <div className={`${className} ${!isLoaded ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
-      <img
-        ref={imgRef}
-        src={src}
-        alt={alt}
-        className={`w-full h-full object-cover transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${index === 0 ? '' : 'hover:scale-110'}`}
-        onLoad={handleLoad}
-        onError={handleError}
-        loading="lazy"
-      />
-    </div>
-  );
-};
 
 // Blog post card component (memoized to prevent unnecessary re-renders)
 const BlogCard = ({ post, index, onClick }: { post: BlogPost; index: number; onClick: () => void }) => {
@@ -52,19 +23,28 @@ const BlogCard = ({ post, index, onClick }: { post: BlogPost; index: number; onC
       key={post.id}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.05 }} // Reduced delay between animations
-      viewport={{ once: true, margin: '-50px' }}
+      transition={{ 
+        duration: 0.3,
+        ease: "easeOut", 
+        delay: index * 0.03, // Even more reduced delay
+      }}
+      viewport={{ 
+        once: true, 
+        margin: '0px',
+        amount: 0.2 // Only trigger when 20% of element is visible
+      }}
     >
       <Card 
         className="h-full overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col cursor-pointer"
         onClick={onClick}
       >
         <div className="relative h-48 overflow-hidden">
-          <LazyImage 
+          <LazyImage
             src={post.coverImage} 
             alt={post.title} 
             className="w-full h-full" 
-            index={index}
+            objectFit="cover"
+            isHoverable={true}
           />
           <div className="absolute top-4 left-4">
             <Badge variant="secondary" className="bg-primary text-white hover:bg-primary/90">

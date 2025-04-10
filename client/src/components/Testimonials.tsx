@@ -23,24 +23,12 @@ const LazyAvatar = memo(({ testimonial, getInitials }: {
   const avatarRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '200px' }
-    );
+    // Set a timeout to load the image after a small delay to prevent flashing
+    const timer = setTimeout(() => {
+      setIsInView(true);
+    }, 100);
 
-    if (avatarRef.current) {
-      observer.observe(avatarRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   const handleImageError = () => {
@@ -82,8 +70,16 @@ const TestimonialCard = memo(({ testimonial, index }: {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.05 }} // Reduced delay
-      viewport={{ once: true, margin: '-50px' }}
+      transition={{ 
+        duration: 0.3, 
+        ease: "easeOut",
+        delay: index * 0.03  // Even shorter delay
+      }}
+      viewport={{ 
+        once: true, 
+        margin: '0px',
+        amount: 0.1 // Trigger animation when just 10% is visible
+      }}
     >
       <Card className="h-full bg-white dark:bg-gray-800 border-none shadow-md hover:shadow-lg transition-shadow duration-300">
         <CardContent className="p-6">

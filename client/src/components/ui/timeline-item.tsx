@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { useIntersectionAnimation } from "@/hooks/use-intersection-animation";
 
 interface TimelineItemProps {
   title: string;
@@ -17,13 +18,21 @@ function TimelineItem({
   isLast = false,
   index = 0
 }: TimelineItemProps) {
-  // Use CSS animation only with calculated delay
-  const animationDelay = `${index * 0.1}s`;
+  const itemRef = useIntersectionAnimation({
+    threshold: 0.1,
+    rootMargin: '0px',
+    animationClass: 'animate-in',
+    once: true
+  });
+  
+  // Calculate delay based on index
+  const animationDelay = `${0.1 + (index * 0.1)}s`;
   
   return (
     <div 
-      className={`border-l-4 border-primary pl-6 relative animated-slide-in ${isLast ? '' : 'mb-8'}`}
-      style={{ animationDelay }}
+      ref={itemRef as React.RefObject<HTMLDivElement>}
+      className={`border-l-4 border-primary pl-6 relative slide-in ${isLast ? '' : 'mb-8'}`}
+      style={{ '--animation-delay': animationDelay } as React.CSSProperties}
     >
       <div className="absolute -left-2.5 top-1 w-5 h-5 rounded-full bg-primary"></div>
       <h4 className="text-xl font-bold text-gray-900 dark:text-white">{title}</h4>

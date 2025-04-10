@@ -1,5 +1,5 @@
-import { motion, useInView } from "framer-motion";
-import { memo, useMemo, useRef, useEffect, useState } from "react";
+import { memo, useMemo } from "react";
+import { useIntersectionAnimation } from "@/hooks/use-intersection-animation";
 import { 
   Code, 
   Database, 
@@ -104,15 +104,24 @@ function SkillCardComponent({ name, icon, delay = 0 }: SkillCardProps) {
   // Get the icon component from our map, or default to Code
   const IconComponent = useMemo(() => iconComponents[icon] || Code, [icon]);
   
-  // Use CSS-only animations with a delay style
-  const animationDelay = `${delay * 0.05}s`;
+  // Use intersection observer animation
+  const cardRef = useIntersectionAnimation({
+    threshold: 0.1,
+    rootMargin: '0px',
+    animationClass: 'animate-in',
+    once: true
+  });
+  
+  // Calculate delay based on index
+  const animationDelay = `${0.05 + (delay * 0.05)}s`;
   
   return (
     <div 
-      className="bg-white dark:bg-gray-700 rounded-lg p-5 text-center hover:shadow-md transition-all duration-300 section-transition 
+      ref={cardRef as React.RefObject<HTMLDivElement>}
+      className="bg-white dark:bg-gray-700 rounded-lg p-5 text-center hover:shadow-md transition-all duration-300
                 border border-gray-100 dark:border-gray-600 hover:border-primary/30 dark:hover:border-primary/30 group
-                animated-fade-in hover:-translate-y-1" 
-      style={{ animationDelay }}
+                tool-item hover:-translate-y-1" 
+      style={{ '--animation-delay': animationDelay } as React.CSSProperties}
     >
       <div className="text-primary mb-3 bg-primary/5 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto group-hover:bg-primary/10 transition-colors duration-300">
         <IconComponent className="h-8 w-8 mx-auto" />

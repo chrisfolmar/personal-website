@@ -52,15 +52,26 @@ export default function Projects() {
           </p>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 section-transition">
+        <motion.div 
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 section-transition"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.5,
+            ease: "easeOut"
+          }}
+          viewport={{ 
+            once: true,
+            amount: 0.1
+          }}
+        >
           {featuredProjects.map((project, index) => (
             <ProjectCard 
               key={index}
               project={project}
-              delay={index * 0.1}
             />
           ))}
-        </div>
+        </motion.div>
         
         <motion.div 
           className="text-center mt-16"

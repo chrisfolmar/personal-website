@@ -1,27 +1,19 @@
-import { motion } from "framer-motion";
-import { memo, useCallback, useMemo } from "react";
+import { memo, useMemo } from "react";
 import { skills, tools } from "@/lib/data";
 import SectionHeading from "@/components/ui/section-heading";
 import ProgressBar from "@/components/ProgressBar";
 import SkillCard from "@/components/ui/skill-card";
 
-// Memoized skill item component to prevent re-renders
+// CSS-only animated skill item
 const SkillItem = memo(({ skill, index }: { skill: typeof skills[0], index: number }) => {
+  // Calculate animation delay based on index
+  const animationDelay = `${index * 0.05}s`;
+  
   return (
-    <motion.div 
+    <div 
       key={index} 
-      className="mb-2"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ 
-        duration: 0.3, 
-        ease: "easeOut",
-        delay: index * 0.05 // Reduced delay
-      }}
-      viewport={{ 
-        once: true,
-        amount: 0.2 // Only trigger when 20% is visible 
-      }}
+      className="mb-4 animated-fade-in"
+      style={{ animationDelay }}
     >
       <div className="flex justify-between items-center mb-2">
         <h4 className="font-medium text-gray-800 dark:text-gray-200 text-base">{skill.name}</h4>
@@ -33,11 +25,11 @@ const SkillItem = memo(({ skill, index }: { skill: typeof skills[0], index: numb
           {skill.description}
         </p>
       )}
-    </motion.div>
+    </div>
   );
 });
 
-// Memoized tool grid to prevent re-renders
+// Memoized tool grid with CSS animations
 const ToolsGrid = memo(() => {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -46,14 +38,14 @@ const ToolsGrid = memo(() => {
           key={index}
           name={tool.name}
           icon={tool.icon}
-          delay={index * 0.05}
+          delay={index}
         />
       ))}
     </div>
   );
 });
 
-// Main Skills component
+// Main Skills component with CSS animations
 const Skills = () => {
   // Memoize the skills list to prevent unnecessary re-renders
   const skillsList = useMemo(() => {
@@ -71,18 +63,9 @@ const Skills = () => {
         />
         
         <div className="grid md:grid-cols-2 gap-8 section-transition">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 0.3, 
-              ease: "easeOut" 
-            }}
-            viewport={{ 
-              once: true,
-              amount: 0.1 // Only needs to be slightly visible
-            }}
-            className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm"
+          <div
+            className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm animated-fade-in"
+            style={{ animationDelay: "0.1s" }}
           >
             <h3 className="text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100">
               <div className="flex items-center flex-wrap">
@@ -96,24 +79,14 @@ const Skills = () => {
               </div>
             </h3>
             
-            <div className="space-y-6">
+            <div className="space-y-3">
               {skillsList}
             </div>
-          </motion.div>
+          </div>
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 0.3, 
-              ease: "easeOut",
-              delay: 0.1 
-            }}
-            viewport={{ 
-              once: true,
-              amount: 0.1 
-            }}
-            className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm"
+          <div
+            className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm animated-fade-in"
+            style={{ animationDelay: "0.2s" }}
           >
             <h3 className="text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100">
               <div className="flex items-center flex-wrap">
@@ -128,7 +101,7 @@ const Skills = () => {
             </h3>
             
             <ToolsGrid />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

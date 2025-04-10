@@ -71,8 +71,14 @@ export default function About() {
             className="lg:w-1/2"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
+            transition={{ 
+              duration: 0.3, 
+              ease: "easeOut"
+            }}
+            viewport={{ 
+              once: true, 
+              amount: 0.2
+            }}
           >
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 section-transition">
               <h3 className="text-2xl font-bold mb-6">Professional Experience</h3>

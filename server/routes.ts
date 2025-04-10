@@ -35,6 +35,11 @@ function isSpamContent(text: string): boolean {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Redirect /sitemap to /sitemap.xml for Google Search Console
+  app.get('/sitemap', (req, res) => {
+    res.redirect('/sitemap.xml');
+  });
+
   // Rate limiter middleware
   const rateLimit = (req: Request, res: Response, next: NextFunction) => {
     const ip = req.ip || req.socket.remoteAddress || 'unknown';

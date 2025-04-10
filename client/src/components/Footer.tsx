@@ -94,9 +94,7 @@ export default function Footer() {
           <div className="text-gray-400 text-sm mt-4 sm:mt-0 flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
             <p>Designed and built with passion</p>
             <span className="hidden sm:inline">•</span>
-            <Link to="/sitemap" className="hover:text-primary transition-colors">Sitemap</Link>
-            <span className="hidden sm:inline">•</span>
-            <a href="/sitemap.xml" className="hover:text-primary transition-colors text-xs">[XML]</a>
+            <a href="/sitemap" className="hover:text-primary transition-colors">Sitemap</a>
           </div>
         </div>
       </div>

@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { experiences } from "@/lib/data";
 import SectionHeading from "@/components/ui/section-heading";
 import TimelineItem from "@/components/ui/timeline-item";
@@ -14,13 +13,7 @@ export default function About() {
         />
         
         {/* Image centered at the top */}
-        <motion.div 
-          className="max-w-2xl mx-auto mb-16"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
+        <div className="max-w-2xl mx-auto mb-16 animated-fade-in">
           <div className="overflow-hidden rounded-xl shadow-md">
             <img 
               src="/assets/images/optimized/about.jpg" 
@@ -32,18 +25,12 @@ export default function About() {
               decoding="async"
             />
           </div>
-        </motion.div>
+        </div>
         
         {/* Content sections */}
         <div className="lg:flex lg:items-start lg:justify-between section-transition gap-8">
           {/* Who I Am section */}
-          <motion.div 
-            className="lg:w-1/2 mb-10 lg:mb-0"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          <div className="lg:w-1/2 mb-10 lg:mb-0 animated-slide-in" style={{ animationDelay: "0.1s" }}>
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 section-transition">
               <h3 className="text-2xl font-bold mb-6">Who I Am</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
@@ -64,16 +51,10 @@ export default function About() {
                 Strategic Engineering Leader with over 10 years of experience building high-impact engineering teams and driving operational efficiencies across enterprise-scale systems. Known for leading automation-driven transformations, re-architecting core platforms, and scaling engineering throughput 300%+ without additional headcount. Currently managing 3 cross-functional teams at Fullscript, delivering critical systems across ERP, WMS, and internal tooling for a $1B+ eCommerce platform. Adept at AI-driven problem-solving, fostering talent development, and aligning technical initiatives with business growth.
               </p>
             </div>
-          </motion.div>
+          </div>
           
           {/* Professional Experience section */}
-          <motion.div 
-            className="lg:w-1/2"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          <div className="lg:w-1/2 animated-slide-in" style={{ animationDelay: "0.2s" }}>
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 section-transition">
               <h3 className="text-2xl font-bold mb-6">Professional Experience</h3>
               
@@ -85,6 +66,7 @@ export default function About() {
                   period={experience.period}
                   description={experience.description}
                   isLast={index === experiences.length - 1}
+                  index={index}
                 />
               ))}
               
@@ -95,7 +77,7 @@ export default function About() {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

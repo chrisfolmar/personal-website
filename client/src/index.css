@@ -96,3 +96,40 @@ html {
 .project-card:hover {
   transform: translateY(-5px);
 }
+
+/* CSS-only animations for better performance */
+.animated-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+  animation-fill-mode: both;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.animated-slide-in {
+  animation: slideIn 0.5s ease forwards;
+  animation-fill-mode: both;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

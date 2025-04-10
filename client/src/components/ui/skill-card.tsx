@@ -101,37 +101,24 @@ const iconComponents: Record<string, LucideIcon> = {
 };
 
 function SkillCardComponent({ name, icon, delay = 0 }: SkillCardProps) {
-  // Get the icon component from our map, or default to Code - using useMemo to prevent re-evaluation
+  // Get the icon component from our map, or default to Code
   const IconComponent = useMemo(() => iconComponents[icon] || Code, [icon]);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-  const [hasAnimated, setHasAnimated] = useState(false);
   
-  useEffect(() => {
-    if (isInView && !hasAnimated) {
-      setHasAnimated(true);
-    }
-  }, [isInView, hasAnimated]);
+  // Use CSS-only animations with a delay style
+  const animationDelay = `${delay * 0.05}s`;
   
   return (
-    <motion.div 
-      ref={ref}
-      className="bg-white dark:bg-gray-700 rounded-lg p-5 text-center hover:shadow-md transition-all duration-300 section-transition border border-gray-100 dark:border-gray-600 hover:border-primary/30 dark:hover:border-primary/30 group"
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView || hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ 
-        duration: 0.3, 
-        ease: "easeOut",
-        delay: delay * 0.05, // Even more reduced delay
-        type: "tween"
-      }}
-      whileHover={{ y: -5 }}
+    <div 
+      className="bg-white dark:bg-gray-700 rounded-lg p-5 text-center hover:shadow-md transition-all duration-300 section-transition 
+                border border-gray-100 dark:border-gray-600 hover:border-primary/30 dark:hover:border-primary/30 group
+                animated-fade-in hover:-translate-y-1" 
+      style={{ animationDelay }}
     >
       <div className="text-primary mb-3 bg-primary/5 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto group-hover:bg-primary/10 transition-colors duration-300">
         <IconComponent className="h-8 w-8 mx-auto" />
       </div>
       <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm sm:text-base">{name}</h4>
-    </motion.div>
+    </div>
   );
 }
 

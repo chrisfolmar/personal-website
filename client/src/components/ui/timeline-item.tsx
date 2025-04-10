@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { memo } from "react";
+import { motion, useInView } from "framer-motion";
+import { memo, useRef, useEffect, useState } from "react";
 
 interface TimelineItemProps {
   title: string;
@@ -16,19 +16,26 @@ function TimelineItem({
   description,
   isLast = false
 }: TimelineItemProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [hasAnimated, setHasAnimated] = useState(false);
+  
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isInView, hasAnimated]);
+  
   return (
     <motion.div 
+      ref={ref}
       className={`border-l-4 border-primary pl-6 relative section-transition ${isLast ? '' : 'mb-8'}`}
       initial={{ opacity: 0, x: 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      animate={isInView || hasAnimated ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
       transition={{ 
         duration: 0.3,
         ease: "easeOut",
         type: "tween"
-      }}
-      viewport={{ 
-        once: true,
-        amount: 0.2
       }}
     >
       <div className="absolute -left-2.5 top-1 w-5 h-5 rounded-full bg-primary"></div>

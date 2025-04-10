@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { memo, useMemo } from "react";
+import { motion, useInView } from "framer-motion";
+import { memo, useMemo, useRef, useEffect, useState } from "react";
 import { 
   Code, 
   Database, 
@@ -103,20 +103,27 @@ const iconComponents: Record<string, LucideIcon> = {
 function SkillCardComponent({ name, icon, delay = 0 }: SkillCardProps) {
   // Get the icon component from our map, or default to Code - using useMemo to prevent re-evaluation
   const IconComponent = useMemo(() => iconComponents[icon] || Code, [icon]);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [hasAnimated, setHasAnimated] = useState(false);
+  
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isInView, hasAnimated]);
   
   return (
     <motion.div 
+      ref={ref}
       className="bg-white dark:bg-gray-700 rounded-lg p-5 text-center hover:shadow-md transition-all duration-300 section-transition border border-gray-100 dark:border-gray-600 hover:border-primary/30 dark:hover:border-primary/30 group"
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      animate={isInView || hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ 
         duration: 0.3, 
         ease: "easeOut",
-        delay: delay * 0.1 // Reduced delay
-      }}
-      viewport={{ 
-        once: true,
-        amount: 0.2 // Only trigger when 20% is visible
+        delay: delay * 0.05, // Even more reduced delay
+        type: "tween"
       }}
       whileHover={{ y: -5 }}
     >

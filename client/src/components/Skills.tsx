@@ -1,10 +1,67 @@
 import { motion } from "framer-motion";
+import { memo, useCallback, useMemo } from "react";
 import { skills, tools } from "@/lib/data";
 import SectionHeading from "@/components/ui/section-heading";
 import ProgressBar from "@/components/ProgressBar";
 import SkillCard from "@/components/ui/skill-card";
 
-export default function Skills() {
+// Memoized skill item component to prevent re-renders
+const SkillItem = memo(({ skill, index }: { skill: typeof skills[0], index: number }) => {
+  return (
+    <motion.div 
+      key={index} 
+      className="mb-2"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ 
+        duration: 0.3, 
+        ease: "easeOut",
+        delay: index * 0.05 // Reduced delay
+      }}
+      viewport={{ 
+        once: true,
+        amount: 0.2 // Only trigger when 20% is visible 
+      }}
+    >
+      <div className="flex justify-between items-center mb-2">
+        <h4 className="font-medium text-gray-800 dark:text-gray-200 text-base">{skill.name}</h4>
+        <span className="text-gray-600 dark:text-gray-400 min-w-[50px] text-right font-semibold">{skill.years} years</span>
+      </div>
+      <ProgressBar percentage={skill.percentage} />
+      {skill.description && (
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 leading-relaxed break-words">
+          {skill.description}
+        </p>
+      )}
+    </motion.div>
+  );
+});
+
+// Memoized tool grid to prevent re-renders
+const ToolsGrid = memo(() => {
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      {tools.map((tool, index) => (
+        <SkillCard
+          key={index}
+          name={tool.name}
+          icon={tool.icon}
+          delay={index * 0.05}
+        />
+      ))}
+    </div>
+  );
+});
+
+// Main Skills component
+const Skills = () => {
+  // Memoize the skills list to prevent unnecessary re-renders
+  const skillsList = useMemo(() => {
+    return skills.map((skill, index) => (
+      <SkillItem key={index} skill={skill} index={index} />
+    ));
+  }, []);
+
   return (
     <section id="skills" className="py-24 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,8 +74,14 @@ export default function Skills() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            transition={{ 
+              duration: 0.3, 
+              ease: "easeOut" 
+            }}
+            viewport={{ 
+              once: true,
+              amount: 0.1 // Only needs to be slightly visible
+            }}
             className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm"
           >
             <h3 className="text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100">
@@ -34,35 +97,22 @@ export default function Skills() {
             </h3>
             
             <div className="space-y-6">
-              {skills.map((skill, index) => (
-                <motion.div 
-                  key={index} 
-                  className="mb-2"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="flex justify-between items-center mb-2">
-                    <h4 className="font-medium text-gray-800 dark:text-gray-200 text-base">{skill.name}</h4>
-                    <span className="text-gray-600 dark:text-gray-400 min-w-[50px] text-right font-semibold">{skill.years} years</span>
-                  </div>
-                  <ProgressBar percentage={skill.percentage} />
-                  {skill.description && (
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 leading-relaxed break-words">
-                      {skill.description}
-                    </p>
-                  )}
-                </motion.div>
-              ))}
+              {skillsList}
             </div>
           </motion.div>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
+            transition={{ 
+              duration: 0.3, 
+              ease: "easeOut",
+              delay: 0.1 
+            }}
+            viewport={{ 
+              once: true,
+              amount: 0.1 
+            }}
             className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm"
           >
             <h3 className="text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100">
@@ -77,19 +127,13 @@ export default function Skills() {
               </div>
             </h3>
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-              {tools.map((tool, index) => (
-                <SkillCard
-                  key={index}
-                  name={tool.name}
-                  icon={tool.icon}
-                  delay={index * 0.05}
-                />
-              ))}
-            </div>
+            <ToolsGrid />
           </motion.div>
         </div>
       </div>
     </section>
   );
-}
+};
+
+// Export as memoized component to prevent re-renders
+export default memo(Skills);

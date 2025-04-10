@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { 
   Code, 
   Database, 
@@ -103,11 +104,25 @@ export default function SkillCard({ name, icon, delay = 0 }: SkillCardProps) {
   const IconComponent = iconComponents[icon] || Code;
   
   return (
-    <div className="bg-white dark:bg-gray-700 rounded-lg p-5 text-center hover:shadow-md transition-all duration-300 section-transition border border-gray-100 dark:border-gray-600 hover:border-primary/30 dark:hover:border-primary/30 group hover:-translate-y-1">
+    <motion.div 
+      className="bg-white dark:bg-gray-700 rounded-lg p-5 text-center hover:shadow-md transition-all duration-300 section-transition border border-gray-100 dark:border-gray-600 hover:border-primary/30 dark:hover:border-primary/30 group"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ 
+        duration: 0.3, 
+        ease: "easeOut",
+        delay: delay * 0.1 // Reduced delay
+      }}
+      viewport={{ 
+        once: true,
+        amount: 0.2 // Only trigger when 20% is visible
+      }}
+      whileHover={{ y: -5 }}
+    >
       <div className="text-primary mb-3 bg-primary/5 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto group-hover:bg-primary/10 transition-colors duration-300">
         <IconComponent className="h-8 w-8 mx-auto" />
       </div>
       <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm sm:text-base">{name}</h4>
-    </div>
+    </motion.div>
   );
 }

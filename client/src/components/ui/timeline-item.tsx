@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 interface TimelineItemProps {
   title: string;
   company: string;
@@ -14,8 +16,12 @@ export default function TimelineItem({
   isLast = false
 }: TimelineItemProps) {
   return (
-    <div 
+    <motion.div 
       className={`border-l-4 border-primary pl-6 relative section-transition ${isLast ? '' : 'mb-8'}`}
+      initial={{ opacity: 0, x: 20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
     >
       <div className="absolute -left-2.5 top-1 w-5 h-5 rounded-full bg-primary"></div>
       <h4 className="text-xl font-bold text-gray-900 dark:text-white">{title}</h4>
@@ -24,6 +30,6 @@ export default function TimelineItem({
       <p className="text-gray-600 dark:text-gray-400">
         {description}
       </p>
-    </div>
+    </motion.div>
   );
 }

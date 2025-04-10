@@ -77,27 +77,16 @@ export default function Skills() {
               </div>
             </h3>
             
-            <motion.div 
-              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.3, 
-                ease: "easeOut"
-              }}
-              viewport={{ 
-                once: true, 
-                amount: 0.2
-              }}
-            >
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {tools.map((tool, index) => (
                 <SkillCard
                   key={index}
                   name={tool.name}
                   icon={tool.icon}
+                  delay={index * 0.05}
                 />
               ))}
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>

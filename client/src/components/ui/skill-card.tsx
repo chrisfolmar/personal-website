@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { memo, useMemo } from "react";
 import { 
   Code, 
   Database, 
@@ -99,9 +100,9 @@ const iconComponents: Record<string, LucideIcon> = {
   coffee: Coffee
 };
 
-export default function SkillCard({ name, icon, delay = 0 }: SkillCardProps) {
-  // Get the icon component from our map, or default to Code
-  const IconComponent = iconComponents[icon] || Code;
+function SkillCardComponent({ name, icon, delay = 0 }: SkillCardProps) {
+  // Get the icon component from our map, or default to Code - using useMemo to prevent re-evaluation
+  const IconComponent = useMemo(() => iconComponents[icon] || Code, [icon]);
   
   return (
     <motion.div 
@@ -126,3 +127,7 @@ export default function SkillCard({ name, icon, delay = 0 }: SkillCardProps) {
     </motion.div>
   );
 }
+
+// Export memoized component to prevent re-renders
+const SkillCard = memo(SkillCardComponent);
+export default SkillCard;

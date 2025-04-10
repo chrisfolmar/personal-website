@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { memo } from "react";
 
 interface TimelineItemProps {
   title: string;
@@ -8,7 +9,7 @@ interface TimelineItemProps {
   isLast?: boolean;
 }
 
-export default function TimelineItem({ 
+function TimelineItem({ 
   title, 
   company, 
   period, 
@@ -20,8 +21,15 @@ export default function TimelineItem({
       className={`border-l-4 border-primary pl-6 relative section-transition ${isLast ? '' : 'mb-8'}`}
       initial={{ opacity: 0, x: 20 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
+      transition={{ 
+        duration: 0.3,
+        ease: "easeOut",
+        type: "tween"
+      }}
+      viewport={{ 
+        once: true,
+        amount: 0.2
+      }}
     >
       <div className="absolute -left-2.5 top-1 w-5 h-5 rounded-full bg-primary"></div>
       <h4 className="text-xl font-bold text-gray-900 dark:text-white">{title}</h4>
@@ -33,3 +41,6 @@ export default function TimelineItem({
     </motion.div>
   );
 }
+
+// Export memoized component to prevent re-renders
+export default memo(TimelineItem);

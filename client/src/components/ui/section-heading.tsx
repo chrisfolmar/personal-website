@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
+import { memo } from "react";
 
 interface SectionHeadingProps {
   title: string;
   description: string;
 }
 
-export default function SectionHeading({ title, description }: SectionHeadingProps) {
+// Using function declaration for better debugging
+function SectionHeading({ title, description }: SectionHeadingProps) {
   return (
     <motion.div 
       className="text-center mb-16 section-transition"
@@ -28,3 +30,6 @@ export default function SectionHeading({ title, description }: SectionHeadingPro
     </motion.div>
   );
 }
+
+// Export memoized component to prevent re-renders
+export default memo(SectionHeading);

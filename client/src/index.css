@@ -98,7 +98,8 @@ html {
 }
 
 /* Intersection Observer animation classes */
-.fade-in {
+/* Base animation classes, applied when animations are enabled */
+html:not(.no-animate) .fade-in {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -106,12 +107,12 @@ html {
   will-change: opacity, transform;
 }
 
-.fade-in.animate-in {
+html:not(.no-animate) .fade-in.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-.slide-in {
+html:not(.no-animate) .slide-in {
   opacity: 0;
   transform: translateX(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -119,43 +120,68 @@ html {
   will-change: opacity, transform;
 }
 
-.slide-in.animate-in {
+html:not(.no-animate) .slide-in.animate-in {
   opacity: 1;
   transform: translateX(0);
 }
 
-.skill-item {
+html:not(.no-animate) .skill-item {
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   transition-delay: var(--animation-delay, 0s);
 }
 
-.skill-item.animate-in {
+html:not(.no-animate) .skill-item.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-.tool-item {
+html:not(.no-animate) .tool-item {
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   transition-delay: var(--animation-delay, 0s);
 }
 
-.tool-item.animate-in {
+html:not(.no-animate) .tool-item.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-.section-header {
+html:not(.no-animate) .section-header {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   transition-delay: var(--animation-delay, 0s);
 }
 
-.section-header.animate-in {
+html:not(.no-animate) .section-header.animate-in {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* When animations are disabled, show all elements immediately */
+html.no-animate .fade-in,
+html.no-animate .slide-in,
+html.no-animate .skill-item,
+html.no-animate .tool-item,
+html.no-animate .section-header {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .slide-in,
+  .skill-item,
+  .tool-item,
+  .section-header {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
 }

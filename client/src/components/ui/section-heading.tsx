@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { useIntersectionAnimation } from "@/hooks/use-intersection-animation";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface SectionHeadingProps {
   title: string;
@@ -8,11 +9,15 @@ interface SectionHeadingProps {
 
 // Intersection Observer based animation
 function SectionHeading({ title, description }: SectionHeadingProps) {
-  const headingRef = useIntersectionAnimation({
+  const isMobile = useIsMobile();
+  
+  // Disable animations on mobile for better performance
+  const { ref: headingRef } = useIntersectionAnimation({
     threshold: 0.1,
-    rootMargin: '0px',
+    rootMargin: '0px 0px -50px 0px',
     animationClass: 'animate-in',
-    once: true
+    once: true,
+    disabled: false // isMobile is now handled globally via CSS
   });
   
   return (

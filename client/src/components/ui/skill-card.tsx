@@ -105,11 +105,12 @@ function SkillCardComponent({ name, icon, delay = 0 }: SkillCardProps) {
   const IconComponent = useMemo(() => iconComponents[icon] || Code, [icon]);
   
   // Use intersection observer animation
-  const cardRef = useIntersectionAnimation({
+  const { ref: cardRef } = useIntersectionAnimation({
     threshold: 0.1,
-    rootMargin: '0px',
+    rootMargin: '0px 0px -50px 0px',
     animationClass: 'animate-in',
-    once: true
+    once: true,
+    disabled: false // handled globally via CSS now
   });
   
   // Calculate delay based on index

@@ -18,11 +18,12 @@ function TimelineItem({
   isLast = false,
   index = 0
 }: TimelineItemProps) {
-  const itemRef = useIntersectionAnimation({
+  const { ref: itemRef } = useIntersectionAnimation({
     threshold: 0.1,
-    rootMargin: '0px',
+    rootMargin: '0px 0px -50px 0px',
     animationClass: 'animate-in',
-    once: true
+    once: true,
+    disabled: false // handled globally via CSS now
   });
   
   // Calculate delay based on index

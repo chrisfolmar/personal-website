@@ -80,8 +80,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Handle contact form submissions
   app.post("/api/contact", rateLimit, async (req: Request, res: Response) => {
     try {
+      console.log("Contact form submission received:", JSON.stringify({
+        ip: req.ip,
+        timestamp: new Date().toISOString(),
+        headers: {
+          'user-agent': req.headers['user-agent'],
+          'content-type': req.headers['content-type'],
+          'x-forwarded-for': req.headers['x-forwarded-for']
+        }
+      }));
+      
       // Check for empty requests
       if (!req.body || Object.keys(req.body).length === 0) {
+        console.log("Rejected: Empty request body");
         return res.status(400).json({
           success: false,
           message: "Empty request body"
@@ -90,9 +101,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Validate the incoming data against our schema
       const validatedData = insertMessageSchema.parse(req.body);
+      console.log("Validated contact form data:", { 
+        name: validatedData.name,
+        email: validatedData.email,
+        subject: validatedData.subject,
+        messageLength: validatedData.message.length
+      });
       
       // Check for spam content
       if (isSpamContent(validatedData.message) || isSpamContent(validatedData.subject)) {
+        console.log("Rejected: Spam content detected");
         return res.status(400).json({
           success: false,
           message: "Your message appears to contain content that is not allowed"
@@ -109,6 +127,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       ];
       
       if (suspiciousEmailPatterns.some(pattern => pattern.test(validatedData.email))) {
+        console.log("Rejected: Suspicious email pattern:", validatedData.email);
         return res.status(400).json({
           success: false,
           message: "Please provide a valid email address"
@@ -116,10 +135,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       // Store the message in the database
+      console.log("Storing message in database...");
       const message = await storage.createMessage(validatedData);
+      console.log("Message stored successfully, ID:", message.id);
       
       // Send email notification
+      console.log("Sending email notification...");
       const emailSent = await sendContactFormEmail(message);
+      console.log("Email notification result:", emailSent ? "Sent successfully" : "Failed to send");
       
       // Return success but don't send back the full message data for security
       res.status(201).json({ 

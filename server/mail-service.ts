@@ -16,10 +16,20 @@ const FROM_EMAIL = 'contact@chrisfolmar.com';
 
 export async function sendContactFormEmail(message: Message): Promise<boolean> {
   try {
+    // Check for SendGrid API key
     if (!process.env.SENDGRID_API_KEY) {
-      console.warn("Cannot send email: SENDGRID_API_KEY is not set");
+      console.error("CRITICAL: Cannot send email: SENDGRID_API_KEY is not set in environment");
       return false;
     }
+    
+    // Show environment info for debugging (no sensitive data)
+    console.log("Mail service environment check:", {
+      hasSendGridKey: !!process.env.SENDGRID_API_KEY,
+      sendGridKeyLength: process.env.SENDGRID_API_KEY?.length || 0,
+      nodeEnv: process.env.NODE_ENV || 'not set',
+      platform: process.platform,
+      nodeVersion: process.version
+    });
     
     // Format the email content
     const emailSubject = `Website Contact Form: ${message.subject}`;
@@ -121,21 +131,42 @@ This message was sent from your portfolio website contact form.
       }
     };
     
-    // Log the attempt (but not sensitive data)
-    console.log(`Attempting to send email notification to ${ADMIN_EMAIL} from ${FROM_EMAIL}`);
+    // Log the email attempt (without sensitive content)
+    console.log(`Attempting to send email notification:`, {
+      to: ADMIN_EMAIL,
+      from: FROM_EMAIL,
+      subject: emailSubject.substring(0, 30) + '...',
+      messageId: message.id,
+      timestamp: new Date().toISOString()
+    });
     
-    await mailService.send(emailData);
-    console.log("Email sent successfully");
-    
-    return true;
-  } catch (err: unknown) {
-    const error = err as any;
-    console.error('SendGrid email error:', error);
-    // More detailed logging for troubleshooting
-    if (error && typeof error === 'object' && 'response' in error) {
-      console.error('Error status:', error.code);
-      console.error('Error details:', error.response?.body);
+    try {
+      // Make the actual SendGrid API call
+      const [response] = await mailService.send(emailData);
+      console.log("Email sent successfully. SendGrid response:", {
+        statusCode: response?.statusCode,
+        headers: response?.headers ? 'Present' : 'None',
+        timestamp: new Date().toISOString()
+      });
+      
+      return true;
+    } catch (sendgridError: any) {
+      // Handle SendGrid specific errors
+      console.error('SendGrid API call failed:', sendgridError?.message || 'Unknown error');
+      if (sendgridError?.response) {
+        console.error('SendGrid response details:', {
+          statusCode: sendgridError.code,
+          body: JSON.stringify(sendgridError.response.body || {}),
+          headers: Object.keys(sendgridError.response.headers || {}).join(', ')
+        });
+      }
+      return false;
     }
+  } catch (err: unknown) {
+    // Handle any other unexpected errors
+    const error = err as Error;
+    console.error('Unexpected error in email service:', error?.message || 'Unknown error');
+    console.error('Error stack:', error?.stack || 'No stack trace available');
     return false;
   }
 }

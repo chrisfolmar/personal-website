@@ -10,7 +10,7 @@ if (process.env.SENDGRID_API_KEY) {
   mailService.setApiKey(process.env.SENDGRID_API_KEY);
 }
 
-const ADMIN_EMAIL = 'c.folmar@outlook.com';
+const ADMIN_EMAIL = 'contact@chrisfolmar.com';
 // Using the verified sender email from SendGrid
 const FROM_EMAIL = 'contact@chrisfolmar.com';
 
@@ -128,12 +128,13 @@ This message was sent from your portfolio website contact form.
     console.log("Email sent successfully");
     
     return true;
-  } catch (error) {
+  } catch (err: unknown) {
+    const error = err as any;
     console.error('SendGrid email error:', error);
     // More detailed logging for troubleshooting
-    if (error.response) {
+    if (error && typeof error === 'object' && 'response' in error) {
       console.error('Error status:', error.code);
-      console.error('Error details:', error.response.body);
+      console.error('Error details:', error.response?.body);
     }
     return false;
   }

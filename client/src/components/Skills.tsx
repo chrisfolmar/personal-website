@@ -3,6 +3,7 @@ import { skills, tools } from "@/lib/data";
 import SectionHeading from "@/components/ui/section-heading";
 import ProgressBar from "@/components/ProgressBar";
 import SkillCard from "@/components/ui/skill-card";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // CSS-only animated skill item
 const SkillItem = memo(({ skill, index }: { skill: typeof skills[0], index: number }) => {
@@ -45,8 +46,66 @@ const ToolsGrid = memo(() => {
   );
 });
 
+// Non-animated version of a tool card for mobile
+const StaticToolCard = memo(({ name, icon }: { name: string, icon: string }) => {
+  const IconComponent = useMemo(() => {
+    // Get all the icons from the SkillCard component
+    const iconComponents: Record<string, any> = {
+      code: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="16 18 22 12 16 6"></polyline>
+          <polyline points="8 6 2 12 8 18"></polyline>
+        </svg>
+      ),
+      database: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+        </svg>
+      ),
+      // Default icon
+      default: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="16"></line>
+          <line x1="8" y1="12" x2="16" y2="12"></line>
+        </svg>
+      )
+    };
+    
+    return iconComponents[icon] || iconComponents.default;
+  }, [icon]);
+  
+  return (
+    <div className="bg-white dark:bg-gray-700 rounded-lg p-5 text-center hover:shadow-md border border-gray-100 dark:border-gray-600 group">
+      <div className="text-primary mb-3 bg-primary/5 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
+        <IconComponent className="h-8 w-8 mx-auto" />
+      </div>
+      <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm sm:text-base">{name}</h4>
+    </div>
+  );
+});
+
+// Static tools grid for mobile (no animations)
+const StaticToolsGrid = memo(() => {
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      {tools.map((tool, index) => (
+        <StaticToolCard
+          key={index}
+          name={tool.name}
+          icon={tool.icon}
+        />
+      ))}
+    </div>
+  );
+});
+
 // Main Skills component with CSS animations
 const Skills = () => {
+  const isMobile = useIsMobile();
+  
   // Memoize the skills list to prevent unnecessary re-renders
   const skillsList = useMemo(() => {
     return skills.map((skill, index) => (
@@ -63,9 +122,9 @@ const Skills = () => {
         />
         
         <div className="grid md:grid-cols-2 gap-8 section-transition">
+          {/* Leadership & Technical Skills Section */}
           <div
-            className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm animated-fade-in"
-            style={{ animationDelay: "0.1s" }}
+            className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm"
           >
             <h3 className="text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100">
               <div className="flex items-center flex-wrap">
@@ -84,9 +143,9 @@ const Skills = () => {
             </div>
           </div>
           
+          {/* Technologies & Tools Section */}
           <div
-            className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm animated-fade-in"
-            style={{ animationDelay: "0.2s" }}
+            className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm"
           >
             <h3 className="text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100">
               <div className="flex items-center flex-wrap">
@@ -100,7 +159,12 @@ const Skills = () => {
               </div>
             </h3>
             
-            <ToolsGrid />
+            {/* Use different components for mobile and desktop */}
+            {isMobile ? (
+              <StaticToolsGrid />
+            ) : (
+              <ToolsGrid />
+            )}
           </div>
         </div>
       </div>

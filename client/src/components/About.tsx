@@ -2,8 +2,39 @@ import { experiences } from "@/lib/data";
 import SectionHeading from "@/components/ui/section-heading";
 import TimelineItem from "@/components/ui/timeline-item";
 import { ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { memo } from "react";
+
+// Simple static timeline item for mobile devices
+const StaticTimelineItem = memo(({
+  title,
+  company,
+  period,
+  description,
+  isLast = false
+}: {
+  title: string;
+  company: string;
+  period: string;
+  description: string;
+  isLast?: boolean;
+}) => {
+  return (
+    <div className={`border-l-4 border-primary pl-6 relative ${isLast ? '' : 'mb-8'}`}>
+      <div className="absolute -left-2.5 top-1 w-5 h-5 rounded-full bg-primary"></div>
+      <h4 className="text-xl font-bold text-gray-900 dark:text-white">{title}</h4>
+      <p className="text-primary mb-1">{company}</p>
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{period}</p>
+      <p className="text-gray-600 dark:text-gray-400">
+        {description}
+      </p>
+    </div>
+  );
+});
 
 export default function About() {
+  const isMobile = useIsMobile();
+  
   return (
     <section id="about" className="py-24 bg-gradient">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,7 +44,7 @@ export default function About() {
         />
         
         {/* Image centered at the top */}
-        <div className="max-w-2xl mx-auto mb-16 animated-fade-in">
+        <div className="max-w-2xl mx-auto mb-16">
           <div className="overflow-hidden rounded-xl shadow-md">
             <img 
               src="/assets/images/optimized/about.jpg" 
@@ -30,8 +61,8 @@ export default function About() {
         {/* Content sections */}
         <div className="lg:flex lg:items-start lg:justify-between section-transition gap-8">
           {/* Who I Am section */}
-          <div className="lg:w-1/2 mb-10 lg:mb-0 animated-slide-in" style={{ animationDelay: "0.1s" }}>
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 section-transition">
+          <div className="lg:w-1/2 mb-10 lg:mb-0">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8">
               <h3 className="text-2xl font-bold mb-6">Who I Am</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
                 Hi, I'm Chris Folmar. I'm a Software Engineering Manager with a passion for technology, leadership, and building teams that thrive. Over the years, I've had the privilege of working with amazing teams to drive technical innovations and deliver high-quality, scalable software solutions. My current role at Fullscript allows me to lead high-performing teams, work on challenging projects, and empower others to grow in their careers.
@@ -54,21 +85,37 @@ export default function About() {
           </div>
           
           {/* Professional Experience section */}
-          <div className="lg:w-1/2 animated-slide-in" style={{ animationDelay: "0.2s" }}>
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 section-transition">
+          <div className="lg:w-1/2">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8">
               <h3 className="text-2xl font-bold mb-6">Professional Experience</h3>
               
-              {experiences.map((experience, index) => (
-                <TimelineItem
-                  key={index}
-                  title={experience.title}
-                  company={experience.company}
-                  period={experience.period}
-                  description={experience.description}
-                  isLast={index === experiences.length - 1}
-                  index={index}
-                />
-              ))}
+              {/* Render different Timeline components based on device */}
+              {isMobile ? (
+                /* Static Timeline Items for Mobile */
+                experiences.map((experience, index) => (
+                  <StaticTimelineItem
+                    key={index}
+                    title={experience.title}
+                    company={experience.company}
+                    period={experience.period}
+                    description={experience.description}
+                    isLast={index === experiences.length - 1}
+                  />
+                ))
+              ) : (
+                /* Animated Timeline Items for Desktop */
+                experiences.map((experience, index) => (
+                  <TimelineItem
+                    key={index}
+                    title={experience.title}
+                    company={experience.company}
+                    period={experience.period}
+                    description={experience.description}
+                    isLast={index === experiences.length - 1}
+                    index={index}
+                  />
+                ))
+              )}
               
               <div className="flex justify-center mt-8">
                 <a href="https://www.linkedin.com/in/clfolmar" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:text-primary-dark transition-colors font-medium">

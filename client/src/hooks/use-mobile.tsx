@@ -2,22 +2,27 @@ import * as React from "react"
 
 const MOBILE_BREAKPOINT = 768
 
-// Apply/remove the no-animate class to the html element based on mobile state
+// Apply/remove animation classes to the html element based on mobile state
 const updateAnimationClass = (isMobile: boolean) => {
   const htmlEl = document.documentElement;
+  
+  // Always remove the temporary loading state
+  htmlEl.classList.remove('loading');
+  
   if (isMobile) {
-    htmlEl.classList.add('no-animate');
+    // For mobile, add a mobile-optimized class instead of disabling animations entirely
+    htmlEl.classList.add('mobile-animations');
+    htmlEl.classList.remove('desktop-animations');
   } else {
-    // Small delay to allow the DOM to stabilize before enabling animations
-    setTimeout(() => {
-      htmlEl.classList.remove('no-animate');
-    }, 100);
+    // For desktop, ensure full animations are enabled
+    htmlEl.classList.add('desktop-animations');
+    htmlEl.classList.remove('mobile-animations');
   }
 };
 
-// Initial setup - disable animations initially to prevent flashing
+// Initial setup - add loading class to prevent flashing during initial render
 if (typeof window !== 'undefined') {
-  document.documentElement.classList.add('no-animate');
+  document.documentElement.classList.add('loading');
 }
 
 export function useIsMobile() {
@@ -28,9 +33,6 @@ export function useIsMobile() {
     // Set initial state immediately to prevent layout shift
     const initialMobile = window.innerWidth < MOBILE_BREAKPOINT;
     setIsMobile(initialMobile);
-    
-    // Always disable animations initially
-    document.documentElement.classList.add('no-animate');
     
     // Create the media query list
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)

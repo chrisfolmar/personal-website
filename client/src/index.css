@@ -98,8 +98,20 @@ html {
 }
 
 /* Intersection Observer animation classes */
-/* Base animation classes, applied when animations are enabled */
-html:not(.no-animate) .fade-in {
+/* Loading state - no animations, just show content immediately */
+html.loading .fade-in,
+html.loading .slide-in,
+html.loading .skill-item,
+html.loading .tool-item,
+html.loading .section-header {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+/* Desktop animations - full, smooth animations */
+html.desktop-animations .fade-in {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -107,12 +119,12 @@ html:not(.no-animate) .fade-in {
   will-change: opacity, transform;
 }
 
-html:not(.no-animate) .fade-in.animate-in {
+html.desktop-animations .fade-in.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-html:not(.no-animate) .slide-in {
+html.desktop-animations .slide-in {
   opacity: 0;
   transform: translateX(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -120,56 +132,83 @@ html:not(.no-animate) .slide-in {
   will-change: opacity, transform;
 }
 
-html:not(.no-animate) .slide-in.animate-in {
+html.desktop-animations .slide-in.animate-in {
   opacity: 1;
   transform: translateX(0);
 }
 
-html:not(.no-animate) .skill-item {
+html.desktop-animations .skill-item {
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   transition-delay: var(--animation-delay, 0s);
 }
 
-html:not(.no-animate) .skill-item.animate-in {
+html.desktop-animations .skill-item.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-html:not(.no-animate) .tool-item {
+html.desktop-animations .tool-item {
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   transition-delay: var(--animation-delay, 0s);
 }
 
-html:not(.no-animate) .tool-item.animate-in {
+html.desktop-animations .tool-item.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-html:not(.no-animate) .section-header {
+html.desktop-animations .section-header {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   transition-delay: var(--animation-delay, 0s);
 }
 
-html:not(.no-animate) .section-header.animate-in {
+html.desktop-animations .section-header.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* When animations are disabled, show all elements immediately */
-html.no-animate .fade-in,
-html.no-animate .slide-in,
-html.no-animate .skill-item,
-html.no-animate .tool-item,
-html.no-animate .section-header {
+/* Mobile animations - subtle, performance-optimized animations */
+html.mobile-animations .fade-in {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  transition-delay: var(--animation-delay, 0s);
+  will-change: opacity;
+}
+
+html.mobile-animations .fade-in.animate-in {
   opacity: 1;
-  transform: none;
-  transition: none;
+}
+
+html.mobile-animations .slide-in {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  transition-delay: var(--animation-delay, 0s);
+  will-change: opacity;
+}
+
+html.mobile-animations .slide-in.animate-in {
+  opacity: 1;
+}
+
+html.mobile-animations .skill-item, 
+html.mobile-animations .tool-item,
+html.mobile-animations .section-header {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  transition-delay: var(--animation-delay, 0s);
+  will-change: opacity;
+}
+
+html.mobile-animations .skill-item.animate-in,
+html.mobile-animations .tool-item.animate-in,
+html.mobile-animations .section-header.animate-in {
+  opacity: 1;
 }
 
 /* Respect user preference for reduced motion */

@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertMessageSchema } from "@shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
+import { sendContactFormEmail } from "./mail-service";
 
 // Simple in-memory rate limiter
 const rateLimiter = {
@@ -114,13 +115,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
-      // Store the message - implement email notification here in the future if needed
+      // Store the message in the database
       const message = await storage.createMessage(validatedData);
+      
+      // Send email notification
+      const emailSent = await sendContactFormEmail(message);
       
       // Return success but don't send back the full message data for security
       res.status(201).json({ 
         success: true, 
-        message: "Message received successfully",
+        message: emailSent 
+          ? "Message received successfully and email notification sent" 
+          : "Message received successfully, but email notification could not be sent",
         id: message.id
       });
     } catch (error) {

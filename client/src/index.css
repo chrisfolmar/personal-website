@@ -110,8 +110,9 @@ html.loading .section-header {
   will-change: auto !important;
 }
 
+/* ==== DESKTOP DEVICE STYLING ==== */
 /* Desktop animations - full, smooth animations */
-html.desktop-animations .fade-in {
+html.desktop-device .fade-in {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -119,12 +120,12 @@ html.desktop-animations .fade-in {
   will-change: opacity, transform;
 }
 
-html.desktop-animations .fade-in.animate-in {
+html.desktop-device .fade-in.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-html.desktop-animations .slide-in {
+html.desktop-device .slide-in {
   opacity: 0;
   transform: translateX(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -132,83 +133,95 @@ html.desktop-animations .slide-in {
   will-change: opacity, transform;
 }
 
-html.desktop-animations .slide-in.animate-in {
+html.desktop-device .slide-in.animate-in {
   opacity: 1;
   transform: translateX(0);
 }
 
-html.desktop-animations .skill-item {
+html.desktop-device .skill-item {
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   transition-delay: var(--animation-delay, 0s);
 }
 
-html.desktop-animations .skill-item.animate-in {
+html.desktop-device .skill-item.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-html.desktop-animations .tool-item {
+html.desktop-device .tool-item {
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   transition-delay: var(--animation-delay, 0s);
 }
 
-html.desktop-animations .tool-item.animate-in {
+html.desktop-device .tool-item.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-html.desktop-animations .section-header {
+html.desktop-device .section-header {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   transition-delay: var(--animation-delay, 0s);
 }
 
-html.desktop-animations .section-header.animate-in {
+html.desktop-device .section-header.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Mobile animations - subtle, performance-optimized animations */
-html.mobile-animations .fade-in {
+/* ==== TABLET DEVICE STYLING ==== */
+/* Tablet animations - simpler animations for better performance */
+html.tablet-device .fade-in {
   opacity: 0;
-  transition: opacity 0.4s ease-out;
+  transform: translateY(10px); /* Smaller transform for better performance */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   transition-delay: var(--animation-delay, 0s);
   will-change: opacity;
 }
 
-html.mobile-animations .fade-in.animate-in {
+html.tablet-device .fade-in.animate-in {
   opacity: 1;
+  transform: translateY(0);
 }
 
-html.mobile-animations .slide-in {
+html.tablet-device .slide-in {
   opacity: 0;
-  transition: opacity 0.4s ease-out;
+  transform: translateX(10px); /* Smaller transform for better performance */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   transition-delay: var(--animation-delay, 0s);
   will-change: opacity;
 }
 
-html.mobile-animations .slide-in.animate-in {
+html.tablet-device .slide-in.animate-in {
   opacity: 1;
+  transform: translateX(0);
 }
 
-html.mobile-animations .skill-item, 
-html.mobile-animations .tool-item,
-html.mobile-animations .section-header {
-  opacity: 0;
-  transition: opacity 0.4s ease-out;
-  transition-delay: var(--animation-delay, 0s);
-  will-change: opacity;
+/* Tablet devices use static components for these to prevent flashing */
+html.tablet-device .skill-item, 
+html.tablet-device .tool-item,
+html.tablet-device .section-header {
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 
-html.mobile-animations .skill-item.animate-in,
-html.mobile-animations .tool-item.animate-in,
-html.mobile-animations .section-header.animate-in {
+/* ==== MOBILE DEVICE STYLING ==== */
+/* Mobile animations - no transforms, only opacity for best performance */
+html.mobile-device .fade-in,
+html.mobile-device .slide-in,
+html.mobile-device .skill-item, 
+html.mobile-device .tool-item,
+html.mobile-device .section-header {
   opacity: 1;
+  transform: none;
+  transition: none;
+  will-change: auto;
 }
 
 /* Respect user preference for reduced motion */

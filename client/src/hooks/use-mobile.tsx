@@ -1,23 +1,24 @@
 import * as React from "react"
 
-const MOBILE_BREAKPOINT = 768
+// Define breakpoints for different device sizes
+const MOBILE_BREAKPOINT = 480
+const TABLET_BREAKPOINT = 1024
 
-// Apply/remove animation classes to the html element based on mobile state
-const updateAnimationClass = (isMobile: boolean) => {
+// Device type enum for better type safety
+export type DeviceType = 'mobile' | 'tablet' | 'desktop';
+
+// Apply animation classes based on device type
+const updateAnimationClass = (deviceType: DeviceType) => {
   const htmlEl = document.documentElement;
   
   // Always remove the temporary loading state
   htmlEl.classList.remove('loading');
   
-  if (isMobile) {
-    // For mobile, add a mobile-optimized class instead of disabling animations entirely
-    htmlEl.classList.add('mobile-animations');
-    htmlEl.classList.remove('desktop-animations');
-  } else {
-    // For desktop, ensure full animations are enabled
-    htmlEl.classList.add('desktop-animations');
-    htmlEl.classList.remove('mobile-animations');
-  }
+  // Remove all device-specific classes first
+  htmlEl.classList.remove('mobile-device', 'tablet-device', 'desktop-device');
+  
+  // Add the appropriate class for the current device
+  htmlEl.classList.add(`${deviceType}-device`);
 };
 
 // Initial setup - add loading class to prevent flashing during initial render
@@ -25,40 +26,67 @@ if (typeof window !== 'undefined') {
   document.documentElement.classList.add('loading');
 }
 
-export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
-  const firstRenderRef = React.useRef(true);
+// Detect current device type based on window width
+function detectDeviceType(): DeviceType {
+  if (typeof window === 'undefined') return 'desktop'; // SSR fallback
+  
+  const width = window.innerWidth;
+  if (width < MOBILE_BREAKPOINT) return 'mobile';
+  if (width < TABLET_BREAKPOINT) return 'tablet';
+  return 'desktop';
+}
 
+// Hook to check if the current device is mobile
+export function useIsMobile() {
+  const [isMobile, setIsMobile] = React.useState<boolean>(false);
+  
   React.useEffect(() => {
-    // Set initial state immediately to prevent layout shift
-    const initialMobile = window.innerWidth < MOBILE_BREAKPOINT;
-    setIsMobile(initialMobile);
+    const checkMobile = () => {
+      const deviceType = detectDeviceType();
+      setIsMobile(deviceType === 'mobile');
+    };
     
-    // Create the media query list
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
+    // Check immediately
+    checkMobile();
     
-    // Handler for changes to the media query
-    const onChange = () => {
-      const newIsMobile = window.innerWidth < MOBILE_BREAKPOINT;
-      setIsMobile(newIsMobile);
-      updateAnimationClass(newIsMobile);
-    }
+    // Set up listener for window resize
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  return isMobile;
+}
+
+// Hook to get the current device type (mobile, tablet, desktop)
+export function useDeviceType() {
+  const [deviceType, setDeviceType] = React.useState<DeviceType>('desktop');
+  const firstRenderRef = React.useRef(true);
+  
+  React.useEffect(() => {
+    const initialDeviceType = detectDeviceType();
+    setDeviceType(initialDeviceType);
     
-    // Add listener
-    mql.addEventListener("change", onChange)
+    const checkDeviceType = () => {
+      const newDeviceType = detectDeviceType();
+      setDeviceType(newDeviceType);
+      updateAnimationClass(newDeviceType);
+    };
+    
+    // Set up listener for window resize
+    window.addEventListener('resize', checkDeviceType);
     
     // Enable animations after a delay to allow initial rendering to complete
     const enableAnimationsTimeout = setTimeout(() => {
-      updateAnimationClass(initialMobile);
+      updateAnimationClass(initialDeviceType);
       firstRenderRef.current = false;
     }, 500);
     
     // Cleanup
     return () => {
-      mql.removeEventListener("change", onChange);
+      window.removeEventListener('resize', checkDeviceType);
       clearTimeout(enableAnimationsTimeout);
-    }
-  }, [])
-
-  return !!isMobile
+    };
+  }, []);
+  
+  return deviceType;
 }

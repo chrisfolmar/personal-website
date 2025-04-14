@@ -2,7 +2,7 @@ import { experiences } from "@/lib/data";
 import SectionHeading from "@/components/ui/section-heading";
 import TimelineItem from "@/components/ui/timeline-item";
 import { ArrowRight } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useDeviceType, DeviceType } from "@/hooks/use-mobile";
 import { memo } from "react";
 
 // Simple static timeline item for mobile devices
@@ -33,7 +33,40 @@ const StaticTimelineItem = memo(({
 });
 
 export default function About() {
-  const isMobile = useIsMobile();
+  const deviceType = useDeviceType();
+  
+  // Helper function to render timeline items based on device type
+  const renderTimelineItems = (deviceType: DeviceType) => {
+    switch (deviceType) {
+      case 'mobile':
+      case 'tablet':
+        // Static timeline items for mobile and tablet to prevent flashing
+        return experiences.map((experience, index) => (
+          <StaticTimelineItem
+            key={index}
+            title={experience.title}
+            company={experience.company}
+            period={experience.period}
+            description={experience.description}
+            isLast={index === experiences.length - 1}
+          />
+        ));
+      case 'desktop':
+      default:
+        // Animated timeline items for desktop
+        return experiences.map((experience, index) => (
+          <TimelineItem
+            key={index}
+            title={experience.title}
+            company={experience.company}
+            period={experience.period}
+            description={experience.description}
+            isLast={index === experiences.length - 1}
+            index={index}
+          />
+        ));
+    }
+  };
   
   return (
     <section id="about" className="py-24 bg-gradient">
@@ -89,33 +122,8 @@ export default function About() {
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8">
               <h3 className="text-2xl font-bold mb-6">Professional Experience</h3>
               
-              {/* Render different Timeline components based on device */}
-              {isMobile ? (
-                /* Static Timeline Items for Mobile */
-                experiences.map((experience, index) => (
-                  <StaticTimelineItem
-                    key={index}
-                    title={experience.title}
-                    company={experience.company}
-                    period={experience.period}
-                    description={experience.description}
-                    isLast={index === experiences.length - 1}
-                  />
-                ))
-              ) : (
-                /* Animated Timeline Items for Desktop */
-                experiences.map((experience, index) => (
-                  <TimelineItem
-                    key={index}
-                    title={experience.title}
-                    company={experience.company}
-                    period={experience.period}
-                    description={experience.description}
-                    isLast={index === experiences.length - 1}
-                    index={index}
-                  />
-                ))
-              )}
+              {/* Render timeline items based on device type */}
+              {renderTimelineItems(deviceType)}
               
               <div className="flex justify-center mt-8">
                 <a href="https://www.linkedin.com/in/clfolmar" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:text-primary-dark transition-colors font-medium">

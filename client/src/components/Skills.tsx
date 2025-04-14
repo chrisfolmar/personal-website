@@ -3,7 +3,7 @@ import { skills, tools } from "@/lib/data";
 import SectionHeading from "@/components/ui/section-heading";
 import ProgressBar from "@/components/ProgressBar";
 import SkillCard from "@/components/ui/skill-card";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useDeviceType, DeviceType } from "@/hooks/use-mobile";
 
 // CSS-only animated skill item
 const SkillItem = memo(({ skill, index }: { skill: typeof skills[0], index: number }) => {
@@ -104,7 +104,7 @@ const StaticToolsGrid = memo(() => {
 
 // Main Skills component with CSS animations
 const Skills = () => {
-  const isMobile = useIsMobile();
+  const deviceType = useDeviceType();
   
   // Memoize the skills list to prevent unnecessary re-renders
   const skillsList = useMemo(() => {
@@ -112,6 +112,20 @@ const Skills = () => {
       <SkillItem key={index} skill={skill} index={index} />
     ));
   }, []);
+
+  // Function to get the appropriate tools grid based on device type
+  const getToolsGrid = (deviceType: DeviceType) => {
+    switch (deviceType) {
+      case 'mobile':
+      case 'tablet':
+        // For mobile and tablet, use static grid to prevent flashing
+        return <StaticToolsGrid />;
+      case 'desktop':
+      default:
+        // For desktop, use animated grid
+        return <ToolsGrid />;
+    }
+  };
 
   return (
     <section id="skills" className="py-24 bg-white dark:bg-gray-900">
@@ -159,12 +173,8 @@ const Skills = () => {
               </div>
             </h3>
             
-            {/* Use different components for mobile and desktop */}
-            {isMobile ? (
-              <StaticToolsGrid />
-            ) : (
-              <ToolsGrid />
-            )}
+            {/* Render the appropriate tools grid based on device type */}
+            {getToolsGrid(deviceType)}
           </div>
         </div>
       </div>

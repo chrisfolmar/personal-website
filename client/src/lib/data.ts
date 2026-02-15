@@ -308,6 +308,161 @@ export const testimonials = [
 
 export const blogPosts = [
   {
+    id: 8,
+    title: "Why I Stopped Recommending WordPress: The Rise of AI-Powered Web Development",
+    excerpt: "After years of building WordPress sites for small businesses, I've completely changed my approach. Agentic coding tools like Claude Code, Replit, and Gemini have made it possible to build better websites faster — without the $300+ annual license fees.",
+    date: "2026-02-10",
+    coverImage: "/images/blog/ai-web-development.png",
+    category: "Technology",
+    readTime: "7 min read",
+    content: `
+      <p>For nearly a decade, WordPress was my go-to recommendation for small business clients. It was flexible, widely supported, and clients could manage their own content. But over the past year, something has fundamentally shifted in how websites get built — and I can no longer recommend WordPress with a straight face.</p>
+
+      <h3>The WordPress Problem Nobody Talks About</h3>
+      <p>Let's be honest about the real cost of running a WordPress site in 2026:</p>
+      <ul>
+        <li><strong>Business-class hosting:</strong> $300+ per year just for the license and managed hosting</li>
+        <li><strong>Premium plugins:</strong> $50-200 each for essential functionality like forms, SEO, and security</li>
+        <li><strong>Theme licenses:</strong> $60-100 annually for a professional theme</li>
+        <li><strong>Ongoing maintenance:</strong> Constant updates to WordPress core, plugins, and PHP versions to avoid security vulnerabilities</li>
+        <li><strong>Performance overhead:</strong> WordPress sites are notoriously slow without expensive caching plugins and CDN configurations</li>
+      </ul>
+      <p>For a small business, you're easily looking at $500-1,000+ per year before you even factor in development time. And if a plugin breaks after an update? That's an emergency call to your developer.</p>
+
+      <h3>Enter the Agentic Coding Revolution</h3>
+      <p>In 2025, a new category of tools emerged that completely changed the equation: agentic coding assistants. Tools like <strong>Claude Code</strong>, <strong>Replit Agent</strong>, and <strong>Google's Gemini</strong> can now build production-ready websites through natural language conversation.</p>
+
+      <p>Here's what that means in practice: instead of wrestling with WordPress themes, plugin conflicts, and PHP errors, you can describe what you want in plain English and get a modern, fast, custom website built in hours instead of weeks.</p>
+
+      <h3>What I've Built with AI Tools</h3>
+      <p>This very portfolio site you're reading right now was built using Replit's agentic coding tools. It features:</p>
+      <ul>
+        <li>A custom React frontend with smooth animations and responsive design</li>
+        <li>Server-side form handling with spam protection</li>
+        <li>SEO optimization with dynamic meta tags and structured data</li>
+        <li>Performance that scores 90+ on Lighthouse — something WordPress sites rarely achieve without significant optimization</li>
+      </ul>
+      <p>The total annual hosting cost? Under $20. No plugin licenses. No security patches to worry about. No database bloat slowing things down.</p>
+
+      <h3>But Can Regular People Use These Tools?</h3>
+      <p>This is the question I get most often, and the answer is increasingly yes. You don't need to be a developer to use tools like Replit Agent. You can literally tell it "add a new section for my menu" or "change the color scheme to match my brand" and it handles the code for you.</p>
+      <p>For my clients who need truly hands-off management, the workflow is simple:</p>
+      <ul>
+        <li>Content lives in a structured data file — edit it like you'd edit a document</li>
+        <li>Images go in a folder — drag and drop</li>
+        <li>Need a new feature? Describe it in plain English and the AI builds it</li>
+      </ul>
+
+      <h3>The Domain and Hosting Question</h3>
+      <p>One concern I hear is "but where do I host it?" The answer is simpler than ever. Services like <strong>Squarespace Domains</strong>, <strong>GoDaddy</strong>, or <strong>Namecheap</strong> let you register your custom domain for $10-15/year. Then you point it to wherever your site is hosted — Replit, Vercel, Netlify, or any modern platform. Many of these platforms offer free or near-free hosting for personal and small business sites.</p>
+      <p>Compare that to WordPress's managed hosting at $25-50/month and the choice becomes obvious.</p>
+
+      <h3>When WordPress Still Makes Sense</h3>
+      <p>I want to be fair — WordPress isn't dead, and there are still cases where it makes sense:</p>
+      <ul>
+        <li>Large content teams that need a traditional CMS workflow</li>
+        <li>Complex e-commerce with thousands of products (though Shopify often wins here too)</li>
+        <li>Organizations deeply invested in the WordPress ecosystem with custom integrations</li>
+      </ul>
+      <p>But for the small businesses I work with — restaurants, therapists, local service providers — the overhead of WordPress is no longer justified when better, cheaper, faster alternatives exist.</p>
+
+      <h3>My Updated Recommendation</h3>
+      <p>If you're a small business owner considering a new website or thinking about your next redesign, here's my honest advice: skip WordPress. Use an AI-powered tool to build exactly what you need, host it cheaply, and spend the money you save on actually growing your business. The $300+ you'd spend on a WordPress business license alone could fund your entire web presence for years on a modern platform.</p>
+      <p>The future of small business web development isn't about content management systems — it's about AI tools that put the power directly in your hands.</p>
+    `
+  },
+  {
+    id: 7,
+    title: "A Practical Guide to Building Your Own Website with AI Coding Tools in 2026",
+    excerpt: "Step-by-step look at how non-developers can use Claude Code, Replit Agent, and Gemini to build professional websites without WordPress or expensive developers.",
+    date: "2026-01-20",
+    coverImage: "/images/blog/ai-tools-guide.png",
+    category: "Tutorial",
+    readTime: "9 min read",
+    content: `
+      <p>A year ago, if a client asked me how to build their own website, I'd point them to WordPress and wish them luck with the learning curve. Today, I point them to an AI coding assistant and watch them build something better in an afternoon. Here's a practical look at the tools that have changed everything.</p>
+
+      <h3>The Three Tools That Changed the Game</h3>
+
+      <h4>Replit Agent</h4>
+      <p><strong>Best for:</strong> Complete beginners who want an all-in-one experience</p>
+      <p>Replit Agent is the closest thing to "describe what you want and get a website." You open Replit, start a conversation with the Agent, and describe your website. It builds the entire thing — frontend, backend, database — and deploys it for you. You can iterate by just talking to it: "make the header bigger," "add a contact form," "change the font to something more professional."</p>
+      <p>What makes Replit special is that everything happens in one place. You don't need to set up a development environment, figure out deployment, or manage hosting separately. It handles all of that. For small business owners who just want a website that works, this is the path of least resistance.</p>
+
+      <h4>Claude Code</h4>
+      <p><strong>Best for:</strong> People with some technical comfort who want maximum control</p>
+      <p>Anthropic's Claude Code works directly in your terminal, reading and writing files on your computer. It's like having a senior developer sitting next to you. You describe what you want, it writes the code, and you can review every line before it goes live.</p>
+      <p>I've used Claude Code extensively for client projects, and what impresses me most is its ability to understand context. You can say "look at my existing site and rebuild it with modern tech" and it will analyze your current site, understand the structure, and create something new that preserves what worked while upgrading everything else.</p>
+
+      <h4>Google Gemini</h4>
+      <p><strong>Best for:</strong> Those already in Google's ecosystem who want AI-assisted development</p>
+      <p>Gemini's coding capabilities have improved dramatically, especially when integrated with Google's development tools. It excels at understanding design intent and can generate clean, well-structured code from descriptions or even screenshots of designs you like.</p>
+
+      <h3>The Real-World Workflow</h3>
+      <p>Here's what building a small business website actually looks like with these tools in 2026:</p>
+
+      <h4>Step 1: Describe Your Vision (15 minutes)</h4>
+      <p>Open your AI tool of choice and describe what you need. Be specific about your business, your brand colors, what information you want to show, and any functionality you need (contact forms, menus, booking systems, etc.). The more detail you provide, the better the result.</p>
+
+      <h4>Step 2: Review and Iterate (1-2 hours)</h4>
+      <p>The AI will generate a complete website. Look through it, identify what you like and what needs changing, and tell the AI what to adjust. This back-and-forth is where the magic happens — each iteration gets you closer to exactly what you want.</p>
+
+      <h4>Step 3: Add Your Content (1-2 hours)</h4>
+      <p>Replace placeholder text with your actual business information. Add your real photos, update your services, write your about page. The AI can help with copywriting too — just ask it to "write a compelling about page for a family therapist in Boston" and you'll get a solid starting point.</p>
+
+      <h4>Step 4: Get Your Domain (10 minutes)</h4>
+      <p>Head to GoDaddy, Squarespace Domains, Namecheap, or any registrar and grab your business domain. Expect to pay $10-15 per year. Most AI platforms will walk you through connecting your custom domain to your hosted site.</p>
+
+      <h4>Step 5: Go Live (5 minutes)</h4>
+      <p>Deploy your site. On Replit, it's literally clicking a "Publish" button. On other platforms, it might involve a simple command. Either way, your site is live and accessible to the world.</p>
+
+      <h3>Cost Comparison: The Numbers Don't Lie</h3>
+      <p>Let's compare the annual cost of running a small business website:</p>
+
+      <p><strong>WordPress (Traditional):</strong></p>
+      <ul>
+        <li>Managed hosting: $300-600/year</li>
+        <li>Premium theme: $60-100/year</li>
+        <li>Essential plugins: $100-300/year</li>
+        <li>SSL certificate: Often included, sometimes $50-100/year</li>
+        <li>Developer maintenance: $500-2,000/year</li>
+        <li><strong>Total: $960 - $3,100/year</strong></li>
+      </ul>
+
+      <p><strong>AI-Built Modern Website:</strong></p>
+      <ul>
+        <li>Domain registration: $10-15/year</li>
+        <li>Hosting (Replit, Vercel, or Netlify): $0-20/month</li>
+        <li>AI tool subscription: $0-20/month (many have free tiers)</li>
+        <li>Developer maintenance: $0 (you can ask the AI to fix things)</li>
+        <li><strong>Total: $10 - $420/year</strong></li>
+      </ul>
+
+      <p>Even at the high end, you're saving hundreds of dollars annually. At the low end, your entire web presence costs less than a single month of WordPress hosting.</p>
+
+      <h3>What About Updates and Maintenance?</h3>
+      <p>This is where AI tools truly shine compared to WordPress. With WordPress, you're constantly updating:</p>
+      <ul>
+        <li>WordPress core (monthly)</li>
+        <li>PHP versions (periodically, often breaking things)</li>
+        <li>Plugin updates (weekly, sometimes causing conflicts)</li>
+        <li>Theme updates (monthly)</li>
+        <li>Security patches (urgent, unpredictable)</li>
+      </ul>
+      <p>With a modern AI-built site, there are no plugins to update, no CMS core to patch, and no database to optimize. Need to change something? Open your AI tool and describe the change. It's that simple.</p>
+
+      <h3>My Advice for Getting Started</h3>
+      <p>If you're ready to try this approach, here's what I suggest:</p>
+      <ul>
+        <li><strong>Start with Replit Agent</strong> if you want the easiest experience with built-in hosting</li>
+        <li><strong>Try Claude Code</strong> if you're comfortable with a terminal and want more control</li>
+        <li><strong>Use Gemini</strong> if you're already deep in Google's ecosystem</li>
+        <li><strong>Don't overthink it</strong> — you can always iterate and improve later</li>
+      </ul>
+      <p>The barrier to having a professional web presence has never been lower. The tools are here, they're affordable, and they're only getting better. If you've been putting off building a website because of cost or complexity, now is the time to jump in.</p>
+    `
+  },
+  {
     id: 6,
     title: "Elevating Your Team Through Effective Feedback",
     excerpt: "Insights from my experience as a Technical Lead at Fullscript on how to build a culture of constructive feedback that drives team growth and improves software quality.",

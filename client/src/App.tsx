@@ -16,6 +16,7 @@ import Footer from "@/components/Footer";
 import NotFound from "@/pages/not-found";
 import BlogPost from "@/pages/blog-post";
 import ProjectDetail from "@/pages/project-detail";
+import Sitemap from "@/pages/sitemap";
 
 function HomePage() {
   return (
@@ -41,6 +42,7 @@ function App() {
             <Route path="/" component={HomePage} />
             <Route path="/blog/:id" component={BlogPost} />
             <Route path="/project/:id" component={ProjectDetail} />
+            <Route path="/sitemap" component={Sitemap} />
             <Route component={NotFound} />
           </Switch>
           <Footer />

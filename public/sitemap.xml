@@ -1,82 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage -->
   <url>
     <loc>https://www.chrisfolmar.com/</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2026-02-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
-  <!-- Alternate domain -->
   <url>
     <loc>https://www.cfolmar.com/</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2026-02-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
-  <!-- Blog posts -->
   <url>
-    <loc>https://www.chrisfolmar.com/blog/1</loc>
-    <lastmod>2025-04-10</lastmod>
+    <loc>https://www.chrisfolmar.com/blog/8</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.chrisfolmar.com/blog/2</loc>
-    <lastmod>2025-04-10</lastmod>
+    <loc>https://www.chrisfolmar.com/blog/7</loc>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.chrisfolmar.com/blog/3</loc>
-    <lastmod>2025-04-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.chrisfolmar.com/blog/4</loc>
-    <lastmod>2025-04-10</lastmod>
+    <loc>https://www.chrisfolmar.com/blog/6</loc>
+    <lastmod>2024-04-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.chrisfolmar.com/blog/5</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2024-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chrisfolmar.com/blog/4</loc>
+    <lastmod>2024-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chrisfolmar.com/blog/3</loc>
+    <lastmod>2024-02-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chrisfolmar.com/blog/2</loc>
+    <lastmod>2023-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chrisfolmar.com/blog/1</loc>
+    <lastmod>2023-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Project details -->
   <url>
-    <loc>https://www.chrisfolmar.com/projects/1</loc>
-    <lastmod>2025-04-10</lastmod>
+    <loc>https://www.chrisfolmar.com/project/portfolio-website-personal-showcase</loc>
+    <lastmod>2025-04-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chrisfolmar.com/projects/2</loc>
-    <lastmod>2025-04-10</lastmod>
+    <loc>https://www.chrisfolmar.com/project/jennifer-mello-licsw-trauma-therapy</loc>
+    <lastmod>2023-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chrisfolmar.com/projects/3</loc>
-    <lastmod>2025-04-10</lastmod>
+    <loc>https://www.chrisfolmar.com/project/amy-cousineau-licsw-multistate-therapy</loc>
+    <lastmod>2024-04-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chrisfolmar.com/projects/4</loc>
-    <lastmod>2025-04-10</lastmod>
+    <loc>https://www.chrisfolmar.com/project/locos-cocos-tacos-restaurant-website</loc>
+    <lastmod>2023-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chrisfolmar.com/projects/5</loc>
-    <lastmod>2025-04-10</lastmod>
+    <loc>https://www.chrisfolmar.com/project/slip-14-marina-waterfront-dining</loc>
+    <lastmod>2024-01-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.chrisfolmar.com/project/fullscript-healthcare-platform</loc>
+    <lastmod>2023-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.chrisfolmar.com/sitemap</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

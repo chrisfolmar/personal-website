@@ -121,24 +121,26 @@ function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
               className="text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" 
               aria-label="Visit live site"
               onClick={(e) => {
-                e.stopPropagation(); // Prevent triggering the card's onClick
+                e.stopPropagation();
               }}
             >
               <ExternalLink className="h-4 w-4" />
             </a>
             
-            <a 
-              href={project.codeLink} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" 
-              aria-label="View source code"
-              onClick={(e) => {
-                e.stopPropagation(); // Prevent triggering the card's onClick
-              }}
-            >
-              <Code className="h-4 w-4" />
-            </a>
+            {project.codeLink && project.codeLink !== "https://github.com/chrisfolmar" && (
+              <a 
+                href={project.codeLink} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" 
+                aria-label="View source code"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                <Code className="h-4 w-4" />
+              </a>
+            )}
           </div>
         </div>
       </div>

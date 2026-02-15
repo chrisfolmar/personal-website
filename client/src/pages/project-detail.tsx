@@ -205,7 +205,7 @@ export default function ProjectDetail() {
             </div>
             
             <div className="mt-12 grid grid-cols-1 gap-6">
-              {project.title.includes("Amy Cousineau") || project.title.includes("Jennifer Mello") || project.title.includes("Slip 14") || project.title.includes("Locos Cocos") ? (
+              {project.codeLink === "https://github.com/chrisfolmar" ? (
                 <a 
                   href={project.demoLink} 
                   target="_blank" 

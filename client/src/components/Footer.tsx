@@ -43,7 +43,7 @@ export default function Footer() {
               <span className="text-white">Chris</span>Folmar<span className="text-primary">.</span>
             </Link>
             <p className="mt-3 text-gray-400 max-w-md">
-              Creating professional websites that clients can easily maintain themselves. Committed to a "minimum cost, maximum support" model for small businesses and individuals.
+              Engineering Manager and technologist building high-performing teams and impactful solutions. Passionate about leveraging modern tools and AI to create better software.
             </p>
           </div>
           

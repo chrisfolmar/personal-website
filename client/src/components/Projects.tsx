@@ -75,7 +75,7 @@ function Projects() {
           </div>
           <SectionHeading
             title="Featured Projects"
-            description="Over the years, I've had the privilege of working with several amazing clients to create custom WordPress websites that meet their unique needs."
+            description="A selection of projects showcasing my work across enterprise platforms, client websites, and personal builds using modern web technologies."
           />
           <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Below are a few selected projects that demonstrate my approach to web development, focusing on high-quality design, user experience, and long-term usability.

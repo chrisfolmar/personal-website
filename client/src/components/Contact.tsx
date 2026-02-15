@@ -157,9 +157,6 @@ export default function Contact() {
     
     // Check if honeypot field is filled (should be empty)
     if (data.website && data.website.length > 0) {
-      // Silently reject the submission without alerting the bot
-      console.log("Honeypot triggered, submission silently rejected");
-      
       // Fake success response to fool bots
       setFormStatus('success');
       setTimeout(() => {

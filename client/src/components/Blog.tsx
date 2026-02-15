@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { useLocation } from 'wouter';
@@ -11,12 +11,12 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { formatDate } from '@/lib/utils';
 import LazyImage from "./LazyImage";
 
-// Sort blog posts by date (most recent first)
 const sortedBlogPosts = [...blogPosts].sort((a, b) => 
   new Date(b.date).getTime() - new Date(a.date).getTime()
 );
 
-// Blog post card component (memoized to prevent unnecessary re-renders)
+const VISIBLE_POSTS = 6;
+
 const BlogCard = ({ post, index, onClick }: { post: BlogPost; index: number; onClick: () => void }) => {
   return (
     <motion.div
@@ -26,12 +26,12 @@ const BlogCard = ({ post, index, onClick }: { post: BlogPost; index: number; onC
       transition={{ 
         duration: 0.3,
         ease: "easeOut", 
-        delay: index * 0.03, // Even more reduced delay
+        delay: index * 0.03,
       }}
       viewport={{ 
         once: true, 
         margin: '0px',
-        amount: 0.2 // Only trigger when 20% of element is visible
+        amount: 0.2
       }}
     >
       <Card 
@@ -82,10 +82,11 @@ const BlogCard = ({ post, index, onClick }: { post: BlogPost; index: number; onC
 export default function Blog() {
   const [, setLocation] = useLocation();
   
-  // Handle blog post click - memoized to prevent recreation on each render
   const handlePostClick = useCallback((postId: number) => {
     setLocation(`/blog/${postId}`);
   }, [setLocation]);
+
+  const visiblePosts = sortedBlogPosts.slice(0, VISIBLE_POSTS);
 
   return (
     <section id="blog" className="py-20">
@@ -102,7 +103,7 @@ export default function Blog() {
         </div>
         
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {sortedBlogPosts.map((post: BlogPost, index: number) => (
+          {visiblePosts.map((post: BlogPost, index: number) => (
             <BlogCard 
               key={post.id}
               post={post}
@@ -110,23 +111,6 @@ export default function Blog() {
               onClick={() => handlePostClick(post.id)}
             />
           ))}
-        </div>
-        
-        <div className="mt-12 text-center">
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="mt-8"
-            onClick={() => {
-              // Scroll to the blog section
-              const blogSection = document.getElementById('blog');
-              if (blogSection) {
-                blogSection.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-          >
-            View All Articles
-          </Button>
         </div>
       </div>
     </section>

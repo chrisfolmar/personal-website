@@ -8,13 +8,39 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import LazyImage from "@/components/LazyImage";
 
+function usePageMeta(title: string, description: string) {
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = title;
+
+    const setMeta = (name: string, content: string, attr = "name") => {
+      let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute(attr, name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+
+    setMeta("description", description);
+    setMeta("og:title", title, "property");
+    setMeta("og:description", description, "property");
+    setMeta("twitter:title", title, "property");
+    setMeta("twitter:description", description, "property");
+
+    return () => {
+      document.title = prevTitle;
+    };
+  }, [title, description]);
+}
+
 export default function ProjectDetail() {
   const [location, setLocation] = useLocation();
   const params = useParams();
   const projectId = params?.id || null;
   
   const project = projects.find(project => {
-    // Convert title to URL-friendly string
     const urlTitle = project.title
       .toLowerCase()
       .replace(/[^\w\s]/g, '')
@@ -22,33 +48,37 @@ export default function ProjectDetail() {
       
     return urlTitle === projectId;
   });
+
+  usePageMeta(
+    project ? `${project.title} | Chris Folmar` : "Project | Chris Folmar",
+    project ? project.description : "Project details by Chris Folmar"
+  );
   
   useEffect(() => {
-    console.log(`ProjectDetail component mounted/updated with projectId: ${projectId}`);
-    
     if (!projectId) {
-      console.warn("No project ID provided in URL, redirecting to not-found");
       setLocation("/not-found");
       return;
     }
     
     if (!project) {
-      console.warn(`Project with ID ${projectId} not found, redirecting to not-found`);
       setLocation("/not-found");
       return;
     }
     
-    // Scroll to top when component mounts or updates
     window.scrollTo(0, 0);
-    
-    console.log(`Successfully loaded project: "${project.title}"`);
   }, [projectId, project, setLocation]);
   
   if (!project) {
-    return null;
+    return (
+      <div className="py-20 min-h-screen flex items-center justify-center">
+        <div className="animate-pulse text-center">
+          <div className="h-8 w-48 bg-gray-200 dark:bg-gray-700 rounded mx-auto mb-4"></div>
+          <div className="h-4 w-32 bg-gray-200 dark:bg-gray-700 rounded mx-auto"></div>
+        </div>
+      </div>
+    );
   }
 
-  // Client information based on project title
   let clientInfo = "";
   let techStack = "";
   let challenge = "";
@@ -91,9 +121,7 @@ export default function ProjectDetail() {
         <Button 
           variant="ghost" 
           onClick={() => {
-            console.log("Navigating back to projects section");
             setLocation("/");
-            // Scroll to projects section after a short delay
             setTimeout(() => {
               const projectsSection = document.getElementById("projects");
               if (projectsSection) {
@@ -218,7 +246,6 @@ export default function ProjectDetail() {
                   .filter(p => p.title !== project.title)
                   .slice(0, 2)
                   .map((relatedProject, index) => {
-                    // Convert title to URL-friendly string
                     const urlTitle = relatedProject.title
                       .toLowerCase()
                       .replace(/[^\w\s]/g, '')
@@ -229,8 +256,6 @@ export default function ProjectDetail() {
                         key={index} 
                         className="group cursor-pointer"
                         onClick={() => {
-                          console.log(`Navigating to related project: ${urlTitle}`);
-                          // Force reload the page with the new project
                           window.scrollTo(0, 0);
                           setLocation(`/project/${urlTitle}`);
                         }}

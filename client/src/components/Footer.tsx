@@ -2,24 +2,26 @@ import { Link, useLocation } from "wouter";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   
-  // Check if we're on the home page
   const isHomePage = location === "/";
 
-  // Function to handle navigation that works on all pages
   const navigateToSection = (sectionId: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     
     if (isHomePage) {
-      // If on home page, scroll to the section
       const section = document.getElementById(sectionId);
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // If on another page, navigate to homepage + section
-      window.location.href = `/#${sectionId}`;
+      setLocation("/");
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
     }
   };
 
@@ -56,32 +58,16 @@ export default function Footer() {
                 )}
               </li>
               <li>
-                {isHomePage ? (
-                  <a href="#about" onClick={navigateToSection("about")} className="text-gray-400 hover:text-primary transition-colors">About</a>
-                ) : (
-                  <Link to="/#about" className="text-gray-400 hover:text-primary transition-colors">About</Link>
-                )}
+                <a href="#about" onClick={navigateToSection("about")} className="text-gray-400 hover:text-primary transition-colors">About</a>
               </li>
               <li>
-                {isHomePage ? (
-                  <a href="#skills" onClick={navigateToSection("skills")} className="text-gray-400 hover:text-primary transition-colors">Skills</a>
-                ) : (
-                  <Link to="/#skills" className="text-gray-400 hover:text-primary transition-colors">Skills</Link>
-                )}
+                <a href="#skills" onClick={navigateToSection("skills")} className="text-gray-400 hover:text-primary transition-colors">Skills</a>
               </li>
               <li>
-                {isHomePage ? (
-                  <a href="#projects" onClick={navigateToSection("projects")} className="text-gray-400 hover:text-primary transition-colors">Projects</a>
-                ) : (
-                  <Link to="/#projects" className="text-gray-400 hover:text-primary transition-colors">Projects</Link>
-                )}
+                <a href="#projects" onClick={navigateToSection("projects")} className="text-gray-400 hover:text-primary transition-colors">Projects</a>
               </li>
               <li>
-                {isHomePage ? (
-                  <a href="#contact" onClick={navigateToSection("contact")} className="text-gray-400 hover:text-primary transition-colors">Contact</a>
-                ) : (
-                  <Link to="/#contact" className="text-gray-400 hover:text-primary transition-colors">Contact</Link>
-                )}
+                <a href="#contact" onClick={navigateToSection("contact")} className="text-gray-400 hover:text-primary transition-colors">Contact</a>
               </li>
             </ul>
           </div>
@@ -93,8 +79,8 @@ export default function Footer() {
           </p>
           <div className="text-gray-400 text-sm mt-4 sm:mt-0 flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
             <p>Designed and built with passion</p>
-            <span className="hidden sm:inline">•</span>
-            <a href="/sitemap" className="hover:text-primary transition-colors">Sitemap</a>
+            <span className="hidden sm:inline">&bull;</span>
+            <Link to="/sitemap" className="hover:text-primary transition-colors">Sitemap</Link>
           </div>
         </div>
       </div>

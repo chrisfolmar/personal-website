@@ -33,9 +33,7 @@ export default function Hero() {
       try {
         await Promise.all(promises);
         setImagesPreloaded(true);
-      } catch (error) {
-        console.error("Failed to preload images", error);
-        // Still mark as preloaded to prevent hanging
+      } catch {
         setImagesPreloaded(true);
       }
     };
@@ -113,8 +111,7 @@ export default function Hero() {
                     loading="eager" 
                     decoding="async"
                     onError={(e) => {
-                      console.error("Failed to load profile image", e);
-                      e.currentTarget.src = profileImages[0]; // Fallback to first image
+                      e.currentTarget.src = profileImages[0];
                     }}
                     style={{
                       transition: 'opacity 0.5s ease-in-out',

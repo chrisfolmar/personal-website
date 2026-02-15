@@ -1,16 +1,21 @@
 import { useRef, useEffect } from "react";
+import { useDeviceType } from "@/hooks/use-mobile";
 
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const deviceType = useDeviceType();
+  
+  const shouldAnimate = deviceType === 'desktop';
   
   useEffect(() => {
+    if (!shouldAnimate) return;
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
     
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     
-    // Set canvas dimensions
     const setCanvasDimensions = () => {
       if (canvas) {
         canvas.width = window.innerWidth;
@@ -20,7 +25,6 @@ export default function ParticleBackground() {
     
     setCanvasDimensions();
     
-    // Throttled resize handler to reduce performance impact
     let resizeTimeout: number | null = null;
     const handleResize = () => {
       if (resizeTimeout) window.clearTimeout(resizeTimeout);
@@ -29,7 +33,6 @@ export default function ParticleBackground() {
     
     window.addEventListener('resize', handleResize);
     
-    // Particle class
     class Particle {
       x: number;
       y: number;
@@ -73,18 +76,16 @@ export default function ParticleBackground() {
       }
     }
     
-    // Create particles - reduced count for better performance
     const particles: Particle[] = [];
-    const particleCount = Math.min(60, Math.floor(window.innerWidth / 25)); // Adaptive count based on screen size
+    const particleCount = Math.min(60, Math.floor(window.innerWidth / 25));
     
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
     
-    // Animation loop with frame limiting for better performance
     let animationFrameId: number;
     let lastTime = 0;
-    const fps = 30; // Limit to 30 FPS for better performance
+    const fps = 30;
     const fpsInterval = 1000 / fps;
     
     const animate = (timestamp: number) => {
@@ -109,13 +110,14 @@ export default function ParticleBackground() {
     
     animationFrameId = requestAnimationFrame(animate);
     
-    // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
       if (resizeTimeout) window.clearTimeout(resizeTimeout);
     };
-  }, []);
+  }, [shouldAnimate]);
+  
+  if (!shouldAnimate) return null;
   
   return (
     <canvas 

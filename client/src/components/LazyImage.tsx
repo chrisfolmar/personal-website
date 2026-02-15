@@ -73,9 +73,7 @@ export default function LazyImage({
   };
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    console.error(`Failed to load image: ${src}`);
     setError(true);
-    // Try without cache-busting first to avoid excessive reloads
     if (!e.currentTarget.src.includes('?v=')) {
       e.currentTarget.src = src + `?v=${Date.now()}`;
     }

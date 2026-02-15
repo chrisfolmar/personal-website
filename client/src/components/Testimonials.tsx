@@ -31,9 +31,7 @@ const LazyAvatar = memo(({ testimonial, getInitials }: {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleImageError = () => {
-    console.error(`Failed to load testimonial avatar: ${testimonial.avatar}`);
-  };
+  const handleImageError = () => {};
 
   return (
     <Avatar className="h-12 w-12 border-2 border-primary" ref={avatarRef}>

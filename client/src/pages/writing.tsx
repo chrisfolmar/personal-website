@@ -1,8 +1,12 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useLocation, useSearch } from "wouter";
 import SectionHeader from "@/components/SectionHeader";
 import WritingCard from "@/components/WritingCard";
 import { blogPosts } from "@/lib/data";
 import { getCanonicalURL, getSchemaData } from "@/lib/metadata/seo";
+import { cn } from "@/lib/utils";
+
+const ALL_CATEGORIES = "All";
 
 const WRITING_PATH = "/writing";
 const WRITING_TITLE = "Writing | Chris Folmar";
@@ -155,6 +159,58 @@ export default function WritingIndex() {
 
   useWritingIndexMeta(posts);
 
+  const categories = useMemo(() => {
+    const seen = new Set<string>();
+    const ordered: string[] = [];
+    for (const post of posts) {
+      if (!seen.has(post.category)) {
+        seen.add(post.category);
+        ordered.push(post.category);
+      }
+    }
+    return [ALL_CATEGORIES, ...ordered];
+  }, [posts]);
+
+  const search = useSearch();
+  const [, setLocation] = useLocation();
+
+  const initialCategory = useMemo(() => {
+    const params = new URLSearchParams(search);
+    const fromUrl = params.get("category");
+    if (fromUrl && categories.includes(fromUrl)) {
+      return fromUrl;
+    }
+    return ALL_CATEGORIES;
+  }, [search, categories]);
+
+  const [activeCategory, setActiveCategory] = useState<string>(initialCategory);
+
+  useEffect(() => {
+    setActiveCategory(initialCategory);
+  }, [initialCategory]);
+
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    const params = new URLSearchParams(search);
+    if (category === ALL_CATEGORIES) {
+      params.delete("category");
+    } else {
+      params.set("category", category);
+    }
+    const queryString = params.toString();
+    setLocation(queryString ? `${WRITING_PATH}?${queryString}` : WRITING_PATH, {
+      replace: true,
+    });
+  };
+
+  const filteredPosts = useMemo(
+    () =>
+      activeCategory === ALL_CATEGORIES
+        ? posts
+        : posts.filter((post) => post.category === activeCategory),
+    [posts, activeCategory],
+  );
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -168,20 +224,60 @@ export default function WritingIndex() {
           description="On AI-enabled operations, engineering leadership, business systems, and the small-business web work I keep on the side."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-          {posts.map((post, i) => (
-            <WritingCard
-              key={post.id}
-              id={post.id}
-              title={post.title}
-              excerpt={post.excerpt}
-              date={post.date}
-              readTime={post.readTime}
-              category={post.category}
-              delay={i * 0.05}
-            />
-          ))}
+        <div
+          className="mb-8 md:mb-10 flex flex-wrap gap-2"
+          role="group"
+          aria-label="Filter posts by category"
+          data-testid="writing-category-filters"
+        >
+          {categories.map((category) => {
+            const isActive = category === activeCategory;
+            return (
+              <button
+                key={category}
+                type="button"
+                onClick={() => handleCategoryChange(category)}
+                aria-pressed={isActive}
+                data-testid={`category-chip-${category
+                  .toLowerCase()
+                  .replace(/[^a-z0-9]+/g, "-")
+                  .replace(/^-|-$/g, "")}`}
+                className={cn(
+                  "inline-flex items-center rounded-full border px-3.5 py-1.5 text-xs md:text-sm font-medium transition-colors",
+                  isActive
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground",
+                )}
+              >
+                {category}
+              </button>
+            );
+          })}
         </div>
+
+        {filteredPosts.length === 0 ? (
+          <p
+            className="text-sm text-muted-foreground"
+            data-testid="writing-empty-state"
+          >
+            No posts in this category yet.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+            {filteredPosts.map((post, i) => (
+              <WritingCard
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                excerpt={post.excerpt}
+                date={post.date}
+                readTime={post.readTime}
+                category={post.category}
+                delay={i * 0.05}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

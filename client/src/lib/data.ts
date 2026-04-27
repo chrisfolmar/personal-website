@@ -63,7 +63,7 @@ export const skills: Skill[] = [
     name: "AI & Automation Implementation",
     percentage: 8/11*100, // 8 years out of 11 total
     years: 8,
-    description: "Spearheaded AI initiatives including ML-based document processing, ChatGPT integration for customer support, and analytical product data algorithms. Owned delivery of automation workflows saving over 1600 hours annually in operational time across departments.",
+    description: "Spearheaded AI initiatives including ML-based document processing, ChatGPT integration for customer support, and analytical product data algorithms. Built automation workflows that take repetitive operational work off teams' plates so they can spend more time on the work they actually want to do.",
   },
   {
     name: "Cross-functional Collaboration",
@@ -833,7 +833,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "team-gsd-ai-transformation",
     title: "Team GSD: AI-Enabled Workflow Transformation",
     summary:
-      "Standing up an AI-first operating model across five departments — saving 1,600+ hours annually and building the muscle for the next generation of work.",
+      "Standing up an AI-first operating model across five departments — taking the work people shouldn't have to do off their plates so they can spend more time on the work they actually want to do.",
     problem:
       "Operational teams across Finance, Customer Success, Catalog, Fulfillment, and Support were spending huge portions of their week on repetitive, low-leverage work — copy/paste between systems, manual reconciliation, drafting the same email a hundred different ways. Traditional automation projects were too slow and too narrow to keep up.",
     context:
@@ -852,7 +852,6 @@ export const caseStudies: CaseStudy[] = [
       "Cursor-based AI-assisted development standards",
     ],
     impact: [
-      { label: "Annual hours saved", value: "1,600+" },
       { label: "Operational time reduction across departments", value: "40%+" },
       { label: "Departments onboarded", value: "5" },
       { label: "Headcount added to deliver this", value: "0" },

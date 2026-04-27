@@ -88,7 +88,7 @@ function AITransformation() {
               copy/paste, the reconciliation, the one-hundredth version of the
               same email — and turn it into systems that just run. The goal isn't
               to replace anyone. It's to give every team back the time and the
-              focus to do the work that actually moves the business.
+              focus to do the work that actually moves Fullscript forward.
             </p>
           </motion.div>
 

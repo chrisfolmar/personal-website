@@ -98,7 +98,7 @@ export default function About() {
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8">
               <h3 className="text-2xl font-bold mb-6">Who I Am</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
-                <strong className="text-gray-800 dark:text-gray-200">Builder.</strong> I started out as a builder — freelance WordPress sites for restaurants and therapists, scripts to fix things that bugged me, side projects to learn the next thing. Shipping end-to-end for real people is still how I think about software.
+                <strong className="text-gray-800 dark:text-gray-200">Software Developer.</strong> I started my career as a software developer, shipping production code, learning systems end-to-end, and figuring out how the pieces actually fit together. On the side I picked up freelance WordPress work for restaurants and therapists, which kept me close to real users and the messy realities of running a small business. Shipping end-to-end for real people is still how I think about software.
               </p>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
                 <strong className="text-gray-800 dark:text-gray-200">Technical Lead.</strong> At Emerson Ecologics and then Fullscript, the work shifted from writing all the code to helping a group of engineers ship reliably and own their systems. I cared most about the operating model — how we plan, how we review, how we hand things off — because that was always the thing that broke first.
@@ -107,10 +107,10 @@ export default function About() {
                 <strong className="text-gray-800 dark:text-gray-200">Engineering Manager.</strong> Today I run three globally distributed teams at Fullscript. Less code, more leverage: hiring, coaching, performance, prioritization, and the unglamorous work of making sure the right things actually get done.
               </p>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
-                <strong className="text-gray-800 dark:text-gray-200">Business Systems Leader.</strong> My remit has expanded from product engineering into the systems behind the business — ERP, WMS, fulfillment, finance, and catalog. The job is making sure the systems that run the company keep up with the company.
+                <strong className="text-gray-800 dark:text-gray-200">Business Systems Leader.</strong> My remit has expanded from product engineering into the systems behind Fullscript — ERP, WMS, fulfillment, finance, and catalog. The job is making sure the systems that run my company keep up with where my company is going.
               </p>
               <p className="text-gray-600 dark:text-gray-400 mb-8">
-                <strong className="text-gray-800 dark:text-gray-200">AI Transformation / Team GSD Leader.</strong> Most of my recent energy has gone into AI-enabled workflows — automating away the work people shouldn't have to do, so teams can spend their time on the things that actually move the business. I'm building the muscle for AI-first operations across five departments.
+                <strong className="text-gray-800 dark:text-gray-200">AI Transformation / Team GSD Leader.</strong> Most of my recent energy has gone into AI-enabled workflows — automating away the work people shouldn't have to do, so teams can spend their time on the things that actually move Fullscript forward. I'm building the muscle for AI-first operations across five departments.
               </p>
 
               <h4 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Outside of Work</h4>

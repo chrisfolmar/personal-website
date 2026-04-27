@@ -826,7 +826,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "Rearchitecting how Fullscript's commerce platform talks to NetSuite and the WMS — cutting transaction load by 43% and unlocking cross-subsidiary fulfillment.",
     problem:
-      "The integration layer between our commerce platform, NetSuite ERP, and our warehouse management system had grown organically for years. It was generating an enormous volume of NetSuite transactions, was brittle to schema changes, and could not support the cross-subsidiary fulfillment model the business needed to grow.",
+      "The integration layer between our commerce platform, NetSuite ERP, and our warehouse management system had grown organically for years. It was generating an enormous volume of NetSuite transactions, was brittle to schema changes, and could not support the cross-subsidiary fulfillment model Fullscript needed to grow.",
     context:
       "Healthcare commerce platform serving 70,000+ practitioners and millions of patients. Strict accounting and inventory accuracy requirements. Multiple subsidiaries with different fulfillment networks. Legacy integration patterns predating the current scale.",
     whatIChanged: [

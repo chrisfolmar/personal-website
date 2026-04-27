@@ -73,7 +73,7 @@ export default function About() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="About Me"
-          description="Here's a brief introduction about me and my professional journey."
+          description="The career arc — from builder to engineering manager to the person helping a business modernize how it operates."
         />
         
         {/* Image centered at the top */}
@@ -98,21 +98,24 @@ export default function About() {
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8">
               <h3 className="text-2xl font-bold mb-6">Who I Am</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
-                Hi, I'm Chris Folmar. I'm a Software Engineering Manager with a passion for technology, leadership, and building teams that thrive. Over the years, I've had the privilege of working with amazing teams to drive technical innovations and deliver high-quality, scalable software solutions. My current role at Fullscript allows me to lead high-performing teams, work on challenging projects, and empower others to grow in their careers.
+                <strong className="text-gray-800 dark:text-gray-200">Builder.</strong> I started out as a builder — freelance WordPress sites for restaurants and therapists, scripts to fix things that bugged me, side projects to learn the next thing. Shipping end-to-end for real people is still how I think about software.
               </p>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
-                I believe in continuous improvement, whether it's refining systems, optimizing processes, or expanding my own skill set. I'm a firm believer in leading by example, creating environments where people feel supported, challenged, and empowered to make an impact. Whether leading the design of a new system or coaching a team through a technical challenge, I'm always focused on building solutions that matter.
+                <strong className="text-gray-800 dark:text-gray-200">Technical Lead.</strong> At Emerson Ecologics and then Fullscript, the work shifted from writing all the code to helping a group of engineers ship reliably and own their systems. I cared most about the operating model — how we plan, how we review, how we hand things off — because that was always the thing that broke first.
               </p>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
-                Beyond my professional life, I'm an avid Arsenal fan, and I love spending time outdoors. Whether I'm hiking with my two amazing dogs, Penny and Belle, or enjoying a quiet weekend with my wife, Lauren, I find balance in nature and in the company of those I care about. Family and friends are everything to me, and I'm committed to nurturing the connections that make life richer.
+                <strong className="text-gray-800 dark:text-gray-200">Engineering Manager.</strong> Today I run three globally distributed teams at Fullscript. Less code, more leverage: hiring, coaching, performance, prioritization, and the unglamorous work of making sure the right things actually get done.
+              </p>
+              <p className="text-gray-600 dark:text-gray-400 mb-6">
+                <strong className="text-gray-800 dark:text-gray-200">Business Systems Leader.</strong> My remit has expanded from product engineering into the systems behind the business — ERP, WMS, fulfillment, finance, and catalog. The job is making sure the systems that run the company keep up with the company.
               </p>
               <p className="text-gray-600 dark:text-gray-400 mb-8">
-                As I continue to grow in my career, I aim to stay grounded, adaptable, and driven by a genuine passion for building high-performing teams and solving real-world problems through technology. If you'd like to connect or learn more about how I can help solve your organization's challenges, let's talk!
+                <strong className="text-gray-800 dark:text-gray-200">AI Transformation / Team GSD Leader.</strong> Most of my recent energy has gone into AI-enabled workflows — automating away the work people shouldn't have to do, so teams can spend their time on the things that actually move the business. I'm building the muscle for AI-first operations across five departments.
               </p>
-              
-              <h4 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Professional Summary</h4>
+
+              <h4 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Outside of Work</h4>
               <p className="text-gray-600 dark:text-gray-400">
-                Strategic Engineering Leader with over 10 years of experience building high-impact engineering teams and driving operational efficiencies across enterprise-scale systems. Known for leading automation-driven transformations, re-architecting core platforms, and scaling engineering throughput 300%+ without additional headcount. Currently managing 3 cross-functional teams at Fullscript, delivering critical systems across ERP, WMS, and internal tooling for a $1B+ eCommerce platform. Adept at AI-driven problem-solving, fostering talent development, and aligning technical initiatives with business growth.
+                Husband to Lauren, dad-to-dogs to Penny and Belle, lifelong Arsenal fan, and an instinctive systems thinker who can't help looking for the leverage point in any process — including the ones I run at home.
               </p>
             </div>
           </div>

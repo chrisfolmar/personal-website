@@ -68,26 +68,26 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
           >
             <span className="inline-block text-primary dark:text-primary mb-2 px-3 py-1 text-sm font-medium bg-blue-100 dark:bg-blue-900 dark:bg-opacity-30 rounded-full">
-              Technologist | Building High-Performing Teams | Problem Solver
+              Engineering Leader · Systems Thinker · AI-Enabled Operations
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
               Hi, I'm <span className="text-primary">Chris Folmar</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
-              Leveraging technology and leadership to deliver impactful solutions and grow teams with purpose.
+              Engineering leader helping teams modernize business operations through systems thinking, AI-enabled workflows, and practical leadership.
             </p>
             <div className="flex flex-wrap gap-4">
               <a 
                 href="#projects" 
                 className="px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-lg transition-colors shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               >
-                View My Work
+                Explore My Work
               </a>
               <a 
                 href="#contact" 
                 className="px-6 py-3 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-medium rounded-lg border border-gray-300 dark:border-gray-700 transition-colors shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               >
-                Contact Me
+                Get in Touch
               </a>
             </div>
           </motion.div>

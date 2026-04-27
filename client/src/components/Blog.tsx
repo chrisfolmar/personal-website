@@ -92,13 +92,13 @@ export default function Blog() {
     <section id="blog" className="py-20">
       <div className="container mx-auto px-4">
         <SectionHeading 
-          title="Latest Articles" 
-          description="Insights and thoughts on web development, leadership, and technology"
+          title="Writing" 
+          description="Notes on AI-enabled operations, engineering leadership, and the operating systems that help teams ship."
         />
         
         <div className="max-w-3xl mx-auto text-center mt-6">
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-md">
-            I believe in the power of sharing knowledge and learning from others. In this blog, I write about my experiences in software engineering, leadership, team building, AI-driven optimization, and anything else that I find thought-provoking or insightful. Whether you're here to learn from my technical posts or gain perspective on my leadership journey, I hope you find something valuable that sparks new ideas.
+            Most of these are working notes — what I'm learning while leading teams, modernizing business systems, and figuring out where AI actually pays off. If something here is useful, take it. If you disagree, even better — I'd love to hear why.
           </p>
         </div>
         

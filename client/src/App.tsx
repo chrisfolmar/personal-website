@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/hooks/use-theme";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import ImpactMetrics from "@/components/ImpactMetrics";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
@@ -22,6 +23,7 @@ function HomePage() {
   return (
     <div className="min-h-screen">
       <Hero />
+      <ImpactMetrics />
       <About />
       <Skills />
       <Projects />

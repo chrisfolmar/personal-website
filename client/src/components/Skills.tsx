@@ -131,8 +131,8 @@ const Skills = () => {
     <section id="skills" className="py-24 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          title="My Skills & Tools"
-          description="As an Engineering Manager, I leverage both technical expertise and leadership capabilities to deliver successful projects and build high-performing teams."
+          title="Skills & Tools"
+          description="The mix of leadership, systems, and engineering muscle I lean on day-to-day to help teams modernize how they operate."
         />
         
         <div className="grid md:grid-cols-2 gap-8 section-transition">

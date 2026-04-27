@@ -62,7 +62,7 @@ export const skills: Skill[] = [
     name: "Cross-functional Collaboration",
     percentage: 11/11*100, // 11 years out of 11 total
     years: 11,
-    description: "Ensured stakeholder alignment across multiple teams, including Finance, Customer Success, Product Engineering, and Labs. Regularly communicated with executive leadership to drive strategic initiatives, ensuring successful execution.",
+    description: "Day-to-day partner to Finance, Customer Success, Product, Labs, and Operations leadership. Translates between business priorities and engineering tradeoffs so initiatives actually ship instead of stalling at the seams.",
   },
   {
     name: "Backend Development",
@@ -313,7 +313,7 @@ export const blogPosts = [
     excerpt: "After years of building WordPress sites for small businesses, I've completely changed my approach. Agentic coding tools like Claude Code, Replit, and Gemini have made it possible to build better websites faster — without the $300+ annual license fees.",
     date: "2026-02-10",
     coverImage: "/images/blog/ai-web-development.png",
-    category: "Technology",
+    category: "AI-Enabled Operations",
     readTime: "7 min read",
     content: `
       <p>For nearly a decade, WordPress was my go-to recommendation for small business clients. It was flexible, widely supported, and clients could manage their own content. But over the past year, something has fundamentally shifted in how websites get built — and I can no longer recommend WordPress with a straight face.</p>
@@ -377,7 +377,7 @@ export const blogPosts = [
     excerpt: "Step-by-step look at how non-developers can use Claude Code, Replit Agent, and Gemini to build professional websites without WordPress or expensive developers.",
     date: "2026-01-20",
     coverImage: "/images/blog/ai-tools-guide.png",
-    category: "Tutorial",
+    category: "AI-Enabled Operations",
     readTime: "9 min read",
     content: `
       <p>A year ago, if a client asked me how to build their own website, I'd point them to WordPress and wish them luck with the learning curve. Today, I point them to an AI coding assistant and watch them build something better in an afternoon. Here's a practical look at the tools that have changed everything.</p>
@@ -468,7 +468,7 @@ export const blogPosts = [
     excerpt: "Insights from my experience as a Technical Lead at Fullscript on how to build a culture of constructive feedback that drives team growth and improves software quality.",
     date: "2024-04-15",
     coverImage: "/images/blog/effective-feedback.png",
-    category: "Leadership",
+    category: "Engineering Leadership",
     readTime: "6 min read",
     content: `
       <p>As a Technical Lead at Fullscript, one of my most important responsibilities is cultivating an environment where feedback flows naturally and constructively. In this article, I'd like to share some key insights I've gained about building a feedback culture that elevates both individual developers and the entire team.</p>
@@ -512,7 +512,7 @@ export const blogPosts = [
     excerpt: "How custom WordPress solutions can provide small businesses with professional websites that they can maintain themselves, reducing long-term costs while maintaining quality.",
     date: "2023-07-15",
     coverImage: "/images/blog/wordpress-small-business.png",
-    category: "WordPress",
+    category: "Business Systems",
     readTime: "5 min read",
     content: `
       <p>Small businesses often face a challenging dilemma when it comes to their web presence: they need a professional website but struggle with ongoing maintenance costs that can quickly add up. After working with dozens of small business owners from restaurants to therapists, I've developed an approach that solves this common problem.</p>
@@ -547,7 +547,7 @@ export const blogPosts = [
     excerpt: "Reflections on the journey of balancing a growing freelance web development business with personal milestones and the lessons learned along the way.",
     date: "2024-05-10",
     coverImage: "/images/blog/perfect-balance.png",
-    category: "Personal",
+    category: "Career / Reflection",
     readTime: "4 min read",
     content: `
       <p>This summer marks both significant professional growth for my freelance web development business and a major personal milestone—my recent wedding in June. Balancing these two important aspects of life has been both challenging and rewarding, offering valuable lessons that I believe many freelancers and small business owners might relate to.</p>
@@ -582,7 +582,7 @@ export const blogPosts = [
     excerpt: "Exploring my philosophy of creating websites that clients can maintain themselves while providing support only when needed, making web presence more affordable for small businesses.",
     date: "2023-11-18",
     coverImage: "/images/blog/minimum-cost-approach.png",
-    category: "Business Strategy",
+    category: "Business Systems",
     readTime: "7 min read",
     content: `
       <p>After years of working with small businesses and solo practitioners, I've developed what I call the "Minimum Cost, Maximum Support" model for web development. This approach has proven especially valuable for clients with limited budgets who still need professional websites.</p>
@@ -628,7 +628,7 @@ export const blogPosts = [
     excerpt: "Special considerations when creating websites for therapists, healthcare providers, and wellness professionals that balance professionalism with accessibility and comfort.",
     date: "2024-02-03",
     coverImage: "/images/blog/healthcare-websites.png",
-    category: "Web Design",
+    category: "Business Systems",
     readTime: "8 min read",
     content: `
       <p>Having developed websites for multiple healthcare professionals, including Jennifer Mello LICSW and Amy Cousineau LICSW, I've gained valuable insights into the unique considerations required for this specialized field. Creating effective websites for therapists and healthcare providers requires balancing professional credibility with emotional accessibility.</p>
@@ -679,7 +679,7 @@ export const blogPosts = [
     excerpt: "Looking ahead to 2025, WordPress will maintain its dominance by continuing to offer unmatched flexibility, control, and growth potential for small businesses despite new competitors.",
     date: "2024-10-15",
     coverImage: "/images/blog/wordpress-dominate-2025.png",
-    category: "WordPress",
+    category: "Business Systems",
     readTime: "6 min read",
     content: `
       <p>With the proliferation of drag-and-drop website builders promising instant websites, many small business owners wonder if WordPress will still be relevant in 2025. After developing dozens of small business websites, I can confidently say that WordPress will continue to be the superior choice for businesses seeking long-term value.</p>

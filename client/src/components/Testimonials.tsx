@@ -115,7 +115,7 @@ export default function Testimonials() {
       <div className="container mx-auto px-4">
         <SectionHeading 
           title="Testimonials" 
-          description="What people say about my work and collaboration"
+          description="A few words from people I've built with."
         />
         
         <div className="mt-16">

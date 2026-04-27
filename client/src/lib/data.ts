@@ -18,18 +18,18 @@ export const experiences: Experience[] = [
       "As Technical Lead, I drove critical architectural projects including ERP/WMS integration and cross-subsidiary fulfillment, reducing NetSuite transaction load by 43%. I redesigned our invoicing system to leverage native NetSuite capabilities, cutting maintenance overhead by 95%. Beyond delivery, I focused on scaling leadership—mentoring three engineers to Senior roles and launching a Project Lead framework to support mid-level growth. I also created and facilitated the 'Only Tech Leads' forum, strengthening cross-org alignment and engineering leadership culture.",
   },
   {
-    title: "Lead Engineer → Technical Program Manager",
+    title: "Senior Software Engineer → Lead Software Engineer → Technical Program Manager",
     company: "Emerson Ecologics",
     period: "Feb 2020 - Mar 2022",
     description:
-      "At Emerson Ecologics, I transitioned from individual contributor to technical and program leadership, driving full-stack modernization of the eCommerce platform. I defined and rolled out a standardized SDLC that improved delivery consistency and streamlined software releases across teams. My work implementing CI/CD pipelines and partnering with Product and Ops led to measurable improvements in platform stability and a reduction in support ticket volume. This period marked a foundational shift in my career toward technical ownership and cross-functional collaboration.",
+      "At Emerson Ecologics, I moved from senior individual contributor to lead engineer to technical program manager in two years, driving full-stack modernization of the eCommerce platform. I defined and rolled out a standardized SDLC that improved delivery consistency across teams, implemented CI/CD pipelines, and partnered with Product and Ops to deliver measurable improvements in platform stability. This period marked a foundational shift in my career toward technical ownership and cross-functional leadership.",
   },
   {
-    title: "Junior Software Developer → Software Developer",
-    company: "Freeport Metrics",
-    period: "2014 - 2020",
+    title: "Earlier Software Engineering Roles",
+    company: "AI Foundry · Relianta, LLC · PixelMEDIA · Freeport Metrics",
+    period: "2015 - 2020",
     description:
-      "Started my career at Freeport Metrics in Portland, Maine after finishing my Computer Science degree at the University of Southern Maine. Shipped production code for client engagements across web, mobile, and backend services from day one — the experience that shaped how I still think about delivering software end-to-end for real customers.",
+      "Built the foundation as a full-stack engineer across a series of New England product and consulting companies — Lead Solution Engineer at AI Foundry, Lead Full-Stack Software Engineer at Relianta, Full-Stack Software Engineer at PixelMEDIA, and earlier engineering work starting at Freeport Metrics in Portland, Maine after finishing my Computer Science degree at the University of Southern Maine. Five years of shipping production code across web, mobile, and backend services for real customers — the experience that shaped how I still think about delivering software end-to-end.",
   },
   {
     title: "Freelance WordPress Developer",

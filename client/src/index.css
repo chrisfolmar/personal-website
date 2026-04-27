@@ -2,68 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ========================================================================
+   Editorial design system
+   - Warm, restrained palette (light is default, dark is polished)
+   - Single accent: deep emerald (Fullscript-adjacent) — no rainbow gradients
+   - Typography: Inter Tight (display/headings) + Inter (body)
+   ======================================================================== */
+
 @layer base {
   :root {
-    /* Default colors */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Surfaces */
+    --background: 40 30% 98%;
+    --foreground: 220 22% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 22% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 22% 12%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
+    --muted: 40 12% 94%;
+    --muted-foreground: 220 12% 38%;
 
-    --secondary: 160 84% 39%;
-    --secondary-foreground: 210 40% 98%;
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
 
-    --accent: 262 83% 63%;
-    --accent-foreground: 210 40% 98%;
+    /* Single restrained accent — deep emerald */
+    --primary: 158 60% 28%;
+    --primary-foreground: 40 30% 98%;
+    --ring: 158 60% 28%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Secondary / accent kept neutral so a single hue carries the brand */
+    --secondary: 220 14% 92%;
+    --secondary-foreground: 220 22% 18%;
+    --accent: 158 30% 92%;
+    --accent-foreground: 158 60% 22%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 40 30% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 217 91% 60%;
-
-    --radius: 0.5rem;
+    --radius: 0.375rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 220 20% 8%;
+    --foreground: 40 15% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 20% 10%;
+    --card-foreground: 40 15% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 20% 10%;
+    --popover-foreground: 40 15% 95%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
+    --muted: 220 16% 14%;
+    --muted-foreground: 220 10% 65%;
 
-    --secondary: 160 84% 39%;
-    --secondary-foreground: 210 40% 98%;
+    --border: 220 14% 18%;
+    --input: 220 14% 18%;
 
-    --accent: 262 83% 63%;
-    --accent-foreground: 210 40% 98%;
+    --primary: 158 50% 50%;
+    --primary-foreground: 220 22% 10%;
+    --ring: 158 50% 50%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --secondary: 220 14% 16%;
+    --secondary-foreground: 40 15% 92%;
+    --accent: 158 25% 18%;
+    --accent-foreground: 158 50% 78%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 217 91% 60%;
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 40 15% 95%;
   }
 }
 
@@ -72,168 +79,158 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Inter Tight", "Inter", ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.015em;
+    color: hsl(var(--foreground));
+  }
+
+  /* Editorial type scale (used as utility classes below) */
+}
+
+/* ------------------------------------------------------------------------
+   Typography utilities — editorial scale
+   ------------------------------------------------------------------------ */
+@layer utilities {
+  .font-display {
+    font-family: "Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  .text-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-primary;
+  }
+
+  .text-display {
+    @apply font-display font-semibold leading-[1.05] tracking-tight;
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+  }
+
+  .text-h1 {
+    @apply font-display font-semibold leading-[1.1] tracking-tight;
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .text-h2 {
+    @apply font-display font-semibold leading-[1.15] tracking-tight;
+    font-size: clamp(1.625rem, 2.6vw, 2.25rem);
+  }
+
+  .text-h3 {
+    @apply font-display font-semibold leading-snug;
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  }
+
+  .text-lead {
+    @apply text-lg md:text-xl text-muted-foreground leading-relaxed;
+  }
+
+  .text-body {
+    @apply text-base md:text-[1.0625rem] leading-relaxed text-foreground/80;
+  }
+
+  .text-small {
+    @apply text-sm leading-relaxed text-muted-foreground;
+  }
+
+  /* Reusable hairline divider used across editorial sections */
+  .hairline {
+    @apply border-t border-border;
   }
 }
 
-html {
-  scroll-behavior: smooth;
+/* ------------------------------------------------------------------------
+   Calm motion: a single fade-up-once pattern, honored only on devices
+   that don't request reduced motion. No parallax, no scroll-jacking.
+   ------------------------------------------------------------------------ */
+@layer utilities {
+  .fade-up {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out;
+    will-change: opacity, transform;
+  }
+
+  .fade-up.is-visible,
+  .no-motion .fade-up {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fade-up {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Backwards-compat shims for older animation classes still referenced
+   in some legacy components. They no-op gracefully so nothing flashes.
+   ------------------------------------------------------------------------ */
+.section-transition {
+  transition: all 0.4s ease;
 }
 
 .bg-gradient {
-  @apply bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900;
+  @apply bg-muted/40;
 }
 
-.section-transition {
-  transition: all 0.5s ease;
-}
-
-.project-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Intersection Observer animation classes */
-/* Loading state - no animations, just show content immediately */
-html.loading .fade-in,
-html.loading .slide-in,
-html.loading .skill-item,
-html.loading .tool-item,
-html.loading .section-header {
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
-  will-change: auto !important;
-}
-
-/* ==== DESKTOP DEVICE STYLING ==== */
-/* Desktop animations - full, smooth animations */
-html.desktop-device .fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  transition-delay: var(--animation-delay, 0s);
-  will-change: opacity, transform;
-}
-
-html.desktop-device .fade-in.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-html.desktop-device .slide-in {
-  opacity: 0;
-  transform: translateX(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  transition-delay: var(--animation-delay, 0s);
-  will-change: opacity, transform;
-}
-
-html.desktop-device .slide-in.animate-in {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-html.desktop-device .skill-item {
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  transition-delay: var(--animation-delay, 0s);
-}
-
-html.desktop-device .skill-item.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-html.desktop-device .tool-item {
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  transition-delay: var(--animation-delay, 0s);
-}
-
-html.desktop-device .tool-item.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-html.desktop-device .section-header {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  transition-delay: var(--animation-delay, 0s);
-}
-
-html.desktop-device .section-header.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ==== TABLET DEVICE STYLING ==== */
-/* Tablet animations - simpler animations for better performance */
-html.tablet-device .fade-in {
-  opacity: 0;
-  transform: translateY(10px); /* Smaller transform for better performance */
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  transition-delay: var(--animation-delay, 0s);
-  will-change: opacity;
-}
-
-html.tablet-device .fade-in.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-html.tablet-device .slide-in {
-  opacity: 0;
-  transform: translateX(10px); /* Smaller transform for better performance */
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  transition-delay: var(--animation-delay, 0s);
-  will-change: opacity;
-}
-
-html.tablet-device .slide-in.animate-in {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Tablet devices use static components for these to prevent flashing */
-html.tablet-device .skill-item, 
-html.tablet-device .tool-item,
-html.tablet-device .section-header {
+.fade-in,
+.slide-in,
+.skill-item,
+.tool-item,
+.section-header {
   opacity: 1;
   transform: none;
   transition: none;
 }
 
-/* ==== MOBILE DEVICE STYLING ==== */
-/* Mobile animations - no transforms, only opacity for best performance */
-html.mobile-device .fade-in,
-html.mobile-device .slide-in,
-html.mobile-device .skill-item, 
-html.mobile-device .tool-item,
-html.mobile-device .section-header {
-  opacity: 1;
-  transform: none;
-  transition: none;
-  will-change: auto;
+.animated-fade-in {
+  animation: editorial-fade-up 0.45s ease-out both;
 }
 
-/* Respect user preference for reduced motion */
+@keyframes editorial-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .fade-in,
-  .slide-in,
-  .skill-item,
-  .tool-item,
-  .section-header {
-    transition: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    will-change: auto !important;
+  .animated-fade-in {
+    animation: none !important;
   }
 }

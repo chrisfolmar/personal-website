@@ -13,19 +13,19 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "About", section: "about" },
-  { label: "Skills", section: "skills" },
-  { label: "AI Transformation", section: "ai-transformation" },
+  { label: "About", href: "/about" },
   { label: "Case Studies", href: "/case-studies" },
-  { label: "Blog", section: "blog" },
+  { label: "AI Transformation", section: "ai-transformation" },
+  { label: "Writing", href: "/writing" },
+  { label: "Now", href: "/now" },
   { label: "Resume", href: "/resume" },
-  { label: "Contact", section: "contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const desktopLinkClasses =
-  "nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors";
+  "text-sm font-medium text-foreground/70 hover:text-primary transition-colors";
 const mobileLinkClasses =
-  "nav-link block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md";
+  "block px-4 py-2 text-foreground/80 hover:bg-muted rounded-md text-sm font-medium";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -80,13 +80,12 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 w-full bg-white bg-opacity-90 dark:bg-gray-900 dark:bg-opacity-90 z-50 backdrop-blur-sm shadow-sm transition-all duration-300">
+    <header className="fixed top-0 w-full z-50 bg-background/85 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo/Name */}
           <Link
             href="/"
-            className="text-xl font-bold tracking-tight text-primary hover:text-primary-dark transition-colors"
+            className="font-display text-lg font-semibold tracking-tight"
             onClick={(e) => {
               if (isHomePage) {
                 e.preventDefault();
@@ -94,40 +93,38 @@ export default function Header() {
               }
             }}
           >
-            <span className="text-gray-900 dark:text-white">Chris</span>Folmar
-            <span className="text-primary dark:text-primary">.</span>
+            <span className="text-foreground">Chris</span>
+            <span className="text-foreground/60">Folmar</span>
+            <span className="text-primary">.</span>
           </Link>
 
-          {/* Mobile Menu Button */}
           <button
             id="menu-toggle"
-            className="lg:hidden text-gray-700 dark:text-gray-300 focus:outline-none"
+            className="lg:hidden text-foreground/70 focus:outline-none"
             aria-label="Toggle navigation menu"
             onClick={toggleMobileMenu}
           >
-            <Menu className="h-6 w-6" />
+            <Menu className="h-5 w-5" />
           </button>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
             {navItems.map((item) => renderNavItem(item, false))}
             <ThemeToggle />
           </nav>
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
       <nav
         id="mobile-menu"
         className={cn(
-          "lg:hidden bg-white dark:bg-gray-900 shadow-lg py-4 transition-all duration-300 animate-fade-in",
+          "lg:hidden bg-background border-t border-border py-3",
           mobileMenuOpen ? "block" : "hidden"
         )}
       >
-        <div className="container mx-auto px-4 flex flex-col space-y-4">
+        <div className="container mx-auto px-4 flex flex-col space-y-1">
           {navItems.map((item) => renderNavItem(item, true))}
-          <div className="px-4 py-2 flex items-center justify-between">
-            <span className="text-gray-700 dark:text-gray-300">Dark Mode</span>
+          <div className="px-4 py-3 flex items-center justify-between border-t border-border mt-2">
+            <span className="text-sm text-foreground/70">Dark mode</span>
             <ThemeToggle isMobile />
           </div>
         </div>

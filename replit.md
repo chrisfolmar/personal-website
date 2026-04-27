@@ -1,6 +1,15 @@
 # Overview
 
-This is a personal portfolio website for Chris Folmar, a Software Engineering Manager and technologist. The site showcases professional experience, skills, client projects (primarily WordPress sites), blog posts, testimonials, and a contact form. It's a full-stack application with a React frontend and Express backend, designed as a single-page application with detail pages for blog posts and projects.
+Personal portfolio website for Chris Folmar — Engineering Manager and AI Transformation Leader at Fullscript. The site is positioned as a senior engineering leader / operator portfolio (not a generic "modern personal site"): calm, sharp, editorial, premium. It surfaces case studies, the AI Transformation work (Team GSD), writing, current focus, résumé, and a contact form.
+
+# Editorial design system (April 2026 overhaul)
+
+- **Palette**: deep emerald primary (`hsl(158, 60%, 28%)` light / `hsl(158, 50%, 50%)` dark), warm off-white background in light mode, near-black ink in dark mode. Single accent hue, no gradients, no neon. Configured in `theme.json` and `client/src/index.css`.
+- **Typography**: Inter Tight for display/headings, Inter for body. Type scale exposed as utilities: `text-eyebrow`, `text-display`, `text-h1`, `text-h2`, `text-h3`, `text-lead`, `text-body`. `radius` set to `0.375` for restrained corner softness.
+- **Motion**: a single `FadeIn` primitive (opacity 0→1, y 12→0, ~0.45s easeOut, viewport once). `prefers-reduced-motion` is honored globally. The legacy desktop particle background is a no-op.
+- **Layout primitives** (in `client/src/components/`): `SectionHeader`, `MetricStrip`, `PrincipleCard`, `CaseStudyCard`, `WritingCard`, `QuoteCallout`, `CtaBand`. All sections are composed from these — including legacy components like `About`, `Skills`, `Contact`, `AITransformation`, which now use `SectionHeader` + `FadeIn`.
+- **Hero**: editorial copy + inline systems-map SVG (Teams / Workflows / Systems / AI / Operations). The profile photo lives in the About section only.
+- **Homepage rhythm** (`client/src/pages/home.tsx`): Hero → MetricStrip → WhatIDo → FeaturedCaseStudies → AITransformationSummary → Writing → CurrentFocus → CtaBand → About → Skills → Contact.
 
 # User Preferences
 
@@ -18,7 +27,7 @@ Preferred communication style: Simple, everyday language.
 - **Path Aliases**: `@/` maps to `client/src/`, `@shared/` maps to `shared/`, `@assets/` maps to `attached_assets/`
 
 ## Page Structure
-The homepage is a single-page layout with sections: Hero, About, Skills, Projects, Testimonials, Blog, and Contact. Blog posts and project details have their own routed pages. A 404 page handles unknown routes.
+The homepage is composed in `client/src/pages/home.tsx` from the editorial primitives above. Standalone routes: `/case-studies`, `/case-studies/:slug`, `/now`, `/resume`, `/blog/:id`, `/project/:id`, `/sitemap`, plus a 404. The legacy `Projects.tsx`, `Testimonials.tsx`, and `Blog.tsx` components are no longer mounted on the homepage — kept around only as references and not part of the new visual system.
 
 ## Backend Architecture
 - **Framework**: Express.js running on Node with TypeScript (compiled via `tsx` for dev, `esbuild` for production)
@@ -39,11 +48,11 @@ The homepage is a single-page layout with sections: Hero, About, Skills, Project
 - Blog post content includes HTML that is sanitized with DOMPurify before rendering
 
 ## Performance Optimizations
-- Device-type detection hook (`use-mobile.tsx`) with separate rendering paths for mobile, tablet, and desktop
-- Lazy image loading with Intersection Observer (`LazyImage.tsx`)
-- Canvas particle background only renders on desktop
-- Memoized components throughout (React.memo, useMemo, useCallback)
-- Profile image preloading and rotation in Hero section
+- Device-type detection hook (`use-mobile.tsx`) is still available but the editorial system intentionally uses the same layout across breakpoints for consistency.
+- Lazy image loading with Intersection Observer (`LazyImage.tsx`).
+- The canvas particle background has been retired; `ParticleBackground.tsx` is a no-op shim kept for backwards compatibility.
+- Memoized components throughout (React.memo, useMemo, useCallback).
+- The Hero no longer preloads or rotates profile photos — the only profile image lives in the About section.
 
 ## SEO
 - Comprehensive meta tags (Open Graph, Twitter Cards, Schema.org JSON-LD)

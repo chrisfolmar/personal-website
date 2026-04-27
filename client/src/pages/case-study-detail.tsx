@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Link, useLocation, useParams } from "wouter";
-import { motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
@@ -13,6 +12,7 @@ import {
 } from "lucide-react";
 import { caseStudies } from "@/lib/data";
 import { Button } from "@/components/ui/button";
+import FadeIn from "@/components/FadeIn";
 
 function usePageMeta(title: string, description: string) {
   useEffect(() => {
@@ -42,20 +42,25 @@ function usePageMeta(title: string, description: string) {
 interface SectionProps {
   icon: React.ReactNode;
   title: string;
+  delay?: number;
   children: React.ReactNode;
 }
 
-function Section({ icon, title, children }: SectionProps) {
+function Section({ icon, title, delay = 0, children }: SectionProps) {
   return (
-    <section className="mb-10">
+    <FadeIn as="section" delay={delay} className="mt-12 first:mt-0">
       <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 rounded-lg bg-primary/10 text-primary">{icon}</div>
-        <h2 className="text-2xl font-bold">{title}</h2>
+        <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+          {icon}
+        </span>
+        <h2 className="font-display text-2xl font-semibold text-foreground">
+          {title}
+        </h2>
       </div>
-      <div className="text-gray-700 dark:text-gray-300 leading-relaxed">
+      <div className="text-[0.975rem] leading-relaxed text-muted-foreground">
         {children}
       </div>
-    </section>
+    </FadeIn>
   );
 }
 
@@ -81,10 +86,10 @@ export default function CaseStudyDetail() {
 
   if (!study) {
     return (
-      <div className="py-20 min-h-screen flex items-center justify-center">
+      <div className="pt-28 md:pt-32 pb-20 min-h-screen flex items-center justify-center">
         <div className="animate-pulse text-center">
-          <div className="h-8 w-48 bg-gray-200 dark:bg-gray-700 rounded mx-auto mb-4"></div>
-          <div className="h-4 w-32 bg-gray-200 dark:bg-gray-700 rounded mx-auto"></div>
+          <div className="h-8 w-48 bg-muted rounded mx-auto mb-4" />
+          <div className="h-4 w-32 bg-muted rounded mx-auto" />
         </div>
       </div>
     );
@@ -93,78 +98,71 @@ export default function CaseStudyDetail() {
   const otherStudies = caseStudies.filter((s) => s.slug !== study.slug).slice(0, 2);
 
   return (
-    <div className="py-20">
+    <div className="pt-28 md:pt-32 pb-20 md:pb-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Button
           variant="ghost"
           onClick={() => setLocation("/case-studies")}
-          className="mb-6 flex items-center"
+          className="mb-8 flex items-center"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Case Studies
+          Back to case studies
         </Button>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="max-w-4xl mx-auto"
-        >
-          <header className="mb-10">
-            <h1 className="text-3xl md:text-5xl font-bold mb-5 leading-tight">
-              {study.title}
-            </h1>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-              {study.summary}
-            </p>
-          </header>
+        <FadeIn className="max-w-3xl mb-12">
+          <div className="text-eyebrow mb-4">Case study</div>
+          <h1 className="text-h1 text-foreground">{study.title}</h1>
+          <p className="mt-4 text-lead">{study.summary}</p>
+        </FadeIn>
 
-          {/* Impact strip */}
-          <div className="mb-12 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+        <FadeIn delay={0.05} className="mb-14">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {study.impact.map((metric) => (
               <div
                 key={metric.label}
-                className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-4 md:p-6 text-center"
+                className="bg-card border border-border rounded-md p-5 md:p-6"
               >
-                <div className="text-2xl md:text-3xl font-bold text-primary mb-1 tabular-nums">
+                <div className="font-display text-2xl md:text-3xl font-semibold text-primary tabular-nums leading-none">
                   {metric.value}
                 </div>
-                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-snug">
+                <div className="mt-2 text-xs md:text-sm text-muted-foreground leading-snug">
                   {metric.label}
                 </div>
               </div>
             ))}
           </div>
+        </FadeIn>
 
-          <Section icon={<AlertCircle className="h-5 w-5" />} title="Problem">
+        <div className="max-w-3xl">
+          <Section icon={<AlertCircle className="h-4 w-4" />} title="Problem">
             <p>{study.problem}</p>
           </Section>
 
-          <Section icon={<Compass className="h-5 w-5" />} title="Context">
+          <Section icon={<Compass className="h-4 w-4" />} title="Context" delay={0.05}>
             <p>{study.context}</p>
           </Section>
 
-          <Section icon={<Wrench className="h-5 w-5" />} title="What I changed">
-            <ul className="space-y-3 list-disc pl-5">
+          <Section icon={<Wrench className="h-4 w-4" />} title="What I changed" delay={0.05}>
+            <ul className="space-y-3 list-disc pl-5 marker:text-primary/60">
               {study.whatIChanged.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
           </Section>
 
-          <Section icon={<Layers className="h-5 w-5" />} title="Systems introduced">
-            <ul className="space-y-3 list-disc pl-5">
+          <Section icon={<Layers className="h-4 w-4" />} title="Systems introduced" delay={0.05}>
+            <ul className="space-y-3 list-disc pl-5 marker:text-primary/60">
               {study.systemsIntroduced.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
           </Section>
 
-          <Section icon={<TrendingUp className="h-5 w-5" />} title="Measurable impact">
-            <ul className="space-y-3 list-disc pl-5">
+          <Section icon={<TrendingUp className="h-4 w-4" />} title="Measurable impact" delay={0.05}>
+            <ul className="space-y-3 list-disc pl-5 marker:text-primary/60">
               {study.impact.map((metric) => (
                 <li key={metric.label}>
-                  <span className="font-semibold text-gray-900 dark:text-white">
+                  <span className="font-semibold text-foreground">
                     {metric.value}
                   </span>{" "}
                   — {metric.label}
@@ -173,56 +171,52 @@ export default function CaseStudyDetail() {
             </ul>
           </Section>
 
-          <Section icon={<Lightbulb className="h-5 w-5" />} title="Lessons learned">
-            <ul className="space-y-3 list-disc pl-5">
+          <Section icon={<Lightbulb className="h-4 w-4" />} title="Lessons learned" delay={0.05}>
+            <ul className="space-y-3 list-disc pl-5 marker:text-primary/60">
               {study.lessonsLearned.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
           </Section>
 
-          {/* Tools */}
-          <div className="mt-12 mb-12 bg-gray-50 dark:bg-gray-900 rounded-xl p-6 border border-gray-100 dark:border-gray-800">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-3">
-              Tools & systems
-            </h3>
+          <FadeIn className="mt-14 bg-muted/40 border border-border rounded-md p-6">
+            <div className="text-eyebrow mb-3">Tools & systems</div>
             <div className="flex flex-wrap gap-2">
               {study.tools.map((tool) => (
                 <span
                   key={tool}
-                  className="px-3 py-1 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-sm text-gray-700 dark:text-gray-300"
+                  className="px-3 py-1 rounded-md bg-background border border-border text-sm text-foreground/80"
                 >
                   {tool}
                 </span>
               ))}
             </div>
-          </div>
+          </FadeIn>
+        </div>
 
-          {/* Other case studies */}
-          <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
-            <h3 className="text-xl font-bold mb-6">More case studies</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {otherStudies.map((other) => (
-                <Link
-                  key={other.slug}
-                  href={`/case-studies/${other.slug}`}
-                  className="group block bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md hover:border-primary/40 transition-all"
-                >
-                  <h4 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
-                    {other.title}
-                  </h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                    {other.summary}
-                  </p>
-                  <div className="inline-flex items-center gap-1 text-primary text-sm font-medium">
-                    Read more
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </Link>
-              ))}
-            </div>
+        <FadeIn className="mt-16 pt-10 border-t border-border">
+          <div className="text-eyebrow mb-6">More case studies</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            {otherStudies.map((other) => (
+              <Link
+                key={other.slug}
+                href={`/case-studies/${other.slug}`}
+                className="group block bg-card border border-border rounded-md p-6 hover:border-primary/40 transition-colors"
+              >
+                <h4 className="font-display text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
+                  {other.title}
+                </h4>
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                  {other.summary}
+                </p>
+                <div className="inline-flex items-center gap-1 text-primary text-sm font-medium">
+                  Read the case study
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </div>
+              </Link>
+            ))}
           </div>
-        </motion.div>
+        </FadeIn>
       </div>
     </div>
   );

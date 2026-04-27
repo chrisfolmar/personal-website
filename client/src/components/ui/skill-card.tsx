@@ -117,17 +117,15 @@ function SkillCardComponent({ name, icon, delay = 0 }: SkillCardProps) {
   const animationDelay = `${0.05 + (delay * 0.05)}s`;
   
   return (
-    <div 
+    <div
       ref={cardRef as React.RefObject<HTMLDivElement>}
-      className="bg-white dark:bg-gray-700 rounded-lg p-5 text-center hover:shadow-md transition-all duration-300
-                border border-gray-100 dark:border-gray-600 hover:border-primary/30 dark:hover:border-primary/30 group
-                tool-item hover:-translate-y-1" 
+      className="flex items-center gap-3 bg-card rounded-md p-3 border border-border hover:border-primary/40 transition-colors group tool-item"
       style={{ '--animation-delay': animationDelay } as React.CSSProperties}
     >
-      <div className="text-primary mb-3 bg-primary/5 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto group-hover:bg-primary/10 transition-colors duration-300">
-        <IconComponent className="h-8 w-8 mx-auto" />
-      </div>
-      <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm sm:text-base">{name}</h4>
+      <span className="inline-flex items-center justify-center h-9 w-9 rounded-md bg-primary/10 text-primary">
+        <IconComponent className="h-4 w-4" />
+      </span>
+      <span className="font-medium text-sm text-foreground truncate">{name}</span>
     </div>
   );
 }

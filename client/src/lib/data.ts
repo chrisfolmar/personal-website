@@ -25,6 +25,13 @@ export const experiences: Experience[] = [
       "At Emerson Ecologics, I transitioned from individual contributor to technical and program leadership, driving full-stack modernization of the eCommerce platform. I defined and rolled out a standardized SDLC that improved delivery consistency and streamlined software releases across teams. My work implementing CI/CD pipelines and partnering with Product and Ops led to measurable improvements in platform stability and a reduction in support ticket volume. This period marked a foundational shift in my career toward technical ownership and cross-functional collaboration.",
   },
   {
+    title: "Junior Software Developer → Software Developer",
+    company: "Freeport Metrics",
+    period: "2014 - 2020",
+    description:
+      "Started my career at Freeport Metrics in Portland, Maine after finishing my Computer Science degree at the University of Southern Maine. Shipped production code for client engagements across web, mobile, and backend services from day one — the experience that shaped how I still think about delivering software end-to-end for real customers.",
+  },
+  {
     title: "Freelance WordPress Developer",
     company: "Self-employed",
     period: "2016 - Present",

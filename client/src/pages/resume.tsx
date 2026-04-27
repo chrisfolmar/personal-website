@@ -1,7 +1,15 @@
 import { useEffect } from "react";
-import { Download, ExternalLink, Mail, MapPin, Briefcase, GraduationCap, Award } from "lucide-react";
+import {
+  ExternalLink,
+  Mail,
+  MapPin,
+  Briefcase,
+  GraduationCap,
+  Award,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { experiences, skills, contact } from "@/lib/data";
+import FadeIn from "@/components/FadeIn";
 
 function usePageMeta(title: string, description: string) {
   useEffect(() => {
@@ -48,6 +56,31 @@ const coreCompetencies: string[] = [
   "Async Communication Systems",
 ];
 
+interface SectionShellProps {
+  icon?: React.ReactNode;
+  title: string;
+  delay?: number;
+  children: React.ReactNode;
+}
+
+function SectionShell({ icon, title, delay = 0, children }: SectionShellProps) {
+  return (
+    <FadeIn as="section" delay={delay} className="mt-12 first:mt-0">
+      <div className="flex items-center gap-3 mb-5">
+        {icon ? (
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+            {icon}
+          </span>
+        ) : null}
+        <h2 className="font-display text-2xl font-semibold text-foreground">
+          {title}
+        </h2>
+      </div>
+      {children}
+    </FadeIn>
+  );
+}
+
 export default function Resume() {
   usePageMeta(
     "Resume | Chris Folmar",
@@ -59,26 +92,25 @@ export default function Resume() {
   }, []);
 
   return (
-    <div className="py-20 md:py-24">
+    <div className="pt-28 md:pt-32 pb-20 md:pb-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-10 pb-8 border-b border-gray-200 dark:border-gray-800">
+          <FadeIn className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 pb-8 border-b border-border">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                Chris Folmar
-              </h1>
-              <p className="text-xl text-primary font-medium mb-4">
+              <div className="text-eyebrow mb-3">Résumé</div>
+              <h1 className="text-display text-foreground">Chris Folmar</h1>
+              <p className="mt-3 text-primary font-medium font-display text-lg">
                 Engineering Manager · AI Transformation Leader
               </p>
-              <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
-                <span className="inline-flex items-center gap-1">
+              <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5">
                   <MapPin className="h-4 w-4" />
                   {contact.location}
                 </span>
                 <a
                   href={`mailto:${contact.email}`}
-                  className="inline-flex items-center gap-1 hover:text-primary transition-colors"
+                  className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
                 >
                   <Mail className="h-4 w-4" />
                   {contact.email}
@@ -87,41 +119,32 @@ export default function Resume() {
                   href="https://www.linkedin.com/in/clfolmar"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 hover:text-primary transition-colors"
+                  className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
                 >
                   <ExternalLink className="h-4 w-4" />
                   LinkedIn
                 </a>
               </div>
             </div>
-            <div className="flex flex-col gap-3">
-              <Button
-                asChild
-                size="lg"
-                className="inline-flex items-center gap-2"
-              >
+            <div className="flex flex-col gap-2 md:items-end">
+              <Button asChild size="lg" className="inline-flex items-center gap-2">
                 <a
                   href="https://www.linkedin.com/in/clfolmar"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Download className="h-5 w-5" />
-                  Download PDF
+                  <ExternalLink className="h-4 w-4" />
+                  View on LinkedIn
                 </a>
               </Button>
-              <p className="text-xs text-gray-500 dark:text-gray-400 text-center md:text-right max-w-[200px]">
-                PDF coming soon — link routes to LinkedIn for now.
+              <p className="text-xs text-muted-foreground md:text-right max-w-[220px]">
+                Downloadable PDF coming soon.
               </p>
             </div>
-          </div>
+          </FadeIn>
 
-          {/* Summary */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <Award className="h-5 w-5 text-primary" />
-              Summary
-            </h2>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          <SectionShell icon={<Award className="h-4 w-4" />} title="Summary">
+            <p className="text-[0.975rem] leading-relaxed text-muted-foreground">
               Engineering Manager with 11+ years of experience scaling teams,
               modernizing business systems, and embedding AI as a first-class
               part of how operations run. Currently leads three globally
@@ -132,121 +155,122 @@ export default function Resume() {
               system overhead by 40–95%, and growing engineers into senior
               leadership roles.
             </p>
-          </section>
+          </SectionShell>
 
-          {/* Headline achievements */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">Headline Achievements</h2>
-            <ul className="space-y-2">
+          <SectionShell title="Headline achievements" delay={0.05}>
+            <ul className="space-y-2.5">
               {headlineAchievements.map((item, i) => (
                 <li
                   key={i}
-                  className="flex gap-3 text-gray-700 dark:text-gray-300 leading-relaxed"
+                  className="flex gap-3 text-[0.975rem] leading-relaxed text-muted-foreground"
                 >
-                  <span className="text-primary font-bold mt-1">▸</span>
+                  <span className="text-primary mt-1">▸</span>
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
-          </section>
+          </SectionShell>
 
-          {/* Experience */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <Briefcase className="h-5 w-5 text-primary" />
-              Experience
-            </h2>
-            <div className="space-y-6">
+          <SectionShell icon={<Briefcase className="h-4 w-4" />} title="Experience" delay={0.05}>
+            <div className="space-y-5">
               {experiences.map((exp, i) => (
                 <div
-                  key={i}
-                  className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6"
+                  key={`${exp.company}-${exp.period}`}
+                  className="bg-card border border-border rounded-md p-6"
                 >
                   <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-2">
-                    <h3 className="text-xl font-bold">{exp.title}</h3>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {exp.period}
-                    </span>
+                    <h3 className="font-display text-lg font-semibold text-foreground">
+                      {exp.title}
+                    </h3>
+                    <span className="text-eyebrow">{exp.period}</span>
                   </div>
-                  <p className="text-primary font-medium mb-3">{exp.company}</p>
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  <p className="text-sm text-primary font-medium mb-3">
+                    {exp.company}
+                  </p>
+                  <p className="text-[0.975rem] leading-relaxed text-muted-foreground">
                     {exp.description}
                   </p>
                 </div>
               ))}
             </div>
-          </section>
+          </SectionShell>
 
-          {/* Skills */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-6">Key Skills</h2>
-            <div className="grid md:grid-cols-2 gap-4">
+          <SectionShell title="Key skills" delay={0.05}>
+            <div className="grid md:grid-cols-2 gap-3">
               {skills.map((skill) => (
                 <div
                   key={skill.name}
-                  className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-4"
+                  className="bg-card border border-border rounded-md p-5"
                 >
                   <div className="flex items-baseline justify-between mb-2">
-                    <h3 className="font-bold">{skill.name}</h3>
-                    {skill.years && (
-                      <span className="text-sm text-primary font-medium">
-                        {skill.years}+ yrs
+                    <h3 className="font-display font-semibold text-foreground">
+                      {skill.name}
+                    </h3>
+                    {skill.years ? (
+                      <span className="text-xs text-muted-foreground tabular-nums">
+                        {skill.years}+ yr
                       </span>
-                    )}
+                    ) : null}
                   </div>
-                  {skill.description && (
-                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-snug">
+                  {skill.description ? (
+                    <p className="text-sm leading-relaxed text-muted-foreground">
                       {skill.description}
                     </p>
-                  )}
+                  ) : null}
                 </div>
               ))}
             </div>
-          </section>
+          </SectionShell>
 
-          {/* Core competencies */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">Core Competencies</h2>
+          <SectionShell title="Core competencies" delay={0.05}>
             <div className="flex flex-wrap gap-2">
               {coreCompetencies.map((c) => (
                 <span
                   key={c}
-                  className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium"
+                  className="px-3 py-1 rounded-md bg-primary/10 text-primary text-sm font-medium"
                 >
                   {c}
                 </span>
               ))}
             </div>
-          </section>
+          </SectionShell>
 
-          {/* Education / context */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <GraduationCap className="h-5 w-5 text-primary" />
-              Education & Background
-            </h2>
-            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Self-taught engineer turned engineering leader. Started building
-                WordPress sites for local businesses in 2016 and grew through
-                IC, technical lead, and engineering management roles at
-                Emerson Ecologics and Fullscript. Continuing freelance practice
-                serving healthcare professionals and small businesses on the
-                side.
+          <SectionShell
+            icon={<GraduationCap className="h-4 w-4" />}
+            title="Education & background"
+            delay={0.05}
+          >
+            <div className="bg-card border border-border rounded-md p-6 space-y-5">
+              <div>
+                <h3 className="font-display font-semibold text-foreground">
+                  B.S. Computer Science
+                </h3>
+                <p className="text-sm font-medium text-primary">
+                  University of Southern Maine
+                </p>
+              </div>
+              <p className="text-[0.975rem] leading-relaxed text-muted-foreground">
+                Started my career in 2014 as a Junior Software Developer at
+                Freeport Metrics in Portland, Maine. After Freeport, I worked
+                across several engineering roles before joining Emerson
+                Ecologics in 2020 and then Fullscript, where I've grown
+                through IC, technical lead, and engineering management roles.
+                I continue to keep a small freelance shop on the side,
+                primarily serving healthcare professionals and small
+                businesses.
               </p>
             </div>
-          </section>
+          </SectionShell>
 
-          {/* Footer CTA */}
-          <div className="text-center pt-8 border-t border-gray-200 dark:border-gray-800">
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+          <FadeIn className="mt-16 pt-8 border-t border-border text-center">
+            <p className="text-muted-foreground mb-4">
               Want to talk about engineering leadership, AI transformation, or
               just trade notes?
             </p>
             <Button asChild size="lg">
               <a href={`mailto:${contact.email}`}>Get in touch</a>
             </Button>
-          </div>
+          </FadeIn>
         </div>
       </div>
     </div>

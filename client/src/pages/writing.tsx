@@ -164,8 +164,8 @@ export default function WritingIndex() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Writing"
-          title="Posts, in order."
-          description="Notes on AI-enabled operations, engineering leadership, business systems, and the small-business web work I keep on the side. Newest first."
+          title="Field notes from the work."
+          description="On AI-enabled operations, engineering leadership, business systems, and the small-business web work I keep on the side."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">

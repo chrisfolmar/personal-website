@@ -73,7 +73,7 @@ export default function About() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="About Me"
-          description="The career arc — from builder to engineering manager to the person helping a business modernize how it operates."
+          description="The career arc — from software developer to engineering manager to the person helping Fullscript modernize how it operates."
         />
         
         {/* Image centered at the top */}

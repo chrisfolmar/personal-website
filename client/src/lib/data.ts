@@ -34,7 +34,7 @@ export const experiences: Experience[] = [
   {
     title: "Freelance WordPress Developer",
     company: "Self-employed",
-    period: "2016 - Present",
+    period: "2020 - Present",
     description:
       "Developing custom WordPress solutions for healthcare professionals, restaurants, and small businesses with a 'minimum cost, maximum support' approach. Created websites for Jennifer Mello LICSW, Locos Cocos Tacos, Slip 14, and Amy Cousineau LICSW. Specialized in creating sites clients can manage themselves, with strategic technical support as needed. Implemented booking systems, online ordering, and responsive designs tailored to each client's unique needs.",
   },

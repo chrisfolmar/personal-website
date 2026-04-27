@@ -2,12 +2,11 @@ import { Link } from "wouter";
 import {
   ArrowLeft,
   Home,
-  User,
-  PieChart,
-  Sparkles,
   Briefcase,
-  Quote,
+  Sparkles,
   FileText,
+  BarChart3,
+  User,
   Send,
   BookOpen,
   Calendar,
@@ -19,17 +18,18 @@ import { DEFAULT_METADATA } from "@/lib/metadata/seo";
 export default function Sitemap() {
   const mainSections = [
     { id: "home", label: "Home", icon: <Home className="w-5 h-5 mr-2" /> },
-    { id: "about", label: "About", icon: <User className="w-5 h-5 mr-2" /> },
-    { id: "skills", label: "Skills", icon: <PieChart className="w-5 h-5 mr-2" /> },
+    { id: "impact", label: "Impact", icon: <BarChart3 className="w-5 h-5 mr-2" /> },
+    { id: "what-i-do", label: "What I Do", icon: <Briefcase className="w-5 h-5 mr-2" /> },
+    { id: "case-studies", label: "Featured Case Studies", icon: <Layers className="w-5 h-5 mr-2" /> },
     { id: "ai-transformation", label: "AI Transformation", icon: <Sparkles className="w-5 h-5 mr-2" /> },
-    { id: "projects", label: "Projects", icon: <Briefcase className="w-5 h-5 mr-2" /> },
-    { id: "testimonials", label: "Testimonials", icon: <Quote className="w-5 h-5 mr-2" /> },
-    { id: "blog", label: "Blog", icon: <FileText className="w-5 h-5 mr-2" /> },
-    { id: "contact", label: "Contact", icon: <Send className="w-5 h-5 mr-2" /> },
+    { id: "writing", label: "Writing", icon: <FileText className="w-5 h-5 mr-2" /> },
   ];
 
   const standalonePages = [
+    { href: "/about", label: "About", icon: <User className="w-5 h-5 mr-2" /> },
+    { href: "/contact", label: "Contact", icon: <Send className="w-5 h-5 mr-2" /> },
     { href: "/case-studies", label: "Case Studies", icon: <Layers className="w-5 h-5 mr-2" /> },
+    { href: "/writing", label: "Writing", icon: <FileText className="w-5 h-5 mr-2" /> },
     { href: "/resume", label: "Resume", icon: <BookOpen className="w-5 h-5 mr-2" /> },
     { href: "/now", label: "Now", icon: <Calendar className="w-5 h-5 mr-2" /> },
   ];

@@ -51,14 +51,6 @@ export interface ExtendedContactFormData extends ContactFormData {
   formTime?: number; // Time tracking for bot detection
 }
 
-export interface Testimonial {
-  id: number;
-  name: string;
-  position: string;
-  content: string;
-  avatar: string;
-}
-
 export interface BlogPost {
   id: number;
   title: string;

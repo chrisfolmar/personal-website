@@ -281,38 +281,6 @@ export const contact: Contact = {
   location: "Durham, NH",
 };
 
-export const testimonials = [
-  // Temporarily hidden
-  /* {
-    id: 4,
-    name: "Jeff Archibald",
-    position: "Engineering Director at Fullscript",
-    content: "Chris fosters a strong team culture, encouraging collaboration and recognizing achievements. He pushes the team to grow, take on responsibilities, and develop professionally. He excels at multitasking and facilitating conversations across multiple areas. His leadership has made meetings more engaging and productive. (meetings are more fun!)",
-    avatar: "/assets/images/testimonials/testimonial4.svg"
-  }, */
-  {
-    id: 1,
-    name: "Jennifer Mello",
-    position: "Licensed Clinical Social Worker",
-    content: "Chris created exactly the website I envisioned for my therapy practice. The calming design perfectly represents my approach to trauma therapy, and my clients frequently comment on how easy the site is to navigate. Chris made the whole process simple and straightforward.",
-    avatar: "/assets/images/testimonials/testimonial1.svg"
-  },
-  {
-    id: 2,
-    name: "Amy Cousineau",
-    position: "LICSW Therapist",
-    content: "Working with Chris was a fantastic experience. He understood my vision for a professional yet approachable therapy website and delivered beyond my expectations. The site is easy for me to maintain and has significantly increased my client inquiries.",
-    avatar: "/assets/images/testimonials/testimonial2.svg"
-  },
-  {
-    id: 3,
-    name: "Jami Scardina",
-    position: "Restaurant Owner, Locos Cocos Tacos",
-    content: "Our restaurant website needed to be vibrant, functional and easy to update with specials and events. Chris delivered a perfect solution that our customers love using for online orders. The site captures our restaurant's energy and has boosted our online presence.",
-    avatar: "/assets/images/testimonials/testimonial3.svg"
-  },
-];
-
 export const blogPosts = [
   {
     id: 8,

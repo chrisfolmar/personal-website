@@ -1,4 +1,4 @@
-import { Experience, Project, Skill, Tool, Contact, Social, CaseStudy } from "@/types";
+import { BlogPost, Experience, Project, Skill, Tool, Contact, Social, CaseStudy } from "@/types";
 // Instead of using JSX directly in data.ts, we'll use a function approach
 // that will be rendered in the component
 
@@ -281,7 +281,7 @@ export const contact: Contact = {
   location: "Durham, NH",
 };
 
-export const blogPosts = [
+export const blogPosts: BlogPost[] = [
   {
     id: 8,
     title: "Why I Stopped Recommending WordPress: The Rise of AI-Powered Web Development",
@@ -656,6 +656,7 @@ export const blogPosts = [
     coverImage: "/images/blog/wordpress-dominate-2025.png",
     category: "Business Systems",
     readTime: "6 min read",
+    hidden: true,
     content: `
       <p>With the proliferation of drag-and-drop website builders promising instant websites, many small business owners wonder if WordPress will still be relevant in 2025. After developing dozens of small business websites, I can confidently say that WordPress will continue to be the superior choice for businesses seeking long-term value.</p>
       
@@ -691,6 +692,8 @@ export const blogPosts = [
     `
   },
 ];
+
+export const visibleBlogPosts: BlogPost[] = blogPosts.filter((p) => !p.hidden);
 
 export const socials: Social[] = [
   {

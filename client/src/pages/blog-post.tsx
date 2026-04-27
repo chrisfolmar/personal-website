@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams } from "wouter";
 import { ArrowLeft, Calendar, Clock, Share2, Link2, Check } from "lucide-react";
 import { SiX, SiFacebook, SiLinkedin } from "react-icons/si";
-import { blogPosts } from "@/lib/data";
+import { blogPosts, visibleBlogPosts } from "@/lib/data";
 import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import LazyImage from "@/components/LazyImage";
@@ -128,7 +128,7 @@ export default function BlogPost() {
     );
   }
 
-  const relatedPosts = blogPosts.filter((p) => p.id !== post.id).slice(0, 3);
+  const relatedPosts = visibleBlogPosts.filter((p) => p.id !== post.id).slice(0, 3);
 
   const sanitizedContent = DOMPurify.sanitize(post.content || "", {
     ALLOWED_TAGS: [

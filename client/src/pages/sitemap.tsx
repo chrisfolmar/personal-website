@@ -12,7 +12,7 @@ import {
   Calendar,
   Layers,
 } from "lucide-react";
-import { blogPosts, caseStudies } from "@/lib/data";
+import { visibleBlogPosts, caseStudies } from "@/lib/data";
 import { DEFAULT_METADATA } from "@/lib/metadata/seo";
 
 export default function Sitemap() {
@@ -99,7 +99,7 @@ export default function Sitemap() {
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
           <h2 className="text-xl font-semibold mb-4 border-b pb-2">Blog Posts</h2>
           <ul className="space-y-2">
-            {blogPosts.map((post) => (
+            {visibleBlogPosts.map((post) => (
               <li key={post.id}>
                 <Link
                   href={`/blog/${post.id}`}

@@ -2,9 +2,10 @@ import { useEffect, useMemo, useState } from "react";
 import { useLocation, useSearch } from "wouter";
 import SectionHeader from "@/components/SectionHeader";
 import WritingCard from "@/components/WritingCard";
-import { blogPosts } from "@/lib/data";
+import { visibleBlogPosts } from "@/lib/data";
 import { getCanonicalURL, getSchemaData } from "@/lib/metadata/seo";
 import { cn } from "@/lib/utils";
+import type { BlogPost } from "@/types";
 
 const ALL_CATEGORIES = "All";
 
@@ -13,8 +14,6 @@ const WRITING_TITLE = "Writing | Chris Folmar";
 const WRITING_DESCRIPTION =
   "Posts on AI-enabled operations, engineering leadership, business systems, and small-business web work.";
 const JSON_LD_SCRIPT_ID = "writing-index-jsonld";
-
-type BlogPost = (typeof blogPosts)[number];
 
 function setMetaTag(name: string, content: string, attr: "name" | "property" = "name") {
   let el = document.head.querySelector(
@@ -151,7 +150,7 @@ function useWritingIndexMeta(posts: BlogPost[]) {
 export default function WritingIndex() {
   const posts = useMemo(
     () =>
-      blogPosts
+      visibleBlogPosts
         .slice()
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
     [],

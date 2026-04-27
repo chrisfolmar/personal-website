@@ -3,13 +3,10 @@ import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import WritingCard from "./WritingCard";
-import { blogPosts } from "@/lib/data";
-
-const HIDDEN_FROM_HOMEPAGE = new Set<number>([4]);
+import { visibleBlogPosts } from "@/lib/data";
 
 function Writing() {
-  const latest = blogPosts
-    .filter((p) => !HIDDEN_FROM_HOMEPAGE.has(p.id))
+  const latest = visibleBlogPosts
     .slice()
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 3);

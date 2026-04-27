@@ -60,6 +60,7 @@ export interface BlogPost {
   category: string;
   readTime: string;
   content?: string; // Optional HTML content for full blog post
+  hidden?: boolean; // When true, omit from listings (homepage, /writing, sitemap)
 }
 
 export interface ImpactMetric {

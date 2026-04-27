@@ -13,6 +13,7 @@ import {
 import { caseStudies } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import FadeIn from "@/components/FadeIn";
+import SectionHeader from "@/components/SectionHeader";
 
 function usePageMeta(title: string, description: string) {
   useEffect(() => {
@@ -37,31 +38,6 @@ function usePageMeta(title: string, description: string) {
       document.title = prevTitle;
     };
   }, [title, description]);
-}
-
-interface SectionProps {
-  icon: React.ReactNode;
-  title: string;
-  delay?: number;
-  children: React.ReactNode;
-}
-
-function Section({ icon, title, delay = 0, children }: SectionProps) {
-  return (
-    <FadeIn as="section" delay={delay} className="mt-12 first:mt-0">
-      <div className="flex items-center gap-3 mb-4">
-        <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
-          {icon}
-        </span>
-        <h2 className="font-display text-2xl font-semibold text-foreground">
-          {title}
-        </h2>
-      </div>
-      <div className="text-[0.975rem] leading-relaxed text-muted-foreground">
-        {children}
-      </div>
-    </FadeIn>
-  );
 }
 
 export default function CaseStudyDetail() {
@@ -109,13 +85,13 @@ export default function CaseStudyDetail() {
           Back to case studies
         </Button>
 
-        <FadeIn className="max-w-3xl mb-12">
-          <div className="text-eyebrow mb-4">Case study</div>
-          <h1 className="text-h1 text-foreground">{study.title}</h1>
-          <p className="mt-4 text-lead">{study.summary}</p>
-        </FadeIn>
+        <SectionHeader
+          eyebrow="Case study"
+          title={study.title}
+          description={study.summary}
+        />
 
-        <FadeIn delay={0.05} className="mb-14">
+        <FadeIn className="mb-14">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {study.impact.map((metric) => (
               <div
@@ -134,32 +110,61 @@ export default function CaseStudyDetail() {
         </FadeIn>
 
         <div className="max-w-3xl">
-          <Section icon={<AlertCircle className="h-4 w-4" />} title="Problem">
-            <p>{study.problem}</p>
-          </Section>
+          <FadeIn as="section" className="mt-12 first:mt-0">
+            <SectionHeader
+              size="sub"
+              icon={<AlertCircle className="h-4 w-4" />}
+              title="Problem"
+            />
+            <div className="text-[0.975rem] leading-relaxed text-muted-foreground">
+              <p>{study.problem}</p>
+            </div>
+          </FadeIn>
 
-          <Section icon={<Compass className="h-4 w-4" />} title="Context" delay={0.05}>
-            <p>{study.context}</p>
-          </Section>
+          <FadeIn as="section" delay={0.05} className="mt-12">
+            <SectionHeader
+              size="sub"
+              icon={<Compass className="h-4 w-4" />}
+              title="Context"
+            />
+            <div className="text-[0.975rem] leading-relaxed text-muted-foreground">
+              <p>{study.context}</p>
+            </div>
+          </FadeIn>
 
-          <Section icon={<Wrench className="h-4 w-4" />} title="What I changed" delay={0.05}>
-            <ul className="space-y-3 list-disc pl-5 marker:text-primary/60">
+          <FadeIn as="section" delay={0.05} className="mt-12">
+            <SectionHeader
+              size="sub"
+              icon={<Wrench className="h-4 w-4" />}
+              title="What I changed"
+            />
+            <ul className="text-[0.975rem] leading-relaxed text-muted-foreground space-y-3 list-disc pl-5 marker:text-primary/60">
               {study.whatIChanged.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
-          </Section>
+          </FadeIn>
 
-          <Section icon={<Layers className="h-4 w-4" />} title="Systems introduced" delay={0.05}>
-            <ul className="space-y-3 list-disc pl-5 marker:text-primary/60">
+          <FadeIn as="section" delay={0.05} className="mt-12">
+            <SectionHeader
+              size="sub"
+              icon={<Layers className="h-4 w-4" />}
+              title="Systems introduced"
+            />
+            <ul className="text-[0.975rem] leading-relaxed text-muted-foreground space-y-3 list-disc pl-5 marker:text-primary/60">
               {study.systemsIntroduced.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
-          </Section>
+          </FadeIn>
 
-          <Section icon={<TrendingUp className="h-4 w-4" />} title="Measurable impact" delay={0.05}>
-            <ul className="space-y-3 list-disc pl-5 marker:text-primary/60">
+          <FadeIn as="section" delay={0.05} className="mt-12">
+            <SectionHeader
+              size="sub"
+              icon={<TrendingUp className="h-4 w-4" />}
+              title="Measurable impact"
+            />
+            <ul className="text-[0.975rem] leading-relaxed text-muted-foreground space-y-3 list-disc pl-5 marker:text-primary/60">
               {study.impact.map((metric) => (
                 <li key={metric.label}>
                   <span className="font-semibold text-foreground">
@@ -169,18 +174,23 @@ export default function CaseStudyDetail() {
                 </li>
               ))}
             </ul>
-          </Section>
+          </FadeIn>
 
-          <Section icon={<Lightbulb className="h-4 w-4" />} title="Lessons learned" delay={0.05}>
-            <ul className="space-y-3 list-disc pl-5 marker:text-primary/60">
+          <FadeIn as="section" delay={0.05} className="mt-12">
+            <SectionHeader
+              size="sub"
+              icon={<Lightbulb className="h-4 w-4" />}
+              title="Lessons learned"
+            />
+            <ul className="text-[0.975rem] leading-relaxed text-muted-foreground space-y-3 list-disc pl-5 marker:text-primary/60">
               {study.lessonsLearned.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
-          </Section>
+          </FadeIn>
 
-          <FadeIn className="mt-14 bg-muted/40 border border-border rounded-md p-6">
-            <div className="text-eyebrow mb-3">Tools & systems</div>
+          <FadeIn as="section" className="mt-14 bg-muted/40 border border-border rounded-md p-6">
+            <SectionHeader size="sub" eyebrow="Tools & systems" />
             <div className="flex flex-wrap gap-2">
               {study.tools.map((tool) => (
                 <span
@@ -194,22 +204,22 @@ export default function CaseStudyDetail() {
           </FadeIn>
         </div>
 
-        <FadeIn className="mt-16 pt-10 border-t border-border">
-          <div className="text-eyebrow mb-6">More case studies</div>
+        <FadeIn as="section" className="mt-16 pt-10 border-t border-border">
+          <SectionHeader size="sub" eyebrow="More case studies" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
             {otherStudies.map((other) => (
               <Link
                 key={other.slug}
                 href={`/case-studies/${other.slug}`}
-                className="group block bg-card border border-border rounded-md p-6 hover:border-primary/40 transition-colors"
+                className="group flex flex-col bg-card border border-border rounded-md p-6 hover:border-primary/40 transition-colors"
               >
-                <h4 className="font-display text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
+                <h3 className="font-display text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
                   {other.title}
-                </h4>
+                </h3>
                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                   {other.summary}
                 </p>
-                <div className="inline-flex items-center gap-1 text-primary text-sm font-medium">
+                <div className="mt-auto inline-flex items-center gap-1 text-primary text-sm font-medium">
                   Read the case study
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </div>

@@ -9,6 +9,7 @@ import LazyImage from "@/components/LazyImage";
 import DOMPurify from "dompurify";
 import { useToast } from "@/hooks/use-toast";
 import FadeIn from "@/components/FadeIn";
+import SectionHeader from "@/components/SectionHeader";
 import WritingCard from "@/components/WritingCard";
 
 function usePageMeta(title: string, description: string) {
@@ -137,6 +138,8 @@ export default function BlogPost() {
     ALLOWED_ATTR: ["href", "target", "rel", "class", "src", "alt", "width", "height"],
   });
 
+  const hasNativeShare = typeof navigator !== "undefined" && "share" in navigator;
+
   return (
     <article className="pt-28 md:pt-32 pb-20 md:pb-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -149,34 +152,32 @@ export default function BlogPost() {
           Back to writing
         </Button>
 
-        <div className="max-w-3xl">
-          <FadeIn>
-            <div className="text-eyebrow mb-4">{post.category}</div>
-            <h1 className="text-h1 text-foreground">{post.title}</h1>
-            <div className="mt-6 flex items-center gap-4 text-sm text-muted-foreground">
-              <span className="inline-flex items-center gap-1.5">
-                <Calendar className="h-4 w-4" />
-                {formatDate(post.date)}
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <Clock className="h-4 w-4" />
-                {post.readTime}
-              </span>
-              {"share" in navigator ? (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="ml-auto rounded-full p-2 h-auto"
-                  onClick={() => handleShare("native")}
-                  aria-label="Share this article"
-                >
-                  <Share2 className="h-4 w-4" />
-                </Button>
-              ) : null}
-            </div>
-          </FadeIn>
+        <SectionHeader eyebrow={post.category} title={post.title}>
+          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5">
+              <Calendar className="h-4 w-4" />
+              {formatDate(post.date)}
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Clock className="h-4 w-4" />
+              {post.readTime}
+            </span>
+            {hasNativeShare ? (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="ml-auto rounded-full p-2 h-auto"
+                onClick={() => handleShare("native")}
+                aria-label="Share this article"
+              >
+                <Share2 className="h-4 w-4" />
+              </Button>
+            ) : null}
+          </div>
+        </SectionHeader>
 
-          <FadeIn delay={0.05} className="mt-8 mb-10">
+        <div className="max-w-3xl">
+          <FadeIn className="mb-10">
             <LazyImage
               src={post.coverImage}
               alt={post.title}
@@ -198,8 +199,8 @@ export default function BlogPost() {
             />
           </FadeIn>
 
-          <FadeIn className="mt-14 pt-8 border-t border-border">
-            <div className="text-eyebrow mb-4">Share</div>
+          <FadeIn as="section" className="mt-14 pt-8 border-t border-border">
+            <SectionHeader size="sub" eyebrow="Share this article" />
             <div className="flex flex-wrap gap-2">
               <Button
                 variant="outline"
@@ -245,8 +246,8 @@ export default function BlogPost() {
           </FadeIn>
         </div>
 
-        <FadeIn className="mt-16 pt-10 border-t border-border">
-          <div className="text-eyebrow mb-6">More writing</div>
+        <FadeIn as="section" className="mt-16 pt-10 border-t border-border">
+          <SectionHeader size="sub" eyebrow="More writing" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {relatedPosts.map((rp, i) => (
               <WritingCard

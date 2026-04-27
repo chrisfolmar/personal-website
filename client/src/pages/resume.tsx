@@ -38,7 +38,7 @@ function usePageMeta(title: string, description: string) {
 
 const headlineAchievements: string[] = [
   "Led a 300%+ increase in engineering project throughput across three globally distributed teams without adding headcount.",
-  "Spearheaded an AI-first operating model (Team GSD) saving 1,600+ hours annually across five departments.",
+  "Spearheaded an AI-first operating model (Team GSD) across five departments, freeing teams to spend more time on the work they enjoy and less on the work they don't.",
   "Reduced NetSuite transaction load by 43% through ERP/WMS integration redesign.",
   "Cut invoicing maintenance overhead by 95% by leveraging native NetSuite capabilities.",
   "Mentored three engineers into senior roles and launched a Project Lead framework for mid-level growth.",

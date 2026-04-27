@@ -69,3 +69,21 @@ export interface BlogPost {
   readTime: string;
   content?: string; // Optional HTML content for full blog post
 }
+
+export interface ImpactMetric {
+  label: string;
+  value: string;
+}
+
+export interface CaseStudy {
+  slug: string;
+  title: string;
+  summary: string;
+  problem: string;
+  context: string;
+  whatIChanged: string[];
+  systemsIntroduced: string[];
+  impact: ImpactMetric[];
+  tools: string[];
+  lessonsLearned: string[];
+}

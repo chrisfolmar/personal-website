@@ -1,16 +1,19 @@
-import React from "react";
 import { Link } from "wouter";
-import { 
-  ArrowLeft, 
-  Home, 
-  User, 
-  PieChart, 
-  Briefcase, 
-  Quote, 
-  FileText, 
-  Send 
+import {
+  ArrowLeft,
+  Home,
+  User,
+  PieChart,
+  Sparkles,
+  Briefcase,
+  Quote,
+  FileText,
+  Send,
+  BookOpen,
+  Calendar,
+  Layers,
 } from "lucide-react";
-import { blogPosts } from "@/lib/data";
+import { blogPosts, caseStudies } from "@/lib/data";
 import { DEFAULT_METADATA } from "@/lib/metadata/seo";
 
 export default function Sitemap() {
@@ -18,10 +21,17 @@ export default function Sitemap() {
     { id: "home", label: "Home", icon: <Home className="w-5 h-5 mr-2" /> },
     { id: "about", label: "About", icon: <User className="w-5 h-5 mr-2" /> },
     { id: "skills", label: "Skills", icon: <PieChart className="w-5 h-5 mr-2" /> },
+    { id: "ai-transformation", label: "AI Transformation", icon: <Sparkles className="w-5 h-5 mr-2" /> },
     { id: "projects", label: "Projects", icon: <Briefcase className="w-5 h-5 mr-2" /> },
     { id: "testimonials", label: "Testimonials", icon: <Quote className="w-5 h-5 mr-2" /> },
     { id: "blog", label: "Blog", icon: <FileText className="w-5 h-5 mr-2" /> },
     { id: "contact", label: "Contact", icon: <Send className="w-5 h-5 mr-2" /> },
+  ];
+
+  const standalonePages = [
+    { href: "/case-studies", label: "Case Studies", icon: <Layers className="w-5 h-5 mr-2" /> },
+    { href: "/resume", label: "Resume", icon: <BookOpen className="w-5 h-5 mr-2" /> },
+    { href: "/now", label: "Now", icon: <Calendar className="w-5 h-5 mr-2" /> },
   ];
 
   return (
@@ -35,14 +45,14 @@ export default function Sitemap() {
 
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">Site Map</h1>
-        
+
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
           <h2 className="text-xl font-semibold mb-4 border-b pb-2">Main Sections</h2>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {mainSections.map((section) => (
               <li key={section.id}>
-                <a 
-                  href={`/#${section.id}`} 
+                <a
+                  href={`/#${section.id}`}
                   className="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
                 >
                   {section.icon}
@@ -54,11 +64,44 @@ export default function Sitemap() {
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-xl font-semibold mb-4 border-b pb-2">Pages</h2>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {standalonePages.map((page) => (
+              <li key={page.href}>
+                <Link
+                  href={page.href}
+                  className="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+                >
+                  {page.icon}
+                  {page.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-xl font-semibold mb-4 border-b pb-2">Case Studies</h2>
+          <ul className="space-y-2">
+            {caseStudies.map((study) => (
+              <li key={study.slug}>
+                <Link
+                  href={`/case-studies/${study.slug}`}
+                  className="block p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+                >
+                  {study.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
           <h2 className="text-xl font-semibold mb-4 border-b pb-2">Blog Posts</h2>
           <ul className="space-y-2">
             {blogPosts.map((post) => (
               <li key={post.id}>
-                <Link 
+                <Link
                   href={`/blog/${post.id}`}
                   className="block p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
                 >

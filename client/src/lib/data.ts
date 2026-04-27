@@ -1,4 +1,4 @@
-import { Experience, Project, Skill, Tool, Contact, Social } from "@/types";
+import { Experience, Project, Skill, Tool, Contact, Social, CaseStudy } from "@/types";
 // Instead of using JSX directly in data.ts, we'll use a function approach
 // that will be rendered in the component
 
@@ -747,5 +747,146 @@ export const socials: Social[] = [
     name: "Penny's Instagram",
     url: "https://www.instagram.com/pennyifyouplease",
     icon: "instagram",
+  },
+];
+
+export const caseStudies: CaseStudy[] = [
+  {
+    slug: "scaling-bse-throughput",
+    title: "Scaling BSE Project Throughput by ~300%",
+    summary:
+      "How we tripled what the Business Systems Engineering org could ship without adding headcount — by fixing the operating model, not the people.",
+    problem:
+      "When I stepped into the Engineering Manager role, the Business Systems Engineering org was delivering a fraction of its potential. Initiatives sat in flight for months, work-in-progress was piling up across the team, and stakeholder trust was eroding. We were not understaffed — we were over-committed and under-coordinated.",
+    context:
+      "Three globally distributed teams supporting Finance, Fulfillment, Customer Support, and Catalog. Highly cross-functional surface area, multiple competing roadmaps, and a long backlog of half-finished projects with no clear owner or finish line.",
+    whatIChanged: [
+      "Capped concurrent initiatives per team and forced sequential delivery on top priorities.",
+      "Rebuilt the intake and prioritization process with stakeholders so the team only said yes to work that mapped to a measurable outcome.",
+      "Introduced a clear operating cadence: weekly delivery sync, monthly business review, and a rolling 90-day roadmap.",
+      "Pushed lifecycle ownership down to project leads so engineers could own initiatives end-to-end without me as a bottleneck.",
+      "Built lifecycle dashboards in Asana so anyone could answer 'what's in flight, what's blocked, what's done' without a meeting.",
+    ],
+    systemsIntroduced: [
+      "Asana-based lifecycle dashboards (status, owner, target date, blocker)",
+      "Project Lead framework to grow mid-level engineers into delivery owners",
+      "Standing async business reviews replacing ad-hoc status update meetings",
+      "WIP limits at the team level enforced through the planning cadence",
+    ],
+    impact: [
+      { label: "Project throughput increase", value: "300%+" },
+      { label: "Reporting prep reduction", value: "90%" },
+      { label: "Headcount added", value: "0" },
+      { label: "Engineers grown into senior roles", value: "3" },
+    ],
+    tools: ["Asana", "Notion", "Slack", "Google Sheets", "Looker"],
+    lessonsLearned: [
+      "Throughput problems are almost always operating-model problems, not effort problems.",
+      "Visibility is leverage — the dashboard that shows truth is worth more than the meeting that explains it.",
+      "Mid-level engineers will rise to ownership if you give them the frame and the air cover.",
+    ],
+  },
+  {
+    slug: "asana-async-information-flow",
+    title: "Building Asynchronous Information Flow with Asana",
+    summary:
+      "Replacing status meetings and Slack archaeology with a single async source of truth across five business divisions.",
+    problem:
+      "Cross-functional partners — Finance, Customer Success, Operations, Product, Labs — could not get a straight answer to 'what is engineering doing for us right now?' without DMing me or sitting through a meeting. Information lived in heads, threads, and out-of-date decks.",
+    context:
+      "Five departments depending on Business Systems Engineering output. Distributed teams across multiple time zones. A culture that defaulted to synchronous updates and ad-hoc Slack pings whenever someone needed visibility.",
+    whatIChanged: [
+      "Designed a standardized Asana project template every initiative had to use, with required fields for owner, status, milestone, and stakeholder.",
+      "Wrote and rolled out an 'async-first' communication standard so updates lived in the project, not in Slack.",
+      "Built per-stakeholder dashboards so each business partner had a single link to see exactly what mattered to them.",
+      "Trained project leads to write update notes the same way every week, in the same place, on the same cadence.",
+    ],
+    systemsIntroduced: [
+      "Standardized Asana project template with required fields",
+      "Stakeholder-specific portfolio dashboards",
+      "Weekly async update format owned by project leads",
+      "Documented async communication standard across the org",
+    ],
+    impact: [
+      { label: "Divisions on shared async visibility", value: "5" },
+      { label: "Monthly reporting prep reduction", value: "90%" },
+      { label: "Recurring status meetings removed", value: "Multiple" },
+      { label: "Time to answer 'what's the status?'", value: "< 1 min" },
+    ],
+    tools: ["Asana", "Slack", "Notion", "Google Workspace"],
+    lessonsLearned: [
+      "Async only works if the format is boring and consistent — novelty kills adoption.",
+      "Stakeholders don't want more information, they want the right information in one place.",
+      "Removing meetings is a feature, not a side effect.",
+    ],
+  },
+  {
+    slug: "erp-wms-modernization",
+    title: "Business Systems & ERP/WMS Modernization",
+    summary:
+      "Rearchitecting how Fullscript's commerce platform talks to NetSuite and the WMS — cutting transaction load by 43% and unlocking cross-subsidiary fulfillment.",
+    problem:
+      "The integration layer between our commerce platform, NetSuite ERP, and our warehouse management system had grown organically for years. It was generating an enormous volume of NetSuite transactions, was brittle to schema changes, and could not support the cross-subsidiary fulfillment model the business needed to grow.",
+    context:
+      "Healthcare commerce platform serving 70,000+ practitioners and millions of patients. Strict accounting and inventory accuracy requirements. Multiple subsidiaries with different fulfillment networks. Legacy integration patterns predating the current scale.",
+    whatIChanged: [
+      "Led the redesign of the order-to-cash and fulfillment integration to consolidate redundant transactions.",
+      "Reworked the invoicing pipeline to leverage native NetSuite capabilities instead of custom middleware.",
+      "Designed and shipped cross-subsidiary fulfillment so an order in one entity could be fulfilled by another without manual reconciliation.",
+      "Established architectural alignment standards so future integrations followed the same patterns.",
+    ],
+    systemsIntroduced: [
+      "Consolidated NetSuite integration patterns",
+      "Native-NetSuite invoicing pipeline replacing custom middleware",
+      "Cross-subsidiary fulfillment workflow",
+      "Carrier API rate-shopping integration",
+    ],
+    impact: [
+      { label: "NetSuite transaction reduction", value: "43%" },
+      { label: "Invoicing maintenance overhead reduction", value: "95%" },
+      { label: "Carrier savings (2 years)", value: "$3M+" },
+      { label: "Practitioners served on platform", value: "70K+" },
+    ],
+    tools: ["NetSuite", "SuiteScript", "Ruby on Rails", "AWS", "WMS APIs", "Carrier APIs"],
+    lessonsLearned: [
+      "The cheapest integration is the one you don't write — lean on the platform first.",
+      "Transaction volume is a tax; reducing it pays compound interest in cost, performance, and reliability.",
+      "Modernization works best when it's tied to a business outcome the org actually wants.",
+    ],
+  },
+  {
+    slug: "team-gsd-ai-transformation",
+    title: "Team GSD: AI-Enabled Workflow Transformation",
+    summary:
+      "Standing up an AI-first operating model across five departments — saving 1,600+ hours annually and building the muscle for the next generation of work.",
+    problem:
+      "Operational teams across Finance, Customer Success, Catalog, Fulfillment, and Support were spending huge portions of their week on repetitive, low-leverage work — copy/paste between systems, manual reconciliation, drafting the same email a hundred different ways. Traditional automation projects were too slow and too narrow to keep up.",
+    context:
+      "A People First, AI Empowered philosophy: AI is leverage for the humans doing the work, not a replacement for them. Five departments, dozens of distinct workflows, and a strong cultural appetite to experiment if the path was made safe and clear.",
+    whatIChanged: [
+      "Created Team GSD as a cross-functional unit chartered to find and ship AI-enabled wins.",
+      "Defined a three-tier operating model: Easy Wins (ship in days), Initiatives (ship in weeks), and Reworks (rethink the workflow end-to-end).",
+      "Built a tooling stack — n8n, Cursor, ChatGPT Enterprise, NotebookLM — that let small teams move fast without breaking governance.",
+      "Embedded with each department to pair on the first few automations, then handed ownership back so they could build their own.",
+    ],
+    systemsIntroduced: [
+      "Easy Wins / Initiatives / Reworks triage and intake model",
+      "n8n-based workflow automation platform for non-engineers",
+      "ChatGPT Enterprise rollout with documented prompting patterns",
+      "NotebookLM-backed institutional knowledge surfaces",
+      "Cursor-based AI-assisted development standards",
+    ],
+    impact: [
+      { label: "Annual hours saved", value: "1,600+" },
+      { label: "Operational time reduction across departments", value: "40%+" },
+      { label: "Departments onboarded", value: "5" },
+      { label: "Headcount added to deliver this", value: "0" },
+    ],
+    tools: ["n8n", "Cursor", "ChatGPT Enterprise", "NotebookLM", "Asana", "Slack"],
+    lessonsLearned: [
+      "People First, AI Empowered isn't a slogan — if the humans don't trust the tool, the workflow dies.",
+      "Easy Wins build the credibility that buys you the right to attempt the Reworks.",
+      "The biggest unlock isn't the model, it's the operating model around the model.",
+    ],
   },
 ];

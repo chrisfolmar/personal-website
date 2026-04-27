@@ -3,8 +3,6 @@ import SectionHeader from "@/components/SectionHeader";
 import WritingCard from "@/components/WritingCard";
 import { blogPosts } from "@/lib/data";
 
-const HIDDEN_FROM_INDEX = new Set<number>([4]);
-
 function usePageMeta(title: string, description: string) {
   useEffect(() => {
     const prevTitle = document.title;
@@ -41,7 +39,6 @@ export default function WritingIndex() {
   }, []);
 
   const posts = blogPosts
-    .filter((p) => !HIDDEN_FROM_INDEX.has(p.id))
     .slice()
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 

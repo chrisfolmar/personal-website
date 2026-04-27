@@ -107,7 +107,7 @@ export default function About() {
                 <strong className="text-gray-800 dark:text-gray-200">Engineering Manager.</strong> Today I run three globally distributed teams at Fullscript. Less code, more leverage: hiring, coaching, performance, prioritization, and the unglamorous work of making sure the right things actually get done.
               </p>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
-                <strong className="text-gray-800 dark:text-gray-200">Business Systems Leader.</strong> My remit has expanded from product engineering into the systems behind Fullscript — ERP, WMS, fulfillment, finance, and catalog. The job is making sure the systems that run my company keep up with where my company is going.
+                <strong className="text-gray-800 dark:text-gray-200">Business Systems Leader.</strong> My remit has expanded from product engineering into the systems behind Fullscript — ERP, WMS, fulfillment, finance, and catalog. The job is making sure the systems that run Fullscript keep up with where Fullscript is going.
               </p>
               <p className="text-gray-600 dark:text-gray-400 mb-8">
                 <strong className="text-gray-800 dark:text-gray-200">AI Transformation / Team GSD Leader.</strong> Most of my recent energy has gone into AI-enabled workflows — automating away the work people shouldn't have to do, so teams can spend their time on the things that actually move Fullscript forward. I'm building the muscle for AI-first operations across five departments.

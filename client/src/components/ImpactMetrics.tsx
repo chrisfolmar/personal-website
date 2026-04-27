@@ -48,7 +48,7 @@ function ImpactMetrics() {
             Impact at a Glance
           </h2>
           <p className="mt-2 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            A few proof points from the last few years of leading teams and modernizing how my company runs.
+            A few proof points from the last few years of leading teams and modernizing how Fullscript runs.
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">

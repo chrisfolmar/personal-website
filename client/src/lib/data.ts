@@ -545,7 +545,7 @@ export const blogPosts = [
     id: 5,
     title: "Finding the Perfect Balance: Life as a Web Developer and New Husband",
     excerpt: "Reflections on the journey of balancing a growing freelance web development business with personal milestones and the lessons learned along the way.",
-    date: "2024-05-10",
+    date: "2024-07-10",
     coverImage: "/images/blog/perfect-balance.png",
     category: "Career / Reflection",
     readTime: "4 min read",

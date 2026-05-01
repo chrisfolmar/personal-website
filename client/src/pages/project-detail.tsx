@@ -7,52 +7,33 @@ import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import LazyImage from "@/components/LazyImage";
-
-function usePageMeta(title: string, description: string) {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = title;
-
-    const setMeta = (name: string, content: string, attr = "name") => {
-      let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute(attr, name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-
-    setMeta("description", description);
-    setMeta("og:title", title, "property");
-    setMeta("og:description", description, "property");
-    setMeta("twitter:title", title, "property");
-    setMeta("twitter:description", description, "property");
-
-    return () => {
-      document.title = prevTitle;
-    };
-  }, [title, description]);
-}
+import { buildProjectJsonLd } from "@/lib/metadata/seo";
+import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
 export default function ProjectDetail() {
   const [location, setLocation] = useLocation();
   const params = useParams();
   const projectId = params?.id || null;
-  
+
   const project = projects.find(project => {
     const urlTitle = project.title
       .toLowerCase()
       .replace(/[^\w\s]/g, '')
       .replace(/\s+/g, '-');
-      
+
     return urlTitle === projectId;
   });
 
-  usePageMeta(
-    project ? `${project.title} | Chris Folmar` : "Project | Chris Folmar",
-    project ? project.description : "Project details by Chris Folmar"
-  );
+  const projectPath = projectId ? `/project/${projectId}` : "/";
+
+  usePageSeo({
+    title: project ? `${project.title} | Chris Folmar` : "Project | Chris Folmar",
+    description: project ? project.description : "Project details by Chris Folmar",
+    path: projectPath,
+    type: "article",
+    jsonLd: project ? buildProjectJsonLd(projectPath, project) : undefined,
+    jsonLdId: project ? "project-detail-jsonld" : undefined,
+  });
   
   useEffect(() => {
     if (!projectId) {

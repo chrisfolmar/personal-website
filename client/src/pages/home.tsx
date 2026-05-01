@@ -9,8 +9,27 @@ import AITransformationSummary from "@/components/AITransformationSummary";
 import Writing from "@/components/Writing";
 import CurrentFocus from "@/components/CurrentFocus";
 import CtaBand from "@/components/CtaBand";
+import {
+  DEFAULT_METADATA,
+  getPersonSchema,
+  getWebsiteSchema,
+} from "@/lib/metadata/seo";
+import { usePageSeo } from "@/lib/metadata/usePageSeo";
+
+const HOME_JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [getPersonSchema(), getWebsiteSchema()],
+};
 
 export default function HomePage() {
+  usePageSeo({
+    title: DEFAULT_METADATA.title,
+    description: DEFAULT_METADATA.description,
+    path: "/",
+    jsonLd: HOME_JSON_LD,
+    jsonLdId: "home-jsonld",
+  });
+
   useEffect(() => {
     if (typeof window !== "undefined" && window.location.hash) {
       const id = window.location.hash.slice(1);

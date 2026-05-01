@@ -2,31 +2,8 @@ import { useEffect } from "react";
 import { Sparkles, Briefcase, BookOpen, Heart, Calendar } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import FadeIn from "@/components/FadeIn";
-
-function usePageMeta(title: string, description: string) {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = title;
-
-    const setMeta = (name: string, content: string, attr = "name") => {
-      let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute(attr, name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-
-    setMeta("description", description);
-    setMeta("og:title", title, "property");
-    setMeta("og:description", description, "property");
-
-    return () => {
-      document.title = prevTitle;
-    };
-  }, [title, description]);
-}
+import { buildWebPageJsonLd } from "@/lib/metadata/seo";
+import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
 interface FocusItem {
   icon: React.ReactNode;
@@ -57,11 +34,18 @@ const focusAreas: FocusItem[] = [
   },
 ];
 
+const NOW_TITLE = "Now | Chris Folmar";
+const NOW_DESCRIPTION =
+  "What Chris Folmar is focused on right now — Team GSD, AI-enabled workflows, engineering leadership, and life as a new dad.";
+
 export default function NowPage() {
-  usePageMeta(
-    "Now | Chris Folmar",
-    "What Chris Folmar is focused on right now — Team GSD, AI-enabled workflows, engineering leadership, and life as a new dad."
-  );
+  usePageSeo({
+    title: NOW_TITLE,
+    description: NOW_DESCRIPTION,
+    path: "/now",
+    jsonLd: buildWebPageJsonLd("/now", NOW_TITLE, NOW_DESCRIPTION),
+    jsonLdId: "now-jsonld",
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);

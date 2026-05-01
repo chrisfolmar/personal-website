@@ -14,31 +14,8 @@ import { caseStudies } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import FadeIn from "@/components/FadeIn";
 import SectionHeader from "@/components/SectionHeader";
-
-function usePageMeta(title: string, description: string) {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = title;
-
-    const setMeta = (name: string, content: string, attr = "name") => {
-      let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute(attr, name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-
-    setMeta("description", description);
-    setMeta("og:title", title, "property");
-    setMeta("og:description", description, "property");
-
-    return () => {
-      document.title = prevTitle;
-    };
-  }, [title, description]);
-}
+import { buildCaseStudyArticleJsonLd } from "@/lib/metadata/seo";
+import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
 export default function CaseStudyDetail() {
   const [, setLocation] = useLocation();
@@ -47,10 +24,16 @@ export default function CaseStudyDetail() {
 
   const study = caseStudies.find((s) => s.slug === slug);
 
-  usePageMeta(
-    study ? `${study.title} | Case Study | Chris Folmar` : "Case Study | Chris Folmar",
-    study ? study.summary : "Case study by Chris Folmar"
-  );
+  usePageSeo({
+    title: study
+      ? `${study.title} | Case Study | Chris Folmar`
+      : "Case Study | Chris Folmar",
+    description: study ? study.summary : "Case study by Chris Folmar",
+    path: study ? `/case-studies/${study.slug}` : "/case-studies",
+    type: "article",
+    jsonLd: study ? buildCaseStudyArticleJsonLd(study) : undefined,
+    jsonLdId: study ? "case-study-detail-jsonld" : undefined,
+  });
 
   useEffect(() => {
     if (!slug || !study) {

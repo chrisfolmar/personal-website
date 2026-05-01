@@ -3,8 +3,13 @@
  * Provides utilities for generating metadata for the website
  */
 
+import type { BlogPost, CaseStudy, Project } from "@/types";
+
 export const PRIMARY_DOMAIN = 'https://chrisfolmar.com';
 export const ALTERNATE_DOMAIN = 'https://cfolmar.com';
+export const SITE_NAME = 'Chris Folmar';
+export const TWITTER_HANDLE = '@fomy';
+export const AUTHOR_NAME = 'Chris Folmar';
 
 /**
  * List of all domains associated with this website
@@ -60,6 +65,183 @@ export function getSchemaData(type: string, data: Record<string, any>) {
     '@type': type,
     ...data
   };
+}
+
+/**
+ * Reusable Person schema for Chris Folmar
+ */
+export function getPersonSchema() {
+  return {
+    "@type": "Person",
+    "@id": `${PRIMARY_DOMAIN}/#person`,
+    name: AUTHOR_NAME,
+    url: getCanonicalURL("/"),
+    jobTitle: "Engineering Manager · AI Transformation Leader",
+    worksFor: {
+      "@type": "Organization",
+      name: "Fullscript",
+    },
+    sameAs: [
+      "https://www.linkedin.com/in/clfolmar",
+      "https://github.com/chrisfolmar",
+      "https://x.com/fomy",
+      "https://medium.com/@c.folmar",
+      "https://www.instagram.com/fomy",
+    ],
+  };
+}
+
+/**
+ * Reusable WebSite schema
+ */
+export function getWebsiteSchema() {
+  const url = getCanonicalURL("/");
+  return {
+    "@type": "WebSite",
+    "@id": `${PRIMARY_DOMAIN}/#website`,
+    url,
+    name: SITE_NAME,
+    inLanguage: "en-US",
+    publisher: { "@id": `${PRIMARY_DOMAIN}/#person` },
+  };
+}
+
+/**
+ * Build a BlogPosting JSON-LD block for an individual blog post
+ */
+export function buildBlogPostingJsonLd(post: BlogPost) {
+  const url = getCanonicalURL(`/blog/${post.id}`);
+  const author = getPersonSchema();
+  return getSchemaData("BlogPosting", {
+    "@id": url,
+    url,
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    image: post.coverImage ? getAbsoluteURL(post.coverImage) : undefined,
+    articleSection: post.category,
+    inLanguage: "en-US",
+    author,
+    publisher: author,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  });
+}
+
+/**
+ * Build an Article JSON-LD block for a case study detail page
+ */
+export function buildCaseStudyArticleJsonLd(study: CaseStudy) {
+  const url = getCanonicalURL(`/case-studies/${study.slug}`);
+  const author = getPersonSchema();
+  return getSchemaData("Article", {
+    "@id": url,
+    url,
+    headline: study.title,
+    description: study.summary,
+    inLanguage: "en-US",
+    author,
+    publisher: author,
+    about: study.tools,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  });
+}
+
+/**
+ * Build a CollectionPage + ItemList JSON-LD block for the case studies index
+ */
+export function buildCaseStudyListJsonLd(studies: CaseStudy[]) {
+  const pageUrl = getCanonicalURL("/case-studies");
+  const itemListElement = studies.map((study, index) => {
+    const url = getCanonicalURL(`/case-studies/${study.slug}`);
+    return {
+      "@type": "ListItem",
+      position: index + 1,
+      url,
+      item: {
+        "@type": "Article",
+        "@id": url,
+        url,
+        headline: study.title,
+        description: study.summary,
+      },
+    };
+  });
+
+  return getSchemaData("CollectionPage", {
+    "@id": pageUrl,
+    url: pageUrl,
+    name: "Case Studies | Chris Folmar",
+    inLanguage: "en-US",
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: studies.length,
+      itemListElement,
+    },
+  });
+}
+
+/**
+ * Build a ProfilePage JSON-LD block (used by /about and /resume)
+ */
+export function buildProfilePageJsonLd(path: string, name: string, description: string) {
+  const url = getCanonicalURL(path);
+  return getSchemaData("ProfilePage", {
+    "@id": url,
+    url,
+    name,
+    description,
+    inLanguage: "en-US",
+    mainEntity: getPersonSchema(),
+  });
+}
+
+/**
+ * Build a ContactPage JSON-LD block
+ */
+export function buildContactPageJsonLd(description: string) {
+  const url = getCanonicalURL("/contact");
+  return getSchemaData("ContactPage", {
+    "@id": url,
+    url,
+    name: "Contact | Chris Folmar",
+    description,
+    inLanguage: "en-US",
+    mainEntity: getPersonSchema(),
+  });
+}
+
+/**
+ * Build a generic WebPage JSON-LD block (used by /now)
+ */
+export function buildWebPageJsonLd(path: string, name: string, description: string) {
+  const url = getCanonicalURL(path);
+  return getSchemaData("WebPage", {
+    "@id": url,
+    url,
+    name,
+    description,
+    inLanguage: "en-US",
+    isPartOf: { "@id": `${PRIMARY_DOMAIN}/#website` },
+    about: getPersonSchema(),
+  });
+}
+
+/**
+ * Build a CreativeWork JSON-LD block for an individual project page
+ */
+export function buildProjectJsonLd(path: string, project: Project) {
+  const url = getCanonicalURL(path);
+  return getSchemaData("CreativeWork", {
+    "@id": url,
+    url,
+    name: project.title,
+    description: project.description,
+    image: project.image ? getAbsoluteURL(project.image) : undefined,
+    keywords: project.tags,
+    dateCreated: project.date,
+    inLanguage: "en-US",
+    creator: getPersonSchema(),
+  });
 }
 
 /**

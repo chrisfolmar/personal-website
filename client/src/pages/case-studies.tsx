@@ -2,37 +2,21 @@ import { useEffect } from "react";
 import { caseStudies } from "@/lib/data";
 import SectionHeader from "@/components/SectionHeader";
 import CaseStudyCard from "@/components/CaseStudyCard";
+import { buildCaseStudyListJsonLd } from "@/lib/metadata/seo";
+import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
-function usePageMeta(title: string, description: string) {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = title;
-
-    const setMeta = (name: string, content: string, attr = "name") => {
-      let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute(attr, name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-
-    setMeta("description", description);
-    setMeta("og:title", title, "property");
-    setMeta("og:description", description, "property");
-
-    return () => {
-      document.title = prevTitle;
-    };
-  }, [title, description]);
-}
+const CASE_STUDIES_TITLE = "Case Studies | Chris Folmar";
+const CASE_STUDIES_DESCRIPTION =
+  "Detailed case studies on scaling engineering throughput, AI-enabled workflow transformation, ERP/WMS modernization, and async information flow.";
 
 export default function CaseStudies() {
-  usePageMeta(
-    "Case Studies | Chris Folmar",
-    "Detailed case studies on scaling engineering throughput, AI-enabled workflow transformation, ERP/WMS modernization, and async information flow."
-  );
+  usePageSeo({
+    title: CASE_STUDIES_TITLE,
+    description: CASE_STUDIES_DESCRIPTION,
+    path: "/case-studies",
+    jsonLd: buildCaseStudyListJsonLd(caseStudies),
+    jsonLdId: "case-studies-index-jsonld",
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);

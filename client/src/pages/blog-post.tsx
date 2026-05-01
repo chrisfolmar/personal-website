@@ -11,33 +11,8 @@ import { useToast } from "@/hooks/use-toast";
 import FadeIn from "@/components/FadeIn";
 import SectionHeader from "@/components/SectionHeader";
 import WritingCard from "@/components/WritingCard";
-
-function usePageMeta(title: string, description: string) {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = title;
-
-    const setMeta = (name: string, content: string, attr = "name") => {
-      let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute(attr, name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-
-    setMeta("description", description);
-    setMeta("og:title", title, "property");
-    setMeta("og:description", description, "property");
-    setMeta("twitter:title", title, "property");
-    setMeta("twitter:description", description, "property");
-
-    return () => {
-      document.title = prevTitle;
-    };
-  }, [title, description]);
-}
+import { buildBlogPostingJsonLd } from "@/lib/metadata/seo";
+import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
 export default function BlogPost() {
   const [, setLocation] = useLocation();
@@ -48,10 +23,14 @@ export default function BlogPost() {
 
   const post = blogPosts.find((p) => p.id === postId);
 
-  usePageMeta(
-    post ? `${post.title} | Chris Folmar` : "Writing | Chris Folmar",
-    post ? post.excerpt : "Writing by Chris Folmar"
-  );
+  usePageSeo({
+    title: post ? `${post.title} | Chris Folmar` : "Writing | Chris Folmar",
+    description: post ? post.excerpt : "Writing by Chris Folmar",
+    path: post ? `/blog/${post.id}` : "/writing",
+    type: post ? "article" : "website",
+    jsonLd: post ? buildBlogPostingJsonLd(post) : undefined,
+    jsonLdId: post ? "blog-post-jsonld" : undefined,
+  });
 
   const getShareUrl = () => `https://chrisfolmar.com/blog/${postId}`;
 

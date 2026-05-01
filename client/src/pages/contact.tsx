@@ -1,31 +1,20 @@
 import { useEffect } from "react";
 import Contact from "@/components/Contact";
+import { buildContactPageJsonLd } from "@/lib/metadata/seo";
+import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
-function usePageMeta(title: string, description: string) {
-  useEffect(() => {
-    const prev = document.title;
-    document.title = title;
-    const setMeta = (name: string, content: string, attr = "name") => {
-      let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute(attr, name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-    setMeta("description", description);
-    setMeta("og:title", title, "property");
-    setMeta("og:description", description, "property");
-    return () => { document.title = prev; };
-  }, [title, description]);
-}
+const CONTACT_TITLE = "Contact | Chris Folmar";
+const CONTACT_DESCRIPTION =
+  "Get in touch with Chris Folmar — engineering leadership, AI transformation, business systems, or anything in between.";
 
 export default function ContactPage() {
-  usePageMeta(
-    "Contact | Chris Folmar",
-    "Get in touch with Chris Folmar — engineering leadership, AI transformation, business systems, or anything in between."
-  );
+  usePageSeo({
+    title: CONTACT_TITLE,
+    description: CONTACT_DESCRIPTION,
+    path: "/contact",
+    jsonLd: buildContactPageJsonLd(CONTACT_DESCRIPTION),
+    jsonLdId: "contact-jsonld",
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);

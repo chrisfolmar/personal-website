@@ -10,31 +10,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { experiences, skills, contact } from "@/lib/data";
 import FadeIn from "@/components/FadeIn";
+import { buildProfilePageJsonLd } from "@/lib/metadata/seo";
+import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
-function usePageMeta(title: string, description: string) {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = title;
-
-    const setMeta = (name: string, content: string, attr = "name") => {
-      let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute(attr, name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-
-    setMeta("description", description);
-    setMeta("og:title", title, "property");
-    setMeta("og:description", description, "property");
-
-    return () => {
-      document.title = prevTitle;
-    };
-  }, [title, description]);
-}
+const RESUME_TITLE = "Resume | Chris Folmar";
+const RESUME_DESCRIPTION =
+  "Chris Folmar's resume — Engineering Manager, AI Transformation Leader, and Business Systems Engineering Lead.";
 
 const headlineAchievements: string[] = [
   "Led a 300%+ increase in engineering project throughput across three globally distributed teams without adding headcount.",
@@ -82,10 +63,14 @@ function SectionShell({ icon, title, delay = 0, children }: SectionShellProps) {
 }
 
 export default function Resume() {
-  usePageMeta(
-    "Resume | Chris Folmar",
-    "Chris Folmar's resume — Engineering Manager, AI Transformation Leader, and Business Systems Engineering Lead."
-  );
+  usePageSeo({
+    title: RESUME_TITLE,
+    description: RESUME_DESCRIPTION,
+    path: "/resume",
+    type: "profile",
+    jsonLd: buildProfilePageJsonLd("/resume", RESUME_TITLE, RESUME_DESCRIPTION),
+    jsonLdId: "resume-jsonld",
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);

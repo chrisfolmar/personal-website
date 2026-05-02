@@ -1,3 +1,7 @@
+// Per the copy-redundancy pass, the Team GSD focus body avoids the
+// operating-model framing (canonical home: AITransformationSummary)
+// and the five-departments framing (canonical homes: Team GSD case
+// study summary + résumé summary).
 import { useEffect } from "react";
 import { Sparkles, Briefcase, BookOpen, Heart, Calendar } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
@@ -15,7 +19,7 @@ const focusAreas: FocusItem[] = [
   {
     icon: <Sparkles className="h-4 w-4" />,
     title: "Team GSD & AI transformation",
-    body: "Most of my work energy is going into Team GSD — building out the AI-first operating model across five departments at Fullscript. We're past the phase of proving the concept and into the phase of making it stick: standards, ownership, and the next generation of reworks.",
+    body: "Most of my work energy is going into Team GSD — the cross-functional effort embedding AI into how Fullscript actually runs. We're past the phase of proving the concept and into the phase of making it stick: standards, ownership, and the next generation of reworks.",
   },
   {
     icon: <Briefcase className="h-4 w-4" />,

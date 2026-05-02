@@ -1,3 +1,7 @@
+// Per the copy-redundancy pass, this section deliberately avoids the
+// operating-model framing (canonical home: AITransformationSummary)
+// and the five-departments framing (canonical homes: Team GSD case
+// study summary + résumé summary). Keep the framing fresh here.
 import { memo } from "react";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
@@ -10,9 +14,8 @@ function CurrentFocus() {
         <FadeIn className="max-w-3xl">
           <div className="text-eyebrow mb-4">Current focus</div>
           <p className="font-display text-2xl md:text-3xl leading-snug text-foreground">
-            Building the AI-first operating model at Fullscript across five
-            departments — and growing more engineers into senior and lead
-            roles while doing it.
+            Threading AI into the way Fullscript actually runs — and growing
+            more engineers into senior and lead roles while doing it.
           </p>
           <Link
             href="/now"

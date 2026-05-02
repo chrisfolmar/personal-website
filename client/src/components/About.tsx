@@ -1,3 +1,8 @@
+// Per the copy-redundancy pass, the AI Transformation Leader paragraph
+// avoids the work-people-shouldnt-do framing (canonical home:
+// AITransformationSummary) and the time-back family (canonical homes:
+// AITransformationSummary + résumé bullet). Use a different framing
+// for the same idea here.
 import { memo } from "react";
 import { ArrowRight } from "lucide-react";
 import { experiences } from "@/lib/data";
@@ -111,8 +116,9 @@ function About() {
                   AI Transformation Leader.
                 </strong>{" "}
                 Most of my recent energy has gone into AI-enabled workflows —
-                automating away the work people shouldn't have to do, so teams
-                can spend their time on what actually moves Fullscript forward.
+                designing the systems that absorb the repetitive operational
+                drag so the people doing the work can stay on the parts that
+                actually need them.
               </p>
               <p className="pt-4 border-t border-border">
                 Outside of work: husband to Lauren, dad-to-dogs to Penny and

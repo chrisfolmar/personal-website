@@ -1,3 +1,6 @@
+// Footer paragraph is intentionally NOT a copy of the Hero — per the
+// copy-redundancy pass, the role-at-Fullscript line and the
+// modernize-the-work headline live in the Hero only.
 import { Link, useLocation } from "wouter";
 
 interface FooterLink {
@@ -103,9 +106,9 @@ export default function Footer() {
               <span className="text-primary">.</span>
             </Link>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-              Engineering leader at Fullscript. Helping teams modernize how the
-              work gets done — through better operating models, modern systems,
-              and AI-first workflows that give people their time back.
+              A working notebook on running engineering teams, modernizing
+              the systems behind a healthcare business, and threading AI into
+              the way an org actually operates.
             </p>
           </div>
 

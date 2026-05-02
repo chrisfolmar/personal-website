@@ -1,3 +1,9 @@
+// Per the copy-redundancy pass:
+//   - the headline-achievement bullet is the canonical home for the
+//     operator-voice variant of the time-back family
+//   - the Summary section keeps the five-departments framing (one of
+//     two allowed homes; the other is the Team GSD case study summary)
+//   - the operating-model framing is intentionally not used here
 import { useEffect } from "react";
 import {
   ExternalLink,
@@ -19,7 +25,7 @@ const RESUME_DESCRIPTION =
 
 const headlineAchievements: string[] = [
   "Led a 300%+ increase in engineering project throughput across three globally distributed teams without adding headcount.",
-  "Spearheaded an AI-first operating model (Team GSD) across five departments, freeing teams to spend more time on the work they enjoy and less on the work they don't.",
+  "Spearheaded the AI transformation effort (Team GSD), freeing teams to focus on higher-leverage work.",
   "Reduced NetSuite transaction load by 43% through ERP/WMS integration redesign.",
   "Cut invoicing maintenance overhead by 95% by leveraging native NetSuite capabilities.",
   "Mentored three engineers into senior roles and launched a Project Lead framework for mid-level growth.",

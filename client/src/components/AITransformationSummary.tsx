@@ -1,3 +1,9 @@
+// Canonical home (per copy-redundancy pass) for the operating-model
+// framing in the section title, the work-people-shouldnt-do framing in
+// the description, the not-replacing-anyone framing, and the
+// human-voice variant of the time-back idea. The operator-voice
+// variant of the time-back idea lives in the résumé bullet. All other
+// surfaces must reword these ideas instead of repeating the phrasings.
 import { memo } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Sparkles } from "lucide-react";

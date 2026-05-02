@@ -1,3 +1,6 @@
+// Per the copy-redundancy pass, ABOUT_DESCRIPTION (page meta) avoids
+// the role-at-Fullscript framing (canonical home: Hero) and reads
+// distinctly from the visible About section header.
 import { useEffect } from "react";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
@@ -6,7 +9,7 @@ import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
 const ABOUT_TITLE = "About | Chris Folmar";
 const ABOUT_DESCRIPTION =
-  "About Chris Folmar — software developer turned engineering leader at Fullscript, working on operating-model design, business systems, and AI-enabled workflows.";
+  "About Chris Folmar — career arc from software developer to engineering manager, with a focus on operating-model design, business systems, and AI-enabled workflows.";
 
 export default function AboutPage() {
   usePageSeo({

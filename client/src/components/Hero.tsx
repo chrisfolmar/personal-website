@@ -1,3 +1,7 @@
+// Canonical home (per copy-redundancy pass) for the discipline-triplet
+// eyebrow, the role-at-Fullscript line, and the modernize-the-work
+// headline. Other surfaces must reword these ideas rather than repeat
+// the exact phrasings used here.
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -176,8 +180,8 @@ export default function Hero() {
             <p className="mt-6 max-w-2xl text-lead">
               I'm Chris Folmar — engineering leader at Fullscript. I run
               globally distributed teams, modernize the business systems
-              behind the company, and build AI-first workflows that give
-              people their time back.
+              behind the company, and build AI-first workflows that quietly
+              do the busywork.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link

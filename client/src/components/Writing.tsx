@@ -1,3 +1,6 @@
+// Per the copy-redundancy pass, this homepage Writing section
+// description must read distinctly from the /writing page's visible
+// header and meta description — same idea, different framing.
 import { memo } from "react";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
@@ -20,7 +23,7 @@ function Writing() {
         <SectionHeader
           eyebrow="Writing"
           title="Recent posts."
-          description="Notes on AI-enabled operations, engineering leadership, and the systems that help teams ship. If something here is useful, take it. If you disagree, even better — I'd love to hear why."
+          description="A running notebook on what I'm seeing in the field. If something here is useful, take it. If you disagree, even better — I'd love to hear why."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">

@@ -262,10 +262,16 @@ export function buildProjectJsonLd(path: string, project: Project) {
 
 /**
  * Default metadata for the website
+ *
+ * Per the copy-redundancy pass, this default description avoids the
+ * Hero-canonical phrasings (the discipline-triplet eyebrow, the
+ * role-at-Fullscript line, and the modernize-the-work headline) and
+ * the AITransformationSummary-canonical operating-model framing.
+ * Reword instead of recycling those lines.
  */
 export const DEFAULT_METADATA = {
   title: 'Chris Folmar – Technologist | Leadership, Insights & Real-World Solutions',
-  description: 'Explore the personal portfolio of Chris Folmar, Software Engineering Manager and AI-first tech leader. Showcasing real-world client projects, system integrations, scalable team frameworks, and a passion for web development, automation, and authenticity.',
+  description: 'Personal site of Chris Folmar — running engineering teams, modernizing the systems behind a healthcare business, and embedding AI into how an org actually operates. Case studies, writing, and a working notebook from the field.',
   image: '/cf-favicon.png',
   twitterHandle: '@fomy',
   keywords: [

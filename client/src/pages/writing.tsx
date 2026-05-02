@@ -1,3 +1,6 @@
+// Per the copy-redundancy pass, WRITING_DESCRIPTION (page meta) is
+// SEO-framed and must read distinctly from the visible page header
+// and from the homepage Writing section description.
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useSearch } from "wouter";
 import SectionHeader from "@/components/SectionHeader";
@@ -17,7 +20,7 @@ const ALL_CATEGORIES = "All";
 const WRITING_PATH = "/writing";
 const WRITING_TITLE = "Writing | Chris Folmar";
 const WRITING_DESCRIPTION =
-  "Posts on AI-enabled operations, engineering leadership, business systems, and small-business web work.";
+  "Field notes from Chris Folmar on running engineering teams, modernizing business systems, and embedding AI into how an org actually operates.";
 
 function buildBlogJsonLd(posts: BlogPost[]) {
   const pageUrl = getCanonicalURL(WRITING_PATH);

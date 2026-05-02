@@ -1,3 +1,15 @@
+// Per the copy-redundancy pass, four entries in this file follow
+// canonical-home rules:
+//   - Strategic & Operational Leadership skill description avoids the
+//     operating-model and five-departments framings.
+//   - AI & Automation Implementation skill description avoids the
+//     time-back framing.
+//   - Team GSD case study `summary` is one of two canonical homes for
+//     the five-departments framing (the other is the résumé summary)
+//     and intentionally avoids the operating-model and
+//     work-people-shouldnt-do framings.
+//   - The People-First philosophy phrase is used sparingly: only the
+//     case-study `context` carries it; do not repeat it elsewhere.
 import { BlogPost, Experience, Project, Skill, Tool, Contact, Social, CaseStudy } from "@/types";
 // Instead of using JSX directly in data.ts, we'll use a function approach
 // that will be rendered in the component
@@ -45,7 +57,7 @@ export const skills: Skill[] = [
     name: "Strategic & Operational Leadership",
     percentage: 4/11*100, // 4 years out of 11 total
     years: 4,
-    description: "Leading Fullscript's AI-first automation initiative, saving over 40% in operational time across five departments. Spearheading Fullscript's Go-to-Ruby migration, reducing stack complexity by 66%. Overseeing delivery of a dedicated PIM tool for our Product Catalog, collaborating across 5 departments in the organization to ensure successful delivery.",
+    description: "Leading Fullscript's AI transformation effort, saving over 40% in operational time. Spearheading Fullscript's Go-to-Ruby migration, reducing stack complexity by 66%. Overseeing delivery of a dedicated PIM tool for our Product Catalog, partnering across the organization to ensure successful delivery.",
   },
   {
     name: "Project & Program Management",
@@ -63,7 +75,7 @@ export const skills: Skill[] = [
     name: "AI & Automation Implementation",
     percentage: 8/11*100, // 8 years out of 11 total
     years: 8,
-    description: "Spearheaded AI initiatives including ML-based document processing, ChatGPT integration for customer support, and analytical product data algorithms. Built automation workflows that take repetitive operational work off teams' plates so they can spend more time on the work they actually want to do.",
+    description: "Spearheaded AI initiatives including ML-based document processing, ChatGPT integration for customer support, and analytical product data algorithms. Built automation workflows that take repetitive operational work off teams' plates.",
   },
   {
     name: "Cross-functional Collaboration",
@@ -838,7 +850,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "team-gsd-ai-transformation",
     title: "Team GSD: AI-Enabled Workflow Transformation",
     summary:
-      "Standing up an AI-first operating model across five departments — taking the work people shouldn't have to do off their plates so they can spend more time on the work they actually want to do.",
+      "Standing up a cross-functional AI transformation effort across five departments — turning the repetitive operational work that bogs teams down into systems that just run.",
     problem:
       "Operational teams across Finance, Customer Success, Catalog, Fulfillment, and Support were spending huge portions of their week on repetitive, low-leverage work — copy/paste between systems, manual reconciliation, drafting the same email a hundred different ways. Traditional automation projects were too slow and too narrow to keep up.",
     context:
@@ -863,7 +875,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     tools: ["n8n", "Cursor", "ChatGPT Enterprise", "NotebookLM", "Asana", "Slack"],
     lessonsLearned: [
-      "People First, AI Empowered isn't a slogan — if the humans don't trust the tool, the workflow dies.",
+      "Trust is the bottleneck — if the humans doing the work don't trust the tool, the workflow dies.",
       "Easy Wins build the credibility that buys you the right to attempt the Reworks.",
       "The biggest unlock isn't the model, it's the operating model around the model.",
     ],

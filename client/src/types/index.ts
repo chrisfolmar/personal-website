@@ -61,6 +61,8 @@ export interface BlogPost {
   readTime: string;
   content?: string; // Optional HTML content for full blog post
   hidden?: boolean; // When true, omit from listings (homepage, /writing, sitemap)
+  supersededBy?: number; // Optional id of a newer post that replaces this one
+  archiveNote?: string; // Optional explanation shown in the archive banner
 }
 
 export interface ImpactMetric {

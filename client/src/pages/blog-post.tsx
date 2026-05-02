@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "wouter";
-import { ArrowLeft, Calendar, Clock, Share2, Link2, Check } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Share2, Link2, Check, Archive, ArrowRight } from "lucide-react";
+import { Link } from "wouter";
 import { SiX, SiFacebook, SiLinkedin } from "react-icons/si";
 import { blogPosts, visibleBlogPosts } from "@/lib/data";
 import { formatDate } from "@/lib/utils";
@@ -109,6 +110,10 @@ export default function BlogPost() {
 
   const relatedPosts = visibleBlogPosts.filter((p) => p.id !== post.id).slice(0, 3);
 
+  const supersedingPost = post.supersededBy
+    ? blogPosts.find((p) => p.id === post.supersededBy)
+    : undefined;
+
   const sanitizedContent = DOMPurify.sanitize(post.content || "", {
     ALLOWED_TAGS: [
       "h1", "h2", "h3", "h4", "h5", "h6", "p", "ul", "ol", "li", "a",
@@ -156,6 +161,45 @@ export default function BlogPost() {
         </SectionHeader>
 
         <div className="max-w-3xl">
+          {post.hidden ? (
+            <FadeIn className="mb-8">
+              <div
+                role="note"
+                aria-label="Archived post notice"
+                className="rounded-md border border-amber-300/60 bg-amber-50 dark:border-amber-500/40 dark:bg-amber-950/30 p-5 md:p-6"
+                data-testid="archive-banner"
+              >
+                <div className="flex items-start gap-3">
+                  <Archive className="h-5 w-5 mt-0.5 text-amber-700 dark:text-amber-300 shrink-0" />
+                  <div className="flex-1">
+                    <p className="font-semibold text-amber-900 dark:text-amber-100">
+                      This is an older take
+                    </p>
+                    {post.archiveNote ? (
+                      <p className="mt-1 text-sm text-amber-900/80 dark:text-amber-100/80">
+                        {post.archiveNote}
+                      </p>
+                    ) : (
+                      <p className="mt-1 text-sm text-amber-900/80 dark:text-amber-100/80">
+                        This post has been archived and may no longer reflect my current thinking.
+                      </p>
+                    )}
+                    {supersedingPost ? (
+                      <Link
+                        href={`/blog/${supersedingPost.id}`}
+                        className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-amber-900 dark:text-amber-100 underline underline-offset-4 hover:no-underline"
+                        data-testid="link-superseded-by"
+                      >
+                        Read the updated take
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+          ) : null}
+
           <FadeIn className="mb-10">
             <LazyImage
               src={post.coverImage}

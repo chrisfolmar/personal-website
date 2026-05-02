@@ -657,6 +657,8 @@ export const blogPosts: BlogPost[] = [
     category: "Business Systems",
     readTime: "6 min read",
     hidden: true,
+    supersededBy: 8,
+    archiveNote: "This post reflects my 2024 thinking. Since then, AI-powered web development has changed how I recommend small businesses build their sites.",
     content: `
       <p>With the proliferation of drag-and-drop website builders promising instant websites, many small business owners wonder if WordPress will still be relevant in 2025. After developing dozens of small business websites, I can confidently say that WordPress will continue to be the superior choice for businesses seeking long-term value.</p>
       

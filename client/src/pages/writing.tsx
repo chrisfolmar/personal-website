@@ -102,6 +102,15 @@ export default function WritingIndex() {
     return [ALL_CATEGORIES, ...ordered];
   }, [posts]);
 
+  const categoryCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    counts.set(ALL_CATEGORIES, posts.length);
+    for (const post of posts) {
+      counts.set(post.category, (counts.get(post.category) ?? 0) + 1);
+    }
+    return counts;
+  }, [posts]);
+
   const search = useSearch();
   const [, setLocation] = useLocation();
 
@@ -163,16 +172,19 @@ export default function WritingIndex() {
         >
           {categories.map((category) => {
             const isActive = category === activeCategory;
+            const count = categoryCounts.get(category) ?? 0;
+            const slug = category
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/^-|-$/g, "");
             return (
               <button
                 key={category}
                 type="button"
                 onClick={() => handleCategoryChange(category)}
                 aria-pressed={isActive}
-                data-testid={`category-chip-${category
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-")
-                  .replace(/^-|-$/g, "")}`}
+                aria-label={`${category} (${count} ${count === 1 ? "post" : "posts"})`}
+                data-testid={`category-chip-${slug}`}
                 className={cn(
                   "inline-flex items-center rounded-full border px-3.5 py-1.5 text-xs md:text-sm font-medium transition-colors",
                   isActive
@@ -180,7 +192,17 @@ export default function WritingIndex() {
                     : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground",
                 )}
               >
-                {category}
+                <span>{category}</span>
+                <span
+                  aria-hidden="true"
+                  data-testid={`category-chip-count-${slug}`}
+                  className={cn(
+                    "ml-2 text-[0.7rem] md:text-xs tabular-nums",
+                    isActive ? "opacity-90" : "opacity-70",
+                  )}
+                >
+                  {count}
+                </span>
               </button>
             );
           })}

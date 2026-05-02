@@ -12,6 +12,20 @@ export const TWITTER_HANDLE = '@fomy';
 export const AUTHOR_NAME = 'Chris Folmar';
 
 /**
+ * Default Open Graph / Twitter card image used when a page does not
+ * supply its own. 1200x630, branded with the site identity.
+ */
+export const DEFAULT_OG_IMAGE = '/og-default.png';
+export const DEFAULT_OG_IMAGE_ALT =
+  'Chris Folmar — Engineering Manager and AI Transformation Leader';
+
+/**
+ * Map of case study slug -> social preview image. Optional; case study
+ * pages fall back to the site default when no image is present.
+ */
+export const CASE_STUDY_IMAGES: Record<string, { src: string; alt: string }> = {};
+
+/**
  * List of all domains associated with this website
  */
 export const ALL_DOMAINS = [
@@ -118,7 +132,7 @@ export function buildBlogPostingJsonLd(post: BlogPost) {
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    image: post.coverImage ? getAbsoluteURL(post.coverImage) : undefined,
+    image: getAbsoluteURL(post.coverImage || DEFAULT_OG_IMAGE),
     articleSection: post.category,
     inLanguage: "en-US",
     author,
@@ -133,11 +147,13 @@ export function buildBlogPostingJsonLd(post: BlogPost) {
 export function buildCaseStudyArticleJsonLd(study: CaseStudy) {
   const url = getCanonicalURL(`/case-studies/${study.slug}`);
   const author = getPersonSchema();
+  const image = CASE_STUDY_IMAGES[study.slug]?.src ?? DEFAULT_OG_IMAGE;
   return getSchemaData("Article", {
     "@id": url,
     url,
     headline: study.title,
     description: study.summary,
+    image: getAbsoluteURL(image),
     inLanguage: "en-US",
     author,
     publisher: author,

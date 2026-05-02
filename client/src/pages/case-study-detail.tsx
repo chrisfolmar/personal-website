@@ -14,7 +14,7 @@ import { caseStudies } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import FadeIn from "@/components/FadeIn";
 import SectionHeader from "@/components/SectionHeader";
-import { buildCaseStudyArticleJsonLd } from "@/lib/metadata/seo";
+import { buildCaseStudyArticleJsonLd, CASE_STUDY_IMAGES } from "@/lib/metadata/seo";
 import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
 export default function CaseStudyDetail() {
@@ -24,6 +24,8 @@ export default function CaseStudyDetail() {
 
   const study = caseStudies.find((s) => s.slug === slug);
 
+  const studyImage = study ? CASE_STUDY_IMAGES[study.slug] : undefined;
+
   usePageSeo({
     title: study
       ? `${study.title} | Case Study | Chris Folmar`
@@ -31,6 +33,8 @@ export default function CaseStudyDetail() {
     description: study ? study.summary : "Case study by Chris Folmar",
     path: study ? `/case-studies/${study.slug}` : "/case-studies",
     type: "article",
+    image: studyImage?.src,
+    imageAlt: studyImage?.alt,
     jsonLd: study ? buildCaseStudyArticleJsonLd(study) : undefined,
     jsonLdId: study ? "case-study-detail-jsonld" : undefined,
   });

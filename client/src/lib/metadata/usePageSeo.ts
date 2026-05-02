@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { getCanonicalURL, SITE_NAME } from "./seo";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ALT, getAbsoluteURL, getCanonicalURL, SITE_NAME } from "./seo";
 
 export type JsonLd = Record<string, any>;
 
@@ -12,6 +12,8 @@ export interface PageSeoOptions {
   jsonLd?: JsonLd | JsonLd[];
   jsonLdId?: string;
   siteName?: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 function setMetaTag(
@@ -60,7 +62,11 @@ export function usePageSeo(options: PageSeoOptions) {
     jsonLd,
     jsonLdId,
     siteName = SITE_NAME,
+    image = DEFAULT_OG_IMAGE,
+    imageAlt = DEFAULT_OG_IMAGE_ALT,
   } = options;
+
+  const absoluteImage = getAbsoluteURL(image);
 
   const serializedJsonLd = useMemo(
     () => (jsonLd ? JSON.stringify(jsonLd) : null),
@@ -79,10 +85,14 @@ export function usePageSeo(options: PageSeoOptions) {
     setMetaTag("og:type", type, "property");
     setMetaTag("og:url", pageUrl, "property");
     setMetaTag("og:site_name", siteName, "property");
+    setMetaTag("og:image", absoluteImage, "property");
+    setMetaTag("og:image:alt", imageAlt, "property");
     setMetaTag("twitter:card", twitterCard);
     setMetaTag("twitter:title", title);
     setMetaTag("twitter:description", description);
     setMetaTag("twitter:url", pageUrl);
+    setMetaTag("twitter:image", absoluteImage);
+    setMetaTag("twitter:image:alt", imageAlt);
 
     const canonical = setCanonicalLink(pageUrl);
 
@@ -128,5 +138,7 @@ export function usePageSeo(options: PageSeoOptions) {
     serializedJsonLd,
     jsonLdId,
     siteName,
+    absoluteImage,
+    imageAlt,
   ]);
 }

@@ -29,6 +29,8 @@ export default function BlogPost() {
     description: post ? post.excerpt : "Writing by Chris Folmar",
     path: post ? `/blog/${post.id}` : "/writing",
     type: post ? "article" : "website",
+    image: post?.coverImage,
+    imageAlt: post ? `Cover image for "${post.title}"` : undefined,
     jsonLd: post ? buildBlogPostingJsonLd(post) : undefined,
     jsonLdId: post ? "blog-post-jsonld" : undefined,
   });

@@ -31,6 +31,8 @@ export default function ProjectDetail() {
     description: project ? project.description : "Project details by Chris Folmar",
     path: projectPath,
     type: "article",
+    image: project?.image,
+    imageAlt: project ? `${project.title} project preview` : undefined,
     jsonLd: project ? buildProjectJsonLd(projectPath, project) : undefined,
     jsonLdId: project ? "project-detail-jsonld" : undefined,
   });

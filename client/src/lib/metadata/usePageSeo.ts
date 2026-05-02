@@ -1,20 +1,8 @@
 import { useEffect, useMemo } from "react";
 import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ALT, getAbsoluteURL, getCanonicalURL, SITE_NAME } from "./seo";
+import type { JsonLd, PageSeoOptions } from "./routes";
 
-export type JsonLd = Record<string, any>;
-
-export interface PageSeoOptions {
-  title: string;
-  description: string;
-  path: string;
-  type?: string;
-  twitterCard?: "summary" | "summary_large_image";
-  jsonLd?: JsonLd | JsonLd[];
-  jsonLdId?: string;
-  siteName?: string;
-  image?: string;
-  imageAlt?: string;
-}
+export type { JsonLd, PageSeoOptions };
 
 function setMetaTag(
   name: string,

@@ -14,7 +14,11 @@ import { caseStudies } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import FadeIn from "@/components/FadeIn";
 import SectionHeader from "@/components/SectionHeader";
-import { buildCaseStudyArticleJsonLd, CASE_STUDY_IMAGES } from "@/lib/metadata/seo";
+import {
+  CASE_STUDIES_METADATA,
+  caseStudyDetailFallback,
+  caseStudyDetailMetadata,
+} from "@/lib/metadata/routes";
 import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
 export default function CaseStudyDetail() {
@@ -24,20 +28,13 @@ export default function CaseStudyDetail() {
 
   const study = caseStudies.find((s) => s.slug === slug);
 
-  const studyImage = study ? CASE_STUDY_IMAGES[study.slug] : undefined;
-
-  usePageSeo({
-    title: study
-      ? `${study.title} | Case Study | Chris Folmar`
-      : "Case Study | Chris Folmar",
-    description: study ? study.summary : "Case study by Chris Folmar",
-    path: study ? `/case-studies/${study.slug}` : "/case-studies",
-    type: "article",
-    image: studyImage?.src,
-    imageAlt: studyImage?.alt,
-    jsonLd: study ? buildCaseStudyArticleJsonLd(study) : undefined,
-    jsonLdId: study ? "case-study-detail-jsonld" : undefined,
-  });
+  usePageSeo(
+    study
+      ? caseStudyDetailMetadata(study)
+      : slug
+        ? caseStudyDetailFallback(slug)
+        : CASE_STUDIES_METADATA,
+  );
 
   useEffect(() => {
     if (!slug || !study) {

@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { AlertCircle, Home } from "lucide-react";
+import { NOT_FOUND_METADATA } from "@/lib/metadata/routes";
+import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
 export default function NotFound() {
+  usePageSeo(NOT_FOUND_METADATA);
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
       <motion.div 

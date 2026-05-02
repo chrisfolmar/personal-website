@@ -14,8 +14,12 @@ import {
 } from "lucide-react";
 import { visibleBlogPosts, caseStudies } from "@/lib/data";
 import { DEFAULT_METADATA } from "@/lib/metadata/seo";
+import { SITEMAP_METADATA } from "@/lib/metadata/routes";
+import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
 export default function Sitemap() {
+  usePageSeo(SITEMAP_METADATA);
+
   const mainSections = [
     { id: "home", label: "Home", icon: <Home className="w-5 h-5 mr-2" /> },
     { id: "impact", label: "Impact", icon: <BarChart3 className="w-5 h-5 mr-2" /> },

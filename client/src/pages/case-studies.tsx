@@ -2,21 +2,11 @@ import { useEffect } from "react";
 import { caseStudies } from "@/lib/data";
 import SectionHeader from "@/components/SectionHeader";
 import CaseStudyCard from "@/components/CaseStudyCard";
-import { buildCaseStudyListJsonLd } from "@/lib/metadata/seo";
+import { CASE_STUDIES_METADATA } from "@/lib/metadata/routes";
 import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
-const CASE_STUDIES_TITLE = "Case Studies | Chris Folmar";
-const CASE_STUDIES_DESCRIPTION =
-  "Detailed case studies on scaling engineering throughput, AI-enabled workflow transformation, ERP/WMS modernization, and async information flow.";
-
 export default function CaseStudies() {
-  usePageSeo({
-    title: CASE_STUDIES_TITLE,
-    description: CASE_STUDIES_DESCRIPTION,
-    path: "/case-studies",
-    jsonLd: buildCaseStudyListJsonLd(caseStudies),
-    jsonLdId: "case-studies-index-jsonld",
-  });
+  usePageSeo(CASE_STUDIES_METADATA);
 
   useEffect(() => {
     window.scrollTo(0, 0);

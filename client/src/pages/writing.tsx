@@ -6,73 +6,11 @@ import { useLocation, useSearch } from "wouter";
 import SectionHeader from "@/components/SectionHeader";
 import WritingCard from "@/components/WritingCard";
 import { visibleBlogPosts } from "@/lib/data";
-import {
-  AUTHOR_NAME,
-  getCanonicalURL,
-  getSchemaData,
-} from "@/lib/metadata/seo";
+import { WRITING_METADATA, WRITING_PATH } from "@/lib/metadata/routes";
 import { usePageSeo } from "@/lib/metadata/usePageSeo";
 import { cn } from "@/lib/utils";
-import type { BlogPost } from "@/types";
 
 const ALL_CATEGORIES = "All";
-
-const WRITING_PATH = "/writing";
-const WRITING_TITLE = "Writing | Chris Folmar";
-const WRITING_DESCRIPTION =
-  "Field notes from Chris Folmar on running engineering teams, modernizing business systems, and embedding AI into how an org actually operates.";
-
-function buildBlogJsonLd(posts: BlogPost[]) {
-  const pageUrl = getCanonicalURL(WRITING_PATH);
-  const author = {
-    "@type": "Person",
-    name: AUTHOR_NAME,
-    url: getCanonicalURL("/"),
-  };
-
-  const itemListElement = posts.map((post, index) => {
-    const url = getCanonicalURL(`/blog/${post.id}`);
-    return {
-      "@type": "ListItem",
-      position: index + 1,
-      url,
-      item: {
-        "@type": "BlogPosting",
-        "@id": url,
-        url,
-        headline: post.title,
-        description: post.excerpt,
-        datePublished: post.date,
-        author,
-        articleSection: post.category,
-        mainEntityOfPage: {
-          "@type": "WebPage",
-          "@id": url,
-        },
-      },
-    };
-  });
-
-  return getSchemaData("Blog", {
-    "@id": pageUrl,
-    url: pageUrl,
-    name: WRITING_TITLE,
-    description: WRITING_DESCRIPTION,
-    inLanguage: "en-US",
-    author,
-    publisher: author,
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": pageUrl,
-    },
-    mainEntity: {
-      "@type": "ItemList",
-      itemListOrder: "https://schema.org/ItemListOrderDescending",
-      numberOfItems: posts.length,
-      itemListElement,
-    },
-  });
-}
 
 export default function WritingIndex() {
   const posts = useMemo(
@@ -83,15 +21,7 @@ export default function WritingIndex() {
     [],
   );
 
-  const jsonLd = useMemo(() => buildBlogJsonLd(posts), [posts]);
-
-  usePageSeo({
-    title: WRITING_TITLE,
-    description: WRITING_DESCRIPTION,
-    path: WRITING_PATH,
-    jsonLd,
-    jsonLdId: "writing-index-jsonld",
-  });
+  usePageSeo(WRITING_METADATA);
 
   const categories = useMemo(() => {
     const seen = new Set<string>();

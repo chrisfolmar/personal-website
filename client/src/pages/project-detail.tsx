@@ -7,7 +7,12 @@ import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import LazyImage from "@/components/LazyImage";
-import { buildProjectJsonLd } from "@/lib/metadata/seo";
+import {
+  HOME_METADATA,
+  projectDetailFallback,
+  projectDetailMetadata,
+  projectIdSegment,
+} from "@/lib/metadata/routes";
 import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
 export default function ProjectDetail() {
@@ -15,27 +20,15 @@ export default function ProjectDetail() {
   const params = useParams();
   const projectId = params?.id || null;
 
-  const project = projects.find(project => {
-    const urlTitle = project.title
-      .toLowerCase()
-      .replace(/[^\w\s]/g, '')
-      .replace(/\s+/g, '-');
+  const project = projects.find((p) => projectIdSegment(p) === projectId);
 
-    return urlTitle === projectId;
-  });
-
-  const projectPath = projectId ? `/project/${projectId}` : "/";
-
-  usePageSeo({
-    title: project ? `${project.title} | Chris Folmar` : "Project | Chris Folmar",
-    description: project ? project.description : "Project details by Chris Folmar",
-    path: projectPath,
-    type: "article",
-    image: project?.image,
-    imageAlt: project ? `${project.title} project preview` : undefined,
-    jsonLd: project ? buildProjectJsonLd(projectPath, project) : undefined,
-    jsonLdId: project ? "project-detail-jsonld" : undefined,
-  });
+  usePageSeo(
+    project && projectId
+      ? projectDetailMetadata(projectId, project)
+      : projectId
+        ? projectDetailFallback(projectId)
+        : HOME_METADATA,
+  );
   
   useEffect(() => {
     if (!projectId) {

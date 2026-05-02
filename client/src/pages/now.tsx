@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { Sparkles, Briefcase, BookOpen, Heart, Calendar } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import FadeIn from "@/components/FadeIn";
-import { buildWebPageJsonLd } from "@/lib/metadata/seo";
+import { NOW_METADATA } from "@/lib/metadata/routes";
 import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
 interface FocusItem {
@@ -38,18 +38,8 @@ const focusAreas: FocusItem[] = [
   },
 ];
 
-const NOW_TITLE = "Now | Chris Folmar";
-const NOW_DESCRIPTION =
-  "What Chris Folmar is focused on right now — Team GSD, AI-enabled workflows, engineering leadership, and life as a new dad.";
-
 export default function NowPage() {
-  usePageSeo({
-    title: NOW_TITLE,
-    description: NOW_DESCRIPTION,
-    path: "/now",
-    jsonLd: buildWebPageJsonLd("/now", NOW_TITLE, NOW_DESCRIPTION),
-    jsonLdId: "now-jsonld",
-  });
+  usePageSeo(NOW_METADATA);
 
   useEffect(() => {
     window.scrollTo(0, 0);

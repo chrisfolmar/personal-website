@@ -12,7 +12,11 @@ import { useToast } from "@/hooks/use-toast";
 import FadeIn from "@/components/FadeIn";
 import SectionHeader from "@/components/SectionHeader";
 import WritingCard from "@/components/WritingCard";
-import { buildBlogPostingJsonLd } from "@/lib/metadata/seo";
+import {
+  WRITING_METADATA,
+  blogPostFallback,
+  blogPostMetadata,
+} from "@/lib/metadata/routes";
 import { usePageSeo } from "@/lib/metadata/usePageSeo";
 
 export default function BlogPost() {
@@ -24,16 +28,13 @@ export default function BlogPost() {
 
   const post = blogPosts.find((p) => p.id === postId);
 
-  usePageSeo({
-    title: post ? `${post.title} | Chris Folmar` : "Writing | Chris Folmar",
-    description: post ? post.excerpt : "Writing by Chris Folmar",
-    path: post ? `/blog/${post.id}` : "/writing",
-    type: post ? "article" : "website",
-    image: post?.coverImage,
-    imageAlt: post ? `Cover image for "${post.title}"` : undefined,
-    jsonLd: post ? buildBlogPostingJsonLd(post) : undefined,
-    jsonLdId: post ? "blog-post-jsonld" : undefined,
-  });
+  usePageSeo(
+    post
+      ? blogPostMetadata(post)
+      : params?.id
+        ? blogPostFallback(params.id)
+        : WRITING_METADATA,
+  );
 
   const getShareUrl = () => `https://chrisfolmar.com/blog/${postId}`;
 

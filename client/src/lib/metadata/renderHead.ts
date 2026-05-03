@@ -20,11 +20,7 @@ function escapeJsonLd(value: string): string {
   return value.replace(/</g, "\\u003c").replace(/>/g, "\\u003e");
 }
 
-function metaTag(
-  name: string,
-  content: string,
-  attr: "name" | "property" = "name",
-): string {
+function metaTag(name: string, content: string, attr: "name" | "property" = "name"): string {
   return `<meta ${attr}="${escapeHtml(name)}" content="${escapeHtml(content)}" />`;
 }
 
@@ -33,8 +29,12 @@ function metaTag(
  * for injecting into the initial server response so JS-less crawlers see the
  * correct title, description, canonical, Open Graph, Twitter card, and
  * JSON-LD blocks.
+ *
+ * `nonce` is an optional CSP nonce. When set it is added to the inline
+ * JSON-LD `<script>` tag so a strict `script-src` policy will allow the
+ * inline content.
  */
-export function renderSsrHead(options: PageSeoOptions): string {
+export function renderSsrHead(options: PageSeoOptions, nonce?: string): string {
   const {
     title,
     description,
@@ -72,10 +72,9 @@ export function renderSsrHead(options: PageSeoOptions): string {
 
   if (jsonLd) {
     const idAttr = jsonLdId ? ` id="${escapeHtml(jsonLdId)}"` : "";
+    const nonceAttr = nonce ? ` nonce="${escapeHtml(nonce)}"` : "";
     const serialized = escapeJsonLd(JSON.stringify(jsonLd));
-    lines.push(
-      `<script type="application/ld+json"${idAttr}>${serialized}</script>`,
-    );
+    lines.push(`<script type="application/ld+json"${idAttr}${nonceAttr}>${serialized}</script>`);
   }
 
   return lines.join("\n    ");

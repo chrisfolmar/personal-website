@@ -10,10 +10,10 @@ import { renderSsrHead } from "../client/src/lib/metadata/renderHead";
 
 const SSR_HEAD_PLACEHOLDER = "<!--ssr-head-->";
 
-export function injectSsrHead(template: string, url: string): string {
+export function injectSsrHead(template: string, url: string, nonce?: string): string {
   const pathname = url.split("?")[0].split("#")[0] || "/";
   const metadata = resolvePageMetadata(pathname);
-  const head = renderSsrHead(metadata);
+  const head = renderSsrHead(metadata, nonce);
   return template.includes(SSR_HEAD_PLACEHOLDER)
     ? template.replace(SSR_HEAD_PLACEHOLDER, head)
     : template.replace("</head>", `    ${head}\n  </head>`);
@@ -33,11 +33,16 @@ export function log(message: string, source = "express") {
 }
 
 export async function setupVite(app: Express, server: Server) {
+  // `allowedHosts: true` is the documented way to disable host-header
+  // checking in Vite's dev middleware mode (we run behind Replit's proxy,
+  // so the host header is not predictable). The published TypeScript
+  // signature from this Vite version refuses the literal `true`, hence
+  // the cast. Revisit when Vite's types accept `boolean` directly.
   const serverOptions = {
     middlewareMode: true,
     hmr: { server },
-    allowedHosts: true,
-  };
+    allowedHosts: true as const,
+  } as const;
 
   const vite = await createViteServer({
     ...viteConfig,
@@ -58,20 +63,12 @@ export async function setupVite(app: Express, server: Server) {
     const url = req.originalUrl;
 
     try {
-      const clientTemplate = path.resolve(
-        import.meta.dirname,
-        "..",
-        "client",
-        "index.html",
-      );
+      const clientTemplate = path.resolve(import.meta.dirname, "..", "client", "index.html");
 
       // always reload the index.html file from disk incase it changes
       let template = await fs.promises.readFile(clientTemplate, "utf-8");
-      template = template.replace(
-        `src="/src/main.tsx"`,
-        `src="/src/main.tsx?v=${nanoid()}"`,
-      );
-      template = injectSsrHead(template, url);
+      template = template.replace(`src="/src/main.tsx"`, `src="/src/main.tsx?v=${nanoid()}"`);
+      template = injectSsrHead(template, url, res.locals.cspNonce);
       const page = await vite.transformIndexHtml(url, template);
       res.status(200).set({ "Content-Type": "text/html" }).end(page);
     } catch (e) {
@@ -109,7 +106,7 @@ export function serveStatic(app: Express) {
   app.use("*", (req: Request, res: Response, next: NextFunction) => {
     try {
       const template = getTemplate();
-      const html = injectSsrHead(template, req.originalUrl || req.url);
+      const html = injectSsrHead(template, req.originalUrl || req.url, res.locals.cspNonce);
       res.status(200).set({ "Content-Type": "text/html" }).end(html);
     } catch (err) {
       next(err);

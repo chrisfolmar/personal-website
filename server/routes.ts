@@ -1,144 +1,153 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { insertMessageSchema } from "@shared/schema";
+import { storage as defaultStorage, type IStorage } from "./storage";
+import { insertMessageSchema, type Message } from "@shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
 import { sendContactFormEmail } from "./mail-service";
+import { log } from "./vite";
 
-// Simple in-memory rate limiter
-const rateLimiter = {
-  windowMs: 60 * 60 * 1000, // 1 hour window
-  maxRequests: 5, // limit each IP to 5 requests per windowMs
-  requests: new Map<string, { count: number, resetTime: number }>()
-};
-
-// Check for common spam patterns in message content
-function isSpamContent(text: string): boolean {
-  // Convert to lowercase for case-insensitive matching
-  const lowerText = text.toLowerCase();
-  
-  // Common spam triggers - update this list as needed
-  const spamPatterns = [
-    'buy viagra',
-    'buy cialis',
-    'free casino',
-    'free money',
-    'get rich',
-    'earn money fast',
-    'lottery winner',
-    'seo services',
-    '\\[url=',
-    'https://bit.ly'
-  ];
-  
-  return spamPatterns.some(pattern => lowerText.includes(pattern));
+// Simple in-memory rate limiter.
+// NOTE: in-memory state means each process has its own counters; not
+// suitable for multi-instance deploys. Replace with a shared store
+// (Redis) before scaling horizontally.
+export interface RateLimiterState {
+  windowMs: number;
+  maxRequests: number;
+  requests: Map<string, { count: number; resetTime: number }>;
 }
 
-export async function registerRoutes(app: Express): Promise<Server> {
-  // Rate limiter middleware
-  const rateLimit = (req: Request, res: Response, next: NextFunction) => {
-    const ip = req.ip || req.socket.remoteAddress || 'unknown';
+export function createRateLimiterState(
+  windowMs: number = 60 * 60 * 1000,
+  maxRequests: number = 5,
+): RateLimiterState {
+  return { windowMs, maxRequests, requests: new Map() };
+}
+
+export function makeRateLimiter(state: RateLimiterState) {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const ip = req.ip || req.socket.remoteAddress || "unknown";
     const now = Date.now();
-    
-    if (!rateLimiter.requests.has(ip)) {
-      // First request from this IP
-      rateLimiter.requests.set(ip, {
-        count: 1,
-        resetTime: now + rateLimiter.windowMs
-      });
+
+    const record = state.requests.get(ip);
+    if (!record) {
+      state.requests.set(ip, { count: 1, resetTime: now + state.windowMs });
       return next();
     }
-    
-    const requestRecord = rateLimiter.requests.get(ip)!;
-    
-    // Reset count if the window has passed
-    if (now > requestRecord.resetTime) {
-      requestRecord.count = 1;
-      requestRecord.resetTime = now + rateLimiter.windowMs;
+
+    if (now > record.resetTime) {
+      record.count = 1;
+      record.resetTime = now + state.windowMs;
       return next();
     }
-    
-    // Check if max requests reached
-    if (requestRecord.count >= rateLimiter.maxRequests) {
+
+    if (record.count >= state.maxRequests) {
       return res.status(429).json({
         success: false,
-        message: "Too many requests, please try again later"
+        message: "Too many requests, please try again later",
       });
     }
-    
-    // Increment count and proceed
-    requestRecord.count++;
+
+    record.count++;
     next();
   };
+}
 
-  // Handle contact form submissions
-  app.post("/api/contact", rateLimit, async (req: Request, res: Response) => {
+// Default shared rate limiter state for production middleware mount.
+const defaultRateLimiterState = createRateLimiterState();
+
+// Check for common spam patterns in message content
+export function isSpamContent(text: string): boolean {
+  const lowerText = text.toLowerCase();
+  const spamPatterns = [
+    "buy viagra",
+    "buy cialis",
+    "free casino",
+    "free money",
+    "get rich",
+    "earn money fast",
+    "lottery winner",
+    "seo services",
+    "\\[url=",
+    "https://bit.ly",
+  ];
+  return spamPatterns.some((pattern) => lowerText.includes(pattern));
+}
+
+const SUSPICIOUS_EMAIL_PATTERNS = [
+  /@example\.com$/,
+  /@test\.com$/,
+  /^admin@/,
+  /^root@/,
+  /^postmaster@/,
+];
+
+export interface ContactRouteOptions {
+  storage?: IStorage;
+  rateLimiterState?: RateLimiterState;
+  sendEmail?: (message: Message) => Promise<boolean>;
+}
+
+export function buildContactHandler(opts: ContactRouteOptions = {}) {
+  const storage = opts.storage ?? defaultStorage;
+  const sendEmail = opts.sendEmail ?? sendContactFormEmail;
+
+  return async (req: Request, res: Response) => {
     try {
       if (!req.body || Object.keys(req.body).length === 0) {
-        return res.status(400).json({
-          success: false,
-          message: "Empty request body"
-        });
+        return res.status(400).json({ success: false, message: "Empty request body" });
       }
-      
-      const validatedData = insertMessageSchema.parse(req.body);
-      
+
+      // Honeypot: silently accept submissions that filled the hidden
+      // `website` field (bots auto-complete every input). Return 200 so
+      // they don't learn that the field is a trap. The real form's
+      // honeypot lives in client/src/components/Contact.tsx.
+      if (typeof req.body.website === "string" && req.body.website.trim().length > 0) {
+        return res.status(200).json({ success: true, message: "Message received" });
+      }
+
+      const { website: _hp, formTime: _ft, ...rest } = req.body;
+      const validatedData = insertMessageSchema.parse(rest);
+
       if (isSpamContent(validatedData.message) || isSpamContent(validatedData.subject)) {
         return res.status(400).json({
           success: false,
-          message: "Your message appears to contain content that is not allowed"
+          message: "Your message appears to contain content that is not allowed",
         });
       }
-      
-      // Check for suspicious patterns in email
-      const suspiciousEmailPatterns = [
-        /@example\.com$/,
-        /@test\.com$/,
-        /^admin@/,
-        /^root@/,
-        /^postmaster@/
-      ];
-      
-      if (suspiciousEmailPatterns.some(pattern => pattern.test(validatedData.email))) {
-        return res.status(400).json({
-          success: false,
-          message: "Please provide a valid email address"
-        });
+
+      if (SUSPICIOUS_EMAIL_PATTERNS.some((p) => p.test(validatedData.email))) {
+        return res
+          .status(400)
+          .json({ success: false, message: "Please provide a valid email address" });
       }
-      
+
       const message = await storage.createMessage(validatedData);
-      const emailSent = await sendContactFormEmail(message);
-      
-      // Return success but don't send back the full message data for security
-      res.status(201).json({ 
-        success: true, 
-        message: emailSent 
-          ? "Message received successfully and email notification sent" 
+      const emailSent = await sendEmail(message);
+
+      res.status(201).json({
+        success: true,
+        message: emailSent
+          ? "Message received successfully and email notification sent"
           : "Message received successfully, but email notification could not be sent",
-        id: message.id
+        id: message.id,
       });
     } catch (error) {
-      // Handle validation errors
       if (error instanceof ZodError) {
         const validationError = fromZodError(error);
-        res.status(400).json({ 
-          success: false, 
-          message: validationError.message 
-        });
-        return;
+        return res.status(400).json({ success: false, message: validationError.message });
       }
-      
-      // Handle other errors
-      console.error("Error processing contact form submission:", error);
-      res.status(500).json({ 
-        success: false, 
-        message: "An error occurred while processing your message" 
-      });
+      log(`contact form error: ${(error as Error).message}`, "error");
+      res
+        .status(500)
+        .json({ success: false, message: "An error occurred while processing your message" });
     }
-  });
+  };
+}
 
-  const httpServer = createServer(app);
+export async function registerRoutes(app: Express): Promise<Server> {
+  const rateLimit = makeRateLimiter(defaultRateLimiterState);
+  app.post("/api/contact", rateLimit, buildContactHandler());
 
-  return httpServer;
+  return createServer(app);
 }

@@ -1,0 +1,12 @@
+node_modules
+dist
+build
+public
+coverage
+.cache
+*.lock
+package-lock.json
+attached_assets
+.local
+.husky
+generated-icon.png

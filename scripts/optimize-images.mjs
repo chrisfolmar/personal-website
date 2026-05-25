@@ -20,6 +20,13 @@ const TARGETS = [
     outDir: "client/public/assets/images",
   },
   {
+    src: "client/public/assets/images/about-work.jpg",
+    widths: [800, 1200],
+    formats: ["jpg", "webp", "avif"],
+    namePrefix: "about-work",
+    outDir: "client/public/assets/images",
+  },
+  {
     src: "client/public/images/blog/ai-web-development.png",
     widths: [800, 1200],
     formats: ["jpg", "webp", "avif"],

@@ -52,20 +52,20 @@ interface MicroItem {
 
 const currentlyReading: MicroItem[] = [
   {
-    title: "Practical writing on AI and internal tools",
-    body: "Essays and field notes on how teams are actually changing the way work gets done — less hype, more honest reports from the floor.",
+    title: "The Obstacle is the Way",
+    body: "Ryan Holiday.",
   },
   {
-    title: "Engineering leadership material",
-    body: "On ownership, communication, team structure, and scaling without losing the human layer.",
+    title: "The Motivation Manifesto",
+    body: "Brendon Burchard.",
   },
   {
-    title: "Parenting and fatherhood, in small doses",
-    body: "Enough to be thoughtful, not enough to turn everything into a research project.",
+    title: "An Elegant Puzzle — Systems of Engineering Management",
+    body: "Will Larson.",
   },
   {
-    title: "Systems thinking, personal finance, home projects, and Arsenal news",
-    body: "A mix that keeps the brain stretched in different directions across the week.",
+    title: "The Overthinker's Guide to Making Decisions",
+    body: "Joseph Nguyen.",
   },
 ];
 

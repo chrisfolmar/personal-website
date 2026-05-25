@@ -18,6 +18,7 @@ import CaseStudyDetail from "@/pages/case-study-detail";
 import NowPage from "@/pages/now";
 import Resume from "@/pages/resume";
 import WritingIndex from "@/pages/writing";
+import BeliefsPage from "@/pages/beliefs";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="/now" component={NowPage} />
             <Route path="/resume" component={Resume} />
             <Route path="/writing" component={WritingIndex} />
+            <Route path="/beliefs" component={BeliefsPage} />
             <Route path="/sitemap" component={Sitemap} />
             <Route component={NotFound} />
           </Switch>

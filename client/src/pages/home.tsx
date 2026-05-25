@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import Hero from "@/components/Hero";
+import Manifesto from "@/components/Manifesto";
 import MetricStrip from "@/components/MetricStrip";
 import WhatIDo from "@/components/WhatIDo";
 import FeaturedCaseStudies from "@/components/FeaturedCaseStudies";
@@ -28,6 +29,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       <Hero />
+      <Manifesto />
       <MetricStrip />
       <WhatIDo />
       <CurrentFocus />

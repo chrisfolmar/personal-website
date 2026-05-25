@@ -37,6 +37,7 @@ export function buildSitemapEntries(): UrlEntry[] {
     { loc: `${SITE}/now`, lastmod: today, changefreq: "monthly", priority: "0.7" },
     { loc: `${SITE}/contact`, lastmod: today, changefreq: "yearly", priority: "0.6" },
     { loc: `${SITE}/writing`, lastmod: today, changefreq: "weekly", priority: "0.9" },
+    { loc: `${SITE}/beliefs`, lastmod: today, changefreq: "monthly", priority: "0.6" },
     { loc: `${SITE}/case-studies`, lastmod: today, changefreq: "monthly", priority: "0.9" },
   ];
 

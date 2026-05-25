@@ -1,18 +1,40 @@
 import { memo } from "react";
 import FadeIn from "./FadeIn";
+import { isDev, isPlaceholder, devOnlyText } from "@/lib/placeholder";
 
 interface Metric {
   value: string;
   label: string;
+  /** When true, this is a "human" metric (e.g. new dad since X). */
+  human?: boolean;
 }
 
-const defaultMetrics: Metric[] = [
+// One human metric sits next to the work numbers. The value is a
+// [CHRIS: ...] placeholder until he picks one — in production the
+// human card is dropped from the strip if still unfilled.
+const humanMetric: Metric = {
+  value: "[CHRIS: 1 short value — e.g. '2026' or 'N years']",
+  label: "[CHRIS: 1 short label — e.g. 'New dad since', 'Years married']",
+  human: true,
+};
+
+const workMetrics: Metric[] = [
   { value: "300%+", label: "Project throughput increase" },
   { value: "<1%", label: "MR rollback rate" },
   { value: "43%", label: "NetSuite transaction reduction" },
   { value: "95%", label: "Invoicing ownership migration" },
   { value: "90%", label: "Reduction in reporting overhead" },
 ];
+
+const defaultMetrics: Metric[] = (() => {
+  const humanFilled = !isPlaceholder(humanMetric.value) && !isPlaceholder(humanMetric.label);
+  if (isDev || humanFilled) {
+    // Slot the human metric just before the last work metric so it
+    // sits inside the strip rather than at either end.
+    return [...workMetrics.slice(0, 4), humanMetric, ...workMetrics.slice(4)];
+  }
+  return workMetrics;
+})();
 
 interface MetricStripProps {
   metrics?: Metric[];
@@ -38,18 +60,33 @@ function MetricStrip({
           </p>
         </FadeIn>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-border rounded-md overflow-hidden border border-border">
+        <div
+          className={`grid grid-cols-2 md:grid-cols-3 gap-px bg-border rounded-md overflow-hidden border border-border ${
+            metrics.length >= 6 ? "lg:grid-cols-6" : "lg:grid-cols-5"
+          }`}
+        >
           {metrics.map((metric, index) => (
             <FadeIn
               key={metric.label}
               delay={index * 0.04}
-              className="bg-background p-6 md:p-7 flex flex-col justify-between"
+              className={`p-6 md:p-7 flex flex-col justify-between ${
+                metric.human ? "bg-muted/60" : "bg-background"
+              }`}
             >
-              <div className="font-display text-3xl md:text-4xl font-semibold text-primary tabular-nums tracking-tight">
-                {metric.value}
+              <div
+                className={`font-display text-3xl md:text-4xl font-semibold tabular-nums tracking-tight ${
+                  metric.human ? "text-foreground" : "text-primary"
+                }`}
+                style={
+                  metric.human
+                    ? { color: "hsl(var(--marker))" }
+                    : undefined
+                }
+              >
+                {devOnlyText(metric.value)}
               </div>
               <div className="mt-3 text-sm md:text-[0.95rem] text-muted-foreground leading-snug">
-                {metric.label}
+                {devOnlyText(metric.label)}
               </div>
             </FadeIn>
           ))}

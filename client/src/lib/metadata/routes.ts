@@ -157,6 +157,17 @@ export const WRITING_METADATA: PageSeoOptions = {
   jsonLdId: "writing-index-jsonld",
 };
 
+export const BELIEFS_TITLE = "Things I Believe | Chris Folmar";
+export const BELIEFS_DESCRIPTION =
+  "A short, dated set of opinions Chris Folmar currently holds about engineering, operations, and how teams ship — updatable, and open to disagreement.";
+export const BELIEFS_METADATA: PageSeoOptions = {
+  title: BELIEFS_TITLE,
+  description: BELIEFS_DESCRIPTION,
+  path: "/beliefs",
+  jsonLd: buildWebPageJsonLd("/beliefs", BELIEFS_TITLE, BELIEFS_DESCRIPTION),
+  jsonLdId: "beliefs-jsonld",
+};
+
 export const CASE_STUDIES_TITLE = "Case Studies | Chris Folmar";
 export const CASE_STUDIES_DESCRIPTION =
   "Detailed case studies on scaling engineering throughput, AI-enabled workflow transformation, ERP/WMS modernization, and async information flow.";
@@ -271,6 +282,8 @@ export function resolvePageMetadata(rawPath: string): PageSeoOptions {
       return RESUME_METADATA;
     case "/writing":
       return WRITING_METADATA;
+    case "/beliefs":
+      return BELIEFS_METADATA;
     case "/case-studies":
       return CASE_STUDIES_METADATA;
     case "/sitemap":

@@ -3,11 +3,18 @@
 // and the five-departments framing (canonical homes: Team GSD case
 // study summary + résumé summary).
 import { useEffect } from "react";
-import { Sparkles, Briefcase, BookOpen, Heart, Calendar } from "lucide-react";
+import { Sparkles, Briefcase, BookOpen, Heart, Calendar, Wrench, RotateCcw } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import FadeIn from "@/components/FadeIn";
 import { NOW_METADATA } from "@/lib/metadata/routes";
 import { usePageSeo } from "@/lib/metadata/usePageSeo";
+import {
+  DevOnly,
+  PlaceholderBadge,
+  devOnlyText,
+  isDev,
+  isPlaceholder,
+} from "@/lib/placeholder";
 
 interface FocusItem {
   icon: React.ReactNode;
@@ -37,6 +44,86 @@ const focusAreas: FocusItem[] = [
     body: "Newly a dad. The biggest change of my life and the most grounding one. Everything else gets prioritized around it.",
   },
 ];
+
+interface MicroItem {
+  title: string;
+  body: string;
+}
+
+const currentlyReading: MicroItem[] = [
+  { title: "[CHRIS: book/essay #1 — author]", body: "[CHRIS: one line on why you picked it up.]" },
+  { title: "[CHRIS: book/essay #2 — author]", body: "[CHRIS: one line on why you picked it up.]" },
+  { title: "[CHRIS: book/essay #3 — author, optional]", body: "[CHRIS: one line.]" },
+  { title: "[CHRIS: book/essay #4 — author, optional]", body: "[CHRIS: one line.]" },
+];
+
+const currentlyUsing: MicroItem[] = [
+  { title: "[CHRIS: tool #1]", body: "[CHRIS: one line — specific over generic, e.g. 'Cursor with the X workflow', 'n8n for Y'.]" },
+  { title: "[CHRIS: tool #2]", body: "[CHRIS: one line.]" },
+  { title: "[CHRIS: tool #3]", body: "[CHRIS: one line.]" },
+  { title: "[CHRIS: tool #4]", body: "[CHRIS: one line.]" },
+  { title: "[CHRIS: tool #5 — optional]", body: "[CHRIS: one line.]" },
+  { title: "[CHRIS: tool #6 — optional]", body: "[CHRIS: one line.]" },
+];
+
+const recentlyChangedMyMind: MicroItem[] = [
+  { title: "[CHRIS: short headline — the thing you used to think]", body: "[CHRIS: 1–3 sentences on what you think now and what changed.]" },
+  { title: "[CHRIS: short headline #2 — optional]", body: "[CHRIS: 1–3 sentences.]" },
+  { title: "[CHRIS: short headline #3 — optional]", body: "[CHRIS: 1–3 sentences.]" },
+];
+
+function MicroSection({
+  eyebrow,
+  title,
+  blurb,
+  icon,
+  items,
+  testId,
+}: {
+  eyebrow: string;
+  title: string;
+  blurb: string;
+  icon: React.ReactNode;
+  items: MicroItem[];
+  testId: string;
+}) {
+  const visible = items.filter((i) => isDev || !isPlaceholder(i.body));
+  if (visible.length === 0 && !isDev) return null;
+
+  return (
+    <section className="mt-16 md:mt-20 max-w-5xl" data-testid={testId}>
+      <SectionHeader
+        eyebrow={eyebrow}
+        title={title}
+        description={blurb}
+        size="sub"
+        icon={icon}
+      />
+      <DevOnly>
+        <div className="mb-5">
+          <PlaceholderBadge>awaiting Chris</PlaceholderBadge>
+        </div>
+      </DevOnly>
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+        {visible.map((item, i) => (
+          <FadeIn
+            as="li"
+            key={i}
+            delay={i * 0.03}
+            className="bg-card border border-border rounded-md p-5"
+          >
+            <div className="font-display text-base font-semibold text-foreground">
+              {devOnlyText(item.title)}
+            </div>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              {devOnlyText(item.body)}
+            </p>
+          </FadeIn>
+        ))}
+      </ul>
+    </section>
+  );
+}
 
 export default function NowPage() {
   usePageSeo(NOW_METADATA);
@@ -83,7 +170,34 @@ export default function NowPage() {
           ))}
         </div>
 
-        <FadeIn className="mt-12 text-sm text-muted-foreground max-w-3xl">
+        <MicroSection
+          eyebrow="Currently reading"
+          title="What's on the nightstand."
+          blurb="A short list of what I'm reading right now and why I picked it up."
+          icon={<BookOpen className="h-4 w-4" />}
+          items={currentlyReading}
+          testId="now-reading"
+        />
+
+        <MicroSection
+          eyebrow="Currently using"
+          title="The tools I'm actually leaning on."
+          blurb="Specific over generic — the workflows and tools I'm getting real leverage from right now."
+          icon={<Wrench className="h-4 w-4" />}
+          items={currentlyUsing}
+          testId="now-using"
+        />
+
+        <MicroSection
+          eyebrow="Recently changed my mind on"
+          title="Where I've updated my priors."
+          blurb="The thing operators almost never publish: positions I held that I no longer hold."
+          icon={<RotateCcw className="h-4 w-4" />}
+          items={recentlyChangedMyMind}
+          testId="now-changed-mind"
+        />
+
+        <FadeIn className="mt-16 text-sm text-muted-foreground max-w-3xl">
           This page changes as my focus changes. If we've talked recently and
           something here looks stale, that's on me — feel free to nudge.
         </FadeIn>

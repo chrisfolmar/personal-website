@@ -9,6 +9,7 @@ import { visibleBlogPosts } from "@/lib/data";
 import { WRITING_METADATA, WRITING_PATH } from "@/lib/metadata/routes";
 import { usePageSeo } from "@/lib/metadata/usePageSeo";
 import { cn } from "@/lib/utils";
+import { devOnlyText, isDev, isPlaceholder } from "@/lib/placeholder";
 
 const ALL_CATEGORIES = "All";
 
@@ -95,7 +96,22 @@ export default function WritingIndex() {
           eyebrow="Writing"
           title="Field notes from the work."
           description="On AI-enabled operations, engineering leadership, business systems, and the small-business web work I keep on the side."
-        />
+        >
+          {(() => {
+            const addendum =
+              "[CHRIS: one-line voice addendum — e.g. 'Working theories, not hot takes. Disagree loudly.']";
+            if (!isDev && isPlaceholder(addendum)) return null;
+            return (
+              <p
+                className="font-mono text-[0.78rem] uppercase tracking-[0.14em] text-foreground/70 border-l-2 pl-3"
+                style={{ borderColor: "hsl(var(--marker))" }}
+                data-testid="writing-voice-addendum"
+              >
+                {devOnlyText(addendum)}
+              </p>
+            );
+          })()}
+        </SectionHeader>
 
         <div
           className="mb-8 md:mb-10 flex flex-wrap gap-2"

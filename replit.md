@@ -19,6 +19,55 @@ preview page and Direction B — "Engineer's notebook" — was graduated.
 - **Hero**: editorial copy + inline systems-map SVG (Teams / Workflows / Systems / AI / Operations). The profile photo lives in the About section only.
 - **Homepage rhythm** (`client/src/pages/home.tsx`): Hero → MetricStrip → WhatIDo → CurrentFocus → FeaturedCaseStudies → AITransformationSummary → Writing → CtaBand.
 
+# "Reflection of me" content surfaces (May 2026)
+
+Added in task #36 to give the site a personality layer (not just an
+operator layer). All Chris-voice copy lives behind a placeholder
+system so nothing leaks into production until he fills it in.
+
+- **Placeholder convention**: `client/src/lib/placeholder.tsx` exports
+  `isDev`, `isPlaceholder()`, `devOnlyText()`, `<DevOnly>`, and
+  `<PlaceholderBadge>`. Any string of the shape `[CHRIS: ...]` is
+  treated as unfilled. In dev (`import.meta.env.DEV`) placeholders
+  render as raw text (often wrapped in a dashed brass badge so
+  they're obvious); in production they are hidden, and any whole
+  surface whose body is still a placeholder is omitted from the DOM.
+- **Surfaces**:
+  - **Manifesto** (`client/src/components/Manifesto.tsx`) — pinned
+    letter-style component mounted on home between Hero and
+    MetricStrip. Wrapped in `<DevOnly>`; whole component disappears
+    in production until filled. Includes a "Read what I currently
+    believe" link to `/beliefs`.
+  - **Things I believe** (`client/src/pages/beliefs.tsx`, route
+    `/beliefs`, registered in `App.tsx`) — numbered, datable
+    beliefs (target 5–8). Each belief is independently filterable.
+    Linked from the Manifesto and the About page.
+    `BELIEFS_METADATA` lives in `client/src/lib/metadata/routes.ts`,
+    is plumbed through `resolvePageMetadata`, the sitemap (XML +
+    HTML), and ships SSR'd `WebPage` JSON-LD.
+  - **Richer /now** (`client/src/pages/now.tsx`) — three new
+    sub-sections below the focus cards: *Currently reading*,
+    *Currently using*, *Recently changed my mind on*. Each
+    sub-section auto-hides in production if every item is still a
+    placeholder; individual items render only when filled.
+  - **MetricStrip human metric** (`client/src/components/MetricStrip.tsx`)
+    — one brass-highlighted "human" card slots in next to the work
+    metrics when filled; in production the strip falls back to the
+    original five-up grid when still unfilled.
+  - **About work-photo slot** (`client/src/components/About.tsx`) —
+    a `<DevOnly>` dashed placeholder card below the existing
+    wife-and-Chris photo, awaiting a real candid of Chris at work.
+  - **Footer sign-off** (`client/src/components/Footer.tsx`) — one
+    refreshable italic line above the copyright row.
+  - **Writing voice addendum** (`client/src/pages/writing.tsx`) —
+    one-line uppercase mono addendum under the page header signaling
+    the writing is opinionated.
+- **Questionnaire artifact**: `.local/reflection-questionnaire.md`
+  groups every `[CHRIS: ...]` prompt by surface with word-count
+  guidance, anti-patterns, and shape-only examples. Fill that file
+  (or paste numbered answers back) and the agent drops them into
+  the scaffolded components.
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.

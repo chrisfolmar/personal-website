@@ -4,10 +4,11 @@
 // AITransformationSummary + résumé bullet). Use a different framing
 // for the same idea here.
 import { memo } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Camera } from "lucide-react";
 import { experiences } from "@/lib/data";
 import SectionHeader from "@/components/SectionHeader";
 import FadeIn from "@/components/FadeIn";
+import { DevOnly, PlaceholderBadge } from "@/lib/placeholder";
 
 interface TimelineItemProps {
   title: string;
@@ -90,6 +91,24 @@ function About() {
                 />
               </picture>
             </div>
+
+            {/* Work-photo slot — woven personal moment from task 36.
+                Hidden in production until Chris supplies a candid
+                photo of himself at work (desk, whiteboard, etc.). */}
+            <DevOnly>
+              <div
+                className="mt-4 flex flex-col items-center justify-center gap-2 rounded-md border border-dashed border-amber-500/60 bg-amber-500/5 px-6 py-10 text-center"
+                data-testid="about-work-photo-slot"
+              >
+                <Camera className="h-6 w-6 text-amber-600 dark:text-amber-400" />
+                <p className="text-sm text-foreground/80">
+                  Awaiting photo from Chris — a real candid of you at work
+                  (desk, whiteboard, etc.). No stock.
+                </p>
+                <PlaceholderBadge inline>about-work-photo</PlaceholderBadge>
+              </div>
+            </DevOnly>
+
             <div className="mt-8 space-y-5 text-[0.975rem] leading-relaxed text-muted-foreground">
               <p>
                 <strong className="text-foreground">Software Developer.</strong>{" "}
@@ -159,7 +178,7 @@ function About() {
                 />
               ))}
             </div>
-            <FadeIn className="mt-8">
+            <FadeIn className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <a
                 href="https://www.linkedin.com/in/clfolmar"
                 target="_blank"
@@ -167,6 +186,13 @@ function About() {
                 className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80"
               >
                 View full LinkedIn
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <a
+                href="/beliefs"
+                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80"
+              >
+                Things I believe
                 <ArrowRight className="h-4 w-4" />
               </a>
             </FadeIn>

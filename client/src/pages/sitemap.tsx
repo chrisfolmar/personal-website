@@ -36,6 +36,7 @@ export default function Sitemap() {
     { href: "/writing", label: "Writing", icon: <FileText className="w-5 h-5 mr-2" /> },
     { href: "/resume", label: "Resume", icon: <BookOpen className="w-5 h-5 mr-2" /> },
     { href: "/now", label: "Now", icon: <Calendar className="w-5 h-5 mr-2" /> },
+    { href: "/beliefs", label: "Things I Believe", icon: <BookOpen className="w-5 h-5 mr-2" /> },
   ];
 
   return (

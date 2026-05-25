@@ -167,6 +167,10 @@ export default function NowPage() {
     window.scrollTo(0, 0);
   }, []);
 
+  // NOTE: bump this whenever /now content above (focusAreas, currentlyReading,
+  // currentlyUsing, recentlyChangedMyMind) changes. A visibly stale /now page
+  // undermines the whole point of having one. See replit.md "Engineering"
+  // → "/now freshness" for the checklist.
   const lastUpdated = "May 2026";
 
   return (

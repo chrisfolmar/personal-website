@@ -185,6 +185,12 @@ Baseline engineering hygiene that the site is held to (added April 2026 in the
 - **Known limitation**: the rate limiter is in-memory per-process and won't
   work across multiple instances. Replace with a shared store (Redis) before
   scaling horizontally.
+- **/now freshness**: the `/now` page (`client/src/pages/now.tsx`) shows a
+  "Last updated: <month year>" line driven by the `lastUpdated` constant near
+  the bottom of the file. Whenever any of the /now content arrays change
+  (`focusAreas`, `currentlyReading`, `currentlyUsing`, `recentlyChangedMyMind`),
+  bump `lastUpdated` in the same change. A visibly stale /now page undermines
+  the whole point of the page.
 
 # External Dependencies
 

@@ -52,20 +52,20 @@ interface MicroItem {
 
 const currentlyReading: MicroItem[] = [
   {
-    title: "The Obstacle is the Way",
-    body: "Ryan Holiday.",
+    title: "The Obstacle is the Way — Ryan Holiday",
+    body: "Recommended by a previous boss, it's become a go-to for processing the challenges life throws at you. It carries new meaning now that the every-day obstacles look different.",
   },
   {
-    title: "The Motivation Manifesto",
-    body: "Brendon Burchard.",
+    title: "The Motivation Manifesto — Brendon Burchard",
+    body: "Continuing to sharpen my ability to foster and manifest intrinsic motivation — in myself and in the people I lead.",
   },
   {
-    title: "An Elegant Puzzle — Systems of Engineering Management",
-    body: "Will Larson.",
+    title: "An Elegant Puzzle — Systems of Engineering Management — Will Larson",
+    body: "Career-oriented learning around the craft of engineering leadership — the structural problems that come with scale.",
   },
   {
-    title: "The Overthinker's Guide to Making Decisions",
-    body: "Joseph Nguyen.",
+    title: "The Overthinker's Guide to Making Decisions — Joseph Nguyen",
+    body: "I overthink decisions at work and in life. This is a deliberate attempt to get better at moving through that as I keep growing as a leader.",
   },
 ];
 
@@ -89,10 +89,6 @@ const currentlyUsing: MicroItem[] = [
   {
     title: "Google Docs and lightweight diagrams",
     body: "Frameworks and one-pagers that make complicated work easier to explain.",
-  },
-  {
-    title: "A rower, coffee, a deep navy home office",
-    body: "And whatever focused time I can find between work and family life.",
   },
 ];
 

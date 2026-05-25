@@ -2,14 +2,22 @@
 
 Personal portfolio website for Chris Folmar — Engineering Manager and AI Transformation Leader at Fullscript. The site is positioned as a senior engineering leader / operator portfolio (not a generic "modern personal site"): calm, sharp, editorial, premium. It surfaces case studies, the AI Transformation work (Team GSD), writing, current focus, résumé, and a contact form.
 
-# Editorial design system (April 2026 overhaul)
+# Editorial design system — "Engineer's notebook" (May 2026)
 
-- **Palette**: deep emerald primary (`hsl(158, 60%, 28%)` light / `hsl(158, 50%, 50%)` dark), warm off-white background in light mode, near-black ink in dark mode. Single accent hue, no gradients, no neon. Configured in `theme.json` and `client/src/index.css`.
-- **Typography**: Inter Tight for display/headings, Inter for body. Type scale exposed as utilities: `text-eyebrow`, `text-display`, `text-h1`, `text-h2`, `text-h3`, `text-lead`, `text-body`. `radius` set to `0.375` for restrained corner softness.
+After the April editorial overhaul read as generic Stripe/Linear-adjacent
+operator-portfolio, the visual system was differentiated in May 2026.
+Three directions were explored on a temporary `/visual-directions`
+preview page and Direction B — "Engineer's notebook" — was graduated.
+
+- **Palette**: deep navy primary (`hsl(215, 60%, 16%)` light / brass `hsl(41, 72%, 58%)` dark) on a warm cream background (`hsl(43, 50%, 92%)`); dark mode is deep navy (`hsl(215, 50%, 9%)`) with cream ink. A brass/amber "marker" accent (`--marker`, `--marker-soft`) carries eyebrows and headline highlights — used sparingly. Configured in `theme.json` and `client/src/index.css`.
+- **Typography**: Inter Tight (display) + Inter (body) + IBM Plex Mono (eyebrows, metric labels, technical paths). The mono accent signals the dev-origin background without shouting. `radius` stays at `0.375`. The `.text-eyebrow` utility is mono+brass+uppercased.
+- **Signature motif**: `<SignatureMotif />` is a reusable dotted-grid texture (with `variant="rule"` for the brass-dot + dashed hairline used in the hero, and `variant="band"` for full-width section dividers). It extends the look of the Hero `SystemsMap` across other surfaces (currently Hero + AITransformationSummary).
+- **Marker highlight**: the `.marker-highlight` utility renders a translucent brass band behind the lower 35% of a span, used to emphasize a phrase in headlines (e.g. "how the work gets done").
+- **Memorable interaction**: the Hero `SystemsMap` nodes are keyboard-focusable descriptive graphics (`role="img"` + `tabIndex={0}` + `aria-label`). Hover or focus lights the connected edges in brass and surfaces a one-line note about that part of the operating model (`teams: 3 globally distributed squads`, etc.). The lit-edge effect is a colour change only — safe with `prefers-reduced-motion`.
 - **Motion**: a single `FadeIn` primitive (opacity 0→1, y 12→0, ~0.45s easeOut, viewport once). `prefers-reduced-motion` is honored globally. The legacy desktop particle background is a no-op.
-- **Layout primitives** (in `client/src/components/`): `SectionHeader`, `MetricStrip`, `PrincipleCard`, `CaseStudyCard`, `WritingCard`, `QuoteCallout`, `CtaBand`. All sections are composed from these — including legacy components like `About`, `Skills`, `Contact`, `AITransformation`, which now use `SectionHeader` + `FadeIn`.
+- **Layout primitives** (in `client/src/components/`): `SectionHeader`, `MetricStrip`, `PrincipleCard`, `CaseStudyCard`, `WritingCard`, `QuoteCallout`, `CtaBand`, plus the new `SignatureMotif`. Buttons get a subtle `3px 3px 0 hsl(var(--marker))` offset shadow that reads as a stamped/notebook ink mark.
 - **Hero**: editorial copy + inline systems-map SVG (Teams / Workflows / Systems / AI / Operations). The profile photo lives in the About section only.
-- **Homepage rhythm** (`client/src/pages/home.tsx`): Hero → MetricStrip → WhatIDo → FeaturedCaseStudies → AITransformationSummary → Writing → CurrentFocus → CtaBand → About → Skills → Contact.
+- **Homepage rhythm** (`client/src/pages/home.tsx`): Hero → MetricStrip → WhatIDo → CurrentFocus → FeaturedCaseStudies → AITransformationSummary → Writing → CtaBand.
 
 # User Preferences
 

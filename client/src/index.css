@@ -3,74 +3,87 @@
 @tailwind utilities;
 
 /* ========================================================================
-   Editorial design system
-   - Warm, restrained palette (light is default, dark is polished)
-   - Single accent: deep emerald (Fullscript-adjacent) — no rainbow gradients
-   - Typography: Inter Tight (display/headings) + Inter (body)
+   Editorial design system — "Engineer's notebook" (May 2026)
+   - Warm cream paper light mode / deep navy dark mode
+   - Deep navy primary + brass/amber marker accent
+   - Inter Tight (display) + Inter (body) + IBM Plex Mono (eyebrows/labels)
+   - Dotted-grid motif as a recurring signature texture
    ======================================================================== */
 
 @layer base {
   :root {
     /* Surfaces */
-    --background: 40 30% 98%;
-    --foreground: 220 22% 12%;
+    --background: 43 50% 92%;
+    --foreground: 215 60% 14%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 22% 12%;
+    --card: 44 60% 96%;
+    --card-foreground: 215 60% 14%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 22% 12%;
+    --popover: 44 60% 96%;
+    --popover-foreground: 215 60% 14%;
 
-    --muted: 40 12% 94%;
-    --muted-foreground: 220 12% 38%;
+    --muted: 43 30% 87%;
+    --muted-foreground: 215 18% 32%;
 
-    --border: 220 14% 90%;
-    --input: 220 14% 90%;
+    --border: 43 25% 78%;
+    --input: 43 25% 78%;
 
-    /* Single restrained accent — deep emerald */
-    --primary: 158 60% 28%;
-    --primary-foreground: 40 30% 98%;
-    --ring: 158 60% 28%;
+    /* Primary — deep navy (ink) used for primary buttons and links */
+    --primary: 215 60% 16%;
+    --primary-foreground: 43 50% 95%;
+    --ring: 215 60% 16%;
 
-    /* Secondary / accent kept neutral so a single hue carries the brand */
-    --secondary: 220 14% 92%;
-    --secondary-foreground: 220 22% 18%;
-    --accent: 158 30% 92%;
-    --accent-foreground: 158 60% 22%;
+    --secondary: 43 30% 87%;
+    --secondary-foreground: 215 60% 14%;
 
-    --destructive: 0 70% 45%;
-    --destructive-foreground: 40 30% 98%;
+    /* Accent — brass/amber tint surface */
+    --accent: 41 50% 86%;
+    --accent-foreground: 41 80% 26%;
+
+    /* Marker — brass color used for eyebrows + headline highlights.
+       Verified ~6.5:1 on the cream background (passes WCAG AA). */
+    --marker: 41 78% 32%;
+    --marker-soft: 41 80% 60%;
+
+    --destructive: 0 70% 38%;
+    --destructive-foreground: 43 50% 95%;
 
     --radius: 0.375rem;
   }
 
   .dark {
-    --background: 220 20% 8%;
-    --foreground: 40 15% 95%;
+    --background: 215 50% 9%;
+    --foreground: 43 50% 92%;
 
-    --card: 220 20% 10%;
-    --card-foreground: 40 15% 95%;
+    --card: 215 40% 12%;
+    --card-foreground: 43 50% 92%;
 
-    --popover: 220 20% 10%;
-    --popover-foreground: 40 15% 95%;
+    --popover: 215 40% 12%;
+    --popover-foreground: 43 50% 92%;
 
-    --muted: 220 16% 14%;
-    --muted-foreground: 220 10% 65%;
+    --muted: 215 30% 16%;
+    --muted-foreground: 43 20% 70%;
 
-    --border: 220 14% 18%;
-    --input: 220 14% 18%;
+    --border: 215 25% 22%;
+    --input: 215 25% 22%;
 
-    --primary: 158 50% 50%;
-    --primary-foreground: 220 22% 10%;
-    --ring: 158 50% 50%;
+    /* In dark mode primary becomes the brass — it's what carries
+       contrast on the navy field. Buttons read as navy-on-brass. */
+    --primary: 41 72% 58%;
+    --primary-foreground: 215 60% 10%;
+    --ring: 41 72% 58%;
 
-    --secondary: 220 14% 16%;
-    --secondary-foreground: 40 15% 92%;
-    --accent: 158 25% 18%;
-    --accent-foreground: 158 50% 78%;
+    --secondary: 215 30% 16%;
+    --secondary-foreground: 43 50% 92%;
 
-    --destructive: 0 60% 45%;
-    --destructive-foreground: 40 15% 95%;
+    --accent: 215 35% 18%;
+    --accent-foreground: 41 75% 65%;
+
+    --marker: 41 72% 58%;
+    --marker-soft: 41 70% 40%;
+
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 43 50% 92%;
   }
 }
 
@@ -100,8 +113,6 @@
     letter-spacing: -0.015em;
     color: hsl(var(--foreground));
   }
-
-  /* Editorial type scale (used as utility classes below) */
 }
 
 /* ------------------------------------------------------------------------
@@ -113,8 +124,16 @@
     letter-spacing: -0.02em;
   }
 
+  .font-mono {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  /* Eyebrow — uppercase mono in brass marker. Signals the dev-origin
+     background quietly. */
   .text-eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.18em] text-primary;
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: hsl(var(--marker));
+    @apply text-[0.72rem] font-medium uppercase tracking-[0.18em];
   }
 
   .text-display {
@@ -149,15 +168,48 @@
     @apply text-sm leading-relaxed text-muted-foreground;
   }
 
+  /* Marker — brass-highlighter underline for headline emphasis.
+     Renders as a translucent brass band behind the lower 35% of the
+     text, mimicking a felt-tip pass over a printed word. */
+  .marker-highlight {
+    background-image: linear-gradient(
+      transparent 65%,
+      hsl(var(--marker-soft) / 0.45) 65%,
+      hsl(var(--marker-soft) / 0.45) 95%,
+      transparent 95%
+    );
+    padding-bottom: 0.05em;
+  }
+
   /* Reusable hairline divider used across editorial sections */
   .hairline {
     @apply border-t border-border;
+  }
+
+  /* Dotted-grid signature motif background. Used by <SignatureMotif />
+     and any surface that wants the recurring notebook texture. */
+  .signature-grid {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      hsl(var(--foreground) / 0.12) 1px,
+      transparent 0
+    );
+    background-size: 18px 18px;
+  }
+
+  .signature-grid-soft {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      hsl(var(--foreground) / 0.08) 1px,
+      transparent 0
+    );
+    background-size: 22px 22px;
   }
 }
 
 /* ------------------------------------------------------------------------
    Calm motion: a single fade-up-once pattern, honored only on devices
-   that don't request reduced motion. No parallax, no scroll-jacking.
+   that don't request reduced motion.
    ------------------------------------------------------------------------ */
 @layer utilities {
   .fade-up {

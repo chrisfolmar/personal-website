@@ -2,152 +2,219 @@
 // eyebrow, the role-at-Fullscript line, and the modernize-the-work
 // headline. Other surfaces must reword these ideas rather than repeat
 // the exact phrasings used here.
+import { useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import SignatureMotif from "./SignatureMotif";
 
+type NodeId = "teams" | "workflows" | "systems" | "ai" | "ops";
+
+type Node = { id: NodeId; label: string; x: number; y: number; note: string };
+
+const nodes: Node[] = [
+  { id: "teams", label: "Teams", x: 70, y: 90, note: "3 globally distributed squads" },
+  { id: "workflows", label: "Workflows", x: 230, y: 50, note: "Connected end-to-end" },
+  { id: "systems", label: "Systems", x: 320, y: 200, note: "Modernized the business stack" },
+  { id: "ai", label: "AI", x: 200, y: 320, note: "First-class participant, not a bolt-on" },
+  { id: "ops", label: "Operations", x: 50, y: 260, note: "Quietly doing the busywork" },
+];
+
+const edges: [NodeId, NodeId][] = [
+  ["teams", "workflows"],
+  ["teams", "ops"],
+  ["workflows", "systems"],
+  ["systems", "ai"],
+  ["ai", "ops"],
+  ["workflows", "ai"],
+  ["teams", "systems"],
+];
+
+const byId: Record<NodeId, Node> = Object.fromEntries(
+  nodes.map((n) => [n.id, n]),
+) as Record<NodeId, Node>;
+
+/**
+ * SystemsMap — the hero illustration AND the site's one memorable
+ * interaction. Hovering or focusing a node lights its connected
+ * edges in brass and surfaces a one-line note about that part of
+ * the operating model. Decorative until interacted with; nodes
+ * become real buttons exposing their note to assistive tech.
+ *
+ * Reduced-motion: the entrance animation is suppressed; the
+ * highlight on hover/focus is a colour change only (no movement),
+ * which is safe to leave on.
+ */
 function SystemsMap() {
-  // A subtle systems-map illustration: nodes for Teams / Workflows /
-  // Systems / AI / Operations connected by light lines. Inline SVG keeps
-  // it crisp on every screen and easy to recolor with the accent token.
   const reduce = useReducedMotion();
+  const [active, setActive] = useState<NodeId | null>(null);
 
-  type Node = { id: string; label: string; x: number; y: number };
-  const nodes: Node[] = [
-    { id: "teams", label: "Teams", x: 70, y: 90 },
-    { id: "workflows", label: "Workflows", x: 230, y: 50 },
-    { id: "systems", label: "Systems", x: 320, y: 200 },
-    { id: "ai", label: "AI", x: 200, y: 320 },
-    { id: "ops", label: "Operations", x: 50, y: 260 },
-  ];
-  const edges: [string, string][] = [
-    ["teams", "workflows"],
-    ["teams", "ops"],
-    ["workflows", "systems"],
-    ["systems", "ai"],
-    ["ai", "ops"],
-    ["workflows", "ai"],
-    ["teams", "systems"],
-  ];
+  const isEdgeActive = (a: NodeId, b: NodeId) =>
+    active !== null && (a === active || b === active);
 
-  const byId = Object.fromEntries(nodes.map((n) => [n.id, n]));
+  const activeNode = active ? byId[active] : null;
 
   return (
-    <svg
-      role="img"
-      aria-label="A small systems map: Teams, Workflows, Systems, AI, and Operations connected by lightweight lines."
-      viewBox="0 0 400 400"
-      className="w-full h-auto max-w-[440px]"
-    >
-      <defs>
-        <radialGradient id="hero-node-bg" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.18" />
-          <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-
-      {/* faint dotted grid */}
-      <g opacity="0.35">
-        {Array.from({ length: 9 }).map((_, i) => (
-          <line
-            key={`v-${i}`}
-            x1={i * 50}
-            y1={0}
-            x2={i * 50}
-            y2={400}
-            stroke="hsl(var(--border))"
-            strokeDasharray="2 6"
-            strokeWidth="1"
-          />
-        ))}
-        {Array.from({ length: 9 }).map((_, i) => (
-          <line
-            key={`h-${i}`}
-            x1={0}
-            y1={i * 50}
-            x2={400}
-            y2={i * 50}
-            stroke="hsl(var(--border))"
-            strokeDasharray="2 6"
-            strokeWidth="1"
-          />
-        ))}
-      </g>
-
-      {/* edges */}
-      <g
-        stroke="hsl(var(--primary))"
-        strokeOpacity="0.45"
-        strokeWidth="1.25"
-        strokeLinecap="round"
+    <div className="relative w-full max-w-[440px]">
+      <svg
+        role="img"
+        aria-label="A small systems map: Teams, Workflows, Systems, AI, and Operations connected by lightweight lines. Hover or focus a node to see how each part contributes."
+        viewBox="0 0 400 400"
+        className="w-full h-auto"
       >
-        {edges.map(([a, b], i) => {
-          const A = byId[a];
-          const B = byId[b];
-          return (
-            <motion.line
-              key={`${a}-${b}`}
-              x1={A.x}
-              y1={A.y}
-              x2={B.x}
-              y2={B.y}
-              initial={reduce ? false : { pathLength: 0, opacity: 0 }}
-              animate={
-                reduce
-                  ? undefined
-                  : { pathLength: 1, opacity: 0.45 }
-              }
-              transition={{
-                duration: 0.9,
-                delay: 0.25 + i * 0.06,
-                ease: "easeOut",
-              }}
+        <defs>
+          <radialGradient id="hero-node-bg" cx="50%" cy="50%" r="50%">
+            <stop
+              offset="0%"
+              stopColor="hsl(var(--marker))"
+              stopOpacity="0.22"
             />
-          );
-        })}
-      </g>
+            <stop offset="100%" stopColor="hsl(var(--marker))" stopOpacity="0" />
+          </radialGradient>
+        </defs>
 
-      {/* nodes */}
-      <g>
-        {nodes.map((n, i) => (
-          <motion.g
-            key={n.id}
-            initial={reduce ? false : { opacity: 0, scale: 0.8 }}
-            animate={reduce ? undefined : { opacity: 1, scale: 1 }}
-            transition={{
-              duration: 0.4,
-              delay: 0.15 + i * 0.06,
-              ease: "easeOut",
-            }}
-          >
-            <circle
-              cx={n.x}
-              cy={n.y}
-              r="36"
-              fill="url(#hero-node-bg)"
+        {/* faint dotted grid — echoes the SignatureMotif */}
+        <g opacity="0.5">
+          {Array.from({ length: 9 }).map((_, i) => (
+            <line
+              key={`v-${i}`}
+              x1={i * 50}
+              y1={0}
+              x2={i * 50}
+              y2={400}
+              stroke="hsl(var(--border))"
+              strokeDasharray="2 6"
+              strokeWidth="1"
             />
-            <circle
-              cx={n.x}
-              cy={n.y}
-              r="6"
-              fill="hsl(var(--primary))"
+          ))}
+          {Array.from({ length: 9 }).map((_, i) => (
+            <line
+              key={`h-${i}`}
+              x1={0}
+              y1={i * 50}
+              x2={400}
+              y2={i * 50}
+              stroke="hsl(var(--border))"
+              strokeDasharray="2 6"
+              strokeWidth="1"
             />
-            <text
-              x={n.x}
-              y={n.y + 24}
-              textAnchor="middle"
-              className="font-display"
-              fontSize="11"
-              fontWeight="600"
-              fill="hsl(var(--foreground))"
-              style={{ letterSpacing: "0.04em" }}
-            >
-              {n.label}
-            </text>
-          </motion.g>
-        ))}
-      </g>
-    </svg>
+          ))}
+        </g>
+
+        {/* edges */}
+        <g strokeWidth="1.25" strokeLinecap="round">
+          {edges.map(([a, b], i) => {
+            const A = byId[a];
+            const B = byId[b];
+            const lit = isEdgeActive(a, b);
+            return (
+              <motion.line
+                key={`${a}-${b}`}
+                x1={A.x}
+                y1={A.y}
+                x2={B.x}
+                y2={B.y}
+                stroke={lit ? "hsl(var(--marker))" : "hsl(var(--primary))"}
+                strokeOpacity={lit ? 0.9 : 0.4}
+                style={{ transition: "stroke 0.25s ease, stroke-opacity 0.25s ease" }}
+                initial={reduce ? false : { pathLength: 0, opacity: 0 }}
+                animate={reduce ? undefined : { pathLength: 1, opacity: lit ? 0.9 : 0.4 }}
+                transition={{
+                  duration: 0.9,
+                  delay: 0.25 + i * 0.06,
+                  ease: "easeOut",
+                }}
+              />
+            );
+          })}
+        </g>
+
+        {/* nodes — each is an interactive button (keyboard + SR) */}
+        <g>
+          {nodes.map((n, i) => {
+            const isActive = active === n.id;
+            return (
+              <motion.g
+                key={n.id}
+                initial={reduce ? false : { opacity: 0, scale: 0.8 }}
+                animate={reduce ? undefined : { opacity: 1, scale: 1 }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.15 + i * 0.06,
+                  ease: "easeOut",
+                }}
+              >
+                <g
+                  tabIndex={0}
+                  role="img"
+                  aria-label={`${n.label}: ${n.note}`}
+                  onMouseEnter={() => setActive(n.id)}
+                  onMouseLeave={() => setActive((cur) => (cur === n.id ? null : cur))}
+                  onFocus={() => setActive(n.id)}
+                  onBlur={() => setActive((cur) => (cur === n.id ? null : cur))}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") {
+                      setActive(null);
+                      (e.currentTarget as SVGGElement).blur?.();
+                    }
+                  }}
+                  className="cursor-default outline-none"
+                  style={{ transition: "transform 0.2s ease" }}
+                >
+                  {/* invisible larger hit area */}
+                  <circle cx={n.x} cy={n.y} r="40" fill="transparent" />
+                  <circle cx={n.x} cy={n.y} r="36" fill="url(#hero-node-bg)" />
+                  <circle
+                    cx={n.x}
+                    cy={n.y}
+                    r={isActive ? 8 : 6}
+                    fill={isActive ? "hsl(var(--marker))" : "hsl(var(--primary))"}
+                    style={{
+                      transition: "r 0.2s ease, fill 0.2s ease",
+                    }}
+                  />
+                  <text
+                    x={n.x}
+                    y={n.y + 24}
+                    textAnchor="middle"
+                    className="font-mono"
+                    fontSize="10.5"
+                    fontWeight="500"
+                    fill="hsl(var(--foreground))"
+                    style={{ letterSpacing: "0.06em", textTransform: "uppercase" }}
+                  >
+                    {n.label}
+                  </text>
+                </g>
+              </motion.g>
+            );
+          })}
+        </g>
+      </svg>
+
+      {/* Hover/focus tooltip — sits under the map, fades in via opacity
+          (no motion), always reserves vertical space so layout doesn't jump. */}
+      <div
+        aria-live="polite"
+        className="mt-3 h-10 px-3 flex items-center font-mono text-[0.72rem] uppercase tracking-[0.16em] border-l-2"
+        style={{
+          borderColor: activeNode ? "hsl(var(--marker))" : "transparent",
+          color: activeNode ? "hsl(var(--foreground))" : "transparent",
+          transition: "color 0.25s ease, border-color 0.25s ease",
+        }}
+      >
+        {activeNode ? (
+          <span>
+            <span style={{ color: "hsl(var(--marker))" }}>
+              /{activeNode.label.toLowerCase()}
+            </span>{" "}
+            · {activeNode.note}
+          </span>
+        ) : (
+          <span aria-hidden>placeholder</span>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -167,15 +234,19 @@ export default function Hero() {
       id="home"
       className="relative pt-28 md:pt-32 pb-20 md:pb-28 overflow-hidden"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Signature dotted-grid motif quietly threads through the hero */}
+      <SignatureMotif soft />
+
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
           <motion.div className="lg:col-span-7" {...copyAnim}>
+            <SignatureMotif variant="rule" className="mb-5 max-w-[10rem]" />
             <div className="text-eyebrow mb-6">
               Engineering Leadership · Business Systems · AI-Enabled Operations
             </div>
             <h1 className="text-display text-foreground">
               Helping teams modernize{" "}
-              <span className="text-primary">how the work gets done</span>.
+              <span className="marker-highlight">how the work gets done</span>.
             </h1>
             <p className="mt-6 max-w-2xl text-lead">
               I'm Chris Folmar — engineering leader at Fullscript. I run
@@ -186,14 +257,14 @@ export default function Hero() {
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
                 href="/case-studies"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-primary text-primary-foreground font-medium shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-primary text-primary-foreground font-medium shadow-[3px_3px_0_hsl(var(--marker))] hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background transition-colors"
               >
                 View Case Studies
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/writing"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-border bg-background text-foreground font-medium hover:bg-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-md border-2 border-primary bg-background text-foreground font-medium hover:bg-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background transition-colors"
               >
                 Read recent posts
               </Link>

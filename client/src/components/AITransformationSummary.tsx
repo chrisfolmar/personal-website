@@ -9,6 +9,7 @@ import { Link } from "wouter";
 import { ArrowRight, Sparkles } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import FadeIn from "./FadeIn";
+import SignatureMotif from "./SignatureMotif";
 
 const pillars = [
   {
@@ -27,8 +28,9 @@ const pillars = [
 
 function AITransformationSummary() {
   return (
-    <section id="ai-transformation" className="py-20 md:py-28">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="ai-transformation" className="relative py-20 md:py-28">
+      <SignatureMotif soft />
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="AI Transformation · Team GSD"
           title="An AI-first operating model, not another pile of demos."
@@ -40,10 +42,10 @@ function AITransformationSummary() {
             <FadeIn
               key={p.label}
               delay={i * 0.05}
-              className="bg-card border border-border rounded-md p-7"
+              className="bg-card border border-border rounded-md p-7 shadow-[3px_3px_0_hsl(var(--marker)/0.6)]"
             >
               <div className="flex items-center gap-2 text-eyebrow mb-3">
-                <Sparkles className="h-3.5 w-3.5" />
+                <Sparkles className="h-3 w-3" />
                 {p.label}
               </div>
               <p className="text-[0.975rem] leading-relaxed text-muted-foreground">

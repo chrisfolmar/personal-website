@@ -53,21 +53,7 @@ export default function NowPage() {
         <SectionHeader
           eyebrow="Now"
           title="What I'm focused on, this season."
-          description={
-            <>
-              A short, honest look at what I'm focused on right now — both at
-              work and outside of it. Inspired by{" "}
-              <a
-                href="https://nownownow.com/about"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline"
-              >
-                the /now page movement
-              </a>
-              .
-            </>
-          }
+          description="A short, honest look at what I'm focused on right now — both at work and outside of it."
         />
 
         <FadeIn className="-mt-4 mb-10 inline-flex items-center gap-2 text-sm text-muted-foreground">

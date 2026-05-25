@@ -45,7 +45,9 @@ describe("buildBlogPostingJsonLd", () => {
     expect(ld["@type"]).toBe("BlogPosting");
     expect(ld.headline).toBe(samplePost.title);
     expect(ld.url).toBe(`${PRIMARY_DOMAIN}/blog/${samplePost.id}`);
-    expect(ld.author["@type"]).toBe("Person");
+    // Author is a reference to the canonical Person @id declared on
+    // the home page, not an inline Person.
+    expect(ld.author["@id"]).toBe(`${PRIMARY_DOMAIN}/#person`);
     expect(ld.image).toContain("/cover.png");
   });
 });

@@ -5,6 +5,7 @@ import { insertMessageSchema, type Message } from "@shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
 import { sendContactFormEmail } from "./mail-service";
+import { sitemapHandler } from "./sitemap";
 import { log } from "./vite";
 
 // Simple in-memory rate limiter.
@@ -145,9 +146,40 @@ export function buildContactHandler(opts: ContactRouteOptions = {}) {
   };
 }
 
+// Lightweight web-vitals reporter endpoint. Logs entries server-side so they
+// can be tailed in deployment logs; intentionally not persisted to storage.
+const vitalsRateLimiterState = createRateLimiterState(60 * 1000, 60);
+
+export function buildVitalsHandler() {
+  return (req: Request, res: Response) => {
+    try {
+      const body = (req.body ?? {}) as Record<string, unknown>;
+      const name = typeof body.name === "string" ? body.name : "unknown";
+      const value = typeof body.value === "number" ? body.value : NaN;
+      const rating = typeof body.rating === "string" ? body.rating : "n/a";
+      const path = typeof body.path === "string" ? body.path : "";
+      const id = typeof body.id === "string" ? body.id : "";
+      if (Number.isFinite(value)) {
+        log(
+          `vitals ${name}=${value.toFixed(1)} rating=${rating} path=${path} id=${id}`,
+          "vitals",
+        );
+      }
+      res.status(204).end();
+    } catch {
+      res.status(204).end();
+    }
+  };
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   const rateLimit = makeRateLimiter(defaultRateLimiterState);
   app.post("/api/contact", rateLimit, buildContactHandler());
+
+  const vitalsLimit = makeRateLimiter(vitalsRateLimiterState);
+  app.post("/api/vitals", vitalsLimit, buildVitalsHandler());
+
+  app.get("/sitemap.xml", sitemapHandler);
 
   return createServer(app);
 }

@@ -11,9 +11,11 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { caseStudies } from "@/lib/data";
+import { relatedPostsForCaseStudy } from "@/lib/relations";
 import { Button } from "@/components/ui/button";
 import FadeIn from "@/components/FadeIn";
 import SectionHeader from "@/components/SectionHeader";
+import WritingCard from "@/components/WritingCard";
 import {
   CASE_STUDIES_METADATA,
   caseStudyDetailFallback,
@@ -56,6 +58,7 @@ export default function CaseStudyDetail() {
   }
 
   const otherStudies = caseStudies.filter((s) => s.slug !== study.slug).slice(0, 2);
+  const relatedPosts = relatedPostsForCaseStudy(study, 3);
 
   return (
     <div className="pt-28 md:pt-32 pb-20 md:pb-28">
@@ -187,6 +190,26 @@ export default function CaseStudyDetail() {
             </div>
           </FadeIn>
         </div>
+
+        {relatedPosts.length > 0 ? (
+          <FadeIn as="section" className="mt-16 pt-10 border-t border-border">
+            <SectionHeader size="sub" eyebrow="Related writing" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+              {relatedPosts.map((post, i) => (
+                <WritingCard
+                  key={post.id}
+                  id={post.id}
+                  title={post.title}
+                  excerpt={post.excerpt}
+                  date={post.date}
+                  readTime={post.readTime}
+                  category={post.category}
+                  delay={i * 0.05}
+                />
+              ))}
+            </div>
+          </FadeIn>
+        ) : null}
 
         <FadeIn as="section" className="mt-16 pt-10 border-t border-border">
           <SectionHeader size="sub" eyebrow="More case studies" />

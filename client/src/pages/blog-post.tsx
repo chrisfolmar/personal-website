@@ -3,10 +3,12 @@ import { useLocation, useParams } from "wouter";
 import { ArrowLeft, Calendar, Clock, Share2, Link2, Check, Archive, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { SiX, SiFacebook, SiLinkedin } from "react-icons/si";
-import { blogPosts, visibleBlogPosts } from "@/lib/data";
+import { blogPosts } from "@/lib/data";
+import { relatedCaseStudiesForPost, relatedPostsForPost } from "@/lib/relations";
 import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import LazyImage from "@/components/LazyImage";
+import ResponsiveImage, { type ResponsiveImageSource } from "@/components/ResponsiveImage";
+import CaseStudyCard from "@/components/CaseStudyCard";
 import DOMPurify from "dompurify";
 import { useToast } from "@/hooks/use-toast";
 import FadeIn from "@/components/FadeIn";
@@ -18,6 +20,32 @@ import {
   blogPostMetadata,
 } from "@/lib/metadata/routes";
 import { usePageSeo } from "@/lib/metadata/usePageSeo";
+
+// Map of cover-image paths that have AVIF/WebP/JPEG derivatives generated
+// by `scripts/optimize-images.mjs`. Extend this when new sources are added.
+const COVER_DERIVATIVES: Record<string, string> = {
+  "/images/blog/ai-web-development.png": "/images/blog/ai-web-development",
+  "/images/blog/ai-tools-guide.png": "/images/blog/ai-tools-guide",
+};
+
+interface CoverImage {
+  src: string;
+  sources?: ResponsiveImageSource[];
+  srcSet?: string;
+}
+
+function buildCoverImageSources(coverImage: string): CoverImage {
+  const base = COVER_DERIVATIVES[coverImage];
+  if (!base) return { src: coverImage };
+  return {
+    src: `${base}-1200.jpg`,
+    sources: [
+      { type: "image/avif", srcSet: `${base}-800.avif 800w, ${base}-1200.avif 1200w` },
+      { type: "image/webp", srcSet: `${base}-800.webp 800w, ${base}-1200.webp 1200w` },
+    ],
+    srcSet: `${base}-800.jpg 800w, ${base}-1200.jpg 1200w`,
+  };
+}
 
 export default function BlogPost() {
   const [, setLocation] = useLocation();
@@ -111,7 +139,9 @@ export default function BlogPost() {
     );
   }
 
-  const relatedPosts = visibleBlogPosts.filter((p) => p.id !== post.id).slice(0, 3);
+  const relatedPosts = relatedPostsForPost(post, 3);
+  const relatedStudies = relatedCaseStudiesForPost(post, 2);
+  const coverImage = buildCoverImageSources(post.coverImage);
 
   const supersedingPost = post.supersededBy
     ? blogPosts.find((p) => p.id === post.supersededBy)
@@ -204,9 +234,14 @@ export default function BlogPost() {
           ) : null}
 
           <FadeIn className="mb-10">
-            <LazyImage
-              src={post.coverImage}
+            <ResponsiveImage
+              src={coverImage.src}
+              sources={coverImage.sources}
+              srcSet={coverImage.srcSet}
+              sizes="(min-width: 768px) 768px, 100vw"
               alt={post.title}
+              width={1200}
+              height={675}
               containerClassName="rounded-md overflow-hidden border border-border"
               containerStyle={{
                 minHeight: "240px",
@@ -215,6 +250,8 @@ export default function BlogPost() {
               }}
               objectFit="cover"
               aspectRatio="16/9"
+              loading="eager"
+              fetchPriority="high"
             />
           </FadeIn>
 
@@ -273,7 +310,7 @@ export default function BlogPost() {
         </div>
 
         <FadeIn as="section" className="mt-16 pt-10 border-t border-border">
-          <SectionHeader size="sub" eyebrow="More writing" />
+          <SectionHeader size="sub" eyebrow="Related writing" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {relatedPosts.map((rp, i) => (
               <WritingCard
@@ -289,6 +326,27 @@ export default function BlogPost() {
             ))}
           </div>
         </FadeIn>
+
+        {relatedStudies.length > 0 ? (
+          <FadeIn as="section" className="mt-16 pt-10 border-t border-border">
+            <SectionHeader size="sub" eyebrow="Related case studies" />
+            <div
+              className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6"
+              data-testid="related-case-studies"
+            >
+              {relatedStudies.map((study, i) => (
+                <CaseStudyCard
+                  key={study.slug}
+                  slug={study.slug}
+                  title={study.title}
+                  summary={study.summary}
+                  impact={study.impact}
+                  delay={i * 0.05}
+                />
+              ))}
+            </div>
+          </FadeIn>
+        ) : null}
       </div>
     </article>
   );

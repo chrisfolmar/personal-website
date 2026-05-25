@@ -23,7 +23,44 @@ export const DEFAULT_OG_IMAGE_ALT =
  * Map of case study slug -> social preview image. Optional; case study
  * pages fall back to the site default when no image is present.
  */
-export const CASE_STUDY_IMAGES: Record<string, { src: string; alt: string }> = {};
+export const CASE_STUDY_IMAGES: Record<string, { src: string; alt: string }> = {
+  "scaling-bse-throughput": {
+    src: "/og/case-studies/scaling-bse-throughput.png",
+    alt: "Case study — Scaling BSE Project Throughput by ~300%",
+  },
+  "asana-async-information-flow": {
+    src: "/og/case-studies/asana-async-information-flow.png",
+    alt: "Case study — Building Asynchronous Information Flow with Asana",
+  },
+  "erp-wms-modernization": {
+    src: "/og/case-studies/erp-wms-modernization.png",
+    alt: "Case study — Business Systems & ERP/WMS Modernization",
+  },
+  "team-gsd-ai-transformation": {
+    src: "/og/case-studies/team-gsd-ai-transformation.png",
+    alt: "Case study — Team GSD AI Transformation",
+  },
+};
+
+/**
+ * Map of blog-post id -> social preview image. Optional; blog post pages
+ * fall back to the post's cover image (or site default) when no entry
+ * is present.
+ */
+export const BLOG_IMAGES: Record<number, { src: string; alt: string }> = {
+  5: {
+    src: "/og/blog/5.png",
+    alt: "Article — Embedding AI into How an Org Actually Operates",
+  },
+  6: {
+    src: "/og/blog/6.png",
+    alt: "Article — Systems Thinking for Engineering Leaders",
+  },
+  8: {
+    src: "/og/blog/8.png",
+    alt: "Article — Why I Stopped Recommending WordPress",
+  },
+};
 
 /**
  * List of all domains associated with this website
@@ -121,22 +158,31 @@ export function getWebsiteSchema() {
 }
 
 /**
+ * Lightweight reference to the canonical Person entity. Lets every
+ * BlogPosting/Article/etc. point at the same `@id` so Google can fold
+ * them into one author graph instead of inferring N separate authors.
+ */
+export function getPersonRef() {
+  return { "@id": `${PRIMARY_DOMAIN}/#person` };
+}
+
+/**
  * Build a BlogPosting JSON-LD block for an individual blog post
  */
 export function buildBlogPostingJsonLd(post: BlogPost) {
   const url = getCanonicalURL(`/blog/${post.id}`);
-  const author = getPersonSchema();
+  const ogImage = BLOG_IMAGES[post.id]?.src ?? post.coverImage ?? DEFAULT_OG_IMAGE;
   return getSchemaData("BlogPosting", {
     "@id": url,
     url,
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    image: getAbsoluteURL(post.coverImage || DEFAULT_OG_IMAGE),
+    image: getAbsoluteURL(ogImage),
     articleSection: post.category,
     inLanguage: "en-US",
-    author,
-    publisher: author,
+    author: getPersonRef(),
+    publisher: getPersonRef(),
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
   });
 }
@@ -146,7 +192,6 @@ export function buildBlogPostingJsonLd(post: BlogPost) {
  */
 export function buildCaseStudyArticleJsonLd(study: CaseStudy) {
   const url = getCanonicalURL(`/case-studies/${study.slug}`);
-  const author = getPersonSchema();
   const image = CASE_STUDY_IMAGES[study.slug]?.src ?? DEFAULT_OG_IMAGE;
   return getSchemaData("Article", {
     "@id": url,
@@ -155,8 +200,8 @@ export function buildCaseStudyArticleJsonLd(study: CaseStudy) {
     description: study.summary,
     image: getAbsoluteURL(image),
     inLanguage: "en-US",
-    author,
-    publisher: author,
+    author: getPersonRef(),
+    publisher: getPersonRef(),
     about: study.tools,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
   });

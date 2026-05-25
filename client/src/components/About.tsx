@@ -65,15 +65,30 @@ function About() {
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <FadeIn className="lg:col-span-5">
             <div className="overflow-hidden rounded-md border border-border">
-              <img
-                src="/assets/images/optimized/about.jpg"
-                alt="Chris Folmar with his wife"
-                className="w-full h-auto object-cover"
-                width={800}
-                height={600}
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source
+                  type="image/avif"
+                  srcSet="/assets/images/about-800.avif 800w, /assets/images/about-1200.avif 1200w"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                />
+                <source
+                  type="image/webp"
+                  srcSet="/assets/images/about-800.webp 800w, /assets/images/about-1200.webp 1200w"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                />
+                <img
+                  src="/assets/images/about.jpg"
+                  srcSet="/assets/images/about-800.jpg 800w, /assets/images/about-1200.jpg 1200w"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  alt="Chris Folmar with his wife"
+                  className="w-full h-auto object-cover"
+                  width={1200}
+                  height={900}
+                  loading="eager"
+                  decoding="async"
+                  {...({ fetchpriority: "high" } as Record<string, string>)}
+                />
+              </picture>
             </div>
             <div className="mt-8 space-y-5 text-[0.975rem] leading-relaxed text-muted-foreground">
               <p>

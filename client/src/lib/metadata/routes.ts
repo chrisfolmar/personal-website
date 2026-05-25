@@ -2,8 +2,10 @@ import type { BlogPost, CaseStudy, Project } from "@/types";
 import { blogPosts, caseStudies, projects, visibleBlogPosts } from "@/lib/data";
 import {
   AUTHOR_NAME,
+  BLOG_IMAGES,
   CASE_STUDY_IMAGES,
   DEFAULT_METADATA,
+  PRIMARY_DOMAIN,
   buildBlogPostingJsonLd,
   buildCaseStudyArticleJsonLd,
   buildCaseStudyListJsonLd,
@@ -99,11 +101,11 @@ export const WRITING_DESCRIPTION =
 
 export function buildWritingIndexJsonLd(posts: BlogPost[]): JsonLd {
   const pageUrl = getCanonicalURL(WRITING_PATH);
-  const author = {
-    "@type": "Person",
-    name: AUTHOR_NAME,
-    url: getCanonicalURL("/"),
-  };
+  // Reference the canonical Person @id (declared in the home Person
+  // schema) instead of inlining a separate Person on every page — so
+  // crawlers fold every author back into a single entity.
+  const author = { "@id": `${PRIMARY_DOMAIN}/#person` };
+  void AUTHOR_NAME;
 
   const itemListElement = posts.map((post, index) => {
     const url = getCanonicalURL(`/blog/${post.id}`);
@@ -193,13 +195,14 @@ export function caseStudyDetailMetadata(study: CaseStudy): PageSeoOptions {
 }
 
 export function blogPostMetadata(post: BlogPost): PageSeoOptions {
+  const ogImage = BLOG_IMAGES[post.id];
   return {
     title: `${post.title} | Chris Folmar`,
     description: post.excerpt,
     path: `/blog/${post.id}`,
     type: "article",
-    image: post.coverImage,
-    imageAlt: `Cover image for "${post.title}"`,
+    image: ogImage?.src ?? post.coverImage,
+    imageAlt: ogImage?.alt ?? `Cover image for "${post.title}"`,
     jsonLd: buildBlogPostingJsonLd(post),
     jsonLdId: "blog-post-jsonld",
   };

@@ -24,6 +24,11 @@ interface FocusItem {
 
 const focusAreas: FocusItem[] = [
   {
+    icon: <Heart className="h-4 w-4" />,
+    title: "Husband and brand-new dad",
+    body: "Newly a dad. The biggest change of my life and the most grounding one. Everything else gets prioritized around it.",
+  },
+  {
     icon: <Sparkles className="h-4 w-4" />,
     title: "Team GSD & AI transformation",
     body: "Most of my work energy is going into Team GSD — the cross-functional effort embedding AI into how Fullscript actually runs. We're past the phase of proving the concept and into the phase of making it stick: standards, ownership, and the next generation of reworks.",
@@ -37,11 +42,6 @@ const focusAreas: FocusItem[] = [
     icon: <BookOpen className="h-4 w-4" />,
     title: "Sharpening how I lead",
     body: "Reading more about org design and how leaders think about leverage at scale. Trying to be more deliberate about what I'm modeling for the people I work with.",
-  },
-  {
-    icon: <Heart className="h-4 w-4" />,
-    title: "Husband and brand-new dad",
-    body: "Newly a dad. The biggest change of my life and the most grounding one. Everything else gets prioritized around it.",
   },
 ];
 

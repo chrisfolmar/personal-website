@@ -99,7 +99,7 @@ export default function WritingIndex() {
         >
           {(() => {
             const addendum =
-              "[CHRIS: one-line voice addendum — e.g. 'Working theories, not hot takes. Disagree loudly.']";
+              "Short paragraphs. Plain language. Useful specificity. Warmth without sentimentality.";
             if (!isDev && isPlaceholder(addendum)) return null;
             return (
               <p

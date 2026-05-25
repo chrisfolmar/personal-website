@@ -51,25 +51,64 @@ interface MicroItem {
 }
 
 const currentlyReading: MicroItem[] = [
-  { title: "[CHRIS: book/essay #1 — author]", body: "[CHRIS: one line on why you picked it up.]" },
-  { title: "[CHRIS: book/essay #2 — author]", body: "[CHRIS: one line on why you picked it up.]" },
-  { title: "[CHRIS: book/essay #3 — author, optional]", body: "[CHRIS: one line.]" },
-  { title: "[CHRIS: book/essay #4 — author, optional]", body: "[CHRIS: one line.]" },
+  {
+    title: "Practical writing on AI and internal tools",
+    body: "Essays and field notes on how teams are actually changing the way work gets done — less hype, more honest reports from the floor.",
+  },
+  {
+    title: "Engineering leadership material",
+    body: "On ownership, communication, team structure, and scaling without losing the human layer.",
+  },
+  {
+    title: "Parenting and fatherhood, in small doses",
+    body: "Enough to be thoughtful, not enough to turn everything into a research project.",
+  },
+  {
+    title: "Systems thinking, personal finance, home projects, and Arsenal news",
+    body: "A mix that keeps the brain stretched in different directions across the week.",
+  },
 ];
 
 const currentlyUsing: MicroItem[] = [
-  { title: "[CHRIS: tool #1]", body: "[CHRIS: one line — specific over generic, e.g. 'Cursor with the X workflow', 'n8n for Y'.]" },
-  { title: "[CHRIS: tool #2]", body: "[CHRIS: one line.]" },
-  { title: "[CHRIS: tool #3]", body: "[CHRIS: one line.]" },
-  { title: "[CHRIS: tool #4]", body: "[CHRIS: one line.]" },
-  { title: "[CHRIS: tool #5 — optional]", body: "[CHRIS: one line.]" },
-  { title: "[CHRIS: tool #6 — optional]", body: "[CHRIS: one line.]" },
+  {
+    title: "Ruby on Rails, React, GraphQL",
+    body: "The Fullscript engineering ecosystem — still close enough to the stack to make grounded decisions.",
+  },
+  {
+    title: "Asana",
+    body: "Making work visible, reducing status-update friction, and helping teams communicate asynchronously.",
+  },
+  {
+    title: "ChatGPT, Cursor, n8n, Browser Use",
+    body: "AI-enabled tools for automation, workflow design, and the internal tooling Team GSD ships.",
+  },
+  {
+    title: "Metabase",
+    body: "Turning operational behavior into something teams can actually see and act on.",
+  },
+  {
+    title: "Google Docs and lightweight diagrams",
+    body: "Frameworks and one-pagers that make complicated work easier to explain.",
+  },
+  {
+    title: "A rower, coffee, a deep navy home office",
+    body: "And whatever focused time I can find between work and family life.",
+  },
 ];
 
 const recentlyChangedMyMind: MicroItem[] = [
-  { title: "[CHRIS: short headline — the thing you used to think]", body: "[CHRIS: 1–3 sentences on what you think now and what changed.]" },
-  { title: "[CHRIS: short headline #2 — optional]", body: "[CHRIS: 1–3 sentences.]" },
-  { title: "[CHRIS: short headline #3 — optional]", body: "[CHRIS: 1–3 sentences.]" },
+  {
+    title: "Strong leadership ≠ staying close to every detail",
+    body: "I used to think strong leadership meant staying close to every detail. I now think it means creating enough clarity and trust that the right people can own the right details.",
+  },
+  {
+    title: "Documentation isn't a support artifact",
+    body: "I used to think documentation was mostly a support artifact. I now think it's part of the system — one of the main ways teams scale context and make better decisions.",
+  },
+  {
+    title: "Technical leverage isn't only about better code",
+    body: "I used to think technical leverage mostly came from better code. I now think some of the highest leverage comes from better information flow.",
+  },
 ];
 
 function MicroSection({
@@ -132,7 +171,7 @@ export default function NowPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  const lastUpdated = "April 2026";
+  const lastUpdated = "May 2026";
 
   return (
     <div className="pt-28 md:pt-32 pb-20 md:pb-28">

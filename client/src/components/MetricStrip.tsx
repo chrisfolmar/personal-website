@@ -13,8 +13,8 @@ interface Metric {
 // [CHRIS: ...] placeholder until he picks one — in production the
 // human card is dropped from the strip if still unfilled.
 const humanMetric: Metric = {
-  value: "[CHRIS: 1 short value — e.g. '2026' or 'N years']",
-  label: "[CHRIS: 1 short label — e.g. 'New dad since', 'Years married']",
+  value: "1",
+  label: "New dad — learning daily.",
   human: true,
 };
 

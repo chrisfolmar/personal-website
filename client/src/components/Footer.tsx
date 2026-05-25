@@ -135,7 +135,7 @@ export default function Footer() {
 
         {(() => {
           const signoffRaw =
-            "[CHRIS: one-line sign-off — e.g. 'Written from a kitchen table in Portland, late spring.' Datable and refreshable.]";
+            "Building useful systems, raising a family, and trying to leave things clearer than I found them.";
           const signoffVisible = isDev || !isPlaceholder(signoffRaw);
           return signoffVisible ? (
             <p

@@ -94,7 +94,10 @@ function About() {
 
             {/* Work-photo slot — woven personal moment from task 36.
                 Hidden in production until Chris supplies a candid
-                photo of himself at work (desk, whiteboard, etc.). */}
+                photo of himself at work (desk, whiteboard, etc.).
+                TODO: Add Christopher Folmar work photo at
+                attached_assets/chris-folmar-work-photo.jpg with alt
+                "Christopher Folmar working in his home office." */}
             <DevOnly>
               <div
                 className="mt-4 flex flex-col items-center justify-center gap-2 rounded-md border border-dashed border-amber-500/60 bg-amber-500/5 px-6 py-10 text-center"

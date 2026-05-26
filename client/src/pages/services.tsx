@@ -42,8 +42,8 @@ const offerings: Offering[] = [
     body: "For a restaurant, that's the menu, the hours, directions, and one tap to reserve. For a therapist, it's specialties, what a first session looks like, insurance, and a clear contact path. The site is structured for the question your visitor is really asking.",
   },
   {
-    title: "Real local SEO, not just a sprinkle of keywords",
-    body: "Proper schema markup, Google Business Profile setup help if you don't have one yet, and the on-page structure search engines actually reward — so people in your town can find you without paying for ads forever.",
+    title: "A solid technical foundation",
+    body: "Semantic HTML, proper schema markup, accessible by default, and the on-page structure search engines and screen readers both expect. I don't sell ongoing SEO or pretend to be a marketing agency — but the site you get is built so it isn't fighting you when you do that work.",
   },
   {
     title: "Owned by you, handed off cleanly",
@@ -75,7 +75,7 @@ const faqs: Array<{ question: string; answer: string }> = [
   {
     question: "Why hire you instead of Squarespace or a template?",
     answer:
-      "If a template gets you 80% of the way there, use it — I'll tell you that on the call. You hire me when the template version isn't quite right: you need real local SEO, faster pages, a custom booking or menu flow, or you've tried the DIY route and it's not converting. I've been shipping production websites since 2014 and run engineering teams for a living, so the work is held to a real standard.",
+      "If a template gets you 80% of the way there, use it — I'll tell you that on the call. You hire me when the template version isn't quite right: you need faster pages, a custom booking or menu flow, real accessibility, or you've tried the DIY route and it's not converting. I've been shipping production websites since 2014 and run engineering teams for a living, so the work is held to a real standard.",
   },
   {
     question: "How do I get started?",

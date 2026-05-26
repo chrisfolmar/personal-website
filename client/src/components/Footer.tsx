@@ -153,7 +153,7 @@ export default function Footer() {
             © {currentYear} Chris Folmar. All rights reserved.
           </p>
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted-foreground">
-            Durham, NH · Serving Seacoast NH · Southern ME · North Shore MA
+            Durham, NH
           </p>
         </div>
       </div>

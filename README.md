@@ -1,88 +1,157 @@
-# Chris Folmar Portfolio
+# Chris Folmar — Personal Website
 
-A modern, responsive personal portfolio website for Chris Folmar — Engineering Manager, Technical Lead, and software developer. The site showcases professional experience, skills, client projects, blog posts, and a contact form, with a focus on AI-powered development and modern engineering leadership.
+Personal portfolio for Chris Folmar, Engineering Manager and AI Transformation Leader at Fullscript. Built as an editorial "Engineer's notebook" — calm, specific, and opinionated rather than generic.
 
-Live at [chrisfolmar.com](https://chrisfolmar.com) | [cfolmar.com](https://cfolmar.com)
+**Live at [chrisfolmar.com](https://chrisfolmar.com)** | also [cfolmar.com](https://cfolmar.com)
 
-## Features
+---
 
-- **Responsive Design**: Optimized layouts for mobile, tablet, and desktop with device-aware rendering
-- **Dark/Light Mode**: Theme toggle with persistent user preference
-- **Interactive UI**: Scroll-triggered animations and smooth transitions powered by Framer Motion
-- **Project Showcase**: Detailed project pages with descriptions, tech stacks, and live links
-- **Professional Blog**: Articles on engineering leadership, AI-powered development, and industry insights
-- **Contact Form**: Secure, spam-protected contact form with rate limiting and honeypot detection
-- **SEO Optimized**: Open Graph, Twitter Cards, Schema.org JSON-LD, sitemap, and robots.txt for search visibility
-- **Performance**: Lazy image loading, canvas effects only on desktop, and memoized components throughout
+## What's on the site
 
-## Tech Stack
+| Route | Description |
+|---|---|
+| `/` | Homepage — Hero, metrics, What I Do, Current Focus, Case Studies, AI Transformation, Writing |
+| `/case-studies` | Case study index |
+| `/case-studies/:slug` | Individual case study detail |
+| `/now` | What I'm focused on this season |
+| `/beliefs` | Things I currently believe (dated, updatable) |
+| `/writing` | Field notes — engineering leadership, AI, business systems |
+| `/resume` | Full résumé with experience and skills |
+| `/services` | Freelance web work for small local businesses |
+| `/contact` | Contact form |
+| `/sitemap` | Human-readable sitemap |
 
-- **React**: Frontend library for building user interfaces
-- **TypeScript**: Type safety and developer experience
-- **Tailwind CSS**: Utility-first CSS framework for styling
-- **Framer Motion**: Animation library for smooth transitions
-- **Express**: Backend server for API endpoints
-- **Shadcn UI**: Component library for consistent design
-- **PostgreSQL**: Database for storing messages and user data
-- **SendGrid**: Email delivery for contact form submissions
-- **Drizzle ORM**: Type-safe database access and schema management
+---
 
-## Getting Started
+## Design system
+
+"Engineer's notebook" — differentiated from the generic operator-portfolio look:
+
+- **Palette**: deep navy primary on warm cream background; brass/amber marker accent (`--marker`) for eyebrows and headline highlights
+- **Typography**: Inter Tight (display) + Inter (body) + IBM Plex Mono (eyebrows, metric labels, technical paths)
+- **Motif**: `<SignatureMotif />` — dotted-grid texture that threads through the Hero and section dividers
+- **Motion**: single `<FadeIn />` primitive (opacity + y, ~0.45s, `prefers-reduced-motion` respected)
+- **Buttons**: `3px 3px 0 hsl(var(--marker))` offset shadow — notebook ink mark effect
+
+---
+
+## Tech stack
+
+**Frontend**
+- [React](https://react.dev) + [TypeScript](https://www.typescriptlang.org) via [Vite](https://vitejs.dev)
+- [Wouter](https://github.com/molefrog/wouter) — lightweight client-side routing
+- [Tailwind CSS](https://tailwindcss.com) + [shadcn/ui](https://ui.shadcn.com) + [Radix UI](https://www.radix-ui.com)
+- [Framer Motion](https://www.framer.com/motion/) — scroll-triggered animations
+- [TanStack Query](https://tanstack.com/query) — server state management
+
+**Backend**
+- [Express.js](https://expressjs.com) + TypeScript (`tsx` in dev, `esbuild` in production)
+- RESTful API under `/api/` — contact form submissions
+- [Helmet](https://helmetjs.github.io) — security headers (CSP, HSTS, X-Frame-Options, etc.)
+- In-memory rate limiting (5 requests/hour per IP), spam detection, honeypot field
+
+**Data**
+- [Drizzle ORM](https://orm.drizzle.team) + [Neon PostgreSQL](https://neon.tech) (`@neondatabase/serverless`)
+- [SendGrid](https://sendgrid.com) — contact form email delivery
+
+---
+
+## Getting started
 
 ### Prerequisites
 
-- Node.js (v18 or higher)
-- npm or yarn
+- Node.js 20+
+- A PostgreSQL database (Neon recommended)
 
-### Installation
+### Environment variables
 
-1. Clone the repository
-   ```bash
-   git clone https://github.com/chrisfolmar/personal-website.git
-   cd personal-website
-   ```
+```
+DATABASE_URL=your_neon_postgres_connection_string
+SENDGRID_API_KEY=your_sendgrid_api_key
+```
 
-2. Install dependencies
-   ```bash
-   npm install
-   ```
+### Install and run
 
-3. Set up environment variables
-   ```
-   DATABASE_URL=your_postgres_connection_string
-   SENDGRID_API_KEY=your_sendgrid_api_key
-   ```
+```bash
+# Install dependencies
+npm install
 
-4. Push the database schema
-   ```bash
-   npm run db:push
-   ```
+# Push the database schema
+npm run db:push
 
-5. Start the development server
-   ```bash
-   npm run dev
-   ```
+# Start the development server (Express + Vite HMR on port 5000)
+npm run dev
+```
 
-6. Open [http://localhost:5000](http://localhost:5000) in your browser
+---
 
-## Project Structure
+## Commands
 
-- `/client` - Frontend React application
-  - `/src/components` - Reusable UI components
-  - `/src/pages` - Page components for routing
-  - `/src/lib` - Utility functions and data
-  - `/src/hooks` - Custom React hooks
-- `/server` - Backend Express server
-  - `/routes.ts` - API route definitions
-  - `/storage.ts` - Data storage implementation
-- `/shared` - Shared code between frontend and backend
-  - `/schema.ts` - Database schema and types
-- `/public` - Static assets (sitemap, robots.txt, manifest)
+| Command | Description |
+|---|---|
+| `npm run dev` | Development server with HMR (port 5000) |
+| `npm run build` | Production build — Vite (frontend) + esbuild (server) |
+| `npm start` | Run the production build |
+| `npm run check` | TypeScript type-check (`tsc --noEmit`) |
+| `npm run lint` | ESLint (typescript-eslint, react, jsx-a11y, prettier-compat) |
+| `npm run format` | Prettier |
+| `npm run test:unit` | Vitest unit tests (`tests/server/`, `tests/client/`) |
+| `npm run test:smoke` | Playwright smoke tests (`tests/smoke/`, chromium) |
+| `npm test` | Unit + smoke |
+| `npm run db:push` | Push schema changes to the database via Drizzle Kit |
+
+---
+
+## Project structure
+
+```
+├── client/
+│   └── src/
+│       ├── components/     # Layout primitives and section components
+│       ├── pages/          # Route-level page components
+│       ├── lib/            # Data, metadata, SEO utilities, placeholder system
+│       └── hooks/          # Custom React hooks
+├── server/
+│   ├── index.ts            # Express entry point
+│   ├── routes.ts           # API routes (contact form)
+│   └── storage.ts          # IStorage interface + MemStorage implementation
+├── shared/
+│   └── schema.ts           # Drizzle schema, Zod validators, shared types
+├── tests/
+│   ├── server/             # Vitest unit tests — contact route, rate limiter
+│   ├── client/             # Vitest unit tests — SEO/metadata builders
+│   └── smoke/              # Playwright smoke tests — key visitor flows
+├── scripts/                # Sitemap generator, image optimizer
+└── .github/
+    └── workflows/
+        └── ci.yml          # CI: check → lint → test → build (Node 20)
+```
+
+---
+
+## CI
+
+GitHub Actions runs on every push and pull request:
+
+1. `npm run check` — type-check
+2. `npm run lint` — lint
+3. `npm test` — unit + Playwright smoke (chromium)
+4. `npm run build` — production build
+
+Pre-commit hooks (husky + lint-staged) format and lint staged files locally.
+
+---
+
+## Security
+
+- **CSP**: nonce-based in production (no `unsafe-inline`), `unsafe-inline` fallback in dev for Vite HMR
+- **HSTS**, **X-Frame-Options: DENY**, **X-Content-Type-Options**, **Referrer-Policy** via Helmet
+- **Rate limiting**: 5 contact form submissions per hour per IP (in-memory; swap for Redis before horizontal scaling)
+- **Honeypot**: hidden `website` field on the contact form; submissions with it filled are silently discarded
+- **Body size limit**: `express.json({ limit: "32kb" })`
+
+---
 
 ## Contact
 
-For inquiries, reach out at: [contact@chrisfolmar.com](mailto:contact@chrisfolmar.com)
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+[contact@chrisfolmar.com](mailto:contact@chrisfolmar.com)

@@ -97,7 +97,7 @@ export const RESUME_METADATA: PageSeoOptions = {
 export const WRITING_PATH = "/writing";
 export const WRITING_TITLE = "Writing | Chris Folmar";
 export const WRITING_DESCRIPTION =
-  "Field notes from Chris Folmar on running engineering teams, modernizing business systems, and embedding AI into how an org actually operates.";
+  "Field notes from Chris Folmar on leading engineering teams, rebuilding business systems, and putting AI to work on the boring problems first.";
 
 export function buildWritingIndexJsonLd(posts: BlogPost[]): JsonLd {
   const pageUrl = getCanonicalURL(WRITING_PATH);

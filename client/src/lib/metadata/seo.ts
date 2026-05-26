@@ -316,7 +316,7 @@ export function buildProjectJsonLd(path: string, project: Project) {
  */
 export const DEFAULT_METADATA = {
   title: 'Chris Folmar – Technologist | Leadership, Insights & Real-World Solutions',
-  description: 'Personal site of Chris Folmar — running engineering teams, modernizing the systems behind a healthcare business, and embedding AI into how an org actually operates. Case studies, writing, and a working notebook from the field.',
+  description: 'Personal site of Chris Folmar — leading engineering teams, rebuilding the systems behind a healthcare business, and putting AI to work on the boring problems first. Case studies, writing, and a working notebook from the field.',
   image: '/cf-favicon.png',
   twitterHandle: '@fomy',
   keywords: [

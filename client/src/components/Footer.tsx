@@ -107,9 +107,9 @@ export default function Footer() {
               <span className="text-primary">.</span>
             </Link>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-              A working notebook on running engineering teams, modernizing
-              the systems behind a healthcare business, and threading AI into
-              the way an org actually operates.
+              A working notebook on leading engineering teams, rebuilding
+              the systems behind a healthcare business, and putting AI to
+              work on the boring problems first.
             </p>
           </div>
 

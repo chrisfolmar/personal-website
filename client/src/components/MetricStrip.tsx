@@ -55,8 +55,8 @@ function MetricStrip({
         <FadeIn className="mb-10 md:mb-12 max-w-2xl">
           <div className="text-eyebrow mb-3">{eyebrow}</div>
           <p className="text-h3 text-foreground/90 leading-snug">
-            A few proof points from the last few years of leading teams and
-            modernizing how Fullscript runs.
+            A few proof points from the last few years of scaling teams,
+            rebuilding business systems, and shipping AI-enabled workflows.
           </p>
         </FadeIn>
 

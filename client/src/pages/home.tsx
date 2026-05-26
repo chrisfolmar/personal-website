@@ -38,8 +38,8 @@ export default function HomePage() {
       <Writing />
       <CtaBand
         eyebrow="Let's talk"
-        title="If you're rebuilding how your org actually operates, I'd love to compare notes."
-        description="Whether it's scaling a team, modernizing systems, or rolling out AI without losing the people who run the work — happy to trade ideas."
+        title="If any of this sounds like the problem in front of you, I'd love to compare notes."
+        description="Scaling a team without burning it out, untangling a business system that's outgrown itself, or threading AI into both — happy to trade ideas."
       >
         <Link
           href="/contact"

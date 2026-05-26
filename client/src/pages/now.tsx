@@ -52,19 +52,19 @@ interface MicroItem {
 
 const currentlyReading: MicroItem[] = [
   {
-    title: "The Obstacle is the Way — Ryan Holiday",
+    title: "The Obstacle is the Way, Ryan Holiday",
     body: "Recommended by a previous boss, it's become a go-to for processing the challenges life throws at you. It carries new meaning now that the every-day obstacles look different.",
   },
   {
-    title: "The Motivation Manifesto — Brendon Burchard",
+    title: "The Motivation Manifesto, Brendon Burchard",
     body: "Continuing to sharpen my ability to foster and manifest intrinsic motivation — in myself and in the people I lead.",
   },
   {
-    title: "An Elegant Puzzle — Systems of Engineering Management — Will Larson",
+    title: "An Elegant Puzzle — Systems of Engineering Management, Will Larson",
     body: "Career-oriented learning around the craft of engineering leadership — the structural problems that come with scale.",
   },
   {
-    title: "The Overthinker's Guide to Making Decisions — Joseph Nguyen",
+    title: "The Overthinker's Guide to Making Decisions, Joseph Nguyen",
     body: "I overthink decisions at work and in life. This is a deliberate attempt to get better at moving through that as I keep growing as a leader.",
   },
 ];

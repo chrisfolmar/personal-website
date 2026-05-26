@@ -3,7 +3,7 @@
 // the ship-more-without-breaking-the-people headline. Other surfaces
 // must reword these ideas rather than repeat the exact phrasings used
 // here.
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -49,6 +49,42 @@ const byId: Record<NodeId, Node> = Object.fromEntries(
 function SystemsMap() {
   const reduce = useReducedMotion();
   const [active, setActive] = useState<NodeId | null>(null);
+
+  // Subtle "operating model is alive" pulse: after the entrance draw-in
+  // settles, walk a single brass highlight along the edges in sequence
+  // for two cycles, then go quiet forever. The whole sequence runs once
+  // per mount, takes ~5.5s end-to-end, and uses the same lit color the
+  // hover interaction does so it reads as a hint at the interaction
+  // rather than a separate decoration. Reduced-motion: skipped entirely.
+  const [pulseEdgeIdx, setPulseEdgeIdx] = useState<number>(-1);
+  useEffect(() => {
+    if (reduce) return;
+    const startDelay = 1700;
+    const stepMs = 180;
+    const gapMs = 600;
+    const cycles = 2;
+    const total = edges.length;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    for (let c = 0; c < cycles; c++) {
+      for (let i = 0; i < total; i++) {
+        timers.push(
+          setTimeout(
+            () => setPulseEdgeIdx(i),
+            startDelay + c * (total * stepMs + gapMs) + i * stepMs,
+          ),
+        );
+      }
+    }
+    timers.push(
+      setTimeout(
+        () => setPulseEdgeIdx(-1),
+        startDelay + cycles * (total * stepMs + gapMs),
+      ),
+    );
+    return () => {
+      timers.forEach(clearTimeout);
+    };
+  }, [reduce]);
 
   const isEdgeActive = (a: NodeId, b: NodeId) =>
     active !== null && (a === active || b === active);
@@ -108,6 +144,8 @@ function SystemsMap() {
             const A = byId[a];
             const B = byId[b];
             const lit = isEdgeActive(a, b);
+            const pulsed = pulseEdgeIdx === i;
+            const highlighted = lit || pulsed;
             return (
               <motion.line
                 key={`${a}-${b}`}
@@ -115,11 +153,11 @@ function SystemsMap() {
                 y1={A.y}
                 x2={B.x}
                 y2={B.y}
-                stroke={lit ? "hsl(var(--marker))" : "hsl(var(--primary))"}
-                strokeOpacity={lit ? 0.9 : 0.4}
-                style={{ transition: "stroke 0.25s ease, stroke-opacity 0.25s ease" }}
+                stroke={highlighted ? "hsl(var(--marker))" : "hsl(var(--primary))"}
+                strokeOpacity={highlighted ? 0.9 : 0.4}
+                style={{ transition: "stroke 0.35s ease, stroke-opacity 0.35s ease" }}
                 initial={reduce ? false : { pathLength: 0, opacity: 0 }}
-                animate={reduce ? undefined : { pathLength: 1, opacity: lit ? 0.9 : 0.4 }}
+                animate={reduce ? undefined : { pathLength: 1, opacity: highlighted ? 0.9 : 0.4 }}
                 transition={{
                   duration: 0.9,
                   delay: 0.25 + i * 0.06,

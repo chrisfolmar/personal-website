@@ -76,7 +76,7 @@ export interface CaseStudy {
   summary: string;
   problem: string;
   context: string;
-  whatIChanged: string[];
+  whatChanged: string[];
   systemsIntroduced: string[];
   impact: ImpactMetric[];
   tools: string[];

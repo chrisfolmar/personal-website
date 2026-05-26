@@ -123,10 +123,10 @@ export default function CaseStudyDetail() {
             <SectionHeader
               size="sub"
               icon={<Wrench className="h-4 w-4" />}
-              title="What I changed"
+              title="What changed"
             />
             <ul className="text-[0.975rem] leading-relaxed text-muted-foreground space-y-3 list-disc pl-5 marker:text-primary/60">
-              {study.whatIChanged.map((item, i) => (
+              {study.whatChanged.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>

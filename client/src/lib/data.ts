@@ -20,14 +20,14 @@ export const experiences: Experience[] = [
     company: "Fullscript",
     period: "March 2025 - Present",
     description:
-      "I lead three globally distributed engineering teams responsible for high-resilience systems supporting Finance, Fulfillment, Customer Support, and Catalog operations. My focus is on scaling engineering capacity, aligning execution with business priorities, and driving organization-wide efficiency through AI-powered automation. Since stepping into this role, I've led a 300% increase in delivery output without expanding headcount and introduced lifecycle dashboards that reduced reporting overhead by 90%. I also oversee strategic architectural alignment efforts, including our Go-to-Ruby migration and broader system standardization across Fullscript's tech ecosystem.",
+      "Lead three globally distributed engineering teams responsible for high-resilience systems supporting Finance, Fulfillment, Customer Support, and Catalog operations. Focused on scaling engineering capacity, aligning execution with business priorities, and driving organization-wide efficiency through AI-powered automation. Since stepping into this role, the teams have grown delivery output 3x without expanding headcount, and we introduced lifecycle dashboards that reduced reporting overhead by 90%. Also help steer strategic architectural alignment efforts, including the Go-to-Ruby migration and broader system standardization across Fullscript's tech ecosystem.",
   },
   {
     title: "Technical Lead",
     company: "Fullscript",
     period: "March 2022 - March 2025",
     description:
-      "As Technical Lead, I drove critical architectural projects including ERP/WMS integration and cross-subsidiary fulfillment, reducing NetSuite transaction load by 43%. I redesigned our invoicing system to leverage native NetSuite capabilities, cutting maintenance overhead by 95%. Beyond delivery, I focused on scaling leadership—mentoring three engineers to Senior roles and launching a Project Lead framework to support mid-level growth. I also created and facilitated the 'Only Tech Leads' forum, strengthening cross-org alignment and engineering leadership culture.",
+      "As Technical Lead, helped steer critical architectural projects — including ERP/WMS integration and cross-subsidiary fulfillment — that reduced NetSuite transaction load by 43%. Partnered with the team to rework the invoicing system around native NetSuite capabilities, cutting maintenance overhead by 95%. Beyond delivery, focused on scaling leadership: mentored three engineers into Senior roles and launched a Project Lead framework to support mid-level growth. Also created and facilitated the 'Only Tech Leads' forum, strengthening cross-org alignment and engineering leadership culture.",
   },
   {
     title: "Senior Software Engineer → Lead Software Engineer → Technical Program Manager",
@@ -752,7 +752,7 @@ export const caseStudies: CaseStudy[] = [
       "When I stepped into the Engineering Manager role, the Business Systems Engineering org was delivering a fraction of its potential. Initiatives sat in flight for months, work-in-progress was piling up across the team, and stakeholder trust was eroding. We were not understaffed — we were over-committed and under-coordinated.",
     context:
       "Three globally distributed teams supporting Finance, Fulfillment, Customer Support, and Catalog. Highly cross-functional surface area, multiple competing roadmaps, and a long backlog of half-finished projects with no clear owner or finish line.",
-    whatIChanged: [
+    whatChanged: [
       "Capped concurrent initiatives per team and forced sequential delivery on top priorities.",
       "Rebuilt the intake and prioritization process with stakeholders so the team only said yes to work that mapped to a measurable outcome.",
       "Introduced a clear operating cadence: weekly delivery sync, monthly business review, and a rolling 90-day roadmap.",
@@ -787,7 +787,7 @@ export const caseStudies: CaseStudy[] = [
       "Cross-functional partners — Finance, Customer Success, Operations, Product, Labs — could not get a straight answer to 'what is engineering doing for us right now?' without DMing me or sitting through a meeting. Information lived in heads, threads, and out-of-date decks.",
     context:
       "Five departments depending on Business Systems Engineering output. Distributed teams across multiple time zones. A culture that defaulted to synchronous updates and ad-hoc Slack pings whenever someone needed visibility.",
-    whatIChanged: [
+    whatChanged: [
       "Designed a standardized Asana project template every initiative had to use, with required fields for owner, status, milestone, and stakeholder.",
       "Wrote and rolled out an 'async-first' communication standard so updates lived in the project, not in Slack.",
       "Built per-stakeholder dashboards so each business partner had a single link to see exactly what mattered to them.",
@@ -821,11 +821,11 @@ export const caseStudies: CaseStudy[] = [
       "The integration layer between our commerce platform, NetSuite ERP, and our warehouse management system had grown organically for years. It was generating an enormous volume of NetSuite transactions, was brittle to schema changes, and could not support the cross-subsidiary fulfillment model Fullscript needed to grow.",
     context:
       "Healthcare commerce platform serving 70,000+ practitioners and millions of patients. Strict accounting and inventory accuracy requirements. Multiple subsidiaries with different fulfillment networks. Legacy integration patterns predating the current scale.",
-    whatIChanged: [
-      "Led the redesign of the order-to-cash and fulfillment integration to consolidate redundant transactions.",
-      "Reworked the invoicing pipeline to leverage native NetSuite capabilities instead of custom middleware.",
-      "Designed and shipped cross-subsidiary fulfillment so an order in one entity could be fulfilled by another without manual reconciliation.",
-      "Established architectural alignment standards so future integrations followed the same patterns.",
+    whatChanged: [
+      "Led the team through a redesign of the order-to-cash and fulfillment integration to consolidate redundant transactions.",
+      "Partnered with platform engineering to rework the invoicing pipeline so it leveraged native NetSuite capabilities instead of custom middleware.",
+      "Co-designed and shipped cross-subsidiary fulfillment with the WMS and finance partners — an order in one entity could be fulfilled by another without manual reconciliation.",
+      "Worked with the architecture group to establish alignment standards so future integrations followed the same patterns.",
     ],
     systemsIntroduced: [
       "Consolidated NetSuite integration patterns",
@@ -855,11 +855,11 @@ export const caseStudies: CaseStudy[] = [
       "Operational teams across Finance, Customer Success, Catalog, Fulfillment, and Support were spending huge portions of their week on repetitive, low-leverage work — copy/paste between systems, manual reconciliation, drafting the same email a hundred different ways. Traditional automation projects were too slow and too narrow to keep up.",
     context:
       "A People First, AI Empowered philosophy: AI is leverage for the humans doing the work, not a replacement for them. Five departments, dozens of distinct workflows, and a strong cultural appetite to experiment if the path was made safe and clear.",
-    whatIChanged: [
-      "Created Team GSD as a cross-functional unit chartered to find and ship AI-enabled wins.",
-      "Defined a three-tier operating model: Easy Wins (ship in days), Initiatives (ship in weeks), and Reworks (rethink the workflow end-to-end).",
-      "Built a tooling stack — n8n, Cursor, ChatGPT Enterprise, NotebookLM — that let small teams move fast without breaking governance.",
-      "Embedded with each department to pair on the first few automations, then handed ownership back so they could build their own.",
+    whatChanged: [
+      "Stood up Team GSD as a cross-functional unit chartered to find and ship AI-enabled wins — staffed across engineering, ops, and the partner departments.",
+      "Defined a three-tier operating model with the team: Easy Wins (ship in days), Initiatives (ship in weeks), and Reworks (rethink the workflow end-to-end).",
+      "Stood up a tooling stack — n8n, Cursor, ChatGPT Enterprise, NotebookLM — that let small teams move fast without breaking governance.",
+      "Embedded alongside each department to pair on the first few automations, then handed ownership back so they could build their own.",
     ],
     systemsIntroduced: [
       "Easy Wins / Initiatives / Reworks triage and intake model",

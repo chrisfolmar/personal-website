@@ -14,7 +14,7 @@ interface Metric {
 // human card is dropped from the strip if still unfilled.
 const humanMetric: Metric = {
   value: "1",
-  label: "New dad — learning daily.",
+  label: "New dad. Learning daily.",
   human: true,
 };
 

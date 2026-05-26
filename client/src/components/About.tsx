@@ -60,7 +60,7 @@ function About() {
         <SectionHeader
           eyebrow="About"
           title="Twelve years from first commit to engineering manager, still figuring out the husband and dad part."
-          description="The career arc — and the operating instincts I've built along the way."
+          description="The career arc and the operating instincts I've built along the way."
         />
 
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">

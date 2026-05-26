@@ -149,7 +149,8 @@ export default function ServicesPage() {
         <section aria-labelledby="services-who" className="mt-16 md:mt-20 max-w-5xl">
           <SectionHeader
             eyebrow="Who I work with"
-            title="Two kinds of businesses I'm especially useful for."
+            title="Two patterns I'm especially useful for."
+            description="Most of my freelance work falls into one of these two shapes. The examples below lean on restaurants and therapists because that's where I've shipped the most — but the patterns apply to any small business that fits the shape."
             size="sub"
             icon={<Code2 className="h-4 w-4" />}
           />
@@ -158,29 +159,34 @@ export default function ServicesPage() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
             <FadeIn className="bg-card border border-border rounded-md p-6 md:p-7">
-              <div className="text-eyebrow mb-3">Restaurants</div>
+              <div className="text-eyebrow mb-3">Storefronts &amp; hospitality</div>
               <h4 className="font-display text-lg font-semibold text-foreground">
-                Independent restaurants and cafés.
+                Businesses customers visit in person.
               </h4>
               <p className="mt-3 text-[0.975rem] leading-relaxed text-muted-foreground">
-                Menu changes without a developer. Real reservation, ordering,
-                and gift-card flows that don't dump people onto a third-party
-                site that hides your brand. Hours, location, and parking
-                surfaced where new customers actually look. Built for the
-                Friday-night phone search, not for a desktop in 2009.
+                Restaurants, cafés, breweries, shops, salons, studios,
+                trades — anywhere customers decide on their phone whether
+                to walk in or call. Menus, hours, location, parking, and
+                booking surfaced where new customers actually look. Real
+                reservation, ordering, or scheduling flows that don't dump
+                people onto a third-party site that hides your brand.
+                Built for the Friday-night phone search, not for a
+                desktop in 2009.
               </p>
             </FadeIn>
             <FadeIn delay={0.04} className="bg-card border border-border rounded-md p-6 md:p-7">
-              <div className="text-eyebrow mb-3">Therapists &amp; private practices</div>
+              <div className="text-eyebrow mb-3">Practitioners &amp; private practices</div>
               <h4 className="font-display text-lg font-semibold text-foreground">
-                Therapists and small private practices.
+                Businesses people choose carefully.
               </h4>
               <p className="mt-3 text-[0.975rem] leading-relaxed text-muted-foreground">
-                A site that helps a person in a hard moment decide whether to
-                reach out — clear specialties, what a first session looks
-                like, insurance, fees, and a quiet, low-friction contact path.
-                Accessible by default. Built to read as calm and trustworthy,
-                because that's the work.
+                Therapists, lawyers, accountants, coaches, consultants,
+                tutors, healthcare practitioners — anyone whose work
+                starts with the client deciding to trust you. A site
+                that clearly answers what you do, who you do it for, how
+                an engagement starts, what it costs, and how to get in
+                touch without friction. Accessible by default. Built to
+                read as calm and trustworthy, because that's the work.
               </p>
             </FadeIn>
           </div>

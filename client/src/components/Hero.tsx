@@ -284,7 +284,7 @@ export default function Hero() {
               Engineering manager · Durham, NH · operator at Fullscript, new dad at home
             </div>
             <h1 className="text-display text-foreground">
-              I help engineering teams ship more without breaking the people running the work.
+              I help engineering teams ship more — and grow the engineers doing the work.
             </h1>
             <p className="mt-6 max-w-2xl text-lead">
               I'm Chris Folmar. I run three engineering teams at Fullscript,

@@ -124,6 +124,9 @@ function MicroSection({
 }) {
   const visible = items.filter((i) => isDev || !isPlaceholder(i.body));
   if (visible.length === 0 && !isDev) return null;
+  const hasPlaceholder = items.some(
+    (i) => isPlaceholder(i.title) || isPlaceholder(i.body),
+  );
 
   return (
     <section className="mt-16 md:mt-20 max-w-5xl" data-testid={testId}>
@@ -134,11 +137,13 @@ function MicroSection({
         size="sub"
         icon={icon}
       />
-      <DevOnly>
-        <div className="mb-5">
-          <PlaceholderBadge>awaiting Chris</PlaceholderBadge>
-        </div>
-      </DevOnly>
+      {hasPlaceholder && (
+        <DevOnly>
+          <div className="mb-5">
+            <PlaceholderBadge>awaiting Chris</PlaceholderBadge>
+          </div>
+        </DevOnly>
+      )}
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
         {visible.map((item, i) => (
           <FadeIn

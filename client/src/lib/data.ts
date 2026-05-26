@@ -161,6 +161,10 @@ export const tools: Tool[] = [
     icon: "blocks",
   },
   {
+    name: "Replit",
+    icon: "terminal",
+  },
+  {
     name: "SuiteScript",
     icon: "fileCode",
   },

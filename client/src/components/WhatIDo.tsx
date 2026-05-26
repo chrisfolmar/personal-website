@@ -22,7 +22,7 @@ const principles = [
     key: "workflows",
     title: "Removing the repeat work",
     description:
-      "Take the copy/paste, the reconciliation, and the one-hundredth version of the same email and turn it into something that just runs.",
+      "Find the repeatable work hiding in someone's day and turn it into something that just runs in the background.",
     icon: <Workflow className="h-5 w-5" />,
   },
   {

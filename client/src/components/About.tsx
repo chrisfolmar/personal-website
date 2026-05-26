@@ -118,22 +118,10 @@ function About() {
               <p>
                 <strong className="text-foreground">Software Developer.</strong>{" "}
                 I studied Computer Science at the University of Southern Maine
-                and started my career in 2014 as a Junior Software Developer
-                at Freeport Metrics in Portland, Maine — shipping production
-                code for real customers from day one. From there I worked
-                across a handful of engineering roles before settling into
-                business systems and leadership work, and I've kept a small
-                freelance shop on the side that whole time — building modern
-                websites for therapists, restaurants, and other small local
-                businesses across the Seacoast NH, Southern Maine, and North
-                Shore Massachusetts region (more on{" "}
-                <a
-                  href="/services"
-                  className="underline decoration-primary/40 underline-offset-4 hover:decoration-primary"
-                >
-                  the services page
-                </a>
-                ). Shipping end-to-end for real people is still how I think
+                and started in 2014 as a Junior Software Developer at
+                Freeport Metrics in Portland, Maine — shipping production
+                code for real customers from day one. That bias toward
+                shipping end-to-end for real people still shapes how I think
                 about software.
               </p>
               <p>

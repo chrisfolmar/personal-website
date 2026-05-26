@@ -75,7 +75,7 @@ const faqs: Array<{ question: string; answer: string }> = [
   {
     question: "Why hire you instead of Squarespace or a template?",
     answer:
-      "If a template gets you 80% of the way there, use it — I'll tell you that on the call. You hire me when the template version isn't quite right: you need faster pages, a custom booking or menu flow, real accessibility, or you've tried the DIY route and it's not converting. I've been shipping production websites since 2014 and run engineering teams for a living, so the work is held to a real standard.",
+      "If a template gets you 80% of the way there, use it — I'll tell you that on the call. You hire me when the template version isn't quite right: you need faster pages, a custom booking or menu flow, real accessibility, or you've tried the DIY route and it's not converting. I've been shipping production websites since 2014, so the work is held to a real standard.",
   },
   {
     question: "How do I get started?",
@@ -185,8 +185,7 @@ export default function ServicesPage() {
                 starts with the client deciding to trust you. A site
                 that clearly answers what you do, who you do it for, how
                 an engagement starts, what it costs, and how to get in
-                touch without friction. Accessible by default. Built to
-                read as calm and trustworthy, because that's the work.
+                touch without friction. Accessible by default.
               </p>
             </FadeIn>
           </div>

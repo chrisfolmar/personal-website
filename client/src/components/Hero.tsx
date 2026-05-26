@@ -281,20 +281,16 @@ export default function Hero() {
           <motion.div className="lg:col-span-7" {...copyAnim}>
             <SignatureMotif variant="rule" className="mb-5 max-w-[10rem]" />
             <div className="text-eyebrow mb-6">
-              Engineering manager · Durham, NH · writing from between standups and bedtime stories
+              Engineering manager · Durham, NH · operator at Fullscript, new dad at home
             </div>
             <h1 className="text-display text-foreground">
               I help engineering teams ship more without breaking the people running the work.
             </h1>
             <p className="mt-6 max-w-2xl text-lead">
               I'm Chris Folmar. I run three engineering teams at Fullscript,
-              modernize the systems behind the business, and spend most of my
-              AI energy on the boring problems — the copy-paste, the
-              reconciliation, the hundredth version of the same email — so
-              people can get back to the work that actually needs their
-              judgment. Most of this gets written from a kitchen-table desk
-              in Durham, NH, in the quiet hours between a new baby and an
-              Arsenal match.
+              modernize the systems behind the business, and put most of my
+              AI energy on the boring problems — so people can get back to
+              the work that actually needs their judgment.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link

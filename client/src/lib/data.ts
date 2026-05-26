@@ -54,6 +54,16 @@ export const experiences: Experience[] = [
 
 export const skills: Skill[] = [
   {
+    // Listed first intentionally: the years count is the lowest of any
+    // skill on this list, so quantitatively it ranks last — but it's
+    // also the most current focus and the area carrying the biggest
+    // business outcomes right now, so it leads the list.
+    name: "AI & Automation Implementation",
+    percentage: 3/11*100, // 3 years out of 11 total
+    years: 3,
+    description: "Spearheaded AI initiatives including ML-based document processing, ChatGPT integration for customer support, and analytical product data algorithms. Built automation workflows that take repetitive operational work off teams' plates.",
+  },
+  {
     name: "Strategic & Operational Leadership",
     percentage: 4/11*100, // 4 years out of 11 total
     years: 4,
@@ -70,12 +80,6 @@ export const skills: Skill[] = [
     percentage: 7/11*100, // 7 years out of 11 total
     years: 7,
     description: "Managed 3 cross-functional teams (6-12 ICs), increasing project delivery by 300%. Mentored engineers into senior roles, creating a scalable Project Lead framework. Focused on building high-performing teams by fostering a culture of growth and collaboration.",
-  },
-  {
-    name: "AI & Automation Implementation",
-    percentage: 3/11*100, // 3 years out of 11 total
-    years: 3,
-    description: "Spearheaded AI initiatives including ML-based document processing, ChatGPT integration for customer support, and analytical product data algorithms. Built automation workflows that take repetitive operational work off teams' plates.",
   },
   {
     name: "Cross-functional Collaboration",

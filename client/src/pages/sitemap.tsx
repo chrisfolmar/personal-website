@@ -16,121 +16,137 @@ import { visibleBlogPosts, caseStudies } from "@/lib/data";
 import { DEFAULT_METADATA } from "@/lib/metadata/seo";
 import { SITEMAP_METADATA } from "@/lib/metadata/routes";
 import { usePageSeo } from "@/lib/metadata/usePageSeo";
+import SectionHeader from "@/components/SectionHeader";
+import FadeIn from "@/components/FadeIn";
 
 export default function Sitemap() {
   usePageSeo(SITEMAP_METADATA);
 
   const mainSections = [
-    { id: "home", label: "Home", icon: <Home className="w-5 h-5 mr-2" /> },
-    { id: "impact", label: "Impact", icon: <BarChart3 className="w-5 h-5 mr-2" /> },
-    { id: "what-i-do", label: "What I Do", icon: <Briefcase className="w-5 h-5 mr-2" /> },
-    { id: "case-studies", label: "Featured Case Studies", icon: <Layers className="w-5 h-5 mr-2" /> },
-    { id: "ai-transformation", label: "AI Transformation", icon: <Sparkles className="w-5 h-5 mr-2" /> },
-    { id: "writing", label: "Writing", icon: <FileText className="w-5 h-5 mr-2" /> },
+    { id: "home", label: "Home", icon: Home },
+    { id: "impact", label: "Impact", icon: BarChart3 },
+    { id: "what-i-do", label: "What I'm useful for", icon: Briefcase },
+    { id: "case-studies", label: "Featured case studies", icon: Layers },
+    { id: "ai-transformation", label: "AI transformation", icon: Sparkles },
+    { id: "writing", label: "Writing", icon: FileText },
   ];
 
   const standalonePages = [
-    { href: "/about", label: "About", icon: <User className="w-5 h-5 mr-2" /> },
-    { href: "/contact", label: "Contact", icon: <Send className="w-5 h-5 mr-2" /> },
-    { href: "/case-studies", label: "Case Studies", icon: <Layers className="w-5 h-5 mr-2" /> },
-    { href: "/writing", label: "Writing", icon: <FileText className="w-5 h-5 mr-2" /> },
-    { href: "/resume", label: "Resume", icon: <BookOpen className="w-5 h-5 mr-2" /> },
-    { href: "/now", label: "Now", icon: <Calendar className="w-5 h-5 mr-2" /> },
-    { href: "/beliefs", label: "Things I Believe", icon: <BookOpen className="w-5 h-5 mr-2" /> },
+    { href: "/about", label: "About", icon: User },
+    { href: "/contact", label: "Contact", icon: Send },
+    { href: "/case-studies", label: "Case studies", icon: Layers },
+    { href: "/writing", label: "Writing", icon: FileText },
+    { href: "/resume", label: "Resume", icon: BookOpen },
+    { href: "/now", label: "Now", icon: Calendar },
+    { href: "/beliefs", label: "Things I believe", icon: BookOpen },
   ];
 
   return (
-    <div className="container mx-auto px-4 py-16 md:py-24">
-      <div className="mb-8">
-        <Link href="/" className="inline-flex items-center text-primary hover:underline">
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Home
-        </Link>
-      </div>
+    <div className="pt-28 md:pt-32 pb-20 md:pb-28">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <FadeIn className="mb-8">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to home
+          </Link>
+        </FadeIn>
 
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">Site Map</h1>
+        <SectionHeader
+          eyebrow="Sitemap"
+          title="Everything on the site, in one place."
+          description="A quick index of the pages, case studies, and posts here — useful if you landed on something specific and want to see what else is around."
+        />
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4 border-b pb-2">Main Sections</h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {mainSections.map((section) => (
-              <li key={section.id}>
-                <a
-                  href={`/#${section.id}`}
-                  className="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
-                >
-                  {section.icon}
-                  {section.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8 max-w-5xl">
+          <FadeIn className="bg-card border border-border rounded-md p-6 md:p-7">
+            <div className="text-eyebrow mb-5">Home sections</div>
+            <ul className="space-y-1">
+              {mainSections.map((section) => {
+                const Icon = section.icon;
+                return (
+                  <li key={section.id}>
+                    <a
+                      href={`/#${section.id}`}
+                      className="flex items-center gap-3 px-2 py-2 rounded-md text-foreground hover:bg-muted transition-colors"
+                    >
+                      <Icon className="h-4 w-4 text-primary" />
+                      {section.label}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </FadeIn>
+
+          <FadeIn delay={0.04} className="bg-card border border-border rounded-md p-6 md:p-7">
+            <div className="text-eyebrow mb-5">Pages</div>
+            <ul className="space-y-1">
+              {standalonePages.map((page) => {
+                const Icon = page.icon;
+                return (
+                  <li key={page.href}>
+                    <Link
+                      href={page.href}
+                      className="flex items-center gap-3 px-2 py-2 rounded-md text-foreground hover:bg-muted transition-colors"
+                    >
+                      <Icon className="h-4 w-4 text-primary" />
+                      {page.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </FadeIn>
+
+          <FadeIn delay={0.08} className="bg-card border border-border rounded-md p-6 md:p-7">
+            <div className="text-eyebrow mb-5">Case studies</div>
+            <ul className="space-y-1">
+              {caseStudies.map((study) => (
+                <li key={study.slug}>
+                  <Link
+                    href={`/case-studies/${study.slug}`}
+                    className="block px-2 py-2 rounded-md text-foreground hover:bg-muted transition-colors"
+                  >
+                    {study.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
+
+          <FadeIn delay={0.12} className="bg-card border border-border rounded-md p-6 md:p-7">
+            <div className="text-eyebrow mb-5">Writing</div>
+            <ul className="space-y-1">
+              {visibleBlogPosts.map((post) => (
+                <li key={post.id}>
+                  <Link
+                    href={`/blog/${post.id}`}
+                    className="block px-2 py-2 rounded-md text-foreground hover:bg-muted transition-colors"
+                  >
+                    {post.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4 border-b pb-2">Pages</h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {standalonePages.map((page) => (
-              <li key={page.href}>
-                <Link
-                  href={page.href}
-                  className="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
-                >
-                  {page.icon}
-                  {page.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4 border-b pb-2">Case Studies</h2>
-          <ul className="space-y-2">
-            {caseStudies.map((study) => (
-              <li key={study.slug}>
-                <Link
-                  href={`/case-studies/${study.slug}`}
-                  className="block p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
-                >
-                  {study.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4 border-b pb-2">Blog Posts</h2>
-          <ul className="space-y-2">
-            {visibleBlogPosts.map((post) => (
-              <li key={post.id}>
-                <Link
-                  href={`/blog/${post.id}`}
-                  className="block p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
-                >
-                  {post.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold mb-4 border-b pb-2">About This Site</h2>
-          <p className="text-gray-600 dark:text-gray-300 mb-4">
+        <FadeIn
+          delay={0.16}
+          className="mt-10 bg-card border border-border rounded-md p-6 md:p-7 max-w-5xl"
+        >
+          <div className="text-eyebrow mb-4">About this site</div>
+          <p className="text-[0.975rem] leading-relaxed text-muted-foreground">
             {DEFAULT_METADATA.description}
           </p>
-          <div className="flex flex-col space-y-2">
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              &copy; {new Date().getFullYear()} Chris Folmar. All rights reserved.
-            </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Last updated: {new Date().toLocaleDateString()}
-            </p>
-          </div>
-        </div>
+          <p className="mt-4 font-mono text-[0.75rem] uppercase tracking-[0.14em] text-muted-foreground">
+            © {new Date().getFullYear()} Chris Folmar · Last loaded{" "}
+            {new Date().toLocaleDateString()}
+          </p>
+        </FadeIn>
       </div>
     </div>
   );

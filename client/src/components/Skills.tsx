@@ -2,23 +2,21 @@ import { memo } from "react";
 import { skills, tools } from "@/lib/data";
 import SectionHeader from "@/components/SectionHeader";
 import FadeIn from "@/components/FadeIn";
-import ProgressBar from "@/components/ProgressBar";
 import SkillCard from "@/components/ui/skill-card";
 
 const SkillRow = memo(
   ({ skill, index }: { skill: typeof skills[0]; index: number }) => (
     <FadeIn delay={index * 0.03} className="border-b border-border last:border-b-0 py-5">
-      <div className="flex items-baseline justify-between gap-4 mb-2">
+      <div className="flex items-baseline justify-between gap-4">
         <h4 className="font-display font-semibold text-foreground">
           {skill.name}
         </h4>
-        <span className="text-sm tabular-nums text-muted-foreground">
+        <span className="font-mono text-[0.72rem] uppercase tracking-[0.14em] text-muted-foreground tabular-nums whitespace-nowrap">
           {skill.years} yr
         </span>
       </div>
-      <ProgressBar percentage={skill.percentage} />
       {skill.description ? (
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
           {skill.description}
         </p>
       ) : null}

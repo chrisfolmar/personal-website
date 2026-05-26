@@ -39,6 +39,11 @@ export function buildSitemapEntries(): UrlEntry[] {
     { loc: `${SITE}/writing`, lastmod: today, changefreq: "weekly", priority: "0.9" },
     { loc: `${SITE}/beliefs`, lastmod: today, changefreq: "monthly", priority: "0.6" },
     { loc: `${SITE}/case-studies`, lastmod: today, changefreq: "monthly", priority: "0.9" },
+    // /services is the freelance landing page — priority 0.9 because it's
+    // the primary surface for local SEO discovery (Seacoast NH, Southern
+    // ME, North Shore MA). Without an XML sitemap entry, Google would
+    // discover it only via internal links, which slows indexing.
+    { loc: `${SITE}/services`, lastmod: today, changefreq: "monthly", priority: "0.9" },
   ];
 
   // Visible blog posts (excludes hidden: true)

@@ -11,6 +11,7 @@ import {
   BookOpen,
   Calendar,
   Layers,
+  MapPin,
 } from "lucide-react";
 import { visibleBlogPosts, caseStudies } from "@/lib/data";
 import { DEFAULT_METADATA } from "@/lib/metadata/seo";
@@ -34,6 +35,7 @@ export default function Sitemap() {
   const standalonePages = [
     { href: "/about", label: "About", icon: User },
     { href: "/contact", label: "Contact", icon: Send },
+    { href: "/services", label: "Services (freelance web design)", icon: MapPin },
     { href: "/case-studies", label: "Case studies", icon: Layers },
     { href: "/writing", label: "Writing", icon: FileText },
     { href: "/resume", label: "Resume", icon: BookOpen },

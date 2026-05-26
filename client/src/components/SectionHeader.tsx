@@ -3,7 +3,7 @@ import FadeIn from "./FadeIn";
 
 interface SectionHeaderProps {
   eyebrow?: string;
-  title?: string;
+  title?: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
   size?: "page" | "sub";

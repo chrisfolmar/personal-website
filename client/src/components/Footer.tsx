@@ -22,6 +22,7 @@ const exploreLinks: FooterLink[] = [
 ];
 
 const moreLinks: FooterLink[] = [
+  { label: "Services", href: "/services" },
   { label: "Resume", href: "/resume" },
   { label: "Now", href: "/now" },
   { label: "Contact", href: "/contact" },
@@ -150,6 +151,9 @@ export default function Footer() {
         <div className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           <p className="text-sm text-muted-foreground">
             © {currentYear} Chris Folmar. All rights reserved.
+          </p>
+          <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted-foreground">
+            Durham, NH · Serving Seacoast NH · Southern ME · North Shore MA
           </p>
         </div>
       </div>

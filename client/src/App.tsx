@@ -19,6 +19,7 @@ import NowPage from "@/pages/now";
 import Resume from "@/pages/resume";
 import WritingIndex from "@/pages/writing";
 import BeliefsPage from "@/pages/beliefs";
+import ServicesPage from "@/pages/services";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/resume" component={Resume} />
             <Route path="/writing" component={WritingIndex} />
             <Route path="/beliefs" component={BeliefsPage} />
+            <Route path="/services" component={ServicesPage} />
             <Route path="/sitemap" component={Sitemap} />
             <Route component={NotFound} />
           </Switch>

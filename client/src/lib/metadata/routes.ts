@@ -10,8 +10,10 @@ import {
   buildCaseStudyArticleJsonLd,
   buildCaseStudyListJsonLd,
   buildContactPageJsonLd,
+  buildFaqPageJsonLd,
   buildProfilePageJsonLd,
   buildProjectJsonLd,
+  buildServiceJsonLd,
   buildWebPageJsonLd,
   getCanonicalURL,
   getPersonSchema,
@@ -168,6 +170,81 @@ export const BELIEFS_METADATA: PageSeoOptions = {
   jsonLdId: "beliefs-jsonld",
 };
 
+export const SERVICES_TITLE =
+  "Web Design for Restaurants & Therapists — Seacoast NH, Southern ME, North Shore MA | Chris Folmar";
+export const SERVICES_DESCRIPTION =
+  "Freelance web design and development for small local businesses across Seacoast New Hampshire, Southern Maine, and the North Shore of Massachusetts. Modern, fast, accessible websites for restaurants, therapists, and other independent businesses — built and supported by Chris Folmar, based in Durham, NH.";
+
+// FAQ content is duplicated in the /services page component for human-
+// readable rendering; this list is the canonical FAQPage JSON-LD source.
+// Keep the two in sync when editing.
+const SERVICES_FAQ: Array<{ question: string; answer: string }> = [
+  {
+    question: "Where do you work? Do you take clients outside the Seacoast?",
+    answer:
+      "I'm based in Durham, NH and most engagements are in the Seacoast NH, Southern Maine, and North Shore Massachusetts region — close enough that we can meet in person at least once if it's useful. Outside that region I'll consider it case by case, but local is the default.",
+  },
+  {
+    question: "What kinds of businesses do you build sites for?",
+    answer:
+      "Mostly small local businesses — restaurants, private-practice therapists, trades, and the occasional retail or service shop. The common thread is owners who want a website that genuinely helps them get customers, not a brochure that sits there.",
+  },
+  {
+    question: "Do you build on WordPress?",
+    answer:
+      "No, not anymore. WordPress made sense ten years ago; today it's usually slower, less secure, and more expensive to maintain than the modern alternatives. I'll explain what I'd build on for your specific situation when we talk.",
+  },
+  {
+    question: "What does an engagement usually look like?",
+    answer:
+      "A short discovery conversation (free), a written proposal with a fixed price and timeline, then a kickoff. Most small-business sites take three to six weeks end to end. I share progress as we go so there are no surprises at the launch meeting.",
+  },
+  {
+    question: "Why hire you instead of Squarespace or a template?",
+    answer:
+      "If a template gets you 80% of the way there, use it — I'll tell you that on the call. You hire me when the template version isn't quite right: you need real local SEO, faster pages, a custom booking or menu flow, or you've tried the DIY route and it's not converting. I've been shipping production websites since 2014 and run engineering teams for a living, so the work is held to a real standard.",
+  },
+  {
+    question: "How do I get started?",
+    answer:
+      "Email me through the contact page with a sentence or two about your business and what you want the site to do. I'll reply within a couple of business days to set up a short call.",
+  },
+];
+
+export const SERVICES_METADATA: PageSeoOptions = {
+  title: SERVICES_TITLE,
+  description: SERVICES_DESCRIPTION,
+  path: "/services",
+  jsonLd: [
+    buildServiceJsonLd({
+      name: "Modern websites for small local businesses",
+      description: SERVICES_DESCRIPTION,
+      serviceType: "Web Design and Development",
+      audienceType:
+        "Restaurants, therapists, and other small local businesses in Seacoast NH, Southern Maine, and North Shore Massachusetts",
+      offerCatalog: [
+        {
+          name: "Restaurant websites",
+          description:
+            "Modern, fast websites for independent restaurants and cafés — menu management, reservations, ordering, and local SEO built in.",
+        },
+        {
+          name: "Therapist and private-practice websites",
+          description:
+            "Calm, accessible websites for therapists and small private practices — specialties, intake, fees, and a low-friction contact path.",
+        },
+        {
+          name: "Small business websites",
+          description:
+            "Custom websites for independent local businesses across the Seacoast NH, Southern ME, and North Shore MA region.",
+        },
+      ],
+    }),
+    buildFaqPageJsonLd("/services", SERVICES_FAQ),
+  ],
+  jsonLdId: "services-jsonld",
+};
+
 export const CASE_STUDIES_TITLE = "Case Studies | Chris Folmar";
 export const CASE_STUDIES_DESCRIPTION =
   "Detailed case studies on scaling engineering throughput, AI-enabled workflow transformation, ERP/WMS modernization, and async information flow.";
@@ -286,6 +363,8 @@ export function resolvePageMetadata(rawPath: string): PageSeoOptions {
       return BELIEFS_METADATA;
     case "/case-studies":
       return CASE_STUDIES_METADATA;
+    case "/services":
+      return SERVICES_METADATA;
     case "/sitemap":
       return SITEMAP_METADATA;
   }

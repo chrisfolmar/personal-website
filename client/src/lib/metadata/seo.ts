@@ -119,7 +119,52 @@ export function getSchemaData(type: string, data: Record<string, any>) {
 }
 
 /**
- * Reusable Person schema for Chris Folmar
+ * Service-area regions and representative cities Chris serves through the
+ * freelance shop. Single source of truth: referenced by Person.areaServed,
+ * the /services page Service JSON-LD, and the visible service-area copy.
+ */
+export const SERVICE_AREA_REGIONS = [
+  "Seacoast New Hampshire",
+  "Southern Maine",
+  "North Shore Massachusetts",
+] as const;
+
+export const SERVICE_AREA_CITIES: ReadonlyArray<{ name: string; region: string }> = [
+  { name: "Portsmouth, NH", region: "Seacoast New Hampshire" },
+  { name: "Dover, NH", region: "Seacoast New Hampshire" },
+  { name: "Durham, NH", region: "Seacoast New Hampshire" },
+  { name: "Exeter, NH", region: "Seacoast New Hampshire" },
+  { name: "Hampton, NH", region: "Seacoast New Hampshire" },
+  { name: "Rochester, NH", region: "Seacoast New Hampshire" },
+  { name: "Newmarket, NH", region: "Seacoast New Hampshire" },
+  { name: "Stratham, NH", region: "Seacoast New Hampshire" },
+  { name: "Portland, ME", region: "Southern Maine" },
+  { name: "South Portland, ME", region: "Southern Maine" },
+  { name: "Kittery, ME", region: "Southern Maine" },
+  { name: "York, ME", region: "Southern Maine" },
+  { name: "Wells, ME", region: "Southern Maine" },
+  { name: "Kennebunk, ME", region: "Southern Maine" },
+  { name: "Biddeford, ME", region: "Southern Maine" },
+  { name: "Saco, ME", region: "Southern Maine" },
+  { name: "Newburyport, MA", region: "North Shore Massachusetts" },
+  { name: "Salisbury, MA", region: "North Shore Massachusetts" },
+  { name: "Amesbury, MA", region: "North Shore Massachusetts" },
+  { name: "Salem, MA", region: "North Shore Massachusetts" },
+  { name: "Beverly, MA", region: "North Shore Massachusetts" },
+  { name: "Gloucester, MA", region: "North Shore Massachusetts" },
+  { name: "Ipswich, MA", region: "North Shore Massachusetts" },
+];
+
+/**
+ * Reusable Person schema for Chris Folmar.
+ *
+ * `address` and `areaServed` are intentionally included here (and not in
+ * a separate LocalBusiness graph node) because there is no registered
+ * business entity or Google Business Profile to back a LocalBusiness
+ * claim — surfacing fake NAP data would do more SEO harm than good.
+ * Person.address + Person.areaServed are valid schema.org and give
+ * search engines enough geographic signal to associate the freelance
+ * work with the Seacoast NH / Southern ME / North Shore MA region.
  */
 export function getPersonSchema() {
   return {
@@ -132,6 +177,24 @@ export function getPersonSchema() {
       "@type": "Organization",
       name: "Fullscript",
     },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Durham",
+      addressRegion: "NH",
+      addressCountry: "US",
+    },
+    areaServed: SERVICE_AREA_REGIONS.map((name) => ({
+      "@type": "AdministrativeArea",
+      name,
+    })),
+    knowsAbout: [
+      "Web design and development",
+      "Small business websites",
+      "Restaurant websites",
+      "Therapist and private practice websites",
+      "Engineering leadership",
+      "AI-enabled workflows",
+    ],
     sameAs: [
       "https://www.linkedin.com/in/clfolmar",
       "https://github.com/chrisfolmar",
@@ -140,6 +203,80 @@ export function getPersonSchema() {
       "https://www.instagram.com/fomy",
     ],
   };
+}
+
+/**
+ * Service JSON-LD for the /services page — freelance web design and
+ * development for small local businesses in the Seacoast NH / Southern
+ * ME / North Shore MA region. Points at the canonical Person entity
+ * via @id reference (no duplicate Person inlined).
+ */
+export function buildServiceJsonLd(opts: {
+  name: string;
+  description: string;
+  serviceType: string;
+  audienceType: string;
+  offerCatalog?: Array<{ name: string; description: string }>;
+}) {
+  const url = getCanonicalURL("/services");
+  return getSchemaData("Service", {
+    "@id": `${url}#service`,
+    url,
+    name: opts.name,
+    description: opts.description,
+    serviceType: opts.serviceType,
+    provider: getPersonRef(),
+    areaServed: [
+      ...SERVICE_AREA_REGIONS.map((name) => ({
+        "@type": "AdministrativeArea",
+        name,
+      })),
+      ...SERVICE_AREA_CITIES.map((c) => ({ "@type": "City", name: c.name })),
+    ],
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType: opts.audienceType,
+    },
+    ...(opts.offerCatalog
+      ? {
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Services",
+            itemListElement: opts.offerCatalog.map((item) => ({
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: item.name,
+                description: item.description,
+              },
+            })),
+          },
+        }
+      : {}),
+  });
+}
+
+/**
+ * FAQPage JSON-LD — used on /services to surface common pre-engagement
+ * questions as rich results.
+ */
+export function buildFaqPageJsonLd(
+  path: string,
+  faqs: Array<{ question: string; answer: string }>,
+) {
+  const url = getCanonicalURL(path);
+  return getSchemaData("FAQPage", {
+    "@id": `${url}#faq`,
+    url,
+    mainEntity: faqs.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
+  });
 }
 
 /**
@@ -320,9 +457,9 @@ export const DEFAULT_METADATA = {
   image: '/cf-favicon.png',
   twitterHandle: '@fomy',
   keywords: [
-    'Chris Folmar', 
-    'Software Engineering Manager', 
-    'Technical Leader', 
+    'Chris Folmar',
+    'Software Engineering Manager',
+    'Technical Leader',
     'Full Stack Developer',
     'JavaScript Developer',
     'TypeScript Developer',
@@ -333,6 +470,23 @@ export const DEFAULT_METADATA = {
     'Engineering Management',
     'AI Implementation',
     'System Architecture',
-    'Project Management'
+    'Project Management',
+    // Local / freelance keywords — the freelance shop builds modern
+    // websites for restaurants and therapists across the Seacoast NH,
+    // Southern ME, and North Shore MA region. See /services for the
+    // full landing page.
+    'Freelance Web Developer',
+    'Small Business Website',
+    'Restaurant Website',
+    'Therapist Website',
+    'Web Designer Seacoast NH',
+    'Web Designer Portsmouth NH',
+    'Web Designer Dover NH',
+    'Web Designer Durham NH',
+    'Web Designer Southern Maine',
+    'Web Designer Portland ME',
+    'Web Designer Kittery ME',
+    'Web Designer North Shore MA',
+    'Web Designer Newburyport MA',
   ]
 };

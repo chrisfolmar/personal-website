@@ -17,6 +17,7 @@ const navItems: NavItem[] = [
   { label: "Case Studies", href: "/case-studies" },
   { label: "AI Transformation", section: "ai-transformation" },
   { label: "Writing", href: "/writing" },
+  { label: "Services", href: "/services" },
   { label: "Now", href: "/now" },
   { label: "Resume", href: "/resume" },
   { label: "Contact", href: "/contact" },

@@ -179,7 +179,7 @@ export default function NowPage() {
         <SectionHeader
           eyebrow="Now"
           title="What I'm focused on, this season."
-          description="A short, honest look at what I'm focused on right now — both at work and outside of it."
+          description="A short, honest look at what I'm focused on right now — at Fullscript, at home in Durham with Lauren and a brand-new baby, and in whatever quiet hours are left over."
         />
 
         <FadeIn className="-mt-4 mb-10 inline-flex items-center gap-2 text-sm text-muted-foreground">

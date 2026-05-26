@@ -108,6 +108,13 @@ function About() {
             </div>
 
             <div className="mt-8 space-y-5 text-[0.975rem] leading-relaxed text-muted-foreground">
+              <p className="pb-4 border-b border-border">
+                Outside the work: husband to Lauren, brand-new dad,
+                dog-dad to Penny and Belle, lifelong Arsenal fan, on the
+                water when I can be. An instinctive systems thinker who
+                can't help looking for the leverage point in any process —
+                including the ones I run at home.
+              </p>
               <p>
                 <strong className="text-foreground">Software Developer.</strong>{" "}
                 I studied Computer Science at the University of Southern Maine
@@ -151,12 +158,6 @@ function About() {
                 designing the systems that absorb the repetitive operational
                 drag so the people doing the work can stay on the parts that
                 actually need them.
-              </p>
-              <p className="pt-4 border-t border-border">
-                Outside of work: husband to Lauren, dad-to-dogs to Penny and
-                Belle, lifelong Arsenal fan, and an instinctive systems
-                thinker who can't help looking for the leverage point in any
-                process — including the ones I run at home.
               </p>
             </div>
           </FadeIn>

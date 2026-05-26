@@ -254,7 +254,9 @@ export default function Hero() {
               AI energy on the boring problems — the copy-paste, the
               reconciliation, the hundredth version of the same email — so
               people can get back to the work that actually needs their
-              judgment.
+              judgment. Most of this gets written from a kitchen-table desk
+              in Durham, NH, in the quiet hours between a new baby and an
+              Arsenal match.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link

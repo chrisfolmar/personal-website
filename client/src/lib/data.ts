@@ -121,7 +121,7 @@ export const tools: Tool[] = [
     icon: "zap",
   },
   {
-    name: "Asana",
+    name: "Linear",
     icon: "layoutGrid",
   },
   {
@@ -873,7 +873,7 @@ export const caseStudies: CaseStudy[] = [
       { label: "Departments onboarded", value: "5" },
       { label: "Headcount added to deliver this", value: "0" },
     ],
-    tools: ["n8n", "Cursor", "ChatGPT Enterprise", "NotebookLM", "Asana", "Slack"],
+    tools: ["n8n", "Cursor", "ChatGPT Enterprise", "NotebookLM", "Linear", "Slack"],
     lessonsLearned: [
       "Trust is the bottleneck — if the humans doing the work don't trust the tool, the workflow dies.",
       "Easy Wins build the credibility that buys you the right to attempt the Reworks.",

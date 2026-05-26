@@ -75,7 +75,7 @@ const currentlyUsing: MicroItem[] = [
     body: "The Fullscript engineering ecosystem — still close enough to the stack to make grounded decisions.",
   },
   {
-    title: "Asana",
+    title: "Linear",
     body: "Making work visible, reducing status-update friction, and helping teams communicate asynchronously.",
   },
   {

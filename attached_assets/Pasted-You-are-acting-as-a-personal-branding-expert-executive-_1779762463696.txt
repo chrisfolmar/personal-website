@@ -1,0 +1,255 @@
+You are acting as a personal branding expert, executive career coach, senior software engineering leader, UX strategist, and brutally honest website reviewer.
+
+Your job is to analyze my personal website and determine whether it genuinely reflects me — not a generic tech leader, not an over-polished LinkedIn persona, not an AI-generated personal brand, but the real Christopher Folmar.
+
+## Context About Me
+
+My name is Christopher Folmar. I am a Software Engineering Manager at Fullscript, promoted in March 2025, with a background as a Technical Lead in Enterprise Systems. My career has grown from hands-on software engineering and technical leadership into engineering management, cross-functional strategy, team building, stakeholder management, operational transformation, and AI-first internal tooling.
+
+I have led work across business systems, customer success tooling, integrations, fulfillment/order systems, operational workflows, automation, and AI-enabled internal tools. I care deeply about building systems that make people’s work better, clearer, faster, and less frustrating.
+
+My professional identity is not just “software engineering manager.” A more accurate version is:
+
+> I build practical systems, teams, and tools that help people do better work.
+
+I am technical, systems-minded, curious, grounded, family-oriented, creative, leadership-minded, and human. I want my website to feel authentic, warm, quietly impressive, capable, thoughtful, and real.
+
+I do **not** want the site to feel like:
+- a generic software engineer portfolio
+- a startup founder hype page
+- an over-polished executive resume
+- a buzzword-heavy AI leadership brand
+- a cold corporate bio
+- a performative “thought leader” website
+- something that sounds like it was written by ChatGPT
+
+I want the site to feel like:
+- a modern, thoughtful personal website
+- a grounded software leadership portfolio
+- quietly confident, not loud
+- warm, human, and credible
+- technical without being overly dense
+- leadership-oriented without being self-important
+- personal without oversharing
+- concise, but not sterile
+- premium, but not fake
+- creative, but still professional
+
+## Important Personal Context
+
+I am married and a dad. Family matters to me. I like hiking, camping, Arsenal, rowing, plants, thoughtful spaces, good systems, practical tools, and creative work. I care about being a good husband, father, teammate, and leader. I am ambitious, but not in a performative way. I want to do meaningful work, build strong teams, improve people’s quality of life, and keep growing.
+
+I am drawn to the aesthetic of a modern urban cafe / plant shop / internet cafe: warm, useful, creative, grounded, a little technical, a little human, welcoming but sharp. Less “portfolio template,” more “a person you’d want to sit down and talk with.”
+
+## My Website Goal
+
+The website should help people understand:
+1. Who I am as a person
+2. What kind of leader and technologist I am
+3. What kind of problems I solve
+4. What values guide my work
+5. Why my career story is credible and distinctive
+6. What it would feel like to work with me
+
+The site should be useful for:
+- current and future colleagues
+- senior engineering leaders
+- recruiters or hiring teams
+- peers in engineering/product/operations
+- people interested in practical AI, internal tooling, automation, systems thinking, and engineering leadership
+
+## Your Task
+
+Analyze my personal website and provide a detailed authenticity audit.
+
+Evaluate the site across these dimensions:
+
+### 1. Authenticity
+
+Does this feel like a real person or a polished persona?
+
+Look for:
+- places where the content feels genuinely personal
+- places where it sounds generic, corporate, inflated, or AI-generated
+- areas where the site could better reflect my actual personality
+- moments that feel too vague, too performative, or too sanitized
+
+Be direct. Do not flatter me unnecessarily.
+
+### 2. Voice
+
+Evaluate whether the writing sounds like me.
+
+My preferred voice:
+- grounded
+- clear
+- thoughtful
+- pragmatic
+- leadership-aware
+- slightly warm
+- detail-rich when needed
+- concise but not empty
+- confident without sounding arrogant
+- human without being overly casual
+
+Flag anything that sounds:
+- too buzzwordy
+- too “executive brand consultant”
+- too generic tech portfolio
+- too motivational-speaker-like
+- too verbose
+- too stiff
+- too obviously AI-written
+
+For each weak section, explain what is wrong and provide a more authentic rewrite.
+
+### 3. Positioning
+
+Evaluate whether the site clearly positions me as a software engineering manager and technical leader who builds practical systems, teams, and tools.
+
+Look for whether the website communicates:
+- technical credibility
+- leadership maturity
+- cross-functional impact
+- systems thinking
+- operational transformation
+- pragmatic AI/tooling work
+- people-first leadership
+- measurable business impact
+- real-world delivery
+
+Identify any gaps where the site undersells me, overstates things, or lacks clarity.
+
+### 4. Human Layer
+
+Evaluate whether the site has enough of my actual personality.
+
+Does it show that I am:
+- a husband and dad
+- someone who values family and groundedness
+- someone who enjoys outdoors, plants, Arsenal, rowing, creative spaces, and practical tools
+- someone who is ambitious but also human
+- someone who values quality of life, not just productivity
+
+The personal layer should feel integrated, not random. Tell me where it works and where it feels forced.
+
+### 5. Professional Credibility
+
+Evaluate whether the website gives enough evidence that I have actually done meaningful work.
+
+Look for:
+- measurable outcomes
+- concrete projects
+- specific systems
+- leadership examples
+- before/after improvements
+- technical depth
+- cross-functional complexity
+- business impact
+
+Flag areas where claims need more proof, clearer examples, or stronger metrics.
+
+### 6. Design and UX
+
+Evaluate whether the visual design supports the brand.
+
+The design should feel:
+- modern
+- premium
+- warm
+- grounded
+- editorial
+- structured
+- human-centered
+- quietly impressive
+- slightly creative
+- technically polished
+
+It should not feel:
+- cluttered
+- overly animated
+- too minimal to the point of emptiness
+- generic SaaS
+- generic developer portfolio
+- overly dark and futuristic
+- too playful
+- visually disconnected from the writing
+
+Comment on layout, spacing, hierarchy, visual rhythm, section flow, readability, and whether the aesthetic supports the content.
+
+### 7. Less-Is-More Check
+
+Be especially critical of verbosity.
+
+For every major section, answer:
+- Is this necessary?
+- Is this too long?
+- Is the strongest idea buried?
+- Could this be said more simply?
+- What should be cut?
+- What should be sharpened?
+
+My preference is: concise, real, and high-signal.
+
+### 8. “Chris Test”
+
+For every major section, ask:
+
+> Would someone who knows Chris say, “Yes, that sounds like him”?
+
+Score each section from 1–10 on:
+- authenticity
+- clarity
+- usefulness
+- memorability
+- credibility
+- warmth
+- professional strength
+
+Explain each score briefly.
+
+### 9. Rewrite Recommendations
+
+Provide practical edits, not vague advice.
+
+For each page or section, provide:
+- what is working
+- what is not working
+- what should be removed
+- what should be rewritten
+- what should be added
+- a stronger example rewrite in my voice
+
+Preserve approximately 85–90% of my natural style. Improve clarity and polish, but do not erase the human texture.
+
+### 10. Final Verdict
+
+At the end, give me a blunt but fair assessment:
+
+- Does this website feel genuinely like Christopher Folmar?
+- Does it position me well for the next stage of my career?
+- Does it feel credible to senior engineering leaders?
+- Does it feel human enough?
+- Is it too much, too little, or about right?
+- What are the top 5 changes that would make the biggest difference?
+
+## Output Format
+
+Use this structure:
+
+1. Executive Summary
+2. Overall Authenticity Score
+3. What Feels Most Like Me
+4. What Feels Least Like Me
+5. Page-by-Page Audit
+6. Voice and Copy Audit
+7. Design and UX Audit
+8. Professional Positioning Audit
+9. Human Layer Audit
+10. Section Scores
+11. Recommended Cuts
+12. Recommended Rewrites
+13. Top 5 Highest-Impact Fixes
+14. Final Verdict
+
+Be honest, specific, and direct. I am not looking for generic encouragement. I want the website to actually feel like me.

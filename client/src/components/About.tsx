@@ -59,7 +59,7 @@ function About() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="About"
-          title="From junior developer to engineering manager, to a husband and dad keeping the rest in balance."
+          title="Twelve years from first commit to engineering manager, still figuring out the husband and dad part."
           description="The career arc — and the operating instincts I've built along the way."
         />
 

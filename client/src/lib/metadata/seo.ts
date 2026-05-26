@@ -452,7 +452,7 @@ export function buildProjectJsonLd(path: string, project: Project) {
  * Reword instead of recycling those lines.
  */
 export const DEFAULT_METADATA = {
-  title: 'Chris Folmar – Technologist | Leadership, Insights & Real-World Solutions',
+  title: 'Chris Folmar — Engineering Manager & AI Transformation Leader',
   description: 'Chris Folmar is an engineering manager at Fullscript, leading three teams, modernizing the systems behind the business, and putting AI to work on the boring problems first. Case studies, writing, résumé, and what he is focused on right now.',
   image: '/cf-favicon.png',
   twitterHandle: '@fomy',

@@ -81,7 +81,8 @@ export default function Resume() {
               <div className="text-eyebrow mb-3">Résumé</div>
               <h1 className="text-display text-foreground">Chris Folmar</h1>
               <p className="mt-3 text-primary font-medium font-display text-lg">
-                Engineering Manager · AI Transformation Leader
+                Engineering Manager at Fullscript — business systems,
+                AI-enabled operations, three globally distributed teams.
               </p>
               <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
                 <span className="inline-flex items-center gap-1.5">

@@ -153,7 +153,7 @@ export default function Contact() {
         <SectionHeader
           eyebrow="Get in touch"
           title="Have a project in mind, or want to compare notes?"
-          description="The best way to reach me is the form below — or any of the channels in the sidebar."
+          description="The best way to reach me is the form below — or any of the channels listed here."
         />
 
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">

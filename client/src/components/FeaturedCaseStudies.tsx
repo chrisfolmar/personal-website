@@ -17,7 +17,7 @@ function FeaturedCaseStudies() {
         <SectionHeader
           eyebrow="Featured case studies"
           title="The work behind the headlines."
-          description="Long-form looks at the operating-model changes, system rebuilds, and AI rollouts I'm proudest of — written for executives and engineering leaders evaluating how I actually operate."
+          description="The work I'd actually walk you through in an interview — the problem, what I changed, the systems that came out of it, and what I'd do differently next time."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">

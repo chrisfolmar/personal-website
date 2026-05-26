@@ -40,7 +40,7 @@ function WhatIDo() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="What I do"
-          title="Four principles I run my work by."
+          title="What I'm useful for."
           description="Every team I've led, every system I've rebuilt, and every AI workflow I've shipped has come back to one of these."
         />
 

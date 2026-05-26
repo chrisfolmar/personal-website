@@ -151,9 +151,6 @@ export default function Footer() {
           <p className="text-sm text-muted-foreground">
             © {currentYear} Chris Folmar. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground">
-            Built quietly, on purpose.
-          </p>
         </div>
       </div>
     </footer>

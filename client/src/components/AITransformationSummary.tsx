@@ -33,7 +33,7 @@ function AITransformationSummary() {
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="AI Transformation · Team GSD"
-          title="An AI-first operating model, not another pile of demos."
+          title="Most AI projects fail because the operating model around them is wrong. Team GSD is the part I work on."
           description="Team GSD exists to take the work people shouldn't have to do — the copy/paste, the reconciliation, the one-hundredth version of the same email — and turn it into systems that just run. The goal isn't to replace anyone. It's to give every team back the time to do work that actually moves the business forward."
         />
 

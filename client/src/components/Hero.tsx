@@ -1,7 +1,8 @@
-// Canonical home (per copy-redundancy pass) for the discipline-triplet
-// eyebrow, the role-at-Fullscript line, and the modernize-the-work
-// headline. Other surfaces must reword these ideas rather than repeat
-// the exact phrasings used here.
+// Canonical home (per copy-redundancy pass) for the Hero eyebrow
+// (location + time-of-life signal), the role-at-Fullscript line, and
+// the ship-more-without-breaking-the-people headline. Other surfaces
+// must reword these ideas rather than repeat the exact phrasings used
+// here.
 import { useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
@@ -242,17 +243,18 @@ export default function Hero() {
           <motion.div className="lg:col-span-7" {...copyAnim}>
             <SignatureMotif variant="rule" className="mb-5 max-w-[10rem]" />
             <div className="text-eyebrow mb-6">
-              Engineering Leadership · Business Systems · AI-Enabled Operations
+              Engineering manager · Durham, NH · writing from between standups and bedtime stories
             </div>
             <h1 className="text-display text-foreground">
-              Helping teams modernize{" "}
-              <span className="marker-highlight">how the work gets done</span>.
+              I help engineering teams ship more without breaking the people running the work.
             </h1>
             <p className="mt-6 max-w-2xl text-lead">
-              I'm Chris Folmar — engineering leader at Fullscript. I run
-              globally distributed teams, modernize the business systems
-              behind the company, and build AI-first workflows that quietly
-              do the busywork.
+              I'm Chris Folmar. I run three engineering teams at Fullscript,
+              modernize the systems behind the business, and spend most of my
+              AI energy on the boring problems — the copy-paste, the
+              reconciliation, the hundredth version of the same email — so
+              people can get back to the work that actually needs their
+              judgment.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link

@@ -17,8 +17,8 @@ export default function CaseStudies() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Case studies"
-          title="Proof, not just a portfolio."
-          description="Deep dives on the work I'm proudest of — the problem, the change, the systems, and the measurable impact. Written for executives, engineering leaders, and anyone evaluating how I actually operate."
+          title="The work I keep coming back to."
+          description="Deep dives on the work I'm proudest of — the problem, the change, the systems, and the measurable impact. The kind of write-ups I'd actually walk you through in an interview."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">

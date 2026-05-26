@@ -108,9 +108,9 @@ export default function Footer() {
               <span className="text-primary">.</span>
             </Link>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-              A working notebook on leading engineering teams, rebuilding
-              the systems behind a healthcare business, and putting AI to
-              work on the boring problems first.
+              Engineering manager at Fullscript. I lead three teams,
+              modernize the systems behind the business, and write
+              about it in the quiet hours.
             </p>
           </div>
 

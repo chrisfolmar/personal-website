@@ -73,8 +73,8 @@ export const skills: Skill[] = [
   },
   {
     name: "AI & Automation Implementation",
-    percentage: 8/11*100, // 8 years out of 11 total
-    years: 8,
+    percentage: 3/11*100, // 3 years out of 11 total
+    years: 3,
     description: "Spearheaded AI initiatives including ML-based document processing, ChatGPT integration for customer support, and analytical product data algorithms. Built automation workflows that take repetitive operational work off teams' plates.",
   },
   {

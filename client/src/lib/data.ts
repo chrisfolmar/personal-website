@@ -70,6 +70,12 @@ export const skills: Skill[] = [
     description: "Leading Fullscript's AI transformation effort, saving over 40% in operational time. Spearheading Fullscript's Go-to-Ruby migration, reducing stack complexity by 66%. Overseeing delivery of a dedicated PIM tool for our Product Catalog, partnering across the organization to ensure successful delivery.",
   },
   {
+    name: "Delivery Framework & SDLC",
+    percentage: 4/11*100, // 4 years out of 11 total
+    years: 4,
+    description: "Built an adaptable SDLC framework for planning, reviewing, and shipping work, adopted across more than 3 teams. Standardizes delivery cadence and quality gates while letting each team adapt it to their own context.",
+  },
+  {
     name: "Project & Program Management",
     percentage: 6/11*100, // 6 years out of 11 total
     years: 6,

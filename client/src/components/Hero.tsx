@@ -85,7 +85,7 @@ function PortraitFrame() {
           style={{ background: "hsl(var(--marker))" }}
         />
         <span className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-muted-foreground">
-          /chris · durham, nh · 2026
+          /chris · ottawa, on · 2026
         </span>
       </div>
     </div>
@@ -144,19 +144,20 @@ export default function Hero() {
               AI energy on the boring problems — so people can get back to
               the work that actually needs their judgment.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-9 flex flex-col sm:flex-row sm:items-center sm:flex-wrap gap-3 sm:gap-x-4 sm:gap-y-3">
               <Link
-                href="/case-studies"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-primary text-primary-foreground font-medium shadow-[3px_3px_0_hsl(var(--marker))] hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background transition-colors"
+                href="/contact"
+                className="inline-flex w-full sm:w-auto items-center justify-center sm:justify-start gap-2 px-6 py-3.5 rounded-md bg-primary text-primary-foreground text-base font-semibold shadow-[4px_4px_0_hsl(var(--marker))] hover:bg-primary/90 hover:shadow-[5px_5px_0_hsl(var(--marker))] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background transition-all"
               >
-                View Case Studies
+                Get in touch
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/writing"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-md border-2 border-primary bg-background text-foreground font-medium hover:bg-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background transition-colors"
+                href="/case-studies"
+                className="inline-flex w-full sm:w-auto items-center justify-center sm:justify-start gap-2 px-5 py-3 rounded-md border border-primary/60 bg-transparent text-foreground text-sm font-medium hover:bg-muted hover:border-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background transition-colors"
               >
-                Read recent posts
+                See my work
+                <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </motion.div>

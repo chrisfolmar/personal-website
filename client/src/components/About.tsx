@@ -69,22 +69,22 @@ function About() {
               <picture>
                 <source
                   type="image/avif"
-                  srcSet="/assets/images/about-800.avif 800w, /assets/images/about-1200.avif 1200w"
+                  srcSet="/assets/images/about-family-800.avif 800w, /assets/images/about-family-1200.avif 1200w"
                   sizes="(min-width: 1024px) 40vw, 100vw"
                 />
                 <source
                   type="image/webp"
-                  srcSet="/assets/images/about-800.webp 800w, /assets/images/about-1200.webp 1200w"
+                  srcSet="/assets/images/about-family-800.webp 800w, /assets/images/about-family-1200.webp 1200w"
                   sizes="(min-width: 1024px) 40vw, 100vw"
                 />
                 <img
-                  src="/assets/images/about.jpg"
-                  srcSet="/assets/images/about-800.jpg 800w, /assets/images/about-1200.jpg 1200w"
+                  src="/assets/images/about-family-1200.jpg"
+                  srcSet="/assets/images/about-family-800.jpg 800w, /assets/images/about-family-1200.jpg 1200w"
                   sizes="(min-width: 1024px) 40vw, 100vw"
-                  alt="Chris Folmar with his wife"
+                  alt="Chris Folmar with his wife Lauren and their dog, outside under a tree."
                   className="w-full h-auto object-cover"
-                  width={1200}
-                  height={900}
+                  width={3002}
+                  height={2400}
                   loading="eager"
                   decoding="async"
                   {...({ fetchpriority: "high" } as Record<string, string>)}
@@ -96,15 +96,29 @@ function About() {
               className="mt-4 overflow-hidden rounded-md border border-border"
               data-testid="about-work-photo"
             >
-              <LazyImage
-                src="/assets/images/about-work-1200.jpg"
-                alt="Christopher Folmar working in his home office."
-                width={1024}
-                height={1536}
-                objectFit="cover"
-                aspectRatio="1024 / 1536"
-                className="w-full h-auto"
-              />
+              <picture>
+                <source
+                  type="image/avif"
+                  srcSet="/assets/images/about-arsenal-800.avif 800w, /assets/images/about-arsenal-1200.avif 1200w"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                />
+                <source
+                  type="image/webp"
+                  srcSet="/assets/images/about-arsenal-800.webp 800w, /assets/images/about-arsenal-1200.webp 1200w"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                />
+                <img
+                  src="/assets/images/about-arsenal-1200.jpg"
+                  srcSet="/assets/images/about-arsenal-800.jpg 800w, /assets/images/about-arsenal-1200.jpg 1200w"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  alt="Chris and Lauren in Arsenal jerseys, looking at each other under a tree in autumn light."
+                  className="w-full h-auto object-cover"
+                  width={2400}
+                  height={3002}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
 
             <div className="mt-8 space-y-5 text-[0.975rem] leading-relaxed text-muted-foreground">

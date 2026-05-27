@@ -26,12 +26,12 @@ const focusAreas: FocusItem[] = [
   {
     icon: <Heart className="h-4 w-4" />,
     title: "Husband and brand-new dad",
-    body: "Newly a dad. The biggest change of my life and the most grounding one. Everything else gets prioritized around it.",
+    body: "Newly a Girl Dad. The biggest change of my life and the most grounding one. Everything else gets prioritized around it.",
   },
   {
     icon: <Sparkles className="h-4 w-4" />,
     title: "Team GSD & AI transformation",
-    body: "Most of my work energy is going into Team GSD — the cross-functional effort putting AI to work inside Fullscript's day-to-day operations. We're past the phase of proving the concept and into the phase of making it stick: standards, ownership, and the next generation of reworks.",
+    body: "One of the more energizing threads right now is Team GSD — the cross-functional effort putting AI to work inside Fullscript's day-to-day operations. We're past the phase of proving the concept and into the phase of making it stick: standards, ownership, and the next generation of reworks.",
   },
   {
     icon: <Briefcase className="h-4 w-4" />,
@@ -187,31 +187,97 @@ export default function NowPage() {
           description="A short, honest look at what I'm focused on right now: at work, at home with a brand-new baby in the house, and in whatever quiet hours are left over."
         />
 
-        <FadeIn className="-mt-4 mb-10 inline-flex items-center gap-2 text-sm text-muted-foreground">
+        <FadeIn className="-mt-4 mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground">
           <Calendar className="h-4 w-4" />
           Last updated: {lastUpdated}
         </FadeIn>
 
+        <FadeIn className="mb-12 md:mb-14 max-w-3xl">
+          <figure className="overflow-hidden rounded-md border border-border">
+            <picture>
+              <source
+                type="image/avif"
+                srcSet="/assets/images/now-life-800.avif 800w, /assets/images/now-life-1200.avif 1200w"
+                sizes="(min-width: 1024px) 60vw, 100vw"
+              />
+              <source
+                type="image/webp"
+                srcSet="/assets/images/now-life-800.webp 800w, /assets/images/now-life-1200.webp 1200w"
+                sizes="(min-width: 1024px) 60vw, 100vw"
+              />
+              <img
+                src="/assets/images/now-life-1200.jpg"
+                srcSet="/assets/images/now-life-800.jpg 800w, /assets/images/now-life-1200.jpg 1200w"
+                sizes="(min-width: 1024px) 60vw, 100vw"
+                alt="Chris, Lauren, and their dog sitting on the grass, all laughing."
+                className="w-full h-auto object-cover"
+                width={3002}
+                height={2400}
+                loading="eager"
+                decoding="async"
+                {...({ fetchpriority: "high" } as Record<string, string>)}
+              />
+            </picture>
+            <figcaption className="px-4 py-3 text-xs font-mono uppercase tracking-[0.16em] text-muted-foreground bg-card border-t border-border">
+              Outside the work.
+            </figcaption>
+          </figure>
+        </FadeIn>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 max-w-5xl">
-          {focusAreas.map((item, index) => (
-            <FadeIn
-              key={item.title}
-              delay={index * 0.05}
-              className="bg-card border border-border rounded-md p-7"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
-                  {item.icon}
-                </span>
-                <h2 className="font-display text-lg font-semibold text-foreground">
-                  {item.title}
-                </h2>
-              </div>
-              <p className="text-[0.975rem] leading-relaxed text-muted-foreground">
-                {item.body}
-              </p>
-            </FadeIn>
-          ))}
+          {focusAreas.map((item, index) => {
+            const isFamily = item.title === "Husband and brand-new dad";
+            return (
+              <FadeIn
+                key={item.title}
+                delay={index * 0.05}
+                className="bg-card border border-border rounded-md p-7"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+                    {item.icon}
+                  </span>
+                  <h2 className="font-display text-lg font-semibold text-foreground">
+                    {item.title}
+                  </h2>
+                </div>
+                {isFamily ? (
+                  <div className="flex gap-4 items-start">
+                    <p className="flex-1 text-[0.975rem] leading-relaxed text-muted-foreground">
+                      {item.body}
+                    </p>
+                    <picture className="shrink-0">
+                      <source
+                        type="image/avif"
+                        srcSet="/assets/images/piper-400.avif 400w, /assets/images/piper-800.avif 800w"
+                        sizes="96px"
+                      />
+                      <source
+                        type="image/webp"
+                        srcSet="/assets/images/piper-400.webp 400w, /assets/images/piper-800.webp 800w"
+                        sizes="96px"
+                      />
+                      <img
+                        src="/assets/images/piper-400.jpg"
+                        srcSet="/assets/images/piper-400.jpg 400w, /assets/images/piper-800.jpg 800w"
+                        sizes="96px"
+                        alt="A small white knit basket with 'Piper' embroidered on it, resting on a wooden sled."
+                        className="h-24 w-24 rounded-sm border border-border object-cover"
+                        width={4650}
+                        height={6480}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                ) : (
+                  <p className="text-[0.975rem] leading-relaxed text-muted-foreground">
+                    {item.body}
+                  </p>
+                )}
+              </FadeIn>
+            );
+          })}
         </div>
 
         <MicroSection

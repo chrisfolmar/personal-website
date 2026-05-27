@@ -10,14 +10,14 @@ function Manifesto() {
   return (
     <section
       id="manifesto"
-      aria-label="A short manifesto from Chris"
+      aria-label="A note from Chris"
       className="py-16 md:py-24 border-y border-border bg-background relative overflow-hidden"
     >
       <SignatureMotif soft />
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn className="max-w-3xl mx-auto">
           <div className="mb-4 flex items-center gap-3">
-            <div className="text-eyebrow">A short letter</div>
+            <div className="text-eyebrow">A note</div>
           </div>
           <article className="space-y-5 text-[1.05rem] md:text-[1.125rem] leading-relaxed text-foreground/90 font-display">
             <p>

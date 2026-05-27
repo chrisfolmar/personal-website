@@ -3,255 +3,90 @@
 // the ship-more-without-breaking-the-people headline. Other surfaces
 // must reword these ideas rather than repeat the exact phrasings used
 // here.
-import { useEffect, useState } from "react";
+//
+// May 2026 visual-weight pass (task #59): the right-column SystemsMap
+// was replaced with a notebook-framed portrait of Chris so the hero
+// reads with human warmth above the fold on both mobile and desktop.
+// The portrait is wrapped in the Engineer's Notebook chrome: brass
+// corner ticks, a stamped offset shadow, and the dotted-grid motif
+// behind it. The SystemsMap component is preserved in the file for
+// potential reuse but is no longer mounted in the hero.
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import SignatureMotif from "./SignatureMotif";
 
-type NodeId = "teams" | "workflows" | "systems" | "ai" | "ops";
-
-type Node = { id: NodeId; label: string; x: number; y: number; note: string };
-
-const nodes: Node[] = [
-  { id: "teams", label: "Teams", x: 70, y: 90, note: "3 globally distributed squads" },
-  { id: "workflows", label: "Workflows", x: 230, y: 50, note: "Connected end-to-end" },
-  { id: "systems", label: "Systems", x: 320, y: 200, note: "Modernized the business stack" },
-  { id: "ai", label: "AI", x: 200, y: 320, note: "First-class participant, not a bolt-on" },
-  { id: "ops", label: "Operations", x: 50, y: 260, note: "Quietly doing the busywork" },
-];
-
-const edges: [NodeId, NodeId][] = [
-  ["teams", "workflows"],
-  ["teams", "ops"],
-  ["workflows", "systems"],
-  ["systems", "ai"],
-  ["ai", "ops"],
-  ["workflows", "ai"],
-  ["teams", "systems"],
-];
-
-const byId: Record<NodeId, Node> = Object.fromEntries(
-  nodes.map((n) => [n.id, n]),
-) as Record<NodeId, Node>;
-
-/**
- * SystemsMap — the hero illustration AND the site's one memorable
- * interaction. Hovering or focusing a node lights its connected
- * edges in brass and surfaces a one-line note about that part of
- * the operating model. Decorative until interacted with; nodes
- * become real buttons exposing their note to assistive tech.
- *
- * Reduced-motion: the entrance animation is suppressed; the
- * highlight on hover/focus is a colour change only (no movement),
- * which is safe to leave on.
- */
-function SystemsMap() {
-  const reduce = useReducedMotion();
-  const [active, setActive] = useState<NodeId | null>(null);
-
-  // Subtle "operating model is alive" pulse: after the entrance draw-in
-  // settles, walk a single brass highlight along the edges in sequence
-  // for two cycles, then go quiet forever. The whole sequence runs once
-  // per mount, takes ~5.5s end-to-end, and uses the same lit color the
-  // hover interaction does so it reads as a hint at the interaction
-  // rather than a separate decoration. Reduced-motion: skipped entirely.
-  const [pulseEdgeIdx, setPulseEdgeIdx] = useState<number>(-1);
-  useEffect(() => {
-    if (reduce) return;
-    const startDelay = 1700;
-    const stepMs = 180;
-    const gapMs = 600;
-    const cycles = 2;
-    const total = edges.length;
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    for (let c = 0; c < cycles; c++) {
-      for (let i = 0; i < total; i++) {
-        timers.push(
-          setTimeout(
-            () => setPulseEdgeIdx(i),
-            startDelay + c * (total * stepMs + gapMs) + i * stepMs,
-          ),
-        );
-      }
-    }
-    timers.push(
-      setTimeout(
-        () => setPulseEdgeIdx(-1),
-        startDelay + cycles * (total * stepMs + gapMs),
-      ),
-    );
-    return () => {
-      timers.forEach(clearTimeout);
-    };
-  }, [reduce]);
-
-  const isEdgeActive = (a: NodeId, b: NodeId) =>
-    active !== null && (a === active || b === active);
-
-  const activeNode = active ? byId[active] : null;
-
+function PortraitFrame() {
   return (
-    <div className="relative w-full max-w-[440px]">
-      <svg
-        role="img"
-        aria-label="A small systems map: Teams, Workflows, Systems, AI, and Operations connected by lightweight lines. Hover or focus a node to see how each part contributes."
-        viewBox="0 0 400 400"
-        className="w-full h-auto"
-      >
-        <defs>
-          <radialGradient id="hero-node-bg" cx="50%" cy="50%" r="50%">
-            <stop
-              offset="0%"
-              stopColor="hsl(var(--marker))"
-              stopOpacity="0.22"
-            />
-            <stop offset="100%" stopColor="hsl(var(--marker))" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-
-        {/* faint dotted grid — echoes the SignatureMotif */}
-        <g opacity="0.5">
-          {Array.from({ length: 9 }).map((_, i) => (
-            <line
-              key={`v-${i}`}
-              x1={i * 50}
-              y1={0}
-              x2={i * 50}
-              y2={400}
-              stroke="hsl(var(--border))"
-              strokeDasharray="2 6"
-              strokeWidth="1"
-            />
-          ))}
-          {Array.from({ length: 9 }).map((_, i) => (
-            <line
-              key={`h-${i}`}
-              x1={0}
-              y1={i * 50}
-              x2={400}
-              y2={i * 50}
-              stroke="hsl(var(--border))"
-              strokeDasharray="2 6"
-              strokeWidth="1"
-            />
-          ))}
-        </g>
-
-        {/* edges */}
-        <g strokeWidth="1.25" strokeLinecap="round">
-          {edges.map(([a, b], i) => {
-            const A = byId[a];
-            const B = byId[b];
-            const lit = isEdgeActive(a, b);
-            const pulsed = pulseEdgeIdx === i;
-            const highlighted = lit || pulsed;
-            return (
-              <motion.line
-                key={`${a}-${b}`}
-                x1={A.x}
-                y1={A.y}
-                x2={B.x}
-                y2={B.y}
-                stroke={highlighted ? "hsl(var(--marker))" : "hsl(var(--primary))"}
-                strokeOpacity={highlighted ? 0.9 : 0.4}
-                style={{ transition: "stroke 0.35s ease, stroke-opacity 0.35s ease" }}
-                initial={reduce ? false : { pathLength: 0, opacity: 0 }}
-                animate={reduce ? undefined : { pathLength: 1, opacity: highlighted ? 0.9 : 0.4 }}
-                transition={{
-                  duration: 0.9,
-                  delay: 0.25 + i * 0.06,
-                  ease: "easeOut",
-                }}
-              />
-            );
-          })}
-        </g>
-
-        {/* nodes — each is an interactive button (keyboard + SR) */}
-        <g>
-          {nodes.map((n, i) => {
-            const isActive = active === n.id;
-            return (
-              <motion.g
-                key={n.id}
-                initial={reduce ? false : { opacity: 0, scale: 0.8 }}
-                animate={reduce ? undefined : { opacity: 1, scale: 1 }}
-                transition={{
-                  duration: 0.4,
-                  delay: 0.15 + i * 0.06,
-                  ease: "easeOut",
-                }}
-              >
-                <g
-                  tabIndex={0}
-                  role="img"
-                  aria-label={`${n.label}: ${n.note}`}
-                  onMouseEnter={() => setActive(n.id)}
-                  onMouseLeave={() => setActive((cur) => (cur === n.id ? null : cur))}
-                  onFocus={() => setActive(n.id)}
-                  onBlur={() => setActive((cur) => (cur === n.id ? null : cur))}
-                  onKeyDown={(e) => {
-                    if (e.key === "Escape") {
-                      setActive(null);
-                      (e.currentTarget as SVGGElement).blur?.();
-                    }
-                  }}
-                  className="cursor-default outline-none"
-                  style={{ transition: "transform 0.2s ease" }}
-                >
-                  {/* invisible larger hit area */}
-                  <circle cx={n.x} cy={n.y} r="40" fill="transparent" />
-                  <circle cx={n.x} cy={n.y} r="36" fill="url(#hero-node-bg)" />
-                  <circle
-                    cx={n.x}
-                    cy={n.y}
-                    r={isActive ? 8 : 6}
-                    fill={isActive ? "hsl(var(--marker))" : "hsl(var(--primary))"}
-                    style={{
-                      transition: "r 0.2s ease, fill 0.2s ease",
-                    }}
-                  />
-                  <text
-                    x={n.x}
-                    y={n.y + 24}
-                    textAnchor="middle"
-                    className="font-mono"
-                    fontSize="10.5"
-                    fontWeight="500"
-                    fill="hsl(var(--foreground))"
-                    style={{ letterSpacing: "0.06em", textTransform: "uppercase" }}
-                  >
-                    {n.label}
-                  </text>
-                </g>
-              </motion.g>
-            );
-          })}
-        </g>
-      </svg>
-
-      {/* Hover/focus tooltip — sits under the map, fades in via opacity
-          (no motion), always reserves vertical space so layout doesn't jump. */}
+    <div className="relative w-full max-w-[460px] mx-auto lg:ml-auto lg:mr-0">
+      {/* Soft dotted-grid backdrop, offset from the portrait so it
+          reads as paper showing through behind the photo. */}
       <div
-        aria-live="polite"
-        className="mt-3 h-10 px-3 flex items-center font-mono text-[0.72rem] uppercase tracking-[0.16em] border-l-2"
-        style={{
-          borderColor: activeNode ? "hsl(var(--marker))" : "transparent",
-          color: activeNode ? "hsl(var(--foreground))" : "transparent",
-          transition: "color 0.25s ease, border-color 0.25s ease",
-        }}
-      >
-        {activeNode ? (
-          <span>
-            <span style={{ color: "hsl(var(--marker))" }}>
-              /{activeNode.label.toLowerCase()}
-            </span>{" "}
-            · {activeNode.note}
-          </span>
-        ) : (
-          <span aria-hidden>placeholder</span>
-        )}
+        aria-hidden
+        className="absolute -inset-4 sm:-inset-6 -z-10 signature-grid-soft opacity-80 rounded-md"
+      />
+
+      {/* Stamped offset shadow + bordered frame */}
+      <div className="relative rounded-md border-2 border-primary bg-card overflow-hidden shadow-[6px_6px_0_hsl(var(--marker))]">
+        <picture>
+          <source
+            type="image/avif"
+            srcSet="/assets/images/about-work-800.avif 800w, /assets/images/about-work-1200.avif 1200w"
+            sizes="(min-width: 1024px) 38vw, (min-width: 640px) 70vw, 90vw"
+          />
+          <source
+            type="image/webp"
+            srcSet="/assets/images/about-work-800.webp 800w, /assets/images/about-work-1200.webp 1200w"
+            sizes="(min-width: 1024px) 38vw, (min-width: 640px) 70vw, 90vw"
+          />
+          <img
+            src="/assets/images/about-work-1200.jpg"
+            srcSet="/assets/images/about-work-800.jpg 800w, /assets/images/about-work-1200.jpg 1200w"
+            sizes="(min-width: 1024px) 38vw, (min-width: 640px) 70vw, 90vw"
+            alt="Christopher Folmar, Engineering Manager at Fullscript."
+            className="block w-full h-auto object-cover"
+            width={1024}
+            height={1536}
+            loading="eager"
+            decoding="async"
+            {...({ fetchpriority: "high" } as Record<string, string>)}
+          />
+        </picture>
+      </div>
+
+      {/* Brass corner ticks — notebook margin notations */}
+      <span
+        aria-hidden
+        className="absolute -top-1 -left-1 h-4 w-4 border-t-2 border-l-2"
+        style={{ borderColor: "hsl(var(--marker))" }}
+      />
+      <span
+        aria-hidden
+        className="absolute -top-1 -right-1 h-4 w-4 border-t-2 border-r-2"
+        style={{ borderColor: "hsl(var(--marker))" }}
+      />
+      <span
+        aria-hidden
+        className="absolute -bottom-1 -left-1 h-4 w-4 border-b-2 border-l-2"
+        style={{ borderColor: "hsl(var(--marker))" }}
+      />
+      <span
+        aria-hidden
+        className="absolute -bottom-1 -right-1 h-4 w-4 border-b-2 border-r-2"
+        style={{ borderColor: "hsl(var(--marker))" }}
+      />
+
+      {/* Mono caption strip — a /path-style label, in the spirit of the
+          systems-map node labels it replaces. */}
+      <div className="mt-4 flex items-center gap-3">
+        <span
+          aria-hidden
+          className="inline-block h-2 w-2 rounded-full"
+          style={{ background: "hsl(var(--marker))" }}
+        />
+        <span className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-muted-foreground">
+          /chris · durham, nh · 2026
+        </span>
       </div>
     </div>
   );
@@ -268,23 +103,40 @@ export default function Hero() {
         transition: { duration: 0.5, ease: "easeOut" },
       };
 
+  const portraitAnim = reduce
+    ? {}
+    : {
+        initial: { opacity: 0, y: 18 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.6, ease: "easeOut", delay: 0.1 },
+      };
+
   return (
     <section
       id="home"
-      className="relative pt-28 md:pt-32 pb-20 md:pb-28 overflow-hidden"
+      className="relative pt-24 md:pt-32 pb-20 md:pb-28 overflow-hidden"
     >
       {/* Signature dotted-grid motif quietly threads through the hero */}
       <SignatureMotif soft />
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
+          {/* Portrait — appears first on mobile for immediate human warmth,
+              repositioned to the right column on desktop. */}
+          <motion.div
+            className="lg:hidden mb-10 max-w-[320px] mx-auto"
+            {...portraitAnim}
+          >
+            <PortraitFrame />
+          </motion.div>
+
           <motion.div className="lg:col-span-7" {...copyAnim}>
             <SignatureMotif variant="rule" className="mb-5 max-w-[10rem]" />
             <div className="text-eyebrow mb-6">
-              Engineering manager · Durham, NH · operator at Fullscript, new dad at home
+              Engineering manager at Fullscript · New dad at home
             </div>
             <h1 className="text-display text-foreground">
-              I help engineering teams achieve more, and help the engineers doing the work grow.
+              I help engineering teams achieve more, and the engineers doing the work grow.
             </h1>
             <p className="mt-6 max-w-2xl text-lead">
               I'm Chris Folmar. I run three engineering teams at Fullscript,
@@ -309,9 +161,12 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          <div className="hidden lg:flex lg:col-span-5 justify-end">
-            <SystemsMap />
-          </div>
+          <motion.div
+            className="hidden lg:block lg:col-span-5"
+            {...portraitAnim}
+          >
+            <PortraitFrame />
+          </motion.div>
         </div>
       </div>
     </section>

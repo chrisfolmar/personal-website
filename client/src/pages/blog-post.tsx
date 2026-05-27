@@ -125,6 +125,14 @@ export default function BlogPost() {
       setLocation("/not-found");
       return;
     }
+    // External posts (e.g. Fullscript Builders Corner) live elsewhere — the
+    // canonical home is the external URL. Direct navigation to the
+    // internal `/blog/:id` route redirects out instead of rendering an
+    // empty page.
+    if (post.externalUrl) {
+      window.location.replace(post.externalUrl);
+      return;
+    }
     window.scrollTo(0, 0);
   }, [postId, post, setLocation]);
 

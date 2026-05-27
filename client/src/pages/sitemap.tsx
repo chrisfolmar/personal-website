@@ -122,16 +122,32 @@ export default function Sitemap() {
           <FadeIn delay={0.12} className="bg-card border border-border rounded-md p-6 md:p-7">
             <div className="text-eyebrow mb-5">Writing</div>
             <ul className="space-y-1">
-              {visibleBlogPosts.map((post) => (
-                <li key={post.id}>
-                  <Link
-                    href={`/blog/${post.id}`}
-                    className="block px-2 py-2 rounded-md text-foreground hover:bg-muted transition-colors"
-                  >
-                    {post.title}
-                  </Link>
-                </li>
-              ))}
+              {visibleBlogPosts.map((post) =>
+                post.externalUrl ? (
+                  <li key={post.id}>
+                    <a
+                      href={post.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block px-2 py-2 rounded-md text-foreground hover:bg-muted transition-colors"
+                    >
+                      {post.title}
+                      <span className="ml-1 text-xs text-muted-foreground">
+                        (Fullscript Builders Corner)
+                      </span>
+                    </a>
+                  </li>
+                ) : (
+                  <li key={post.id}>
+                    <Link
+                      href={`/blog/${post.id}`}
+                      className="block px-2 py-2 rounded-md text-foreground hover:bg-muted transition-colors"
+                    >
+                      {post.title}
+                    </Link>
+                  </li>
+                ),
+              )}
             </ul>
           </FadeIn>
         </div>

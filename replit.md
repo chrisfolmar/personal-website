@@ -92,6 +92,10 @@ Preferred communication style: Simple, everyday language.
 
 The homepage is composed in `client/src/pages/home.tsx` from the editorial primitives above. Standalone routes: `/case-studies`, `/case-studies/:slug`, `/now`, `/resume`, `/blog/:id`, `/project/:id`, `/sitemap`, plus a 404. The legacy `Projects.tsx`, `Testimonials.tsx`, and `Blog.tsx` components are no longer mounted on the homepage — kept around only as references and not part of the new visual system.
 
+### Writing — external posts
+
+Posts that live on a third-party publication (e.g. the Fullscript Builders Corner blog) set `externalUrl` on the `BlogPost` entry in `client/src/lib/data.ts`. `WritingCard` renders these as outbound `<a target="_blank" rel="noopener noreferrer">` with a "Fullscript Builders Corner · {category}" eyebrow prefix and an `ExternalLink` icon. `/blog/:id` redirects to the external URL via `window.location.replace`, the XML sitemap (`server/sitemap.ts`) skips them, and `buildBlogPostingJsonLd` emits the external URL as canonical. Add a future external post by appending a `BlogPost` with `externalUrl` set and no `content` field — everything else flows from the convention.
+
 ## Backend Architecture
 
 - **Framework**: Express.js running on Node with TypeScript (compiled via `tsx` for dev, `esbuild` for production)

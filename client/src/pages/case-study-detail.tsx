@@ -78,6 +78,21 @@ export default function CaseStudyDetail() {
           description={study.summary}
         />
 
+        {study.slug === "team-gsd-ai-transformation" ? (
+          <FadeIn className="-mt-4 mb-10">
+            <a
+              href="https://builders.fullscript.com/posts/team-gsd-year-1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              data-testid="link-team-gsd-year-one-case-study"
+            >
+              Read the year-one retrospective
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          </FadeIn>
+        ) : null}
+
         <FadeIn className="mb-14">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {study.impact.map((metric) => (

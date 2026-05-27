@@ -78,7 +78,7 @@ function AITransformationSummary() {
           ))}
         </div>
 
-        <FadeIn className="mt-10 md:mt-12">
+        <FadeIn className="mt-10 md:mt-12 flex flex-col items-start gap-3">
           <Link
             href="/case-studies/team-gsd-ai-transformation"
             className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80"
@@ -86,6 +86,16 @@ function AITransformationSummary() {
             Read the full Team GSD case study
             <ArrowRight className="h-4 w-4" />
           </Link>
+          <a
+            href="https://builders.fullscript.com/posts/team-gsd-year-1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            data-testid="link-team-gsd-year-one"
+          >
+            Read the year-one retrospective
+            <ArrowRight className="h-3.5 w-3.5" />
+          </a>
         </FadeIn>
       </div>
     </section>

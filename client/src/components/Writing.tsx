@@ -37,6 +37,8 @@ function Writing() {
               readTime={post.readTime}
               category={post.category}
               delay={i * 0.05}
+              externalUrl={post.externalUrl}
+              externalSource={post.externalUrl ? "Fullscript Builders Corner" : undefined}
             />
           ))}
         </div>

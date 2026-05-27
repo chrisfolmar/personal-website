@@ -46,8 +46,10 @@ export function buildSitemapEntries(): UrlEntry[] {
     { loc: `${SITE}/services`, lastmod: today, changefreq: "monthly", priority: "0.9" },
   ];
 
-  // Visible blog posts (excludes hidden: true)
+  // Visible blog posts (excludes hidden: true and external posts whose
+  // canonical home is elsewhere — see BlogPost.externalUrl).
   const sortedPosts = visibleBlogPosts
+    .filter((p) => !p.externalUrl)
     .slice()
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   for (const post of sortedPosts) {

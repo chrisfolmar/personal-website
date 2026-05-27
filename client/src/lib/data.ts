@@ -309,6 +309,22 @@ export const contact: Contact = {
 
 export const blogPosts: BlogPost[] = [
   {
+    // External post (per the externalUrl convention on BlogPost).
+    // Lives on Fullscript Builders Corner — Chris's year-one retrospective on
+    // the Team GSD effort. No `content` field: we link out instead of
+    // republishing, and the canonical URL is the Builders Corner post.
+    id: 9,
+    featured: true,
+    title: "Team GSD Year 1",
+    excerpt:
+      "A year-one retrospective on Team GSD — what worked, what we'd do differently, and what shipping AI-enabled operations across five departments actually looked like from the inside.",
+    date: "2026-03-20",
+    coverImage: "/og-default.png",
+    category: "AI-Enabled Operations",
+    readTime: "8 min read",
+    externalUrl: "https://builders.fullscript.com/posts/team-gsd-year-1",
+  },
+  {
     id: 8,
     featured: true,
     title: "Why I Stopped Recommending WordPress: The Rise of AI-Powered Web Development",

@@ -307,7 +307,10 @@ export function getPersonRef() {
  * Build a BlogPosting JSON-LD block for an individual blog post
  */
 export function buildBlogPostingJsonLd(post: BlogPost) {
-  const url = getCanonicalURL(`/blog/${post.id}`);
+  // External posts (e.g. Fullscript Builders Corner) live elsewhere — emit the
+  // external URL as canonical so search engines fold the metadata into
+  // the right page rather than the empty internal /blog/:id route.
+  const url = post.externalUrl ?? getCanonicalURL(`/blog/${post.id}`);
   const ogImage = BLOG_IMAGES[post.id]?.src ?? post.coverImage ?? DEFAULT_OG_IMAGE;
   return getSchemaData("BlogPosting", {
     "@id": url,

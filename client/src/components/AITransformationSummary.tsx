@@ -10,6 +10,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import FadeIn from "./FadeIn";
 import SignatureMotif from "./SignatureMotif";
+import SystemsMap from "./SystemsMap";
 
 const pillars = [
   {
@@ -31,11 +32,24 @@ function AITransformationSummary() {
     <section id="ai-transformation" className="relative py-20 md:py-28">
       <SignatureMotif soft />
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          eyebrow="AI Transformation · Team GSD"
-          title="Most AI projects fail because the operating model around them is wrong. Team GSD is the part I work on."
-          description="Team GSD exists to take the work people shouldn't have to do — the copy/paste, the reconciliation, the one-hundredth version of the same email — and turn it into systems that just run. The goal isn't to replace anyone. It's to give every team back the time to do work that actually moves the business forward."
-        />
+        {/* Desktop (lg+): the operating-model diagram sits to the left of
+            the section header — it literally illustrates the "operating
+            model around AI" idea the title talks about. Below lg the map
+            is hidden so the header keeps its tighter, more readable
+            single-column rhythm on tablet and phone. */}
+        <div className="lg:grid lg:grid-cols-12 lg:gap-12 lg:items-center mb-12 md:mb-14">
+          <FadeIn className="hidden lg:flex lg:col-span-5 justify-start">
+            <SystemsMap />
+          </FadeIn>
+          <div className="lg:col-span-7">
+            <SectionHeader
+              eyebrow="AI Transformation · Team GSD"
+              title="Most AI projects fail because the operating model around them is wrong. Team GSD is the part I work on."
+              description="Team GSD exists to take the work people shouldn't have to do — the copy/paste, the reconciliation, the one-hundredth version of the same email — and turn it into systems that just run. The goal isn't to replace anyone. It's to give every team back the time to do work that actually moves the business forward."
+              className="mb-0"
+            />
+          </div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-5 md:gap-6">
           {pillars.map((p, i) => (

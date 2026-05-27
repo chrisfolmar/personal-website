@@ -9,8 +9,9 @@
 // reads with human warmth above the fold on both mobile and desktop.
 // The portrait is wrapped in the Engineer's Notebook chrome: brass
 // corner ticks, a stamped offset shadow, and the dotted-grid motif
-// behind it. The SystemsMap component is preserved in the file for
-// potential reuse but is no longer mounted in the hero.
+// behind it. The SystemsMap moved to its own component
+// (`./SystemsMap`) and is now mounted in AITransformationSummary,
+// the section it most literally illustrates.
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";

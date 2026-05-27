@@ -3,7 +3,17 @@ import { Users, Workflow, Server, Sparkles } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import PrincipleCard from "./PrincipleCard";
 
+// Order (task #66): the AI/automation card leads so AI is named
+// explicitly in the "What I do" range, not just implied behind a
+// workflow framing. The other three cards keep their existing copy.
 const principles = [
+  {
+    key: "workflows",
+    title: "Pointing AI at the boring problems",
+    description:
+      "Pick the workflows where AI does real work — not demos — and ship them in days, not quarters, so people get an hour of their day back.",
+    icon: <Workflow className="h-5 w-5" />,
+  },
   {
     key: "teams",
     title: "Scaling engineering teams",
@@ -17,13 +27,6 @@ const principles = [
     description:
       "Lead the unglamorous work behind ERP, WMS, finance, and catalog so the tools running the business keep up with where the business is going.",
     icon: <Server className="h-5 w-5" />,
-  },
-  {
-    key: "workflows",
-    title: "Removing the repeat work",
-    description:
-      "Find the repeatable work hiding in someone's day and turn it into something that just runs in the background.",
-    icon: <Workflow className="h-5 w-5" />,
   },
   {
     key: "clarity",

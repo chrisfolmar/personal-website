@@ -5,8 +5,32 @@ import SectionHeader from "./SectionHeader";
 import CaseStudyCard from "./CaseStudyCard";
 import { caseStudies } from "@/lib/data";
 
+// Explicit featured list (task #66): curate the homepage row rather
+// than relying on array order, so the Team GSD AI Transformation case
+// study is always surfaced alongside the throughput and modernization
+// stories. Order = headline AI work first, then the operating-model
+// and systems work that backs it up.
+const FEATURED_SLUGS = [
+  "team-gsd-ai-transformation",
+  "scaling-bse-throughput",
+  "erp-wms-modernization",
+] as const;
+
 function FeaturedCaseStudies() {
-  const featured = caseStudies.slice(0, 3);
+  const featured = FEATURED_SLUGS.map((slug) =>
+    caseStudies.find((c) => c.slug === slug),
+  ).filter((c): c is (typeof caseStudies)[number] => Boolean(c));
+
+  if (import.meta.env.DEV && featured.length !== FEATURED_SLUGS.length) {
+    const missing = FEATURED_SLUGS.filter(
+      (slug) => !caseStudies.some((c) => c.slug === slug),
+    );
+    // eslint-disable-next-line no-console
+    console.warn(
+      `[FeaturedCaseStudies] Missing curated case study slug(s): ${missing.join(", ")}. ` +
+        "Update FEATURED_SLUGS or restore the case study in client/src/lib/data.ts.",
+    );
+  }
 
   return (
     <section

@@ -14,8 +14,9 @@ function CurrentFocus() {
         <FadeIn className="max-w-3xl">
           <div className="text-eyebrow mb-4">Current focus</div>
           <p className="font-display text-2xl md:text-3xl leading-snug text-foreground">
-            Threading AI into Fullscript's day-to-day workflows — and coaching
-            more engineers into senior and lead roles while doing it.
+            Coaching more engineers into senior and lead roles — while we
+            quietly retire the work that was never the best use of our
+            business partners' time.
           </p>
           <Link
             href="/now"

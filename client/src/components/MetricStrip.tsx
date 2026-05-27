@@ -18,12 +18,16 @@ const humanMetric: Metric = {
   human: true,
 };
 
+// Order (task #66): the real AI proof point — Team GSD's operational
+// time reduction across 5 departments — leads so the strip backs the
+// AI Transformation section directly above it. Systems-modernization
+// and throughput metrics follow as broader operator credibility.
 const workMetrics: Metric[] = [
-  { value: "300%+", label: "Project throughput increase" },
-  { value: "<1%", label: "MR rollback rate" },
+  { value: "40%+", label: "AI-driven operational time saved across 5 depts" },
   { value: "43%", label: "NetSuite transaction reduction" },
   { value: "95%", label: "Invoicing ownership migration" },
-  { value: "90%", label: "Reduction in reporting overhead" },
+  { value: "300%+", label: "Project throughput increase" },
+  { value: "<1%", label: "MR rollback rate" },
 ];
 
 const defaultMetrics: Metric[] = (() => {

@@ -17,7 +17,7 @@ preview page and Direction B — "Engineer's notebook" — was graduated.
 - **Motion**: a single `FadeIn` primitive (opacity 0→1, y 12→0, ~0.45s easeOut, viewport once). `prefers-reduced-motion` is honored globally. The legacy desktop particle background is a no-op.
 - **Layout primitives** (in `client/src/components/`): `SectionHeader`, `MetricStrip`, `PrincipleCard`, `CaseStudyCard`, `WritingCard`, `QuoteCallout`, `CtaBand`, plus the new `SignatureMotif`. Buttons get a subtle `3px 3px 0 hsl(var(--marker))` offset shadow that reads as a stamped/notebook ink mark.
 - **Hero**: editorial copy + inline systems-map SVG (Teams / Workflows / Systems / AI / Operations). The profile photo lives in the About section only.
-- **Homepage rhythm** (`client/src/pages/home.tsx`): Hero → MetricStrip → WhatIDo → CurrentFocus → FeaturedCaseStudies → AITransformationSummary → Writing → CtaBand.
+- **Homepage rhythm** (`client/src/pages/home.tsx`): Hero → (Manifesto in dev) → MetricStrip → AITransformationSummary → WhatIDo → CurrentFocus → FeaturedCaseStudies → Writing → CtaBand. Reordered May 2026 (task #66) to surface the AI Transformation story within the first scroll, with the AI-flavored metrics leading the strip directly above it.
 
 # "Reflection of me" content surfaces (May 2026)
 

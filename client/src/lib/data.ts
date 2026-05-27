@@ -310,6 +310,7 @@ export const contact: Contact = {
 export const blogPosts: BlogPost[] = [
   {
     id: 8,
+    featured: true,
     title: "Why I Stopped Recommending WordPress: The Rise of AI-Powered Web Development",
     excerpt: "After years of building WordPress sites for small businesses, I've completely changed my approach. Agentic coding tools like Claude Code, Replit, and Gemini have made it possible to build better websites faster — without the $300+ annual license fees.",
     date: "2026-02-10",
@@ -465,6 +466,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: 6,
+    featured: true,
     title: "Elevating Your Team Through Effective Feedback",
     excerpt: "Insights from my experience as a Technical Lead at Fullscript on how to build a culture of constructive feedback that drives team growth and improves software quality.",
     date: "2024-04-15",
@@ -862,6 +864,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "team-gsd-ai-transformation",
+    featured: true,
     title: "Team GSD: AI-Enabled Workflow Transformation",
     summary:
       "Standing up a cross-functional AI transformation effort across five departments — turning the repetitive operational work that bogs teams down into systems that just run.",

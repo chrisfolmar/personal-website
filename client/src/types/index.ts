@@ -63,6 +63,7 @@ export interface BlogPost {
   hidden?: boolean; // When true, omit from listings (homepage, /writing, sitemap)
   supersededBy?: number; // Optional id of a newer post that replaces this one
   archiveNote?: string; // Optional explanation shown in the archive banner
+  featured?: boolean; // When true, surfaced as a "Start here" lead on /writing
 }
 
 export interface ImpactMetric {
@@ -81,4 +82,5 @@ export interface CaseStudy {
   impact: ImpactMetric[];
   tools: string[];
   lessonsLearned: string[];
+  featured?: boolean; // When true, sorted to the top of /case-studies
 }

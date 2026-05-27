@@ -22,12 +22,12 @@ interface FocusItem {
   body: string;
 }
 
+// Surface-signal-early (task #69): operator-first, then person. The
+// AI / operating-model focus leads, the family focus follows — matching
+// the "operator first, then person" framing the rest of the site lands
+// on. Family stays prominent (third) because the page is still meant
+// to read like Chris, not a job-search dossier.
 const focusAreas: FocusItem[] = [
-  {
-    icon: <Heart className="h-4 w-4" />,
-    title: "Husband and brand-new dad",
-    body: "Newly a Girl Dad. The biggest change of my life and the most grounding one. Everything else gets prioritized around it.",
-  },
   {
     icon: <Sparkles className="h-4 w-4" />,
     title: "Team GSD & AI transformation",
@@ -37,6 +37,11 @@ const focusAreas: FocusItem[] = [
     icon: <Briefcase className="h-4 w-4" />,
     title: "Engineering leadership",
     body: "Three globally distributed teams, scaling throughput without scaling headcount, and growing more engineers into senior and lead roles. The thing I'm working hardest on right now is making the operating model so clear that I become less of a bottleneck.",
+  },
+  {
+    icon: <Heart className="h-4 w-4" />,
+    title: "Husband and brand-new dad",
+    body: "Newly a Girl Dad. The biggest change of my life and the most grounding one. Everything else gets prioritized around it.",
   },
   {
     icon: <BookOpen className="h-4 w-4" />,

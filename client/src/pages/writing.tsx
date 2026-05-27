@@ -22,6 +22,16 @@ export default function WritingIndex() {
     [],
   );
 
+  // Surface-signal-early (task #69): a small "Start here" row of
+  // explicitly-flagged posts sits above the chronological list so a
+  // visitor landing cold on /writing sees the posts worth their time
+  // first, not just the most recent. Driven by `featured: true` in
+  // data.ts.
+  const featuredPosts = useMemo(
+    () => posts.filter((p) => p.featured).slice(0, 3),
+    [posts],
+  );
+
   usePageSeo(WRITING_METADATA);
 
   const categories = useMemo(() => {
@@ -112,6 +122,38 @@ export default function WritingIndex() {
             );
           })()}
         </SectionHeader>
+
+        {featuredPosts.length > 0 && activeCategory === ALL_CATEGORIES ? (
+          <section
+            aria-labelledby="writing-start-here"
+            className="mb-10 md:mb-12"
+            data-testid="writing-start-here"
+          >
+            <div className="mb-4 flex items-center gap-3">
+              <h2
+                id="writing-start-here"
+                className="text-eyebrow"
+              >
+                Start here
+              </h2>
+              <span className="h-px flex-1 bg-border" aria-hidden />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+              {featuredPosts.map((post, i) => (
+                <WritingCard
+                  key={`featured-${post.id}`}
+                  id={post.id}
+                  title={post.title}
+                  excerpt={post.excerpt}
+                  date={post.date}
+                  readTime={post.readTime}
+                  category={post.category}
+                  delay={i * 0.05}
+                />
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <div
           className="mb-8 md:mb-10 flex flex-wrap gap-2"

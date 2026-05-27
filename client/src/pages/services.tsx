@@ -32,14 +32,19 @@ interface Offering {
   body: string;
 }
 
+// Surface-signal-early (task #69): the conversion-oriented offer
+// leads. "Designed around how customers actually decide" speaks to
+// the business outcome a small-business owner is actually shopping
+// for; the technical and ownership offers follow as supporting
+// reasons-to-believe.
 const offerings: Offering[] = [
-  {
-    title: "A site that loads fast and reads clearly",
-    body: "Built on modern, lightweight tooling — not a WordPress install with twelve plugins. Pages are fast on a phone over cellular, look correct on every screen size, and stay out of the way of the thing you actually sell.",
-  },
   {
     title: "Designed around how customers actually decide",
     body: "For a restaurant, that's the menu, the hours, directions, and one tap to reserve. For a therapist, it's specialties, what a first session looks like, insurance, and a clear contact path. The site is structured for the question your visitor is really asking.",
+  },
+  {
+    title: "A site that loads fast and reads clearly",
+    body: "Built on modern, lightweight tooling — not a WordPress install with twelve plugins. Pages are fast on a phone over cellular, look correct on every screen size, and stay out of the way of the thing you actually sell.",
   },
   {
     title: "A solid technical foundation",

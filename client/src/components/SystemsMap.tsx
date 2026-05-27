@@ -11,7 +11,7 @@
 // so the notes are exposed to assistive tech. Reduced-motion is
 // honored — the entrance + pulse animations are skipped; the
 // hover/focus highlight is a colour change only.
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 type NodeId = "teams" | "workflows" | "systems" | "ai" | "ops";
@@ -43,14 +43,45 @@ const byId: Record<NodeId, Node> = Object.fromEntries(
 export default function SystemsMap() {
   const reduce = useReducedMotion();
   const [active, setActive] = useState<NodeId | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // Subtle "operating model is alive" pulse: after the entrance
-  // settles, walk a single brass highlight along the edges in sequence
-  // for two cycles, then go quiet. Skipped under reduced-motion.
+  // Trigger the "operating model is alive" pulse the first time the map
+  // scrolls into view — not on mount. The diagram lives mid-page, so
+  // firing on mount means the pulse finishes before the user ever sees
+  // it. We fire once per page load to avoid being annoying on
+  // re-scrolls. Reduced-motion skips this entirely.
+  const [hasFiredPulse, setHasFiredPulse] = useState(false);
+  useEffect(() => {
+    if (reduce) return;
+    if (hasFiredPulse) return;
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setHasFiredPulse(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setHasFiredPulse(true);
+            observer.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.35 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [reduce, hasFiredPulse]);
+
+  // Subtle pulse: once triggered, walk a single brass highlight along
+  // the edges in sequence for two cycles, then go quiet.
   const [pulseEdgeIdx, setPulseEdgeIdx] = useState<number>(-1);
   useEffect(() => {
     if (reduce) return;
-    const startDelay = 1700;
+    if (!hasFiredPulse) return;
+    const startDelay = 250;
     const stepMs = 180;
     const gapMs = 600;
     const cycles = 2;
@@ -75,7 +106,7 @@ export default function SystemsMap() {
     return () => {
       timers.forEach(clearTimeout);
     };
-  }, [reduce]);
+  }, [reduce, hasFiredPulse]);
 
   const isEdgeActive = (a: NodeId, b: NodeId) =>
     active !== null && (a === active || b === active);
@@ -83,7 +114,7 @@ export default function SystemsMap() {
   const activeNode = active ? byId[active] : null;
 
   return (
-    <div className="relative w-full max-w-[440px]">
+    <div ref={containerRef} className="relative w-full max-w-[440px]">
       <svg
         role="img"
         aria-label="A small systems map: Teams, Workflows, Systems, AI, and Operations connected by lightweight lines. Hover or focus a node to see how each part contributes."

@@ -71,7 +71,7 @@ function Manifesto() {
               style={{ background: "hsl(var(--marker))" }}
             />
             <span className="font-mono text-[0.78rem] uppercase tracking-[0.16em] text-muted-foreground">
-              Chris Folmar · Durham, NH · between standups and bedtime stories
+              Chris Folmar
             </span>
           </div>
           <div className="mt-6">

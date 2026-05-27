@@ -1,44 +1,23 @@
 import { memo } from "react";
 import FadeIn from "./FadeIn";
-import { isDev, isPlaceholder, devOnlyText } from "@/lib/placeholder";
+import { devOnlyText } from "@/lib/placeholder";
 
 interface Metric {
   value: string;
   label: string;
-  /** When true, this is a "human" metric (e.g. new dad since X). */
-  human?: boolean;
 }
-
-// One human metric sits next to the work numbers. The value is a
-// [CHRIS: ...] placeholder until he picks one — in production the
-// human card is dropped from the strip if still unfilled.
-const humanMetric: Metric = {
-  value: "1",
-  label: "New dad. Learning daily.",
-  human: true,
-};
 
 // Order (task #66): the real AI proof point — Team GSD's operational
 // time reduction across 5 departments — leads so the strip backs the
 // AI Transformation section directly above it. Systems-modernization
 // and throughput metrics follow as broader operator credibility.
-const workMetrics: Metric[] = [
+const defaultMetrics: Metric[] = [
   { value: "40%+", label: "AI-driven operational time saved across 5 depts" },
   { value: "43%", label: "NetSuite transaction reduction" },
   { value: "95%", label: "Invoicing ownership migration" },
   { value: "300%+", label: "Project throughput increase" },
   { value: "<1%", label: "MR rollback rate" },
 ];
-
-const defaultMetrics: Metric[] = (() => {
-  const humanFilled = !isPlaceholder(humanMetric.value) && !isPlaceholder(humanMetric.label);
-  if (isDev || humanFilled) {
-    // Slot the human metric just before the last work metric so it
-    // sits inside the strip rather than at either end.
-    return [...workMetrics.slice(0, 4), humanMetric, ...workMetrics.slice(4)];
-  }
-  return workMetrics;
-})();
 
 interface MetricStripProps {
   metrics?: Metric[];
@@ -73,20 +52,9 @@ function MetricStrip({
             <FadeIn
               key={metric.label}
               delay={index * 0.04}
-              className={`p-6 md:p-7 flex flex-col justify-between ${
-                metric.human ? "bg-muted/60" : "bg-background"
-              }`}
+              className="p-6 md:p-7 flex flex-col justify-between bg-background"
             >
-              <div
-                className={`font-display text-3xl md:text-4xl font-semibold tabular-nums tracking-tight ${
-                  metric.human ? "text-foreground" : "text-primary"
-                }`}
-                style={
-                  metric.human
-                    ? { color: "hsl(var(--marker))" }
-                    : undefined
-                }
-              >
+              <div className="font-display text-3xl md:text-4xl font-semibold tabular-nums tracking-tight text-primary">
                 {devOnlyText(metric.value)}
               </div>
               <div className="mt-3 text-sm md:text-[0.95rem] text-muted-foreground leading-snug">

@@ -105,7 +105,7 @@ export default function WritingIndex() {
         <SectionHeader
           eyebrow="Writing"
           title="Field notes from the work."
-          description="On AI-enabled operations, engineering leadership, business systems, and the small-business web work I keep on the side. Written mostly from a kitchen table in Durham, NH, usually after the baby is asleep."
+          description="On AI-enabled operations, engineering leadership, business systems, and the small-business web work I keep on the side."
         >
           {(() => {
             const addendum =

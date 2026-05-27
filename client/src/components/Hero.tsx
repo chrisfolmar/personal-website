@@ -134,7 +134,7 @@ export default function Hero() {
           <motion.div className="lg:col-span-7" {...copyAnim}>
             <SignatureMotif variant="rule" className="mb-5 max-w-[10rem]" />
             <div className="text-eyebrow mb-6">
-              Engineering manager at Fullscript · New dad at home
+              Engineering manager at Fullscript
             </div>
             <h1 className="text-display text-foreground">
               I help engineering teams achieve more, and the engineers doing the work grow.

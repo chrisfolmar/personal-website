@@ -2,7 +2,6 @@
 // copy-redundancy pass, the role-at-Fullscript line and the
 // modernize-the-work headline live in the Hero only.
 import { Link, useLocation } from "wouter";
-import { devOnlyText, isDev, isPlaceholder } from "@/lib/placeholder";
 
 interface FooterLink {
   label: string;
@@ -133,20 +132,6 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
-        {(() => {
-          const signoffRaw =
-            "Building useful systems, raising a family, and trying to leave things clearer than I found them.";
-          const signoffVisible = isDev || !isPlaceholder(signoffRaw);
-          return signoffVisible ? (
-            <p
-              className="mt-10 pt-6 border-t border-border text-sm italic text-muted-foreground max-w-2xl"
-              data-testid="footer-signoff"
-            >
-              {devOnlyText(signoffRaw)}
-            </p>
-          ) : null;
-        })()}
 
         <div className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           <p className="text-sm text-muted-foreground">

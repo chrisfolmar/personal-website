@@ -157,8 +157,8 @@ function About() {
                   Business Systems Leader.
                 </strong>{" "}
                 My remit has expanded from product engineering into the systems
-                behind Fullscript — ERP, WMS, fulfillment, finance, and
-                catalog.
+                behind Fullscript — ERP, WMS, fulfillment, finance,
+                catalog, and customer support.
               </p>
               <p>
                 <strong className="text-foreground">

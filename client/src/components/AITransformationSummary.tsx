@@ -4,6 +4,15 @@
 // human-voice variant of the time-back idea. The operator-voice
 // variant of the time-back idea lives in the résumé bullet. All other
 // surfaces must reword these ideas instead of repeating the phrasings.
+//
+// Pillar decision (task #68): kept the three-tier Easy Wins / Initiatives
+// / Reworks model — it's the real triage model from the Team GSD case
+// study, not a marketing scaffold, so a fourth pillar would have been
+// invented to fill space. Rewrote each body to name the actual tooling
+// stack (n8n, ChatGPT Enterprise, NotebookLM) and, in the Easy Wins
+// pillar, to back the claim with the case study's 40%+ across five
+// departments / zero added headcount numbers instead of a generic
+// "removes friction" line.
 import { memo } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Sparkles } from "lucide-react";
@@ -15,15 +24,15 @@ import SystemsMap from "./SystemsMap";
 const pillars = [
   {
     label: "Easy Wins",
-    body: "Small, high-leverage automations shipped in days that remove friction this week.",
+    body: "Small n8n and ChatGPT Enterprise automations shipped in days — the weekly reconciliation, the support-triage backlog, the recurring report nobody wants to draft. They compound: this is how five departments got back 40%+ of their operational time with zero added headcount.",
   },
   {
     label: "Initiatives",
-    body: "Cross-team workflows shipped in weeks that connect systems and replace recurring manual work.",
+    body: "Cross-team workflows shipped in weeks that connect NetSuite, the warehouse, the helpdesk, and the catalog so the same fact stops being entered four times. Sized to ship inside a quarter — not to live on a roadmap forever.",
   },
   {
     label: "Reworks",
-    body: "Workflows worth redesigning end-to-end with AI as a first-class participant.",
+    body: "Workflows worth redesigning end-to-end with AI as a first-class participant — institutional knowledge stitched together in NotebookLM, intake reshaped so the model drafts and a human decides.",
   },
 ];
 
@@ -45,7 +54,7 @@ function AITransformationSummary() {
             <SectionHeader
               eyebrow="AI Transformation · Team GSD"
               title="Most AI projects fail because the operating model around them is wrong. Team GSD is the part I work on."
-              description="Team GSD exists to take the work people shouldn't have to do — the copy/paste, the reconciliation, the one-hundredth version of the same email — and turn it into systems that just run. The goal isn't to replace anyone. It's to give every team back the time to do work that actually moves the business forward."
+              description="Team GSD takes the work people shouldn't have to do — the copy/paste, the reconciliation, the one-hundredth version of the same email — and turns it into systems that just run. The goal isn't to replace anyone. It's to give every team back the time to do work that moves the business forward."
               className="mb-0"
             />
           </div>

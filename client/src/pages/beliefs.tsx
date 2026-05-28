@@ -78,7 +78,7 @@ export default function BeliefsPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Things I believe"
-          title="Working theories about how the work actually gets done."
+          title="Working theories about how things actually get done."
           description="Opinions I currently hold about engineering, operations, leadership, and life around the work. Dated, updatable, and open to disagreement."
         />
 

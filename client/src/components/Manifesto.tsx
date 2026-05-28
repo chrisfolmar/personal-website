@@ -26,11 +26,6 @@ function Manifesto() {
               their way.
             </p>
             <p>
-              Sometimes that means software. Sometimes it means an internal
-              tool, a clearer process, a better handoff, or simply making
-              information easier to find and trust.
-            </p>
-            <p>
               The work I care about usually starts with a simple question:{" "}
               <em>Why does this feel harder than it needs to?</em>
             </p>
@@ -43,20 +38,9 @@ function Manifesto() {
               tooling or clearer communication make the day feel less chaotic?
             </p>
             <p>
-              At Fullscript, I've worked across business systems, post-order
-              operations, internal tooling, Customer Success workflows,
-              finance and operations processes, AI-enabled automation, and
-              team operating models. The common thread is not a specific
-              technology stack. It's trying to make work clearer, more
-              reliable, and more useful for the people depending on it.
-            </p>
-            <p>
               I like practical systems. The kind that reduce noise. The kind
               that help teams move. The kind that make someone's job a little
-              less frustrating. I'm excited about AI and automation, but only
-              when they're pointed at real problems — the goal isn't to
-              replace judgment, it's to give people more time and space to use
-              it.
+              less frustrating.
             </p>
             <p>
               I'm trying to build a career and a body of work around that

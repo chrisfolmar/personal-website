@@ -44,7 +44,6 @@ function WhatIDo() {
         <SectionHeader
           eyebrow="What I do"
           title="What I'm useful for."
-          description="Every team I've led, every system I've rebuilt, and every AI workflow I've shipped has come back to one of these four."
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">

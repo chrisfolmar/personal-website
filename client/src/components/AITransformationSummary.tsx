@@ -54,7 +54,7 @@ function AITransformationSummary() {
             <SectionHeader
               eyebrow="AI Transformation · Team GSD"
               title="Most AI projects fail because the operating model around them is wrong. Team GSD is the part I work on."
-              description="Team GSD takes the work people shouldn't have to do — the copy/paste, the reconciliation, the one-hundredth version of the same email — and turns it into systems that just run. The goal isn't to replace anyone. It's to give every team back the time to do work that moves the business forward."
+              description="Team GSD takes the work people shouldn't have to do — the copy/paste, the reconciliation, the one-hundredth version of the same email — and turns it into systems that just run."
               className="mb-0"
             />
           </div>

@@ -118,7 +118,7 @@ export default function Resume() {
                   View on LinkedIn
                 </a>
               </Button>
-              <p className="text-xs text-muted-foreground md:text-right max-w-[220px]">
+              <p className="font-mono text-xs text-muted-foreground md:text-right max-w-[220px] tracking-wide">
                 Downloadable PDF coming soon.
               </p>
             </div>

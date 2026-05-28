@@ -29,22 +29,39 @@ function isoDate(input?: string): string {
 }
 
 export function buildSitemapEntries(): UrlEntry[] {
-  const today = isoDate();
   const entries: UrlEntry[] = [
-    { loc: `${SITE}/`, lastmod: today, changefreq: "weekly", priority: "1.0" },
-    { loc: `${SITE}/about`, lastmod: today, changefreq: "monthly", priority: "0.8" },
-    { loc: `${SITE}/resume`, lastmod: today, changefreq: "monthly", priority: "0.8" },
-    { loc: `${SITE}/now`, lastmod: today, changefreq: "monthly", priority: "0.7" },
-    { loc: `${SITE}/contact`, lastmod: today, changefreq: "yearly", priority: "0.6" },
-    { loc: `${SITE}/writing`, lastmod: today, changefreq: "weekly", priority: "0.9" },
-    { loc: `${SITE}/beliefs`, lastmod: today, changefreq: "monthly", priority: "0.6" },
-    { loc: `${SITE}/case-studies`, lastmod: today, changefreq: "monthly", priority: "0.9" },
+    // Static pages — lastmod reflects the last meaningful content change,
+    // not today's date. Update these when the page content is significantly
+    // revised. Using today's date for every crawl would signal false freshness
+    // to Google and dilute crawl budget on unchanged pages.
+    { loc: `${SITE}/`, lastmod: "2026-05-27", changefreq: "weekly", priority: "1.0" },
+    { loc: `${SITE}/about`, lastmod: "2026-05-01", changefreq: "monthly", priority: "0.8" },
+    { loc: `${SITE}/resume`, lastmod: "2026-04-01", changefreq: "monthly", priority: "0.8" },
+    { loc: `${SITE}/now`, lastmod: "2026-05-01", changefreq: "monthly", priority: "0.7" },
+    { loc: `${SITE}/contact`, lastmod: "2026-04-01", changefreq: "yearly", priority: "0.6" },
+    { loc: `${SITE}/writing`, lastmod: "2026-05-01", changefreq: "weekly", priority: "0.9" },
+    { loc: `${SITE}/beliefs`, lastmod: "2026-05-01", changefreq: "monthly", priority: "0.6" },
+    { loc: `${SITE}/case-studies`, lastmod: "2026-05-01", changefreq: "monthly", priority: "0.9" },
     // /services is the freelance landing page — priority 0.9 because it's
     // the primary surface for local SEO discovery (Seacoast NH, Southern
     // ME, North Shore MA). Without an XML sitemap entry, Google would
     // discover it only via internal links, which slows indexing.
-    { loc: `${SITE}/services`, lastmod: today, changefreq: "monthly", priority: "0.9" },
+    { loc: `${SITE}/services`, lastmod: "2026-05-01", changefreq: "monthly", priority: "0.9" },
   ];
+
+  // Intentionally excluded routes (not in this sitemap):
+  //   /sitemap       — HTML sitemap page; a navigational utility, not content.
+  //                    Including it would be redundant with sitemap.xml itself.
+  //   /not-found     — 404 handler; should never be indexed.
+  //   /blog/:id      — External posts (externalUrl set) are excluded below;
+  //                    their canonical home is the third-party publication.
+  //                    The /blog/:id route for external posts just redirects,
+  //                    so there is no indexable content there.
+  //
+  // Low-priority inclusions (included below, not excluded):
+  //   /project/:id   — Legacy project detail pages are orphaned (no nav links).
+  //                    Kept at priority 0.5 for passive discoverability;
+  //                    remove the loop below if these pages are retired.
 
   // Visible blog posts (excludes hidden: true and external posts whose
   // canonical home is elsewhere — see BlogPost.externalUrl).
@@ -61,17 +78,25 @@ export function buildSitemapEntries(): UrlEntry[] {
     });
   }
 
-  // Case studies
+  // Case studies — lastmod reflects when each study was written/published.
+  // Update these when a study's content is significantly revised.
+  const caseStudyDates: Record<string, string> = {
+    "scaling-bse-throughput": "2026-05-01",
+    "asana-async-information-flow": "2026-05-01",
+    "erp-wms-modernization": "2026-05-01",
+    "team-gsd-ai-transformation": "2026-05-01",
+  };
   for (const study of caseStudies) {
     entries.push({
       loc: `${SITE}/case-studies/${study.slug}`,
-      lastmod: today,
+      lastmod: caseStudyDates[study.slug] ?? "2026-05-01",
       changefreq: "monthly",
       priority: "0.8",
     });
   }
 
-  // Project detail pages
+  // Project detail pages — legacy pages kept for SEO discoverability;
+  // no nav links point here. Low priority. See exclusions note above.
   for (const project of projects) {
     entries.push({
       loc: `${SITE}/project/${projectIdSegment(project)}`,

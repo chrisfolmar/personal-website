@@ -1,11 +1,11 @@
 {
-  "name": "Chris Folmar - Software Engineering Manager",
+  "name": "Chris Folmar — Engineering Manager & AI Transformation Leader",
   "short_name": "Chris Folmar",
-  "description": "Personal portfolio website of Chris Folmar, Software Engineering Manager and AI-first tech leader.",
+  "description": "Personal portfolio website of Chris Folmar, Engineering Manager and AI Transformation Leader at Fullscript.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4F46E5",
+  "background_color": "#f0e8d0",
+  "theme_color": "#1e3a5f",
   "icons": [
     {
       "src": "/cf-favicon-small.png",

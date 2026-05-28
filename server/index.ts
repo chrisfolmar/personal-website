@@ -37,9 +37,10 @@ app.use(
         // ignore 'unsafe-inline' when a nonce is also present, so the
         // two are mutually exclusive.
         scriptSrc: isDev
-          ? ["'self'", "'unsafe-inline'"]
+          ? ["'self'", "'unsafe-inline'", "https://www.googletagmanager.com"]
           : [
               "'self'",
+              "https://www.googletagmanager.com",
               (_req: IncomingMessage, res: ServerResponse) =>
                 `'nonce-${(res as ServerResponse & { locals: { cspNonce: string } }).locals.cspNonce}'`,
             ],
@@ -47,7 +48,15 @@ app.use(
         styleSrcElem: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
         imgSrc: ["'self'", "data:", "blob:", "https:"],
-        connectSrc: ["'self'", "https:", "wss:", "ws:"],
+        connectSrc: [
+          "'self'",
+          "https:",
+          "wss:",
+          "ws:",
+          "https://www.google-analytics.com",
+          "https://analytics.google.com",
+          "https://www.googletagmanager.com",
+        ],
         frameAncestors: ["'none'"],
         objectSrc: ["'none'"],
         upgradeInsecureRequests: isDev ? null : [],

@@ -1,4 +1,5 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
+import { useEffect } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -20,12 +21,24 @@ import Resume from "@/pages/resume";
 import WritingIndex from "@/pages/writing";
 import BeliefsPage from "@/pages/beliefs";
 import ServicesPage from "@/pages/services";
+import { initAnalytics, trackPageView } from "@/lib/analytics";
+
+initAnalytics();
+
+function PageViewTracker() {
+  const [location] = useLocation();
+  useEffect(() => {
+    trackPageView(location);
+  }, [location]);
+  return null;
+}
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <ErrorBoundary>
+          <PageViewTracker />
           <Header />
           <Switch>
             <Route path="/" component={HomePage} />

@@ -141,6 +141,9 @@ export default function Footer() {
             Durham, NH
           </p>
         </div>
+        <p className="mt-4 text-xs text-muted-foreground/60">
+          This site uses Google Analytics to understand visit patterns.
+        </p>
       </div>
     </footer>
   );

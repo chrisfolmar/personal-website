@@ -55,14 +55,15 @@ export default function HomePage() {
       >
         <Link
           href="/contact"
-          className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+          className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-background text-foreground font-medium hover:bg-background/90 transition-colors"
+          style={{ boxShadow: "3px 3px 0 hsl(var(--marker))" }}
         >
           Get in touch
           <ArrowRight className="h-4 w-4" />
         </Link>
         <Link
           href="/resume"
-          className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-background/30 text-background hover:bg-background/10 transition-colors"
+          className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-background/50 text-background hover:bg-background/10 transition-colors"
         >
           Read the résumé
         </Link>

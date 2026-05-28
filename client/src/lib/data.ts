@@ -44,7 +44,7 @@ export const experiences: Experience[] = [
       "Built the foundation as a full-stack engineer across a series of New England product and consulting companies — Lead Solution Engineer at AI Foundry, Lead Full-Stack Software Engineer at Relianta, Full-Stack Software Engineer at PixelMEDIA, and earlier engineering work starting at Freeport Metrics in Portland, Maine after finishing my Computer Science degree at the University of Southern Maine. Five years of shipping production code across web, mobile, and backend services for real customers — the experience that shaped how I still think about delivering software end-to-end.",
   },
   {
-    title: "Freelance WordPress Developer",
+    title: "Freelance Developer",
     company: "Self-employed",
     period: "2020 - Present",
     description:

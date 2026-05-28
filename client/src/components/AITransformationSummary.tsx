@@ -24,11 +24,15 @@ import SystemsMap from "./SystemsMap";
 const pillars = [
   {
     label: "Easy Wins",
-    body: "Small n8n and ChatGPT Enterprise automations shipped in days — the weekly reconciliation, the support-triage backlog, the recurring report nobody wants to draft. They compound: this is how five departments got back 40%+ of their operational time with zero added headcount.",
+    body: "2-3 week committed sprints with a business partner to build an n8n workflow or solution — the weekly reconciliation, the support-triage backlog, the recurring report nobody wants to draft.",
+  },
+  {
+    label: "R&D",
+    body: "Two weeks of protected time with a stakeholder to build something real, fast. Check-in at the end of week one. Prototype or lessons learned by the end of week two. The goal isn't production — it's proving the idea is worth continuing or shifting to a more formal initiative.",
   },
   {
     label: "Initiatives",
-    body: "Cross-team workflows shipped in weeks that connect NetSuite, the warehouse, the helpdesk, and the catalog so the same fact stops being entered four times. Sized to ship inside a quarter — not to live on a roadmap forever.",
+    body: "AI-first, cross-functional efforts that connect disparate systems and deliver value you can measure in hours saved. Usually driven by a pain point that touches multiple teams. Sized to ship inside a quarter — not to live on a roadmap forever.",
   },
   {
     label: "Reworks",
@@ -60,7 +64,7 @@ function AITransformationSummary() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5 md:gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
           {pillars.map((p, i) => (
             <FadeIn
               key={p.label}

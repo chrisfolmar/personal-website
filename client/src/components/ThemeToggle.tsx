@@ -13,7 +13,7 @@ export default function ThemeToggle({ isMobile = false }: ThemeToggleProps) {
     <button
       id={id}
       onClick={toggleTheme}
-      className="bg-gray-200 dark:bg-gray-700 rounded-full w-12 h-6 flex items-center p-1 focus:outline-none"
+      className="bg-gray-200 dark:bg-gray-700 rounded-full w-12 h-6 flex items-center p-1 focus:outline-none ring-1 ring-[hsl(var(--marker))] ring-offset-1 ring-offset-background"
       aria-label="Toggle dark mode"
     >
       <span 

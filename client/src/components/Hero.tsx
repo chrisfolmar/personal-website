@@ -148,7 +148,7 @@ export default function Hero() {
             <div className="mt-9 flex flex-col sm:flex-row sm:items-center sm:flex-wrap gap-3 sm:gap-x-4 sm:gap-y-3">
               <Link
                 href="/contact"
-                className="inline-flex w-full sm:w-auto items-center justify-center sm:justify-start gap-2 px-6 py-3.5 rounded-md bg-primary text-primary-foreground text-base font-semibold shadow-[4px_4px_0_hsl(var(--marker))] hover:shadow-[5px_5px_0_hsl(var(--marker))] dark:shadow-[4px_4px_0_hsl(215_60%_10%)] dark:hover:shadow-[5px_5px_0_hsl(215_60%_10%)] hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background transition-all"
+                className="inline-flex w-full sm:w-auto items-center justify-center sm:justify-start gap-2 px-6 py-3.5 rounded-md bg-primary text-primary-foreground text-base font-semibold shadow-[4px_4px_0_hsl(var(--marker))] hover:shadow-[5px_5px_0_hsl(var(--marker))] dark:shadow-[4px_4px_0_hsl(43_50%_92%/0.25)] dark:hover:shadow-[5px_5px_0_hsl(43_50%_92%/0.25)] hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background transition-all"
               >
                 Get in touch
                 <ArrowRight className="h-4 w-4" />

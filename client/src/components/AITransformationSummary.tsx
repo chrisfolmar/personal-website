@@ -53,7 +53,7 @@ function AITransformationSummary() {
           <div className="lg:col-span-7">
             <SectionHeader
               eyebrow="AI Transformation · Team GSD"
-              title="Most AI projects fail because the operating model around them is wrong."
+              title="Most AI projects fail because the operating model around them is wrong. Team GSD is the part I work on."
               description="Team GSD takes the work people shouldn't have to do — the copy/paste, the reconciliation, the one-hundredth version of the same email — and turns it into systems that just run."
               className="mb-0"
             />

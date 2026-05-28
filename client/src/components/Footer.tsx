@@ -103,7 +103,7 @@ export default function Footer() {
               }}
             >
               <span className="text-foreground">Chris</span>
-              <span className="text-foreground/60">Folmar</span>
+              <span className="text-foreground/80">Folmar</span>
               <span className="text-primary">.</span>
             </Link>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
@@ -141,7 +141,7 @@ export default function Footer() {
             Durham, NH
           </p>
         </div>
-        <p className="mt-4 text-xs text-muted-foreground/60">
+        <p className="mt-4 text-xs text-muted-foreground">
           This site uses Google Analytics to understand visit patterns.
         </p>
       </div>

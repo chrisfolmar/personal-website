@@ -24,7 +24,7 @@ const navItems: NavItem[] = [
 ];
 
 const desktopLinkClasses =
-  "text-sm font-medium text-foreground/70 hover:text-primary transition-colors";
+  "text-sm font-medium text-muted-foreground hover:text-primary transition-colors";
 const mobileLinkClasses =
   "block px-4 py-2 text-foreground/80 hover:bg-muted rounded-md text-sm font-medium";
 
@@ -95,13 +95,13 @@ export default function Header() {
             }}
           >
             <span className="text-foreground">Chris</span>
-            <span className="text-foreground/60">Folmar</span>
+            <span className="text-foreground/80">Folmar</span>
             <span className="text-primary">.</span>
           </Link>
 
           <button
             id="menu-toggle"
-            className="lg:hidden text-foreground/70 focus:outline-none"
+            className="lg:hidden text-foreground/80 focus:outline-none"
             aria-label="Toggle navigation menu"
             onClick={toggleMobileMenu}
           >
@@ -125,7 +125,7 @@ export default function Header() {
         <div className="container mx-auto px-4 flex flex-col space-y-1">
           {navItems.map((item) => renderNavItem(item, true))}
           <div className="px-4 py-3 flex items-center justify-between border-t border-border mt-2">
-            <span className="text-sm text-foreground/70">Dark mode</span>
+            <span className="text-sm text-muted-foreground">Dark mode</span>
             <ThemeToggle isMobile />
           </div>
         </div>

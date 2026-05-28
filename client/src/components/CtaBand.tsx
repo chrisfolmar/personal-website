@@ -14,11 +14,11 @@ function CtaBand({ eyebrow, title, description, children }: CtaBandProps) {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn className="max-w-3xl">
           {eyebrow ? (
-            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-4">
+            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-background/60 mb-4">
               {eyebrow}
             </div>
           ) : null}
-          <h2 className="font-display text-3xl md:text-5xl font-semibold leading-[1.1] tracking-tight">
+          <h2 className="font-display text-3xl md:text-5xl font-semibold leading-[1.1] tracking-tight text-background">
             {title}
           </h2>
           {description ? (

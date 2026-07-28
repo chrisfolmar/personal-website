@@ -778,6 +778,11 @@ export const socials: Social[] = [
 export const caseStudies: CaseStudy[] = [
   {
     slug: "scaling-bse-throughput",
+    // Surfaced in the /writing "Start here" row so the featured set
+    // spans 2024 (Feedback), 2025 (this), and 2026 (Team GSD Year 1).
+    featuredInWriting: true,
+    date: "2025-05-12",
+    readTime: "7 min read",
     title: "Scaling BSE Project Throughput by ~300%",
     summary:
       "How we tripled what the Business Systems Engineering org could ship without adding headcount — by fixing the operating model, not the people.",

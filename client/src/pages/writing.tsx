@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useLocation, useSearch } from "wouter";
 import SectionHeader from "@/components/SectionHeader";
 import WritingCard from "@/components/WritingCard";
-import { visibleBlogPosts } from "@/lib/data";
+import { caseStudies, visibleBlogPosts } from "@/lib/data";
 import { WRITING_METADATA, WRITING_PATH } from "@/lib/metadata/routes";
 import { usePageSeo } from "@/lib/metadata/usePageSeo";
 import { cn } from "@/lib/utils";
@@ -27,10 +27,40 @@ export default function WritingIndex() {
   // visitor landing cold on /writing sees the posts worth their time
   // first, not just the most recent. Driven by `featured: true` in
   // data.ts.
-  const featuredPosts = useMemo(
-    () => posts.filter((p) => p.featured).slice(0, 3),
-    [posts],
-  );
+  // The row can also surface case studies flagged `featuredInWriting`
+  // (with a date/readTime) so it spans the strongest piece from each
+  // year, not just blog posts.
+  const featuredItems = useMemo(() => {
+    const fromPosts = posts
+      .filter((p) => p.featured)
+      .map((p) => ({
+        key: `post-${p.id}`,
+        id: p.id,
+        title: p.title,
+        excerpt: p.excerpt,
+        date: p.date,
+        readTime: p.readTime,
+        category: p.category,
+        externalUrl: p.externalUrl,
+        href: undefined as string | undefined,
+      }));
+    const fromCaseStudies = caseStudies
+      .filter((s) => s.featuredInWriting && s.date)
+      .map((s, i) => ({
+        key: `case-study-${s.slug}`,
+        id: -(i + 1),
+        title: s.title,
+        excerpt: s.summary,
+        date: s.date as string,
+        readTime: s.readTime ?? "Case study",
+        category: "Case Study",
+        externalUrl: undefined as string | undefined,
+        href: `/case-studies/${s.slug}`,
+      }));
+    return [...fromPosts, ...fromCaseStudies]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 3);
+  }, [posts]);
 
   usePageSeo(WRITING_METADATA);
 
@@ -123,7 +153,7 @@ export default function WritingIndex() {
           })()}
         </SectionHeader>
 
-        {featuredPosts.length > 0 && activeCategory === ALL_CATEGORIES ? (
+        {featuredItems.length > 0 && activeCategory === ALL_CATEGORIES ? (
           <section
             aria-labelledby="writing-start-here"
             className="mb-10 md:mb-12"
@@ -139,18 +169,19 @@ export default function WritingIndex() {
               <span className="h-px flex-1 bg-border" aria-hidden />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-              {featuredPosts.map((post, i) => (
+              {featuredItems.map((item, i) => (
                 <WritingCard
-                  key={`featured-${post.id}`}
-                  id={post.id}
-                  title={post.title}
-                  excerpt={post.excerpt}
-                  date={post.date}
-                  readTime={post.readTime}
-                  category={post.category}
+                  key={`featured-${item.key}`}
+                  id={item.id}
+                  title={item.title}
+                  excerpt={item.excerpt}
+                  date={item.date}
+                  readTime={item.readTime}
+                  category={item.category}
                   delay={i * 0.05}
-                  externalUrl={post.externalUrl}
-                  externalSource={post.externalUrl ? "Fullscript Builders Corner" : undefined}
+                  externalUrl={item.externalUrl}
+                  externalSource={item.externalUrl ? "Fullscript Builders Corner" : undefined}
+                  href={item.href}
                 />
               ))}
             </div>

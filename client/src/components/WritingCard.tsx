@@ -18,6 +18,10 @@ interface WritingCardProps {
   // visitor knows they're leaving the site before clicking.
   externalUrl?: string;
   externalSource?: string;
+  // When set, the card links to this internal path instead of
+  // `/blog/{id}` — used to surface case studies in the /writing
+  // featured row.
+  href?: string;
 }
 
 function WritingCard({
@@ -30,6 +34,7 @@ function WritingCard({
   delay = 0,
   externalUrl,
   externalSource,
+  href,
 }: WritingCardProps) {
   const cardClassName =
     "group flex h-full flex-col bg-card border border-border rounded-md p-7 transition-all hover:border-primary/40 hover:shadow-md";
@@ -89,7 +94,7 @@ function WritingCard({
           {body}
         </a>
       ) : (
-        <Link href={`/blog/${id}`} className={cardClassName}>
+        <Link href={href ?? `/blog/${id}`} className={cardClassName}>
           {body}
         </Link>
       )}

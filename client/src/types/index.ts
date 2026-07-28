@@ -89,4 +89,10 @@ export interface CaseStudy {
   tools: string[];
   lessonsLearned: string[];
   featured?: boolean; // When true, sorted to the top of /case-studies
+  // When true, the study also appears in the "Start here" featured row
+  // on /writing alongside featured blog posts. Requires `date` (and
+  // ideally `readTime`) so the card renders like a post card.
+  featuredInWriting?: boolean;
+  date?: string;
+  readTime?: string;
 }

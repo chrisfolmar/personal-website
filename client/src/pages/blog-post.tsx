@@ -28,6 +28,16 @@ const COVER_DERIVATIVES: Record<string, string> = {
   "/images/blog/ai-tools-guide.png": "/images/blog/ai-tools-guide",
 };
 
+// Images whose important content (title text) sits at the top — use
+// object-position:top so the crop never cuts off the headline.
+// Portrait and square cover images need this; native-16:9 images do not.
+const COVER_OBJECT_POSITION: Record<string, string> = {
+  "/images/blog/wordpress-small-business.png": "top",
+  "/images/blog/minimum-cost-approach.png": "top",
+  "/images/blog/healthcare-websites.png": "top",
+  "/images/blog/perfect-balance.png": "top",
+};
+
 interface CoverImage {
   src: string;
   sources?: ResponsiveImageSource[];
@@ -150,6 +160,7 @@ export default function BlogPost() {
   const relatedPosts = relatedPostsForPost(post, 3);
   const relatedStudies = relatedCaseStudiesForPost(post, 2);
   const coverImage = buildCoverImageSources(post.coverImage);
+  const coverObjectPosition = COVER_OBJECT_POSITION[post.coverImage];
 
   const supersedingPost = post.supersededBy
     ? blogPosts.find((p) => p.id === post.supersededBy)
@@ -257,6 +268,7 @@ export default function BlogPost() {
                 width: "100%",
               }}
               objectFit="cover"
+              style={coverObjectPosition ? { objectPosition: coverObjectPosition } : undefined}
               aspectRatio="16/9"
               loading="eager"
               fetchPriority="high"

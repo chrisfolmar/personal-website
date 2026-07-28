@@ -326,7 +326,8 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: 8,
-    featured: true,
+    hidden: true,
+    archiveNote: "This article reflected an early take on AI-powered web development. My current work has moved well beyond WordPress comparisons.",
     title: "Why I Stopped Recommending WordPress: The Rise of AI-Powered Web Development",
     excerpt: "After years of building WordPress sites for small businesses, I've completely changed my approach. Agentic coding tools like Claude Code, Replit, and Gemini have made it possible to build better websites faster — without the $300+ annual license fees.",
     date: "2026-02-10",

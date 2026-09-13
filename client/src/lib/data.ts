@@ -310,6 +310,24 @@ export const contact: Contact = {
 export const blogPosts: BlogPost[] = [
   {
     // External post (per the externalUrl convention on BlogPost).
+    // The published article is the canonical 2025 entry in /writing's
+    // three-year "Start here" set; the related internal case study remains
+    // available on /case-studies without duplicating this featured card.
+    id: 10,
+    featured: true,
+    title:
+      "How to Increase Project Throughput by 300% with a Scalable Project Lead Framework",
+    excerpt:
+      "How a scalable Project Lead framework tripled delivery throughput without adding headcount—by giving developers clearer ownership and a practical path into technical leadership.",
+    date: "2025-10-09",
+    coverImage: "/og-default.png",
+    category: "Engineering Leadership",
+    readTime: "4 min read",
+    externalUrl:
+      "https://builders.fullscript.com/posts/how-to-increase-project-throughput",
+  },
+  {
+    // External post (per the externalUrl convention on BlogPost).
     // Lives on Fullscript Builders Corner — Chris's year-one retrospective on
     // the Team GSD effort. No `content` field: we link out instead of
     // republishing, and the canonical URL is the Builders Corner post.
@@ -778,9 +796,6 @@ export const socials: Social[] = [
 export const caseStudies: CaseStudy[] = [
   {
     slug: "scaling-bse-throughput",
-    // Surfaced in the /writing "Start here" row so the featured set
-    // spans 2024 (Feedback), 2025 (this), and 2026 (Team GSD Year 1).
-    featuredInWriting: true,
     date: "2025-05-12",
     readTime: "7 min read",
     title: "Scaling BSE Project Throughput by ~300%",

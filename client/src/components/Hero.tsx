@@ -86,7 +86,7 @@ function PortraitFrame() {
           style={{ background: "hsl(var(--marker))" }}
         />
         <span className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-muted-foreground">
-          /chris · ottawa, on · 2026
+          /chris · ottawa, on · 2025
         </span>
       </div>
     </div>

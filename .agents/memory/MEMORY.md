@@ -1,0 +1,1 @@
+- [Contact delivery verification](contact-delivery-verification.md) — confirm provider delivery and inbox receipt; API acceptance alone is insufficient.

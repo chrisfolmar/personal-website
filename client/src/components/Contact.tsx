@@ -17,6 +17,12 @@ import { SiGithub, SiLinkedin, SiX, SiInstagram, SiMedium } from "react-icons/si
 import { ExtendedContactFormData } from "@/types";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
+interface ContactResponse {
+  success: true;
+  deliveryStatus: "sent" | "stored";
+  id: number;
+}
+
 const formSchema = z.object({
   name: z.string()
     .min(2, { message: "Name must be at least 2 characters long" })
@@ -53,7 +59,7 @@ const formSchema = z.object({
 
 export default function Contact() {
   const { toast } = useToast();
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'stored' | 'error'>('idle');
   const formStartTimeRef = useRef<number>(Date.now());
   const [botDetected, setBotDetected] = useState(false);
 
@@ -73,21 +79,26 @@ export default function Contact() {
   });
 
   const mutation = useMutation({
-    mutationFn: (data: ExtendedContactFormData) =>
-      apiRequest("POST", "/api/contact", {
+    mutationFn: async (data: ExtendedContactFormData): Promise<ContactResponse> => {
+      const response = await apiRequest("POST", "/api/contact", {
         name: data.name,
         email: data.email,
         subject: data.subject,
         message: data.message,
-      }),
+      });
+      return response.json();
+    },
     onMutate: () => {
       setFormStatus('submitting');
     },
-    onSuccess: () => {
-      setFormStatus('success');
+    onSuccess: (response) => {
+      const notificationSent = response.deliveryStatus === "sent";
+      setFormStatus(notificationSent ? 'success' : 'stored');
       toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I will get back to you soon.",
+        title: notificationSent ? "Message sent!" : "Message safely received",
+        description: notificationSent
+          ? "Thank you for your message. I will get back to you soon."
+          : "Your message was saved, but the email notification is delayed. You can also email me directly if your request is urgent.",
       });
       form.reset();
       formStartTimeRef.current = Date.now();
@@ -245,6 +256,19 @@ export default function Contact() {
                     </Alert>
                   )}
 
+                  {formStatus === 'stored' && (
+                    <Alert className="bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800">
+                      <CheckCircle2 className="h-4 w-4 text-amber-700 dark:text-amber-400" />
+                      <AlertDescription className="text-amber-900 dark:text-amber-200">
+                        Your message was safely saved, but the email notification is delayed.
+                        If your request is urgent, email me directly at{" "}
+                        <a className="underline font-medium" href={`mailto:${contact.email}`}>
+                          {contact.email}
+                        </a>.
+                      </AlertDescription>
+                    </Alert>
+                  )}
+
                   {formStatus === 'error' && (
                     <Alert variant="destructive">
                       <AlertOctagon className="h-4 w-4" />
@@ -266,12 +290,14 @@ export default function Contact() {
                   <Button
                     type="submit"
                     className="w-full"
-                    disabled={mutation.isPending || formStatus === 'success'}
+                    disabled={mutation.isPending || formStatus === 'success' || formStatus === 'stored'}
                   >
                     {mutation.isPending
                       ? "Sending…"
-                      : formStatus === 'success'
-                        ? "Message sent"
+                       : formStatus === 'success'
+                         ? "Message sent"
+                         : formStatus === 'stored'
+                           ? "Message received"
                         : "Send message"}
                   </Button>
                 </form>

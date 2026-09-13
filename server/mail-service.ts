@@ -1,138 +1,91 @@
-import { MailService } from '@sendgrid/mail';
-import { Message } from '@shared/schema';
+import { Resend } from "resend";
+import type { Message } from "@shared/schema";
 
-if (!process.env.SENDGRID_API_KEY) {
-  console.warn("SENDGRID_API_KEY environment variable is not set. Email notifications will not work.");
+const ADMIN_EMAIL = process.env.CONTACT_TO_EMAIL ?? "contact@chrisfolmar.com";
+const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "contact@chrisfolmar.com";
+
+export interface EmailDeliveryResult {
+  sent: boolean;
+  providerMessageId?: string;
 }
 
-const mailService = new MailService();
-if (process.env.SENDGRID_API_KEY) {
-  mailService.setApiKey(process.env.SENDGRID_API_KEY);
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
-const ADMIN_EMAIL = 'contact@chrisfolmar.com';
-// Using the verified sender email from SendGrid
-const FROM_EMAIL = 'contact@chrisfolmar.com';
+export async function sendContactFormEmail(
+  message: Message,
+): Promise<EmailDeliveryResult> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error(
+      `Contact notification unavailable: RESEND_API_KEY is not configured (messageId=${message.id})`,
+    );
+    return { sent: false };
+  }
 
-export async function sendContactFormEmail(message: Message): Promise<boolean> {
+  const resend = new Resend(apiKey);
+  const currentDate = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  const safeName = escapeHtml(message.name);
+  const safeEmail = escapeHtml(message.email);
+  const safeSubject = escapeHtml(message.subject);
+  const safeMessage = escapeHtml(message.message).replace(/\n/g, "<br>");
+
   try {
-    // Check for SendGrid API key
-    if (!process.env.SENDGRID_API_KEY) {
-      console.error("CRITICAL: Cannot send email: SENDGRID_API_KEY is not set in environment");
-      return false;
-    }
-    
-    // Format the email content
-    const emailSubject = `Website Contact Form: ${message.subject}`;
-    const currentDate = new Date().toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-    
-    // Create the email payload with additional metadata for debugging
-    const emailData = {
+    const { data, error } = await resend.emails.send({
       to: ADMIN_EMAIL,
-      from: {
-        email: FROM_EMAIL,
-        name: 'Chris Folmar Portfolio'
-      },
-      subject: emailSubject,
-      text: `
-New website contact form submission on ${currentDate}
-
-From: ${message.name} (${message.email})
-Subject: ${message.subject}
-
-Message:
-${message.message}
-
-This message was sent from your portfolio website contact form.
-      `,
-      html: `
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Contact Form Submission</title>
-</head>
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background-color: #f9f9f9; margin: 0; padding: 20px;">
-  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-    <tr>
-      <td style="padding: 25px 30px; background: linear-gradient(135deg, #4F46E5 0%, #2563EB 100%); text-align: center;">
-        <h1 style="color: white; margin: 0; font-size: 24px; font-weight: 600;">New Contact Form Submission</h1>
-        <p style="color: rgba(255,255,255,0.9); margin: 5px 0 0; font-size: 14px;">${currentDate}</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding: 30px;">
-        <table cellpadding="0" cellspacing="0" border="0" width="100%">
-          <tr>
-            <td style="padding: 10px 0; border-bottom: 1px solid #eee;">
-              <p style="font-weight: bold; margin: 0; color: #555;">Name:</p>
-              <p style="margin: 5px 0 0; font-size: 16px;">${message.name}</p>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding: 10px 0; border-bottom: 1px solid #eee;">
-              <p style="font-weight: bold; margin: 0; color: #555;">Email:</p>
-              <p style="margin: 5px 0 0; font-size: 16px;"><a href="mailto:${message.email}" style="color: #4F46E5; text-decoration: none;">${message.email}</a></p>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding: 10px 0; border-bottom: 1px solid #eee;">
-              <p style="font-weight: bold; margin: 0; color: #555;">Subject:</p>
-              <p style="margin: 5px 0 0; font-size: 16px;">${message.subject}</p>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding: 15px 0;">
-              <p style="font-weight: bold; margin: 0 0 10px; color: #555;">Message:</p>
-              <div style="background-color: #f5f7fb; padding: 15px; border-radius: 6px; margin-top: 5px; font-size: 16px; line-height: 1.6;">
-                ${message.message.replace(/\n/g, '<br>')}
-              </div>
-            </td>
-          </tr>
-        </table>
-        
-        <div style="background-color: #f7f9fc; border-left: 4px solid #4F46E5; padding: 15px; margin-top: 25px; border-radius: 4px;">
-          <p style="margin: 0; font-size: 14px; color: #64748b;">You can reply directly to this email to respond to ${message.name}.</p>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="background-color: #f7f9fc; padding: 20px; text-align: center; font-size: 12px; color: #64748b; border-top: 1px solid #eee;">
-        <p style="margin: 0;">This is an automated message from your portfolio website contact form.</p>
-        <p style="margin: 5px 0 0;">© ${new Date().getFullYear()} Chris Folmar</p>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>
-      `,
+      from: `Chris Folmar Portfolio <${FROM_EMAIL}>`,
       replyTo: message.email,
-      trackingSettings: {
-        clickTracking: {
-          enable: true
-        },
-        openTracking: {
-          enable: true
-        }
-      }
-    };
-    
-    try {
-      await mailService.send(emailData);
-      
-      return true;
-    } catch (sendgridError: any) {
-      console.error('SendGrid API error:', sendgridError?.message || 'Unknown error');
-      return false;
+      subject: `Website Contact Form: ${message.subject}`,
+      text: [
+        `New website contact form submission on ${currentDate}`,
+        "",
+        `From: ${message.name} (${message.email})`,
+        `Subject: ${message.subject}`,
+        "",
+        "Message:",
+        message.message,
+      ].join("\n"),
+      html: `
+        <!doctype html>
+        <html lang="en">
+          <body style="font-family:Arial,sans-serif;line-height:1.6;color:#172033">
+            <h1 style="font-size:22px">New contact form submission</h1>
+            <p><strong>Date:</strong> ${escapeHtml(currentDate)}</p>
+            <p><strong>Name:</strong> ${safeName}</p>
+            <p><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
+            <p><strong>Subject:</strong> ${safeSubject}</p>
+            <div style="margin-top:20px;padding:16px;background:#f5f2e8;border-left:4px solid #a67c2e">
+              ${safeMessage}
+            </div>
+            <p style="margin-top:20px;color:#586174">Reply directly to this email to respond.</p>
+          </body>
+        </html>
+      `,
+    });
+
+    if (error) {
+      console.error(
+        `Resend rejected contact notification (messageId=${message.id}, provider=${error.name})`,
+      );
+      return { sent: false };
     }
-  } catch (err: unknown) {
-    const error = err as Error;
-    console.error('Email service error:', error?.message || 'Unknown error');
-    return false;
+
+    return { sent: true, providerMessageId: data?.id };
+  } catch (error) {
+    const errorName = error instanceof Error ? error.name : "UnknownError";
+    console.error(
+      `Resend contact notification failed (messageId=${message.id}, error=${errorName})`,
+    );
+    return { sent: false };
   }
 }

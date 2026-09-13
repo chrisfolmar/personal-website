@@ -12,13 +12,14 @@ vi.mock("../../server/vite", () => ({
 }));
 
 vi.mock("../../server/mail-service", () => ({
-  sendContactFormEmail: async () => true,
+  sendContactFormEmail: async () => ({ sent: true }),
 }));
 
 const { buildContactHandler, createRateLimiterState, isSpamContent, makeRateLimiter } =
   await import("../../server/routes");
 import type { IStorage } from "../../server/storage";
 import type { Message, InsertMessage, User, InsertUser } from "../../shared/schema";
+import type { EmailDeliveryResult } from "../../server/mail-service";
 
 class StubStorage implements IStorage {
   public messages: Message[] = [];
@@ -33,23 +34,54 @@ class StubStorage implements IStorage {
     throw new Error("not used");
   }
   async createMessage(m: InsertMessage): Promise<Message> {
-    const message: Message = { id: this.nextId++, ...m };
+    const message: Message = {
+      id: this.nextId++,
+      ...m,
+      deliveryStatus: "pending",
+      providerMessageId: null,
+      receivedAt: new Date(),
+      notificationSentAt: null,
+    };
     this.messages.push(message);
     return message;
+  }
+  async updateMessageDelivery(
+    id: number,
+    delivery: {
+      deliveryStatus: "sent" | "failed";
+      providerMessageId?: string;
+      notificationSentAt?: Date;
+    },
+  ): Promise<void> {
+    const message = this.messages.find((item) => item.id === id);
+    if (!message) throw new Error("Message not found");
+    message.deliveryStatus = delivery.deliveryStatus;
+    message.providerMessageId = delivery.providerMessageId ?? null;
+    message.notificationSentAt = delivery.notificationSentAt ?? null;
   }
   async getMessages(): Promise<Message[]> {
     return this.messages;
   }
 }
 
-function makeApp(storage: IStorage, opts?: { windowMs?: number; max?: number }) {
+function makeApp(
+  storage: IStorage,
+  opts?: {
+    windowMs?: number;
+    max?: number;
+    sendEmail?: (message: Message) => Promise<EmailDeliveryResult>;
+  },
+) {
   const app = express();
   app.use(express.json());
   const limiterState = createRateLimiterState(opts?.windowMs ?? 60_000, opts?.max ?? 5);
   app.post(
     "/api/contact",
     makeRateLimiter(limiterState),
-    buildContactHandler({ storage, sendEmail: async () => true }),
+    buildContactHandler({
+      storage,
+      sendEmail: opts?.sendEmail ?? (async () => ({ sent: true })),
+    }),
   );
   return { app, limiterState };
 }
@@ -72,8 +104,62 @@ describe("contact route", () => {
     const res = await request(app).post("/api/contact").send(validBody);
     expect(res.status).toBe(201);
     expect(res.body.success).toBe(true);
+    expect(res.body.deliveryStatus).toBe("sent");
     expect(storage.messages).toHaveLength(1);
     expect(storage.messages[0].email).toBe(validBody.email);
+    expect(storage.messages[0].deliveryStatus).toBe("sent");
+  });
+
+  it("persists before attempting notification delivery", async () => {
+    const { app } = makeApp(storage, {
+      sendEmail: async (message) => {
+        expect(storage.messages.some((stored) => stored.id === message.id)).toBe(true);
+        return { sent: true, providerMessageId: "resend-message-id" };
+      },
+    });
+
+    const res = await request(app).post("/api/contact").send(validBody);
+    expect(res.status).toBe(201);
+    expect(storage.messages[0].providerMessageId).toBe("resend-message-id");
+    expect(storage.messages[0].notificationSentAt).toBeInstanceOf(Date);
+  });
+
+  it("reports a durable fallback when notification delivery fails", async () => {
+    const { app } = makeApp(storage, {
+      sendEmail: async () => ({ sent: false }),
+    });
+
+    const res = await request(app).post("/api/contact").send(validBody);
+    expect(res.status).toBe(201);
+    expect(res.body.success).toBe(true);
+    expect(res.body.deliveryStatus).toBe("stored");
+    expect(storage.messages).toHaveLength(1);
+    expect(storage.messages[0].deliveryStatus).toBe("failed");
+  });
+
+  it("keeps the durable fallback when the provider throws", async () => {
+    const { app } = makeApp(storage, {
+      sendEmail: async () => {
+        throw new Error("provider outage");
+      },
+    });
+
+    const res = await request(app).post("/api/contact").send(validBody);
+    expect(res.status).toBe(201);
+    expect(res.body.deliveryStatus).toBe("stored");
+    expect(storage.messages).toHaveLength(1);
+  });
+
+  it("returns an error when durable storage fails", async () => {
+    const failingStorage = new StubStorage();
+    failingStorage.createMessage = async () => {
+      throw new Error("database unavailable");
+    };
+    const { app } = makeApp(failingStorage);
+
+    const res = await request(app).post("/api/contact").send(validBody);
+    expect(res.status).toBe(500);
+    expect(res.body.success).toBe(false);
   });
 
   it("rejects empty body", async () => {

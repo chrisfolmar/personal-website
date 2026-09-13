@@ -4,7 +4,10 @@ import { storage as defaultStorage, type IStorage } from "./storage";
 import { insertMessageSchema, type Message } from "@shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
-import { sendContactFormEmail } from "./mail-service";
+import {
+  sendContactFormEmail,
+  type EmailDeliveryResult,
+} from "./mail-service";
 import { sitemapHandler } from "./sitemap";
 import { log } from "./vite";
 
@@ -86,7 +89,7 @@ const SUSPICIOUS_EMAIL_PATTERNS = [
 export interface ContactRouteOptions {
   storage?: IStorage;
   rateLimiterState?: RateLimiterState;
-  sendEmail?: (message: Message) => Promise<boolean>;
+  sendEmail?: (message: Message) => Promise<EmailDeliveryResult>;
 }
 
 export function buildContactHandler(opts: ContactRouteOptions = {}) {
@@ -124,13 +127,35 @@ export function buildContactHandler(opts: ContactRouteOptions = {}) {
       }
 
       const message = await storage.createMessage(validatedData);
-      const emailSent = await sendEmail(message);
+      let delivery: EmailDeliveryResult = { sent: false };
+      try {
+        delivery = await sendEmail(message);
+      } catch {
+        log(
+          `contact notification provider failed for messageId=${message.id}`,
+          "error",
+        );
+      }
+
+      try {
+        await storage.updateMessageDelivery(message.id, {
+          deliveryStatus: delivery.sent ? "sent" : "failed",
+          providerMessageId: delivery.providerMessageId,
+          notificationSentAt: delivery.sent ? new Date() : undefined,
+        });
+      } catch {
+        log(
+          `contact delivery status update failed for messageId=${message.id}`,
+          "error",
+        );
+      }
 
       res.status(201).json({
         success: true,
-        message: emailSent
-          ? "Message received successfully and email notification sent"
-          : "Message received successfully, but email notification could not be sent",
+        deliveryStatus: delivery.sent ? "sent" : "stored",
+        message: delivery.sent
+          ? "Message received and notification sent"
+          : "Message received and stored; notification delivery is delayed",
         id: message.id,
       });
     } catch (error) {

@@ -21,4 +21,33 @@ test.describe("smoke: contact", () => {
     // The browser stayed on /contact (no successful submit redirect).
     expect(page.url()).toMatch(/\/contact$/);
   });
+
+  test("shows a truthful durable-fallback message", async ({ page }) => {
+    await page.route("**/api/contact", async (route) => {
+      await route.fulfill({
+        status: 201,
+        contentType: "application/json",
+        body: JSON.stringify({
+          success: true,
+          deliveryStatus: "stored",
+          id: 123,
+        }),
+      });
+    });
+    await page.goto("/contact");
+    await page.getByLabel("Name").fill("Jane Visitor");
+    await page.getByLabel("Email").fill("jane@validdomain.io");
+    await page.getByLabel("Subject").fill("Portfolio project inquiry");
+    await page
+      .getByLabel("Message")
+      .fill("I would like to discuss a new portfolio project with you.");
+
+    await page.waitForTimeout(3100);
+    await page.getByRole("button", { name: "Send message" }).click();
+
+    await expect(
+      page.getByText(/message was safely saved, but the email notification is delayed/i),
+    ).toBeVisible();
+    await expect(page.getByRole("button", { name: "Message received" })).toBeVisible();
+  });
 });

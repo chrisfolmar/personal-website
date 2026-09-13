@@ -84,6 +84,7 @@ export interface ImpactMetric {
 
 export interface CaseStudy {
   slug: string;
+  lastModified: string;
   title: string;
   summary: string;
   problem: string;

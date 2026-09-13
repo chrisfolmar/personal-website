@@ -28,6 +28,7 @@ export interface PageSeoOptions {
   title: string;
   description: string;
   path: string;
+  lastModified?: string;
   type?: string;
   twitterCard?: "summary" | "summary_large_image";
   jsonLd?: JsonLd | JsonLd[];
@@ -37,15 +38,20 @@ export interface PageSeoOptions {
   imageAlt?: string;
 }
 
+export interface SitemapPageSeoOptions extends PageSeoOptions {
+  lastModified: string;
+}
+
 export const HOME_JSON_LD: JsonLd = {
   "@context": "https://schema.org",
   "@graph": [getPersonSchema(), getWebsiteSchema()],
 };
 
-export const HOME_METADATA: PageSeoOptions = {
+export const HOME_METADATA: SitemapPageSeoOptions = {
   title: DEFAULT_METADATA.title,
   description: DEFAULT_METADATA.description,
   path: "/",
+  lastModified: "2026-05-27",
   jsonLd: HOME_JSON_LD,
   jsonLdId: "home-jsonld",
 };
@@ -53,10 +59,11 @@ export const HOME_METADATA: PageSeoOptions = {
 export const ABOUT_TITLE = "About | Chris Folmar";
 export const ABOUT_DESCRIPTION =
   "About Chris Folmar — career arc from software developer to engineering manager, with a focus on operating-model design, business systems, and AI-enabled workflows.";
-export const ABOUT_METADATA: PageSeoOptions = {
+export const ABOUT_METADATA: SitemapPageSeoOptions = {
   title: ABOUT_TITLE,
   description: ABOUT_DESCRIPTION,
   path: "/about",
+  lastModified: "2026-05-01",
   type: "profile",
   jsonLd: buildProfilePageJsonLd("/about", ABOUT_TITLE, ABOUT_DESCRIPTION),
   jsonLdId: "about-jsonld",
@@ -65,10 +72,11 @@ export const ABOUT_METADATA: PageSeoOptions = {
 export const CONTACT_TITLE = "Contact | Chris Folmar";
 export const CONTACT_DESCRIPTION =
   "Get in touch with Chris Folmar — engineering leadership, AI transformation, business systems, or anything in between.";
-export const CONTACT_METADATA: PageSeoOptions = {
+export const CONTACT_METADATA: SitemapPageSeoOptions = {
   title: CONTACT_TITLE,
   description: CONTACT_DESCRIPTION,
   path: "/contact",
+  lastModified: "2026-04-01",
   jsonLd: buildContactPageJsonLd(CONTACT_DESCRIPTION),
   jsonLdId: "contact-jsonld",
 };
@@ -76,10 +84,11 @@ export const CONTACT_METADATA: PageSeoOptions = {
 export const NOW_TITLE = "Now | Chris Folmar";
 export const NOW_DESCRIPTION =
   "What Chris Folmar is focused on right now — Team GSD, AI-enabled workflows, engineering leadership, and life as a new dad.";
-export const NOW_METADATA: PageSeoOptions = {
+export const NOW_METADATA: SitemapPageSeoOptions = {
   title: NOW_TITLE,
   description: NOW_DESCRIPTION,
   path: "/now",
+  lastModified: "2026-05-01",
   jsonLd: buildWebPageJsonLd("/now", NOW_TITLE, NOW_DESCRIPTION),
   jsonLdId: "now-jsonld",
 };
@@ -87,10 +96,11 @@ export const NOW_METADATA: PageSeoOptions = {
 export const RESUME_TITLE = "Resume | Chris Folmar";
 export const RESUME_DESCRIPTION =
   "Chris Folmar's resume — Engineering Manager, AI Transformation Leader, and Business Systems Engineering Lead.";
-export const RESUME_METADATA: PageSeoOptions = {
+export const RESUME_METADATA: SitemapPageSeoOptions = {
   title: RESUME_TITLE,
   description: RESUME_DESCRIPTION,
   path: "/resume",
+  lastModified: "2026-04-01",
   type: "profile",
   jsonLd: buildProfilePageJsonLd("/resume", RESUME_TITLE, RESUME_DESCRIPTION),
   jsonLdId: "resume-jsonld",
@@ -147,10 +157,11 @@ export function buildWritingIndexJsonLd(posts: BlogPost[]): JsonLd {
   });
 }
 
-export const WRITING_METADATA: PageSeoOptions = {
+export const WRITING_METADATA: SitemapPageSeoOptions = {
   title: WRITING_TITLE,
   description: WRITING_DESCRIPTION,
   path: WRITING_PATH,
+  lastModified: "2026-05-01",
   jsonLd: buildWritingIndexJsonLd(
     visibleBlogPosts
       .slice()
@@ -162,10 +173,11 @@ export const WRITING_METADATA: PageSeoOptions = {
 export const BELIEFS_TITLE = "Things I Believe | Chris Folmar";
 export const BELIEFS_DESCRIPTION =
   "A short, dated set of opinions Chris Folmar currently holds about engineering, operations, and how teams ship — updatable, and open to disagreement.";
-export const BELIEFS_METADATA: PageSeoOptions = {
+export const BELIEFS_METADATA: SitemapPageSeoOptions = {
   title: BELIEFS_TITLE,
   description: BELIEFS_DESCRIPTION,
   path: "/beliefs",
+  lastModified: "2026-05-01",
   jsonLd: buildWebPageJsonLd("/beliefs", BELIEFS_TITLE, BELIEFS_DESCRIPTION),
   jsonLdId: "beliefs-jsonld",
 };
@@ -211,10 +223,11 @@ const SERVICES_FAQ: Array<{ question: string; answer: string }> = [
   },
 ];
 
-export const SERVICES_METADATA: PageSeoOptions = {
+export const SERVICES_METADATA: SitemapPageSeoOptions = {
   title: SERVICES_TITLE,
   description: SERVICES_DESCRIPTION,
   path: "/services",
+  lastModified: "2026-05-01",
   jsonLd: [
     buildServiceJsonLd({
       name: "Modern websites for small local businesses",
@@ -248,10 +261,11 @@ export const SERVICES_METADATA: PageSeoOptions = {
 export const CASE_STUDIES_TITLE = "Case Studies | Chris Folmar";
 export const CASE_STUDIES_DESCRIPTION =
   "Detailed case studies on scaling engineering throughput, AI-enabled workflow transformation, ERP/WMS modernization, and async information flow.";
-export const CASE_STUDIES_METADATA: PageSeoOptions = {
+export const CASE_STUDIES_METADATA: SitemapPageSeoOptions = {
   title: CASE_STUDIES_TITLE,
   description: CASE_STUDIES_DESCRIPTION,
   path: "/case-studies",
+  lastModified: "2026-05-01",
   jsonLd: buildCaseStudyListJsonLd(caseStudies),
   jsonLdId: "case-studies-index-jsonld",
 };

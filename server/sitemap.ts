@@ -1,6 +1,18 @@
 import type { Request, Response } from "express";
 import { blogPosts, caseStudies, projects, visibleBlogPosts } from "../client/src/lib/data";
-import { projectIdSegment } from "../client/src/lib/metadata/routes";
+import {
+  ABOUT_METADATA,
+  BELIEFS_METADATA,
+  CASE_STUDIES_METADATA,
+  CONTACT_METADATA,
+  HOME_METADATA,
+  NOW_METADATA,
+  RESUME_METADATA,
+  SERVICES_METADATA,
+  WRITING_METADATA,
+  projectIdSegment,
+  type SitemapPageSeoOptions,
+} from "../client/src/lib/metadata/routes";
 
 const SITE = "https://chrisfolmar.com";
 
@@ -20,33 +32,41 @@ function escapeXml(value: string): string {
     .replace(/'/g, "&apos;");
 }
 
-function isoDate(input?: string): string {
-  if (input) {
-    const d = new Date(input);
-    if (!Number.isNaN(d.getTime())) return d.toISOString().slice(0, 10);
+function isoDate(input: string | undefined, source: string): string {
+  if (!input || !/^\d{4}-\d{2}-\d{2}$/.test(input)) {
+    throw new Error(`Invalid or missing sitemap date for ${source}`);
   }
-  return new Date().toISOString().slice(0, 10);
+  const parsed = new Date(`${input}T00:00:00.000Z`);
+  if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== input) {
+    throw new Error(`Invalid or missing sitemap date for ${source}`);
+  }
+  return input;
+}
+
+function staticPageEntry(
+  metadata: SitemapPageSeoOptions,
+  changefreq: string,
+  priority: string,
+): UrlEntry {
+  return {
+    loc: metadata.path === "/" ? `${SITE}/` : `${SITE}${metadata.path}`,
+    lastmod: isoDate(metadata.lastModified, metadata.path),
+    changefreq,
+    priority,
+  };
 }
 
 export function buildSitemapEntries(): UrlEntry[] {
   const entries: UrlEntry[] = [
-    // Static pages — lastmod reflects the last meaningful content change,
-    // not today's date. Update these when the page content is significantly
-    // revised. Using today's date for every crawl would signal false freshness
-    // to Google and dilute crawl budget on unchanged pages.
-    { loc: `${SITE}/`, lastmod: "2026-05-27", changefreq: "weekly", priority: "1.0" },
-    { loc: `${SITE}/about`, lastmod: "2026-05-01", changefreq: "monthly", priority: "0.8" },
-    { loc: `${SITE}/resume`, lastmod: "2026-04-01", changefreq: "monthly", priority: "0.8" },
-    { loc: `${SITE}/now`, lastmod: "2026-05-01", changefreq: "monthly", priority: "0.7" },
-    { loc: `${SITE}/contact`, lastmod: "2026-04-01", changefreq: "yearly", priority: "0.6" },
-    { loc: `${SITE}/writing`, lastmod: "2026-05-01", changefreq: "weekly", priority: "0.9" },
-    { loc: `${SITE}/beliefs`, lastmod: "2026-05-01", changefreq: "monthly", priority: "0.6" },
-    { loc: `${SITE}/case-studies`, lastmod: "2026-05-01", changefreq: "monthly", priority: "0.9" },
-    // /services is the freelance landing page — priority 0.9 because it's
-    // the primary surface for local SEO discovery (Seacoast NH, Southern
-    // ME, North Shore MA). Without an XML sitemap entry, Google would
-    // discover it only via internal links, which slows indexing.
-    { loc: `${SITE}/services`, lastmod: "2026-05-01", changefreq: "monthly", priority: "0.9" },
+    staticPageEntry(HOME_METADATA, "weekly", "1.0"),
+    staticPageEntry(ABOUT_METADATA, "monthly", "0.8"),
+    staticPageEntry(RESUME_METADATA, "monthly", "0.8"),
+    staticPageEntry(NOW_METADATA, "monthly", "0.7"),
+    staticPageEntry(CONTACT_METADATA, "yearly", "0.6"),
+    staticPageEntry(WRITING_METADATA, "weekly", "0.9"),
+    staticPageEntry(BELIEFS_METADATA, "monthly", "0.6"),
+    staticPageEntry(CASE_STUDIES_METADATA, "monthly", "0.9"),
+    staticPageEntry(SERVICES_METADATA, "monthly", "0.9"),
   ];
 
   // Intentionally excluded routes (not in this sitemap):
@@ -72,24 +92,16 @@ export function buildSitemapEntries(): UrlEntry[] {
   for (const post of sortedPosts) {
     entries.push({
       loc: `${SITE}/blog/${post.id}`,
-      lastmod: isoDate(post.date),
+      lastmod: isoDate(post.date, `blog post ${post.id}`),
       changefreq: "monthly",
       priority: "0.7",
     });
   }
 
-  // Case studies — lastmod reflects when each study was written/published.
-  // Update these when a study's content is significantly revised.
-  const caseStudyDates: Record<string, string> = {
-    "scaling-bse-throughput": "2026-05-01",
-    "asana-async-information-flow": "2026-05-01",
-    "erp-wms-modernization": "2026-05-01",
-    "team-gsd-ai-transformation": "2026-05-01",
-  };
   for (const study of caseStudies) {
     entries.push({
       loc: `${SITE}/case-studies/${study.slug}`,
-      lastmod: caseStudyDates[study.slug] ?? "2026-05-01",
+      lastmod: isoDate(study.lastModified, `case study ${study.slug}`),
       changefreq: "monthly",
       priority: "0.8",
     });
@@ -100,7 +112,7 @@ export function buildSitemapEntries(): UrlEntry[] {
   for (const project of projects) {
     entries.push({
       loc: `${SITE}/project/${projectIdSegment(project)}`,
-      lastmod: isoDate(project.date),
+      lastmod: isoDate(project.date, `project ${project.title}`),
       changefreq: "yearly",
       priority: "0.5",
     });

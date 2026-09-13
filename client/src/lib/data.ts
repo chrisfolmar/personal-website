@@ -763,6 +763,7 @@ export const socials: Social[] = [
 export const caseStudies: CaseStudy[] = [
   {
     slug: "scaling-bse-throughput",
+    lastModified: "2026-05-01",
     date: "2025-05-12",
     readTime: "7 min read",
     title: "Scaling BSE Project Throughput by ~300%",
@@ -800,6 +801,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "asana-async-information-flow",
+    lastModified: "2026-05-01",
     title: "Building Asynchronous Information Flow with Asana",
     summary:
       "Replacing status meetings and Slack archaeology with a single async source of truth across five business divisions.",
@@ -834,6 +836,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "erp-wms-modernization",
+    lastModified: "2026-05-01",
     title: "Business Systems & ERP/WMS Modernization",
     summary:
       "Rearchitecting how Fullscript's commerce platform talks to NetSuite and the WMS — cutting transaction load by 43% and unlocking cross-subsidiary fulfillment.",
@@ -868,6 +871,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "team-gsd-ai-transformation",
+    lastModified: "2026-05-01",
     featured: true,
     title: "Team GSD: AI-Enabled Workflow Transformation",
     summary:

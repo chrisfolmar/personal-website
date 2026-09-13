@@ -155,7 +155,7 @@ export function buildContactHandler(opts: ContactRouteOptions = {}) {
         deliveryStatus: delivery.sent ? "sent" : "stored",
         message: delivery.sent
           ? "Message received and notification sent"
-          : "Message received and stored; notification delivery is delayed",
+          : "Message received and stored; email notification was not sent",
         id: message.id,
       });
     } catch (error) {

@@ -200,11 +200,17 @@ Baseline engineering hygiene that the site is held to (added April 2026 in the
 
 ## Database
 
-- **PostgreSQL** via Neon Serverless (`@neondatabase/serverless`) — requires `DATABASE_URL` environment variable
+- **PostgreSQL** via Neon Serverless (`@neondatabase/serverless`) — requires
+  `DATABASE_URL` or `NEON_DATABASE_URL`. Contact submissions are persisted
+  before email delivery is attempted, including notification delivery status.
 
 ## Email Service
 
-- **SendGrid** (`@sendgrid/mail`) — sends contact form submissions as email notifications to `contact@chrisfolmar.com`; requires `SENDGRID_API_KEY` environment variable
+- **Resend** (`resend`) — sends contact-form notifications after durable
+  database storage; requires `RESEND_API_KEY`. The sender defaults to
+  `contact@chrisfolmar.com` and must belong to a verified Resend domain.
+  `CONTACT_FROM_EMAIL` and `CONTACT_TO_EMAIL` can override sender and recipient
+  without changing code.
 
 ## AI Integration
 

@@ -98,7 +98,7 @@ export default function Contact() {
         title: notificationSent ? "Message sent!" : "Message safely received",
         description: notificationSent
           ? "Thank you for your message. I will get back to you soon."
-          : "Your message was saved, but the email notification is delayed. You can also email me directly if your request is urgent.",
+          : "Your message was saved, but the email notification was not sent. Please email me directly if your request is urgent.",
       });
       form.reset();
       formStartTimeRef.current = Date.now();
@@ -260,7 +260,7 @@ export default function Contact() {
                     <Alert className="bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800">
                       <CheckCircle2 className="h-4 w-4 text-amber-700 dark:text-amber-400" />
                       <AlertDescription className="text-amber-900 dark:text-amber-200">
-                        Your message was safely saved, but the email notification is delayed.
+                        Your message was safely saved, but the email notification was not sent.
                         If your request is urgent, email me directly at{" "}
                         <a className="underline font-medium" href={`mailto:${contact.email}`}>
                           {contact.email}

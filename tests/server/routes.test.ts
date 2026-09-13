@@ -178,6 +178,27 @@ describe("contact route", () => {
     expect(storage.messages).toHaveLength(0);
   });
 
+  it("rejects invalid email addresses and undersized content server-side", async () => {
+    const { app } = makeApp(storage);
+    const res = await request(app).post("/api/contact").send({
+      name: "J",
+      email: "not-an-email",
+      subject: "Hi",
+      message: "Too short",
+    });
+    expect(res.status).toBe(400);
+    expect(storage.messages).toHaveLength(0);
+  });
+
+  it("rejects oversized content server-side", async () => {
+    const { app } = makeApp(storage);
+    const res = await request(app)
+      .post("/api/contact")
+      .send({ ...validBody, message: "x".repeat(1001) });
+    expect(res.status).toBe(400);
+    expect(storage.messages).toHaveLength(0);
+  });
+
   it("rejects spam content in message", async () => {
     const { app } = makeApp(storage);
     const res = await request(app)

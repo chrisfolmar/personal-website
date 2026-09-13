@@ -52,7 +52,7 @@ Personal portfolio for Chris Folmar, Engineering Manager and AI Transformation L
 
 **Data**
 - [Drizzle ORM](https://orm.drizzle.team) + [Neon PostgreSQL](https://neon.tech) (`@neondatabase/serverless`)
-- [SendGrid](https://sendgrid.com) — contact form email delivery
+- [Resend](https://resend.com) — contact form email delivery
 
 ---
 
@@ -67,7 +67,10 @@ Personal portfolio for Chris Folmar, Engineering Manager and AI Transformation L
 
 ```
 DATABASE_URL=your_neon_postgres_connection_string
-SENDGRID_API_KEY=your_sendgrid_api_key
+RESEND_API_KEY=your_resend_api_key
+# Optional; both default to contact@chrisfolmar.com
+CONTACT_FROM_EMAIL=a_sender_on_your_verified_domain
+CONTACT_TO_EMAIL=your_destination_inbox
 ```
 
 ### Install and run

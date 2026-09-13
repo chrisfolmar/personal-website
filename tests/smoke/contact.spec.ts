@@ -46,7 +46,7 @@ test.describe("smoke: contact", () => {
     await page.getByRole("button", { name: "Send message" }).click();
 
     await expect(
-      page.getByText(/message was safely saved, but the email notification is delayed/i),
+      page.getByText(/message was safely saved, but the email notification was not sent/i),
     ).toBeVisible();
     await expect(page.getByRole("button", { name: "Message received" })).toBeVisible();
   });

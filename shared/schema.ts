@@ -25,11 +25,21 @@ export const insertUserSchema = createInsertSchema(users).pick({
   password: true,
 });
 
-export const insertMessageSchema = createInsertSchema(messages).pick({
-  name: true,
-  email: true,
-  subject: true,
-  message: true,
+export const insertMessageSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(2)
+    .max(50)
+    .regex(/^[a-zA-Z\s'-]+$/),
+  email: z.string().trim().email().min(5).max(100),
+  subject: z.string().trim().min(5).max(100).refine((value) => !/https?:\/\//i.test(value)),
+  message: z
+    .string()
+    .trim()
+    .min(20)
+    .max(1000)
+    .refine((value) => (value.match(/https?:\/\//g) ?? []).length <= 2),
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;

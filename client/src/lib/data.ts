@@ -510,41 +510,6 @@ export const blogPosts: BlogPost[] = [
     readTime: "6 min read",
     externalUrl:
       "https://builders.fullscript.com/posts/elevating-your-team-through-effective-feedback-insights-from-a-fullscript-technical-lead",
-    content: `
-      <p>As a Technical Lead at Fullscript, one of my most important responsibilities is cultivating an environment where feedback flows naturally and constructively. In this article, I'd like to share some key insights I've gained about building a feedback culture that elevates both individual developers and the entire team.</p>
-      
-      <h3>The Foundation of Effective Technical Leadership</h3>
-      <p>Leading a technical team is about much more than technical expertise—it's about creating the conditions where everyone can do their best work. Feedback is the cornerstone of this environment, serving multiple critical functions:</p>
-      <ul>
-        <li>Accelerating the growth of junior and mid-level developers</li>
-        <li>Maintaining high code quality standards</li>
-        <li>Building psychological safety and trust within the team</li>
-        <li>Aligning technical decisions with business objectives</li>
-      </ul>
-      
-      <h3>The Growth-Oriented Feedback Framework</h3>
-      <p>Through trial, error, and continuous reflection, I've developed an approach to feedback that balances technical rigor with interpersonal sensitivity.</p>
-      
-      <h4>1. Focusing on Patterns Rather Than Instances</h4>
-      <p>When reviewing code or discussing technical decisions, I've found it more effective to address recurring patterns rather than isolated instances. For example, rather than pointing out every individual case where a developer has created overly complex functions, I focus our discussion on the principle of simplicity and readability.</p>
-      
-      <h4>2. Balancing Challenge with Support</h4>
-      <p>The most productive feedback creates an appropriate level of challenge while providing the support needed to meet that challenge. I regularly pair developers with tasks that stretch their capabilities but provide more guidance and check-ins during these stretching opportunities.</p>
-      
-      <h4>3. Creating Feedback Loops, Not Just Moments</h4>
-      <p>At Fullscript, we've integrated feedback into our daily workflows rather than relegating it to scheduled review sessions. Our pull request process includes specific questions that prompt meaningful feedback, and we use collaborative debugging sessions as opportunities for in-the-moment coaching.</p>
-      
-      <h3>Measuring the Impact</h3>
-      <p>The effectiveness of this approach has been evident in several measurable outcomes:</p>
-      <ul>
-        <li>Reduced regression bugs by 37% year-over-year</li>
-        <li>Faster onboarding times for new team members</li>
-        <li>Higher team retention rates compared to industry averages</li>
-        <li>More creative solutions emerging from increasingly confident team members</li>
-      </ul>
-      
-      <p>Building an effective feedback culture takes time and consistent effort, but the benefits to code quality, team morale, and business outcomes make it one of the most valuable investments a technical leader can make. I'm continuing to refine this approach and would welcome thoughts from other leaders navigating similar challenges.</p>
-    `
   },
   {
     id: 1,

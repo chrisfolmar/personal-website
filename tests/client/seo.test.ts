@@ -57,6 +57,7 @@ describe("buildBlogPostingJsonLd", () => {
     expect(feedbackPost?.externalUrl).toBe(
       "https://builders.fullscript.com/posts/elevating-your-team-through-effective-feedback-insights-from-a-fullscript-technical-lead",
     );
+    expect(feedbackPost?.content).toBeUndefined();
 
     const ld = buildBlogPostingJsonLd(feedbackPost as BlogPost);
     expect(ld.url).toBe(feedbackPost?.externalUrl);

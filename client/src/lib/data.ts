@@ -508,6 +508,8 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/effective-feedback.png",
     category: "Engineering Leadership",
     readTime: "6 min read",
+    externalUrl:
+      "https://builders.fullscript.com/posts/elevating-your-team-through-effective-feedback-insights-from-a-fullscript-technical-lead",
     content: `
       <p>As a Technical Lead at Fullscript, one of my most important responsibilities is cultivating an environment where feedback flows naturally and constructively. In this article, I'd like to share some key insights I've gained about building a feedback culture that elevates both individual developers and the entire team.</p>
       

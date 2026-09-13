@@ -16,6 +16,14 @@ test.describe("smoke: writing", () => {
       "https://builders.fullscript.com/posts/how-to-increase-project-throughput",
     );
     await expect(
+      startHere.getByRole("link", {
+        name: /Elevating Your Team Through Effective Feedback/,
+      }),
+    ).toHaveAttribute(
+      "href",
+      "https://builders.fullscript.com/posts/elevating-your-team-through-effective-feedback-insights-from-a-fullscript-technical-lead",
+    );
+    await expect(
       startHere.locator('a[href="/case-studies/scaling-bse-throughput"]'),
     ).toHaveCount(0);
 

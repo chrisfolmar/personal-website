@@ -9,6 +9,7 @@ import {
 } from "../../client/src/lib/metadata/seo";
 import { renderSsrHead } from "../../client/src/lib/metadata/renderHead";
 import type { BlogPost, CaseStudy } from "../../client/src/types";
+import { blogPosts } from "../../client/src/lib/data";
 
 const samplePost: BlogPost = {
   id: 42,
@@ -49,6 +50,16 @@ describe("buildBlogPostingJsonLd", () => {
     // the home page, not an inline Person.
     expect(ld.author["@id"]).toBe(`${PRIMARY_DOMAIN}/#person`);
     expect(ld.image).toContain("/cover.png");
+  });
+
+  it("uses the original publication as canonical for the 2024 feedback article", () => {
+    const feedbackPost = blogPosts.find((post) => post.id === 6);
+    expect(feedbackPost?.externalUrl).toBe(
+      "https://builders.fullscript.com/posts/elevating-your-team-through-effective-feedback-insights-from-a-fullscript-technical-lead",
+    );
+
+    const ld = buildBlogPostingJsonLd(feedbackPost as BlogPost);
+    expect(ld.url).toBe(feedbackPost?.externalUrl);
   });
 });
 

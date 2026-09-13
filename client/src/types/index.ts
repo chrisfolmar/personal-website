@@ -51,7 +51,7 @@ export interface ExtendedContactFormData extends ContactFormData {
   formTime?: number; // Time tracking for bot detection
 }
 
-export interface BlogPost {
+interface BlogPostBase {
   id: number;
   title: string;
   excerpt: string;
@@ -59,18 +59,23 @@ export interface BlogPost {
   coverImage: string;
   category: string;
   readTime: string;
-  content?: string; // Optional HTML content for full blog post
   hidden?: boolean; // When true, omit from listings (homepage, /writing, sitemap)
   supersededBy?: number; // Optional id of a newer post that replaces this one
   archiveNote?: string; // Optional explanation shown in the archive banner
   featured?: boolean; // When true, surfaced as a "Start here" lead on /writing
-  // External post convention: when set, the post is published elsewhere
-  // (e.g. Fullscript Builders Corner) and the canonical home is the external
-  // URL. Cards open out in a new tab, the internal `/blog/:id` route
-  // redirects to the external URL, and the sitemap/JSON-LD treat the
-  // external URL as canonical.
-  externalUrl?: string;
 }
+
+export interface LocalBlogPost extends BlogPostBase {
+  content: string;
+  externalUrl?: never;
+}
+
+export interface ExternalBlogPost extends BlogPostBase {
+  externalUrl: string;
+  content?: never;
+}
+
+export type BlogPost = LocalBlogPost | ExternalBlogPost;
 
 export interface ImpactMetric {
   label: string;

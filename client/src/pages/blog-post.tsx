@@ -20,6 +20,7 @@ import {
   blogPostMetadata,
 } from "@/lib/metadata/routes";
 import { usePageSeo } from "@/lib/metadata/usePageSeo";
+import type { BlogPost as BlogPostData, LocalBlogPost } from "@/types";
 
 // Map of cover-image paths that have AVIF/WebP/JPEG derivatives generated
 // by `scripts/optimize-images.mjs`. Extend this when new sources are added.
@@ -37,6 +38,10 @@ const COVER_OBJECT_POSITION: Record<string, string> = {
   "/images/blog/healthcare-websites.png": "top",
   "/images/blog/perfect-balance.png": "top",
 };
+
+function isLocalBlogPost(post: BlogPostData): post is LocalBlogPost {
+  return typeof post.content === "string";
+}
 
 interface CoverImage {
   src: string;
@@ -157,6 +162,14 @@ export default function BlogPost() {
     );
   }
 
+  if (!isLocalBlogPost(post)) {
+    return (
+      <div className="pt-28 md:pt-32 pb-20 min-h-screen flex items-center justify-center">
+        <p className="text-muted-foreground">Opening the original article…</p>
+      </div>
+    );
+  }
+
   const relatedPosts = relatedPostsForPost(post, 3);
   const relatedStudies = relatedCaseStudiesForPost(post, 2);
   const coverImage = buildCoverImageSources(post.coverImage);
@@ -166,7 +179,7 @@ export default function BlogPost() {
     ? blogPosts.find((p) => p.id === post.supersededBy)
     : undefined;
 
-  const sanitizedContent = DOMPurify.sanitize(post.content || "", {
+  const sanitizedContent = DOMPurify.sanitize(post.content, {
     ALLOWED_TAGS: [
       "h1", "h2", "h3", "h4", "h5", "h6", "p", "ul", "ol", "li", "a",
       "strong", "em", "br", "blockquote", "code", "pre", "span", "div", "img",

@@ -20,7 +20,7 @@ const samplePost: BlogPost = {
   category: "Leadership",
   coverImage: "/cover.png",
   readTime: "5 min",
-} as unknown as BlogPost;
+};
 
 const sampleStudy: CaseStudy = {
   slug: "team-gsd",
@@ -59,7 +59,8 @@ describe("buildBlogPostingJsonLd", () => {
     );
     expect(feedbackPost?.content).toBeUndefined();
 
-    const ld = buildBlogPostingJsonLd(feedbackPost as BlogPost);
+    if (!feedbackPost) throw new Error("Expected the feedback article fixture");
+    const ld = buildBlogPostingJsonLd(feedbackPost);
     expect(ld.url).toBe(feedbackPost?.externalUrl);
   });
 });

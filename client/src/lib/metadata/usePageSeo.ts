@@ -20,10 +20,6 @@ function setMetaTag(
   el.setAttribute("content", content);
 }
 
-function removeMetaTag(name: string, attr: "name" | "property" = "name") {
-  document.head.querySelector(`meta[${attr}="${name}"]`)?.remove();
-}
-
 function setCanonicalLink(href: string) {
   let el = document.head.querySelector(
     'link[rel="canonical"]',
@@ -56,15 +52,9 @@ export function usePageSeo(options: PageSeoOptions) {
     siteName = SITE_NAME,
     image = DEFAULT_OG_IMAGE,
     imageAlt = DEFAULT_OG_IMAGE_ALT,
-    imageWidth,
-    imageHeight,
   } = options;
 
   const absoluteImage = getAbsoluteURL(image);
-  const resolvedImageWidth =
-    imageWidth ?? (image === DEFAULT_OG_IMAGE ? 1200 : undefined);
-  const resolvedImageHeight =
-    imageHeight ?? (image === DEFAULT_OG_IMAGE ? 630 : undefined);
 
   const serializedJsonLd = useMemo(
     () => (jsonLd ? JSON.stringify(jsonLd) : null),
@@ -85,13 +75,6 @@ export function usePageSeo(options: PageSeoOptions) {
     setMetaTag("og:site_name", siteName, "property");
     setMetaTag("og:image", absoluteImage, "property");
     setMetaTag("og:image:alt", imageAlt, "property");
-    if (resolvedImageWidth && resolvedImageHeight) {
-      setMetaTag("og:image:width", String(resolvedImageWidth), "property");
-      setMetaTag("og:image:height", String(resolvedImageHeight), "property");
-    } else {
-      removeMetaTag("og:image:width", "property");
-      removeMetaTag("og:image:height", "property");
-    }
     setMetaTag("twitter:card", twitterCard);
     setMetaTag("twitter:title", title);
     setMetaTag("twitter:description", description);
@@ -145,7 +128,5 @@ export function usePageSeo(options: PageSeoOptions) {
     siteName,
     absoluteImage,
     imageAlt,
-    resolvedImageWidth,
-    resolvedImageHeight,
   ]);
 }

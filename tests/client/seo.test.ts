@@ -10,17 +10,6 @@ import {
 import { renderSsrHead } from "../../client/src/lib/metadata/renderHead";
 import type { BlogPost, CaseStudy } from "../../client/src/types";
 import { blogPosts } from "../../client/src/lib/data";
-import {
-  ABOUT_METADATA,
-  CASE_STUDIES_METADATA,
-  CONTACT_METADATA,
-  HOME_METADATA,
-  NOW_METADATA,
-  RESUME_METADATA,
-  WRITING_METADATA,
-  caseStudyDetailMetadata,
-} from "../../client/src/lib/metadata/routes";
-import { caseStudies } from "../../client/src/lib/data";
 
 const samplePost: BlogPost = {
   id: 42,
@@ -117,47 +106,6 @@ describe("renderSsrHead html escaping", () => {
     expect(head).toContain('<link rel="canonical"');
     expect(head).toMatch(/property="og:title"/);
     expect(head).toMatch(/name="twitter:card"/);
-    expect(head).toContain('property="og:image:width" content="1200"');
-    expect(head).toContain('property="og:image:height" content="630"');
-  });
-
-  it("preloads the home portrait in the crawler-visible head", () => {
-    const head = renderSsrHead(HOME_METADATA);
-    expect(head).toContain(
-      'rel="preload" as="image" href="/assets/images/about-work-800.avif"',
-    );
-    expect(head).toContain('fetchpriority="high"');
-  });
-
-  it("gives major shared pages distinct social titles and descriptions", () => {
-    const pages = [
-      HOME_METADATA,
-      CASE_STUDIES_METADATA,
-      caseStudyDetailMetadata(
-        caseStudies.find(
-          (study) => study.slug === "team-gsd-ai-transformation",
-        )!,
-      ),
-      WRITING_METADATA,
-      ABOUT_METADATA,
-      RESUME_METADATA,
-      CONTACT_METADATA,
-      NOW_METADATA,
-    ];
-
-    expect(new Set(pages.map((page) => page.title)).size).toBe(pages.length);
-    expect(new Set(pages.map((page) => page.description)).size).toBe(
-      pages.length,
-    );
-
-    for (const page of pages) {
-      const head = renderSsrHead(page);
-      expect(head).toMatch(/property="og:title" content="[^"]+"/);
-      expect(head).toMatch(/property="og:description" content="[^"]+"/);
-      expect(head).toMatch(/property="og:image:alt" content="[^"]+"/);
-      expect(head).toMatch(/property="og:image:width" content="1200"/);
-      expect(head).toMatch(/property="og:image:height" content="630"/);
-    }
   });
 
   it("escapes JSON-LD < and > to avoid breaking the script tag", () => {

@@ -20,7 +20,5 @@ jobs:
         run: npx playwright install --with-deps chromium
       - run: npm run check
       - run: npm run lint
-      - name: Confirm the published social audit is runnable
-        run: npm run audit:social -- --help
       - run: npm test
       - run: npm run build

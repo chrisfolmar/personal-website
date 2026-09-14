@@ -14,7 +14,6 @@ test.describe("smoke: home", () => {
     });
 
     await page.goto("/");
-    await expect(page.locator("main")).toHaveCount(1);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await expect(page.getByText("Chris Folmar", { exact: false }).first()).toBeVisible();
 

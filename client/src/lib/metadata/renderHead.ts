@@ -46,17 +46,10 @@ export function renderSsrHead(options: PageSeoOptions, nonce?: string): string {
     siteName = SITE_NAME,
     image = DEFAULT_OG_IMAGE,
     imageAlt = DEFAULT_OG_IMAGE_ALT,
-    imageWidth,
-    imageHeight,
-    preloadImage,
   } = options;
 
   const canonical = getCanonicalURL(path);
   const absoluteImage = getAbsoluteURL(image);
-  const resolvedImageWidth =
-    imageWidth ?? (image === DEFAULT_OG_IMAGE ? 1200 : undefined);
-  const resolvedImageHeight =
-    imageHeight ?? (image === DEFAULT_OG_IMAGE ? 630 : undefined);
 
   const lines: string[] = [
     `<title>${escapeHtml(title)}</title>`,
@@ -76,22 +69,6 @@ export function renderSsrHead(options: PageSeoOptions, nonce?: string): string {
     metaTag("twitter:image", absoluteImage),
     metaTag("twitter:image:alt", imageAlt),
   ];
-
-  if (resolvedImageWidth && resolvedImageHeight) {
-    lines.push(
-      metaTag("og:image:width", String(resolvedImageWidth), "property"),
-      metaTag("og:image:height", String(resolvedImageHeight), "property"),
-    );
-  }
-
-  if (preloadImage) {
-    const mediaAttr = preloadImage.media
-      ? ` media="${escapeHtml(preloadImage.media)}"`
-      : "";
-    lines.push(
-      `<link rel="preload" as="image" href="${escapeHtml(preloadImage.href)}" type="${escapeHtml(preloadImage.type)}"${mediaAttr} fetchpriority="high" />`,
-    );
-  }
 
   if (jsonLd) {
     const idAttr = jsonLdId ? ` id="${escapeHtml(jsonLdId)}"` : "";

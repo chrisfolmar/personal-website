@@ -42,7 +42,7 @@
 
     /* Marker — brass color used for eyebrows + headline highlights.
        Verified ~6.5:1 on the cream background (passes WCAG AA). */
-    --marker: 41 78% 29%;
+    --marker: 41 78% 32%;
     --marker-soft: 41 80% 60%;
 
     --destructive: 0 70% 38%;

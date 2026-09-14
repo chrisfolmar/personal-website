@@ -1,1 +1,2 @@
 - [Contact delivery verification](contact-delivery-verification.md) — confirm provider delivery and inbox receipt; API acceptance alone is insufficient.
+- [Social preview verification](social-preview-verification.md) — signed-in validators need manual confirmation; crawler-agent audits verify the public metadata contract.

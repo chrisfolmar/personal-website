@@ -40,22 +40,24 @@ function App() {
         <ErrorBoundary>
           <PageViewTracker />
           <Header />
-          <Switch>
-            <Route path="/" component={HomePage} />
-            <Route path="/about" component={AboutPage} />
-            <Route path="/contact" component={ContactPage} />
-            <Route path="/blog/:id" component={BlogPost} />
-            <Route path="/project/:id" component={ProjectDetail} />
-            <Route path="/case-studies" component={CaseStudies} />
-            <Route path="/case-studies/:slug" component={CaseStudyDetail} />
-            <Route path="/now" component={NowPage} />
-            <Route path="/resume" component={Resume} />
-            <Route path="/writing" component={WritingIndex} />
-            <Route path="/beliefs" component={BeliefsPage} />
-            <Route path="/services" component={ServicesPage} />
-            <Route path="/sitemap" component={Sitemap} />
-            <Route component={NotFound} />
-          </Switch>
+          <main>
+            <Switch>
+              <Route path="/" component={HomePage} />
+              <Route path="/about" component={AboutPage} />
+              <Route path="/contact" component={ContactPage} />
+              <Route path="/blog/:id" component={BlogPost} />
+              <Route path="/project/:id" component={ProjectDetail} />
+              <Route path="/case-studies" component={CaseStudies} />
+              <Route path="/case-studies/:slug" component={CaseStudyDetail} />
+              <Route path="/now" component={NowPage} />
+              <Route path="/resume" component={Resume} />
+              <Route path="/writing" component={WritingIndex} />
+              <Route path="/beliefs" component={BeliefsPage} />
+              <Route path="/services" component={ServicesPage} />
+              <Route path="/sitemap" component={Sitemap} />
+              <Route component={NotFound} />
+            </Switch>
+          </main>
           <Footer />
           <Toaster />
         </ErrorBoundary>

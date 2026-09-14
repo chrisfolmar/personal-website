@@ -36,6 +36,13 @@ export interface PageSeoOptions {
   siteName?: string;
   image?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  preloadImage?: {
+    href: string;
+    type: string;
+    media?: string;
+  };
 }
 
 export interface SitemapPageSeoOptions extends PageSeoOptions {
@@ -52,6 +59,11 @@ export const HOME_METADATA: SitemapPageSeoOptions = {
   description: DEFAULT_METADATA.description,
   path: "/",
   lastModified: "2026-05-27",
+  preloadImage: {
+    href: "/assets/images/about-work-800.avif",
+    type: "image/avif",
+    media: "(max-width: 1023px)",
+  },
   jsonLd: HOME_JSON_LD,
   jsonLdId: "home-jsonld",
 };
@@ -291,6 +303,8 @@ export function caseStudyDetailMetadata(study: CaseStudy): PageSeoOptions {
     type: "article",
     image: studyImage?.src,
     imageAlt: studyImage?.alt,
+    imageWidth: studyImage ? 1200 : undefined,
+    imageHeight: studyImage ? 630 : undefined,
     jsonLd: buildCaseStudyArticleJsonLd(study),
     jsonLdId: "case-study-detail-jsonld",
   };
@@ -305,6 +319,8 @@ export function blogPostMetadata(post: BlogPost): PageSeoOptions {
     type: "article",
     image: ogImage?.src ?? post.coverImage,
     imageAlt: ogImage?.alt ?? `Cover image for "${post.title}"`,
+    imageWidth: ogImage ? 1200 : undefined,
+    imageHeight: ogImage ? 630 : undefined,
     jsonLd: buildBlogPostingJsonLd(post),
     jsonLdId: "blog-post-jsonld",
   };

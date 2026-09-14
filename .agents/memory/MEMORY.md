@@ -1,1 +1,2 @@
 - [Contact delivery verification](contact-delivery-verification.md) — confirm provider delivery and inbox receipt; API acceptance alone is insufficient.
+- [GitHub shell authentication](github-shell-authentication.md) — GitHub connector OAuth may support API calls without authenticating command-line Git pushes.

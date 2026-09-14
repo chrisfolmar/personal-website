@@ -6,5 +6,7 @@ test.describe("smoke: archive banner", () => {
     const banner = page.getByTestId("archive-banner");
     await expect(banner).toBeVisible();
     await expect(banner).toContainText(/older take|archive/i);
+    await expect(banner.getByTestId("link-superseded-by")).toHaveCount(0);
+    await expect(banner.getByRole("link", { name: "Read the updated take" })).toHaveCount(0);
   });
 });

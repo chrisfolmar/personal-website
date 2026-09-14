@@ -15,7 +15,8 @@
     "format": "prettier --write .",
     "prepare": "husky",
     "test:unit": "vitest run",
-    "test:smoke": "playwright test"
+    "test:smoke": "playwright test",
+    "audit:social": "node scripts/audit-social-cards.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.37.0",

@@ -139,6 +139,7 @@ Posts that live on a third-party publication (e.g. the Fullscript Builders Corne
 - **Build**: `npm run build` runs Vite build for frontend (output to `dist/public`) and esbuild for server (output to `dist/index.js`)
 - **Production**: `npm start` runs `NODE_ENV=production node dist/index.js`
 - **Database**: `npm run db:push` pushes schema to database via Drizzle Kit
+- **Published social cards**: `npm run audit:social -- https://chrisfolmar.com` runs the read-only Facebook, LinkedIn, and X crawler audit. GitHub Actions runs it after successful deployment events and hourly because Replit does not expose an arbitrary post-publish command hook.
 
 # Engineering
 

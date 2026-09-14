@@ -1,0 +1,35 @@
+name: Published social card audit
+
+on:
+  deployment_status:
+  schedule:
+    # Replit does not emit a post-publish command hook, so check production
+    # hourly as a fallback and surface failures in GitHub Actions.
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: published-social-card-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    if: >-
+      github.event_name != 'deployment_status' ||
+      github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Audit published social cards
+        run: |
+          if ! npm run audit:social -- https://chrisfolmar.com; then
+            echo "::error::Published social cards failed the crawler audit"
+            exit 1
+          fi
